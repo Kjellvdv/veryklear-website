@@ -1,0 +1,116 @@
+---
+import Base from '../layouts/Base.astro';
+
+const services = [
+  {
+    href: '/strategie',
+    label: 'Strategie',
+    body: 'Wie je klant is, waarom die bij jou koopt, en waar je hem dus moet zoeken.',
+  },
+  {
+    href: '/automatisatie',
+    label: 'Automatisatie',
+    body: 'Elke aanvraag wordt opgevolgd, en je ziet waar je klanten vandaan komen.',
+  },
+  {
+    href: '/websites',
+    label: 'Websites',
+    body: 'Een site die uitlegt wat je doet, en waar mensen ook effectief contact opnemen.',
+  },
+];
+---
+
+<Base
+  title="Very Klear — marketingstrategie en automatisatie"
+  description="Very Klear is het marketingbureau van Kjell Vandevyvere in Ieper. Strategie eerst, dan pas de tools. Automatisatie en AI waar ze zin hebben."
+  path="/"
+>
+  <h1>Marketing waar over nagedacht is.</h1>
+  <p class="lead">
+    Very Klear is het bureau van Kjell Vandevyvere, uit Ieper. Ik doe al een tiental
+    jaar B2B-marketing, de laatste jaren vooral met AI en automatisatie erbij. Dat werk
+    doe ik voor techbedrijven en voor bedrijven van hier, zoals ZYGO.
+  </p>
+
+  <h2>Waarom een kanaal erbij zelden het antwoord is</h2>
+  <p>
+    Er komt een kanaal bij omdat de concurrent er een heeft. Er komt een tool bij omdat
+    iedereen erover praat. En als het dan niet werkt, komt er nog een kanaal bij. Ik zie
+    dat patroon al jaren, bij startups en bij bedrijven van hier: breder gaan is de
+    reflex wanneer iets niet loopt, en het maakt het elke keer erger.
+  </p>
+  <p>
+    Stel dat iedereen in jouw sector op LinkedIn zit. Dan is de vraag niet hoe jij daar
+    ook opvalt. De vraag is of je daar wel moet zijn. Misschien werkt een kaartje in de
+    brievenbus beter, gewoon omdat niemand het nog doet. En misschien ook niet, want
+    zodra iedereen kaartjes stuurt, kijkt niemand er nog naar. Daarom zit het antwoord
+    niet in het kanaal, maar in wie je klant is en waar die zit met je probleem in zijn
+    hoofd.
+  </p>
+  <p>
+    Ik ben er zelf niet immuun voor. Een tijdje geleden kocht ik een dure LinkedIn-tool
+    voor een eigen project. Niet omdat ik beslist had dat LinkedIn het kanaal was, wel
+    omdat iets kopen aanvoelde als vooruitgang. Dat was het niet.
+  </p>
+
+  <h2>AI hoeft niet duur te zijn</h2>
+  <p>
+    Er wordt over AI gepraat alsof je er een budget en een IT-afdeling voor nodig hebt.
+    Mijn volledige AI-stack draaide lang op een abonnement van minder dan veertig euro
+    per maand. Vandaag draaien er vier systemen die voor mij plannen, schrijven en
+    opvolgen, en dat kost tussen de honderd en honderdvijftig euro per maand. Minder dan
+    één uur freelancer.
+  </p>
+  <p>
+    Je hebt ook geen automatiseringsplatform nodig om te beginnen. Dat heb je pas nodig
+    zodra je tegen de grenzen loopt van wat één tool met een goede instructie al kan.
+    Veel bedrijven komen daar voorlopig niet.
+  </p>
+
+  <h2>Automatiseren omdat het past, niet omdat het kan</h2>
+  <p>
+    Vorig jaar automatiseerde ik het herschrijven van oude blogartikels voor een klant.
+    Volledig: de machine deed het werk, ik keek er niet meer naar om. De resultaten
+    kwamen binnen en waren gewoon. Sommige beter, sommige slechter, de meeste net
+    hetzelfde. Ik doe datzelfde project nu opnieuw, met mezelf terug in de lus op de
+    plekken waar het uitmaakt, en nu gaan de cijfers wel omhoog.
+  </p>
+  <p>
+    Sindsdien hou ik één vraag aan voor ik iets uit handen geef: hoe vaak gebeurt het,
+    en hoeveel schade richt één slechte versie aan? Veel herhaling en weinig schade, laat
+    de machine draaien. Weinig herhaling of veel schade, blijf erbij. Een advertentie die
+    niet pakt kost je een paar euro. Een verkeerde mail naar je beste klant kost je die
+    klant.
+  </p>
+
+  <h2>Waar dat concreet op neerkomt</h2>
+  <p>
+    Drie dingen. Je kiest wat je nodig hebt, los van elkaar of na elkaar.
+  </p>
+
+  <ul class="services">
+    {services.map((service) => (
+      <li>
+        <a href={service.href}>{service.label}</a>
+        <p>{service.body}</p>
+      </li>
+    ))}
+  </ul>
+
+  <p>
+    De meeste bedrijven beginnen met één ervan. Werkt dat, dan bouwen we er later op
+    verder. Alles in één keer hoeft niet, en is meestal ook niet de slimste start.
+  </p>
+
+  <h2>Waarom Ieper</h2>
+  <p>
+    Omdat ik hier zit. Je kan langskomen, ik ken de streek, en je weet wie er aan je
+    marketing werkt. Dat scheelt een pak uitleg.
+  </p>
+
+  <h2>Iets bespreken?</h2>
+  <p>
+    Stuur een mail naar <a href="mailto:kjell@veryklear.be">kjell@veryklear.be</a>. Zeg
+    er kort bij waar je mee bezig bent, dan kan ik meteen iets zinnigs antwoorden.
+  </p>
+</Base>

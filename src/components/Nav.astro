@@ -1,0 +1,27 @@
+---
+const { path = '' } = Astro.props;
+
+const links = [
+  { href: '/strategie', label: 'Strategie' },
+  { href: '/automatisatie', label: 'Automatisatie' },
+  { href: '/websites', label: 'Websites' },
+  { href: '/artikels', label: 'Artikels' },
+  { href: '/contact', label: 'Contact' },
+];
+---
+
+<header>
+  <div class="wrap">
+    <a class="brand" href="/">Very Klear</a>
+    <nav>
+      {links.map((link) => (
+        <a
+          href={link.href}
+          aria-current={path.startsWith(link.href) ? 'page' : undefined}
+        >
+          {link.label}
+        </a>
+      ))}
+    </nav>
+  </div>
+</header>

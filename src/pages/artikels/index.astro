@@ -1,0 +1,30 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+
+const posts = (await getCollection('artikels', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.published_at.getTime() - a.data.published_at.getTime()
+);
+---
+
+<Base
+  title="Artikels — Very Klear"
+  description="Stukken over marketingstrategie, automatisatie en websites."
+  path="/artikels"
+>
+  <h1>Artikels</h1>
+  <p class="lead">Stukken over strategie, automatisatie en websites.</p>
+
+  {posts.length === 0 ? (
+    <p class="muted">Nog niets gepubliceerd. Binnenkort meer.</p>
+  ) : (
+    <ul class="services">
+      {posts.map((post) => (
+        <li>
+          <a href={`/artikels/${post.slug}`}>{post.data.title}</a>
+          <p>{post.data.description}</p>
+        </li>
+      ))}
+    </ul>
+  )}
+</Base>
