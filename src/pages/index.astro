@@ -1,6 +1,39 @@
 ---
 import Base from '../layouts/Base.astro';
 
+// Three problem types, per Arvid Kahl: time, resource, self.
+// Written in the words a local owner would actually use.
+const pains = [
+  {
+    label: 'Elke week hetzelfde uitleggen',
+    body: 'Aan de telefoon, in een mail, in een offerte. Altijd opnieuw, altijd zelf.',
+  },
+  {
+    label: 'Geld uitgegeven, niemand weet waaraan',
+    body: 'Er ging vorig jaar geld naar marketing. Wat het opgeleverd heeft, kan niemand zeggen.',
+  },
+  {
+    label: 'Je site doorsturen met een excuus erbij',
+    body: '"Er komt binnenkort een nieuwe." Je bedrijf ziet er ouder uit dan het is.',
+  },
+];
+
+// USPs with a consequence attached, not claims.
+const why = [
+  {
+    label: 'Van hier, met ervaring van ver',
+    body: 'Tien jaar B2B-marketing, AI en automatisatie. Lokale bureaus hebben dat zelden, en wie het wel heeft zit ver weg en is duur.',
+  },
+  {
+    label: 'We raden ook af',
+    body: 'We hebben geen omzetdoelen te halen. Dat je site voorlopig volstaat, hoor je hier geregeld.',
+  },
+  {
+    label: 'Je kan klein beginnen',
+    body: 'Drie diensten, apart te bestellen. Je beoordeelt er eerst één voor je aan de rest begint.',
+  },
+];
+
 const services = [
   {
     href: '/strategie',
@@ -19,22 +52,7 @@ const services = [
   },
 ];
 
-const different = [
-  {
-    label: 'We beginnen bij je klanten',
-    body: 'Niet bij een kanaal of een nieuwe site. Eerst weten waarom mensen bij jou kopen.',
-  },
-  {
-    label: 'We raden ook af',
-    body: 'Geen omzetdoelen, dus minder aanraden kost ons niets. Dat je site volstaat, hoor je hier geregeld.',
-  },
-  {
-    label: 'Niet de goedkoopste',
-    body: 'Goedkoper dan een groot bureau, duurder dan het nichtje dat ook wat schrijft.',
-  },
-];
-
-// Standalone questions: each one readable cold, without the one above it.
+// Standalone questions: each readable cold, without the one above it.
 const faq = [
   {
     q: 'Hebben wij marketing nodig als onze klanten via via komen?',
@@ -57,6 +75,10 @@ const faq = [
     a: 'Drie van je klanten opbellen en één blad met wat daaruit komt. Of één taak die elke week terugkomt, geautomatiseerd. Dat is genoeg om te zien of het iets voor jou is.',
   },
   {
+    q: 'Wat kost het?',
+    a: 'Dat hangt af van wat je nodig hebt, en dat weten we pas na een gesprek. Wel dit alvast: we zijn goedkoper dan een groot bureau en duurder dan het nichtje dat ook wat schrijft. Kies je op prijs alleen, dan zijn we niet de juiste.',
+  },
+  {
     q: 'Werken jullie ook buiten Ieper?',
     a: 'In en rond Ieper, ver genoeg dat langskomen nog normaal is. Zit je verder, stuur gerust een mail, dan zeggen we of het zinvol is.',
   },
@@ -65,23 +87,52 @@ const faq = [
 
 <Base
   title="Very Klear — marketingstrategie en automatisatie in Ieper"
-  description="Strategie, websites en automatisatie voor bedrijven in en rond Ieper. Je kiest wat je nodig hebt, los van elkaar of na elkaar."
+  description="Voor bedrijven in en rond Ieper die willen groeien. Strategie, websites en automatisatie, apart te bestellen."
   path="/"
 >
   <h1>Weten waar je marketinggeld naartoe moet.</h1>
   <p class="lead">
-    Strategie, websites en automatisatie voor bedrijven in en rond Ieper. Je kiest wat
-    je nodig hebt, los van elkaar of na elkaar.
-  </p>
-
-  <h2>Voor wie we werken</h2>
-  <p>
     Voor bedrijven in en rond Ieper die willen groeien en er ook geld voor over hebben.
-    Je klanten komen via via, je site staat er al een paar jaar onaangeroerd bij, en je
-    wil dat het deftig gedaan wordt.
+    Je klanten komen via via, en je wil dat het nu deftig aangepakt wordt.
   </p>
 
-  <h2>Drie dingen, apart te bestellen</h2>
+  <h2>Herkenbaar?</h2>
+  <ul class="cards">
+    {pains.map((item) => (
+      <li class="card">
+        <span class="card-label">{item.label}</span>
+        <p>{item.body}</p>
+      </li>
+    ))}
+  </ul>
+  <p>
+    Geen van die dingen loopt fout genoeg om er vandaag iets aan te doen. Net daarom
+    blijft het jaar na jaar zo.
+  </p>
+
+  <h2>Wat er verandert</h2>
+  <p>
+    Je weet waarom je klanten bij jou kopen en waar je er meer van vindt. Je geeft geen
+    geld meer uit aan kanalen die toch niet gingen werken. Elke aanvraag wordt
+    opgevolgd, ook op een drukke dag. En je stuurt je site door zonder er iets bij te
+    zeggen.
+  </p>
+  <p>
+    Dat begint bijna altijd bij dezelfde vraag: waarom kopen je klanten eigenlijk bij
+    jou? Wie dat weet, weet ook waar zijn geld naartoe moet, en waar niet.
+  </p>
+
+  <h2>Waarom bij ons</h2>
+  <ul class="cards">
+    {why.map((item) => (
+      <li class="card">
+        <span class="card-label">{item.label}</span>
+        <p>{item.body}</p>
+      </li>
+    ))}
+  </ul>
+
+  <h2>Wat je bij ons kan halen</h2>
   <ul class="cards">
     {services.map((service) => (
       <li class="card">
@@ -92,41 +143,7 @@ const faq = [
   </ul>
   <p>
     De meeste bedrijven beginnen met één ervan. Werkt dat, dan bouwen we er later op
-    verder.
-  </p>
-
-  <h2>Wat ons anders maakt</h2>
-  <ul class="cards">
-    {different.map((item) => (
-      <li class="card">
-        <span class="card-label">{item.label}</span>
-        <p>{item.body}</p>
-      </li>
-    ))}
-  </ul>
-
-  <h2>Waarom een kanaal erbij zelden helpt</h2>
-  <p>
-    Stel dat iedereen in jouw sector op LinkedIn zit. Dan is de vraag niet hoe jij daar
-    ook opvalt, maar of je daar wel moet zijn. Misschien werkt een kaartje in de
-    brievenbus beter, gewoon omdat niemand het nog doet. En misschien ook niet, want
-    zodra iedereen kaartjes stuurt, kijkt niemand er nog naar.
-  </p>
-  <p>
-    Daarom zit het antwoord niet in het kanaal, maar in wie je klant is. Ik ben daar
-    zelf niet immuun voor: een tijdje geleden kocht ik een dure LinkedIn-tool voor een
-    eigen project, gewoon omdat iets kopen aanvoelde als vooruitgang.
-  </p>
-
-  <h2>Wat automatisatie teruggeeft</h2>
-  <p>
-    Het geld dat je in automatisatie steekt, komt terug als werk dat niet meer gedaan
-    moet worden. De offerte die je niet meer overtypt, de klant die vanzelf opgevolgd
-    wordt, de cijfers die er op het einde van de maand al staan.
-  </p>
-  <p>
-    Wat we niet automatiseren, is alles wat je eigen stem draagt. Dat gebeurt te weinig
-    om er tijd mee te winnen, en één slechte versie kost te veel.
+    verder. Alles in één keer hoeft niet.
   </p>
 
   <h2>Veelgestelde vragen</h2>
