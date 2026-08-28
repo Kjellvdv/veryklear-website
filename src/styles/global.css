@@ -16,6 +16,8 @@
      Everything accented on the site reads from it. */
   --accent: #111111;
 
+  --wash: #f7f7f6;
+
   --measure: 40rem;
   --gap: 1.5rem;
   --step: 3.5rem;
@@ -169,6 +171,56 @@ nav a[aria-current="page"] {
 .services p {
   margin: 0.2rem 0 0;
   color: var(--muted);
+}
+
+/* --- cards ----------------------------------------------------- */
+
+.cards {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+  gap: 0.75rem;
+  margin: 1.5rem 0 0;
+  padding: 0;
+}
+
+.card {
+  background: var(--wash);
+  border: 1px solid var(--line);
+  padding: 1.1rem;
+  margin: 0;
+}
+
+.card h3,
+.card .card-label {
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin: 0 0 0.4rem;
+  display: block;
+}
+
+.card a {
+  text-decoration: none;
+}
+
+.card p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+.card .step {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-bottom: 0.5rem;
+}
+
+@media (max-width: 30rem) {
+  .cards {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* --- FAQ ------------------------------------------------------- */

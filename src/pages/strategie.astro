@@ -1,5 +1,23 @@
 ---
 import Base from '../layouts/Base.astro';
+
+const steps = [
+  {
+    n: 'Stap 1',
+    label: 'We bellen je beste klanten op',
+    body: 'Een half uur elk, geen enquête. Wat probeerden ze op te lossen, en wanneer wisten ze dat het goed zat?',
+  },
+  {
+    n: 'Stap 2',
+    label: 'We zoeken het patroon',
+    body: 'Wat deze klanten gemeen hebben, en wat hen bij jou bracht in plaats van bij iemand anders.',
+  },
+  {
+    n: 'Stap 3',
+    label: 'Het gaat op één blad',
+    body: 'Wie je klant is, wat je belooft, en waar je die mensen vindt. Geen veertig slides.',
+  },
+];
 ---
 
 <Base
@@ -17,50 +35,37 @@ import Base from '../layouts/Base.astro';
   <p>
     De meeste bedrijven hier hebben hun klanten niet gezocht. Die zijn gekomen: via via,
     omdat iemand je naam noemde, omdat je er al twintig jaar zit. Dat werkt prima, tot
-    je er meer wil en niet goed weet waar je moet beginnen. Dan wordt er een kanaal
-    bijgezet omdat het er nu eenmaal bij hoort, en achteraf kan niemand zeggen of het
-    iets gedaan heeft.
+    je er meer wil en niet goed weet waar je moet beginnen.
   </p>
 
   <h2>Hoe het loopt</h2>
-  <ul>
-    <li><strong>We bellen een paar van je beste klanten op.</strong> Een half uur elk, geen enquête. Wat probeerden ze op te lossen, wat deden ze daarvoor, en wanneer wisten ze dat het goed zat.</li>
-    <li><strong>We zoeken het patroon.</strong> Wat deze klanten gemeen hebben, en wat hen bij jou bracht in plaats van bij iemand anders.</li>
-    <li><strong>We zetten het op één blad.</strong> Wie je klant is, wat je belooft, en waar je die mensen kan vinden.</li>
+  <ul class="cards">
+    {steps.map((step) => (
+      <li class="card">
+        <span class="step">{step.n}</span>
+        <span class="card-label">{step.label}</span>
+        <p>{step.body}</p>
+      </li>
+    ))}
   </ul>
 
   <h2>Je beste klanten weten het al</h2>
   <p>
     Dat klanten toevallig zijn binnengekomen, wil niet zeggen dat er geen patroon in
     zit. Er hebben mensen beslist om bij jou te kopen en niet bij iemand anders. Dat is
-    geen ruis, dat is informatie. De vraag is dus niet hoe je meer klanten vindt, wel
-    wat deze klanten de juiste maakte, en hoe je die met opzet terugvindt.
+    geen ruis, dat is informatie.
   </p>
   <p>
-    De derde vraag is degene die iedereen overslaat: wanneer wist je dat het goed zat,
-    en wat was er dan veranderd? Net daar komen de woorden uit die je klant zelf
-    gebruikt, en die zijn altijd beter dan wat wij zouden verzinnen.
+    De vraag die iedereen overslaat is de derde: wanneer wist je dat het goed zat, en
+    wat was er dan veranderd? Daar komen de woorden uit die je klant zelf gebruikt, en
+    die zijn altijd beter dan wat wij zouden verzinnen.
   </p>
 
   <h2>Het gaat om het moment, niet om de dienst</h2>
   <p>
     "We zochten een nieuwe leverancier" is iets anders dan "onze vaste leverancier liet
-    ons zitten in volle seizoen". Het eerste is een dienst. Het tweede is een moment,
-    met een druk en een datum erbij. Op dat moment kan je mikken, op die dienst niet.
-    Daarom noteren we de situatie waarin iemand begon te zoeken, en niet wat hij
-    uiteindelijk gekocht heeft.
-  </p>
-
-  <h2>Wat je overhoudt</h2>
-  <p>
-    Eén blad. Geen presentatie van veertig slides, want die leest niemand een tweede
-    keer. Kort genoeg om te onthouden, concreet genoeg om er morgen iets mee te doen.
-  </p>
-  <p>
-    Daar volgt meestal vanzelf uit welk kanaal zin heeft, en welke je gerust kan laten
-    liggen. Wil je het zelf testen: schrijf in één paragraaf op wie je klant is, stuur
-    dat naar je drie beste klanten en vraag of het klopt. Zeggen ze "ja, maar", dan is
-    die maar het nuttigste dat je dit jaar te horen krijgt.
+    ons zitten in volle seizoen". Het eerste is een dienst, het tweede een moment met
+    een druk en een datum erbij. Op dat moment kan je mikken.
   </p>
 
   <hr />

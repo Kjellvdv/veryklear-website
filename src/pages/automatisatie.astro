@@ -1,5 +1,23 @@
 ---
 import Base from '../layouts/Base.astro';
+
+const steps = [
+  {
+    n: 'Stap 1',
+    label: 'Het ding dat elke week terugkomt',
+    body: 'De offerte die je overtypt, de klant die je zou moeten bellen, de cijfers die je op het einde van de maand bij elkaar zoekt.',
+  },
+  {
+    n: 'Stap 2',
+    label: 'Bouwen met wat je al hebt',
+    body: 'Zelden een nieuw platform nodig. De tools die je al betaalt, met een deftige instructie erachter.',
+  },
+  {
+    n: 'Stap 3',
+    label: 'Vier weken laten draaien',
+    body: 'Pas als je ziet wat het oplevert, is het zinvol om er iets bij te zetten.',
+  },
+];
 ---
 
 <Base
@@ -21,10 +39,14 @@ import Base from '../layouts/Base.astro';
   </p>
 
   <h2>Hoe het loopt</h2>
-  <ul>
-    <li><strong>We zoeken het ding dat elke week terugkomt.</strong> De offerte die je telkens overtypt, de klant die je na drie maanden zou moeten bellen, de cijfers die je op het einde van de maand bij elkaar zoekt.</li>
-    <li><strong>We bouwen dat ene stuk, met wat je al hebt.</strong> Er is zelden een nieuw platform nodig. De tools die je al betaalt, met een deftige instructie erachter, brengen je verder dan de meeste bedrijven ooit geraken.</li>
-    <li><strong>We laten het vier weken draaien voor we verder gaan.</strong> Pas als je ziet wat het oplevert, is het zinvol om er iets bij te zetten.</li>
+  <ul class="cards">
+    {steps.map((step) => (
+      <li class="card">
+        <span class="step">{step.n}</span>
+        <span class="card-label">{step.label}</span>
+        <p>{step.body}</p>
+      </li>
+    ))}
   </ul>
 
   <h2>Wat het teruggeeft</h2>
@@ -33,33 +55,19 @@ import Base from '../layouts/Base.astro';
     Dat is de reden om eraan te beginnen. Dat de tools zelf weinig kosten is mooi
     meegenomen, maar het is niet waarom je het doet.
   </p>
-  <p>
-    Een echt automatiseringsplatform heb je pas nodig zodra je tegen de grenzen loopt
-    van wat één tool met een goede instructie al kan. Veel bedrijven komen daar
-    voorlopig niet, en dan zeggen we dat ook.
-  </p>
 
   <h2>Wat we niet automatiseren</h2>
   <p>
-    Alles wat je eigen stem draagt, blijft van jou. Het antwoord aan een klant die
-    ontevreden is, de offerte met een prijs erin, het bericht na een moeilijk gesprek.
-    Dat gebeurt te weinig om er veel tijd mee te winnen, en één slechte versie kost te
-    veel. Wat vaak gebeurt en weinig schade aanricht, mag draaien.
+    Alles wat je eigen stem draagt, blijft van jou. Het antwoord aan een ontevreden
+    klant, de offerte met een prijs erin, het bericht na een moeilijk gesprek. Dat
+    gebeurt te weinig om er tijd mee te winnen, en één slechte versie kost te veel.
   </p>
   <p>
     Die afweging komt uit ondervinding. Vorig jaar automatiseerde ik het herschrijven
     van oude blogartikels voor een klant, volledig, zonder er nog naar om te kijken. De
     resultaten waren gewoon: sommige beter, sommige slechter, de meeste net hetzelfde.
-    Nu doe ik datzelfde project opnieuw, met mezelf terug in de lus op de plekken waar
-    het uitmaakt, en nu gaan de cijfers wel omhoog.
-  </p>
-
-  <h2>Geef het vier weken</h2>
-  <p>
-    De eerste week voelt zoiets altijd houterig. Rond week drie begint het te lopen,
-    omdat het leert van wat je goedkeurt en afkeurt. De meeste mensen stoppen in week
-    twee en besluiten dat AI niet werkt voor hun soort bedrijf. Dat is te vroeg om dat
-    te weten.
+    Nu doe ik dat project opnieuw met mezelf terug in de lus, en nu gaan de cijfers wel
+    omhoog.
   </p>
 
   <h2>Ook op zichzelf</h2>

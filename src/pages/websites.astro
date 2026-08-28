@@ -1,5 +1,23 @@
 ---
 import Base from '../layouts/Base.astro';
+
+const steps = [
+  {
+    n: 'Stap 1',
+    label: 'Wat er moet staan',
+    body: 'Welke pagina\'s je nodig hebt en wat iemand als eerste leest. Dit is het stuk dat het verschil maakt.',
+  },
+  {
+    n: 'Stap 2',
+    label: 'De tekst',
+    body: 'Geschreven vanuit de strategie, niet achteraf ingevuld tussen de blokken.',
+  },
+  {
+    n: 'Stap 3',
+    label: 'Ontwerp, bouw, overdracht',
+    body: 'Sober, snel, leesbaar op een telefoon. Achteraf kan je zelf aanpassen wat je zelf wil aanpassen.',
+  },
+];
 ---
 
 <Base
@@ -18,30 +36,26 @@ import Base from '../layouts/Base.astro';
     Je site hoeft niet je belangrijkste kanaal te zijn. Bij de meeste bedrijven hier is
     dat ook niet zo, want het werk komt via via binnen. Maar iedereen die je naam hoort,
     gaat wel eerst even kijken. Staat daar iets van een paar jaar geleden dat niet meer
-    klopt met wat je vandaag doet, dan doet die pagina het omgekeerde van wat ze zou
-    moeten doen.
+    klopt, dan doet die pagina het omgekeerde van wat ze zou moeten doen.
   </p>
 
   <h2>Hoe het loopt</h2>
-  <ul>
-    <li><strong>Eerst wat er moet staan, en in welke volgorde.</strong> Welke pagina's je nodig hebt en wat iemand als eerste moet lezen. Dit is het stuk dat het verschil maakt.</li>
-    <li><strong>Dan de tekst.</strong> Geschreven vanuit de strategie, niet achteraf ingevuld tussen de blokken.</li>
-    <li><strong>Dan pas ontwerp en bouw.</strong> Sober, snel, leesbaar op een telefoon, en achteraf overgedragen zodat je zelf kan aanpassen wat je zelf wil aanpassen.</li>
+  <ul class="cards">
+    {steps.map((step) => (
+      <li class="card">
+        <span class="step">{step.n}</span>
+        <span class="card-label">{step.label}</span>
+        <p>{step.body}</p>
+      </li>
+    ))}
   </ul>
 
   <h2>Geen herontwerp om het herontwerp</h2>
   <p>
     Als je huidige site het doet, blijven we ervan af. Vaak zit het probleem niet in hoe
     de site eruitziet, maar in wat er staat en in welke volgorde. Dat is goedkoper op te
-    lossen dan een volledige nieuwe site, en het scheelt meestal meer. Je hoort hier dus
-    geregeld dat je geen nieuwe site nodig hebt.
-  </p>
-
-  <h2>Met of zonder strategie</h2>
-  <p>
-    Weet je al wat je site moet vertellen, dan bouwen we gewoon. Twijfel je daarover,
-    dan is <a href="/strategie">strategie</a> een logische eerste stap. Dat hoeft geen
-    groot traject te zijn, en het hoeft ook niet in dezelfde opdracht te zitten.
+    lossen dan een nieuwe site, en het scheelt meestal meer. Je hoort hier dus geregeld
+    dat je geen nieuwe site nodig hebt.
   </p>
 
   <h2>Als het groter wordt dan dit</h2>
@@ -49,7 +63,7 @@ import Base from '../layouts/Base.astro';
     Voor een webshop met veel schakels, een platform of een app werken we samen met
     partners die daar dagelijks mee bezig zijn. Soms is Webflow of WordPress trouwens
     het betere antwoord, gewoon omdat jij of iemand bij jou er daarna zelf mee verder
-    moet. Dan bouwen we dat liever niet zelf.
+    moet.
   </p>
 
   <hr />
@@ -60,6 +74,7 @@ import Base from '../layouts/Base.astro';
     zeggen we dat ook.
   </p>
   <p class="muted">
-    Verder kijken: <a href="/automatisatie">automatisatie</a>.
+    Verder kijken: <a href="/strategie">strategie</a> of
+    <a href="/automatisatie">automatisatie</a>.
   </p>
 </Base>
