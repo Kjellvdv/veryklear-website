@@ -171,6 +171,42 @@ nav a[aria-current="page"] {
   color: var(--muted);
 }
 
+/* --- FAQ ------------------------------------------------------- */
+
+details {
+  border-top: 1px solid var(--line);
+  padding: 1rem 0;
+}
+
+details:last-of-type {
+  border-bottom: 1px solid var(--line);
+}
+
+summary {
+  cursor: pointer;
+  font-weight: 600;
+  list-style: none;
+}
+
+summary::-webkit-details-marker {
+  display: none;
+}
+
+summary::after {
+  content: "+";
+  float: right;
+  color: var(--muted);
+}
+
+details[open] summary::after {
+  content: "–";
+}
+
+details p {
+  margin: 0.75rem 0 0;
+  color: var(--muted);
+}
+
 footer {
   border-top: 1px solid var(--line);
   margin-top: var(--step);

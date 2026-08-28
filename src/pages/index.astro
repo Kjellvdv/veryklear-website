@@ -1,11 +1,12 @@
 ---
 import Base from '../layouts/Base.astro';
 
+// Benefit-led, per copy.yml atidfa.interest (feature -> capability -> benefit).
 const services = [
   {
     href: '/strategie',
     label: 'Strategie',
-    body: 'Wie je klant is, waarom die bij jou koopt, en waar je hem dus moet zoeken.',
+    body: 'Je weet waarom je klanten bij jou kopen, en waar je er meer van vindt.',
   },
   {
     href: '/automatisatie',
@@ -15,21 +16,60 @@ const services = [
   {
     href: '/websites',
     label: 'Websites',
-    body: 'Een site die uitlegt wat je doet, en waar mensen ook effectief contact opnemen.',
+    body: 'Wie je naam hoort en je opzoekt, belt daarna ook echt.',
+  },
+];
+
+// copy.yml atidfa.faq — all three anxiety types.
+const faq = [
+  {
+    q: 'We krijgen al ons werk via via. Hebben wij dat wel nodig?',
+    a: 'Mond-tot-mond is een kanaal, en meestal een goed. De vraag is of je weet waarom het werkt, want dat vertelt je hoe je er meer van krijgt. Het meeste werk hier begint trouwens bij de klanten die je al hebt, niet bij iets nieuws erbij.',
+  },
+  {
+    q: 'AI, is dat niet iets voor grote bedrijven met een IT-afdeling?',
+    a: 'Meestal niet. De tools die je al betaalt, met een deftige instructie erachter, brengen je verder dan de meeste bedrijven ooit geraken. Een echt automatiseringsplatform is pas nodig als je daar tegen de grenzen van loopt.',
+  },
+  {
+    q: 'We hebben al eens met een bureau gewerkt en daar kwam weinig uit.',
+    a: 'Dat gebeurt meestal omdat er begonnen wordt bij een kanaal of een nieuwe site, en niet bij je klanten. Achteraf kan dan niemand zeggen of het iets gedaan heeft. Hier koop je de drie dingen apart, klein genoeg om er eerst eentje te beoordelen.',
+  },
+  {
+    q: 'Kunnen jullie niet gewoon de website doen?',
+    a: 'Jawel. Dat is een van de drie en het wordt apart verkocht. Weet je al wat je site moet vertellen, dan bouwen we. Twijfel je daarover, dan is strategie een logische eerste stap, maar dat hoeft niet in dezelfde opdracht te zitten.',
+  },
+  {
+    q: 'We hebben eigenlijk geen tijd om daaraan te beginnen.',
+    a: 'Daarom staat elk stuk op zichzelf. De kleinste zinnige versie van automatisatie is één taak die elke week terugkomt. De kleinste zinnige versie van strategie is drie klanten opbellen en één blad.',
   },
 ];
 ---
 
 <Base
-  title="Very Klear — marketingstrategie en automatisatie"
-  description="Very Klear is het marketingbureau van Kjell Vandevyvere in Ieper. Strategie eerst, dan pas de tools. Automatisatie en AI waar ze zin hebben."
+  title="Very Klear — marketingstrategie en automatisatie in Ieper"
+  description="Strategie, websites en automatisatie voor bedrijven in en rond Ieper. Je kiest wat je nodig hebt, los van elkaar of na elkaar."
   path="/"
 >
-  <h1>Marketing waar over nagedacht is.</h1>
+  <h1>Weten waar je marketinggeld naartoe moet.</h1>
   <p class="lead">
-    Very Klear is het bureau van Kjell Vandevyvere, uit Ieper. Ik doe al een tiental
-    jaar B2B-marketing, de laatste jaren vooral met AI en automatisatie erbij. Dat werk
-    doe ik voor techbedrijven en voor bedrijven van hier, zoals ZYGO.
+    Strategie, websites en automatisatie voor bedrijven in en rond Ieper. Je kiest wat
+    je nodig hebt, los van elkaar of na elkaar.
+  </p>
+
+  <h2>Voor wie we werken</h2>
+  <p>
+    Voor bedrijven in en rond Ieper die willen groeien en er ook geld voor over hebben.
+    Je klanten komen via via, je site staat er al een paar jaar onaangeroerd bij, en je
+    wil dat het deftig gedaan wordt.
+  </p>
+  <p>
+    Wat je overhoudt, is marketing die je zelf kan uitleggen. Je weet waarom je klanten
+    bij jou kopen, waar je ze kan vinden, en waar je je geld dus niet aan moet uitgeven.
+  </p>
+  <p>
+    Very Klear is het bureau van Kjell Vandevyvere. Ik doe al een tiental jaar
+    B2B-marketing, de laatste jaren vooral met AI en automatisatie erbij, voor
+    techbedrijven en voor bedrijven van hier zoals ZYGO.
   </p>
 
   <h2>Waarom een kanaal erbij zelden het antwoord is</h2>
@@ -53,18 +93,18 @@ const services = [
     omdat iets kopen aanvoelde als vooruitgang. Dat was het niet.
   </p>
 
-  <h2>AI hoeft niet duur te zijn</h2>
+  <h2>Wat automatisatie teruggeeft</h2>
   <p>
-    Er wordt over AI gepraat alsof je er een budget en een IT-afdeling voor nodig hebt.
-    Mijn volledige AI-stack draaide lang op een abonnement van minder dan veertig euro
-    per maand. Vandaag draaien er vier systemen die voor mij plannen, schrijven en
-    opvolgen, en dat kost tussen de honderd en honderdvijftig euro per maand. Minder dan
-    één uur freelancer.
+    Het geld dat je in automatisatie steekt, komt terug als werk dat niet meer gedaan
+    moet worden. De offerte die je niet meer overtypt. De klant die vanzelf opgevolgd
+    wordt. De cijfers die er op het einde van de maand gewoon al staan.
   </p>
   <p>
-    Je hebt ook geen automatiseringsplatform nodig om te beginnen. Dat heb je pas nodig
-    zodra je tegen de grenzen loopt van wat één tool met een goede instructie al kan.
-    Veel bedrijven komen daar voorlopig niet.
+    En nee, daar heb je geen budget en geen IT-afdeling voor nodig. Mijn volledige
+    AI-stack draaide lang op een abonnement van minder dan veertig euro per maand.
+    Vandaag draaien er vier systemen die voor mij plannen, schrijven en opvolgen, en dat
+    kost tussen de honderd en honderdvijftig euro per maand. Dat is wat de tools kosten,
+    niet wat het werk kost.
   </p>
 
   <h2>Automatiseren omdat het past, niet omdat het kan</h2>
@@ -76,17 +116,14 @@ const services = [
     plekken waar het uitmaakt, en nu gaan de cijfers wel omhoog.
   </p>
   <p>
-    Sindsdien houden we één vraag aan voor we iets uit handen geven: hoe vaak gebeurt het,
-    en hoeveel schade richt één slechte versie aan? Veel herhaling en weinig schade, laat
-    de machine draaien. Weinig herhaling of veel schade, blijf erbij. Een advertentie die
-    niet pakt kost je een paar euro. Een verkeerde mail naar je beste klant kost je die
-    klant.
+    Sindsdien houden we één vraag aan voor we iets uit handen geven: hoe vaak gebeurt
+    het, en hoeveel schade richt één slechte versie aan? Veel herhaling en weinig
+    schade, laat de machine draaien. Weinig herhaling of veel schade, blijf erbij. Een
+    advertentie die niet pakt kost je een paar euro. Een verkeerde mail naar je beste
+    klant kost je die klant.
   </p>
 
-  <h2>Waar dat concreet op neerkomt</h2>
-  <p>
-    Drie dingen. Je kiest wat je nodig hebt, los van elkaar of na elkaar.
-  </p>
+  <h2>Drie dingen, apart te bestellen</h2>
 
   <ul class="services">
     {services.map((service) => (
@@ -102,6 +139,26 @@ const services = [
     verder. Alles in één keer hoeft niet, en is meestal ook niet de slimste start.
   </p>
 
+  <h2>We zeggen ook wanneer je iets niet nodig hebt</h2>
+  <p>
+    We hebben geen omzetdoelen te halen, dus minder aanraden kost ons niets. Dat je
+    huidige site voorlopig volstaat en je geld beter ergens anders naartoe gaat, is hier
+    een normaal antwoord. Bij een bureau dat sites verkoopt hoor je dat zelden.
+  </p>
+  <p>
+    Daar hoort ook bij dat we niet de goedkoopste zijn. Goedkoper dan een groot bureau,
+    maar duurder dan het nichtje dat ook wat teksten schrijft. Wie enkel op prijs kiest,
+    is bij ons aan het verkeerde adres, en dat zeggen we liever nu dan achteraf.
+  </p>
+
+  <h2>Veelgestelde vragen</h2>
+  {faq.map((item) => (
+    <details>
+      <summary>{item.q}</summary>
+      <p>{item.a}</p>
+    </details>
+  ))}
+
   <h2>Waarom Ieper</h2>
   <p>
     Omdat we hier zitten. Je kan langskomen, we kennen de streek, en je weet wie er aan
@@ -112,5 +169,6 @@ const services = [
   <p>
     Stuur een mail naar <a href="mailto:kjell@veryklear.be">kjell@veryklear.be</a>. Zeg
     er kort bij waar je mee bezig bent, dan kunnen we meteen iets zinnigs antwoorden.
+    Wil je eerst weten hoe we werken, begin dan bij <a href="/strategie">strategie</a>.
   </p>
 </Base>
