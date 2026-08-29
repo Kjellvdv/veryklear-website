@@ -1,78 +1,80 @@
 ---
 import Base from '../layouts/Base.astro';
 
-// Three problem types, per Arvid Kahl: time, resource, self.
-// Written in the words a local owner would actually use.
-const pains = [
+const benefits = [
   {
-    label: 'Elke week hetzelfde uitleggen',
-    body: 'Aan de telefoon, in een mail, in een offerte. Altijd opnieuw, altijd zelf.',
+    label: 'Je weet waarom ze kopen',
+    body: 'Voor je iets uitgeeft, weet je waarom je beste klanten voor jou gekozen hebben en waar je er meer van vindt.',
   },
   {
-    label: 'Geld uitgegeven, niemand weet waaraan',
-    body: 'Er ging vorig jaar geld naar marketing. Wat het opgeleverd heeft, kan niemand zeggen.',
+    label: 'Je begint klein',
+    body: 'Drie aparte diensten. Je koopt er één, je beoordeelt ze, en pas dan beslis je of er iets bij komt.',
   },
   {
-    label: 'Je site doorsturen met een excuus erbij',
-    body: '"Er komt binnenkort een nieuwe." Je bedrijf ziet er ouder uit dan het is.',
+    label: 'Niets hangt af van wie tijd heeft',
+    body: 'Elke aanvraag komt binnen, krijgt antwoord en blijft opvolgbaar, ook op een drukke dag.',
   },
 ];
 
-// USPs with a consequence attached, not claims.
-const why = [
+const steps = [
   {
-    label: 'Van hier, met ervaring van ver',
-    body: 'Tien jaar B2B-marketing, AI en automatisatie. Lokale bureaus hebben dat zelden, en wie het wel heeft zit ver weg en is duur.',
+    n: 'Stap 1',
+    label: 'Een gesprek',
+    body: 'Over wat vandaag werkt en wat niet. Geen verkooppraatje: het meeste bruikbare zit al in je zaak.',
   },
   {
-    label: 'We raden ook af',
-    body: 'We hebben geen omzetdoelen te halen. Dat je site voorlopig volstaat, hoor je hier geregeld.',
+    n: 'Stap 2',
+    label: 'We bellen je beste klanten',
+    body: 'Een half uur elk. Wat probeerden ze op te lossen, en wanneer wisten ze dat het goed zat?',
   },
   {
-    label: 'Je kan klein beginnen',
-    body: 'Drie diensten, apart te bestellen. Je beoordeelt er eerst één voor je aan de rest begint.',
+    n: 'Stap 3',
+    label: 'Je krijgt één blad',
+    body: 'Wie je klant is, wat je belooft, en waar je die mensen vindt. Daarmee beoordeel je elke offerte die binnenkomt.',
   },
 ];
 
-const services = [
+const features = [
   {
     href: '/strategie',
-    label: 'Strategie',
-    body: 'Je weet waarom je klanten bij jou kopen, en waar je er meer van vindt.',
-  },
-  {
-    href: '/automatisatie',
-    label: 'Automatisatie',
-    body: 'Elke aanvraag wordt opgevolgd, en je ziet waar je klanten vandaan komen.',
+    title: 'Strategie',
+    body: 'Wie je klant is, waarom die bij jou koopt, en welke kanalen de moeite zijn. Je houdt er één blad aan over dat je overal kan gebruiken.',
+    note: 'De kleinste versie: drie klanten opbellen en één blad.',
   },
   {
     href: '/websites',
-    label: 'Websites',
-    body: 'Wie je naam hoort en je opzoekt, belt daarna ook echt.',
+    title: 'Websites',
+    body: 'Een site die uitlegt wat je doet en waar mensen ook effectief contact opnemen. Vertrokken van wat er moet staan, niet van hoe het eruitziet.',
+    note: 'Volstaat je huidige site, dan zeggen we dat.',
+  },
+  {
+    href: '/automatisatie',
+    title: 'Automatisatie',
+    body: 'Opvolging, klantenbeheer en rapportering die blijven draaien. Met AI waar het werk zich herhaalt, op de tools die je al betaalt.',
+    note: 'De kleinste versie: één taak die elke week terugkomt.',
   },
 ];
 
-// Standalone questions: each readable cold, without the one above it.
 const faq = [
+  {
+    q: 'Is die strategie gewoon een manier om me een groter traject aan te smeren?',
+    a: 'Nee. Het is een aparte dienst met een eigen prijs en een blad dat van jou is. Een normale afloop is dat we zeggen dat je huidige site volstaat, of dat een tool volstaat waar wij niets aan verdienen. Je kan er ook mee naar iemand anders stappen.',
+  },
+  {
+    q: 'Waarom zou ik in zee gaan met een naam waar ik nog nooit van gehoord heb?',
+    a: 'Terechte vraag. Het antwoord is dat je klein kan beginnen: één dienst, met een resultaat dat je kan beoordelen voor je verder gaat. Achter Very Klear zit een tiental jaar B2B-marketing en automatisatie, ervaring die je bij een lokaal bureau zelden vindt.',
+  },
   {
     q: 'Hebben wij marketing nodig als onze klanten via via komen?',
     a: 'Mond-tot-mond is een kanaal, en meestal een goed. De vraag is of je weet waarom het werkt, want dat vertelt je hoe je er meer van krijgt.',
   },
   {
+    q: 'Wat als ik maar één ding nodig heb en de rest nooit?',
+    a: 'Dan is dat perfect in orde. Elke dienst staat op zichzelf. Wie enkel strategie koopt en daarmee stopt, heeft iets volledigs gekocht. Er wordt hier niets gebundeld om een maandbedrag te doen kloppen.',
+  },
+  {
     q: 'Is AI niet iets voor grote bedrijven met een IT-afdeling?',
     a: 'Meestal niet. De tools die je al betaalt, met een deftige instructie erachter, brengen je verder dan de meeste bedrijven ooit geraken.',
-  },
-  {
-    q: 'We hebben al eens met een bureau gewerkt en er kwam weinig uit. Waarom zou dit anders zijn?',
-    a: 'Meestal omdat er begonnen wordt bij een kanaal of een nieuwe site, en niet bij je klanten. Achteraf kan dan niemand zeggen of het iets gedaan heeft. Hier koop je de drie dingen apart, klein genoeg om er eerst eentje te beoordelen.',
-  },
-  {
-    q: 'Kunnen jullie alleen de website doen?',
-    a: 'Jawel. Elk van de drie wordt apart verkocht. Weet je al wat je site moet vertellen, dan bouwen we meteen.',
-  },
-  {
-    q: 'Hoe klein kan een eerste opdracht zijn?',
-    a: 'Drie van je klanten opbellen en één blad met wat daaruit komt. Of één taak die elke week terugkomt, geautomatiseerd. Dat is genoeg om te zien of het iets voor jou is.',
   },
   {
     q: 'Wat kost het?',
@@ -87,65 +89,80 @@ const faq = [
 
 <Base
   title="Very Klear — marketingstrategie en automatisatie in Ieper"
-  description="Voor bedrijven in en rond Ieper die willen groeien. Strategie, websites en automatisatie, apart te bestellen."
+  description="Strategie, website en automatisatie als drie aparte diensten voor bedrijven in en rond Ieper. Je begint met één en beoordeelt ze voor je verder gaat."
   path="/"
 >
+  <p class="primer">Marketingbureau in Ieper</p>
   <h1>Meer klanten zoals je beste klanten.</h1>
   <p class="lead">
-    Voor bedrijven in en rond Ieper die willen groeien en er ook geld voor over hebben.
-    Je klanten komen via via, en je wil dat het nu deftig aangepakt wordt.
+    Strategie, website en automatisatie als drie aparte diensten. Je begint met één, en
+    je beoordeelt die voor er iets bij komt.
   </p>
 
-  <h2>Herkenbaar?</h2>
+  <a class="btn" href="/strategie">Begin bij strategie &rarr;</a>
+
+  <ul class="points">
+    <li>Je houdt een blad over waarmee je elke offerte kan beoordelen, ook de onze.</li>
+    <li>Een normale afloop is dat je minder uitgeeft dan je van plan was.</li>
+    <li>Van hier, dus langskomen kan gewoon.</li>
+  </ul>
+
+  <p class="proofline">
+    Werkte onder meer voor ZYGO, en een tiental jaar voor techbedrijven buiten de streek.
+  </p>
+
+  <h2>Wat het je oplevert</h2>
   <ul class="cards">
-    {pains.map((item) => (
+    {benefits.map((item) => (
       <li class="card">
         <span class="card-label">{item.label}</span>
         <p>{item.body}</p>
       </li>
     ))}
   </ul>
+
+  <h2>Herkenbaar?</h2>
+  <p>
+    Je legt elke week aan de telefoon hetzelfde uit. Er ging vorig jaar geld naar
+    marketing en niemand kan zeggen wat het opgeleverd heeft. En je stuurt je site door
+    met "er komt binnenkort een nieuwe" erbij.
+  </p>
   <p>
     Geen van die dingen loopt fout genoeg om er vandaag iets aan te doen. Net daarom
     blijft het jaar na jaar zo.
   </p>
 
-  <h2>Wat er verandert</h2>
+  <h2>Waarom het hier anders loopt</h2>
   <p>
-    Je weet waarom je klanten bij jou kopen en waar je er meer van vindt. Je geeft geen
-    geld meer uit aan kanalen die toch niet gingen werken. Elke aanvraag wordt
-    opgevolgd, ook op een drukke dag. En je stuurt je site door zonder er iets bij te
-    zeggen.
+    Een lokaal webbureau begint bij de website, want de website is wat ze verkopen. Hier
+    begint het bij de vraag of een website wel is waar je geld naartoe moet. Dat is een
+    ongemakkelijk verkoopgesprek en een veel beter startpunt.
   </p>
   <p>
-    Dat begint bijna altijd bij dezelfde vraag: waarom kopen je beste klanten eigenlijk
-    bij jou? Wie dat weet, weet ook waar hij er meer van vindt. En met het beetje tijd
-    en geld dat je hebt, is dat het enige dat telt.
+    We hebben geen omzetdoelen te halen, dus minder aanraden kost ons niets. Wel zijn we
+    niet de goedkoopste: goedkoper dan een groot bureau, duurder dan het nichtje dat ook
+    wat teksten schrijft.
   </p>
 
-  <h2>Waarom bij ons</h2>
+  <h2>Hoe een strategie loopt</h2>
   <ul class="cards">
-    {why.map((item) => (
+    {steps.map((step) => (
       <li class="card">
-        <span class="card-label">{item.label}</span>
-        <p>{item.body}</p>
+        <span class="step">{step.n}</span>
+        <span class="card-label">{step.label}</span>
+        <p>{step.body}</p>
       </li>
     ))}
   </ul>
 
-  <h2>Wat je bij ons kan halen</h2>
-  <ul class="cards">
-    {services.map((service) => (
-      <li class="card">
-        <a class="card-label" href={service.href}>{service.label} &rarr;</a>
-        <p>{service.body}</p>
-      </li>
-    ))}
-  </ul>
-  <p>
-    De meeste bedrijven beginnen met één ervan. Werkt dat, dan bouwen we er later op
-    verder. Alles in één keer hoeft niet.
-  </p>
+  <h2>De drie diensten</h2>
+  {features.map((f) => (
+    <div class="feature">
+      <h3><a href={f.href}>{f.title} &rarr;</a></h3>
+      <p>{f.body}</p>
+      <p class="muted"><small>{f.note}</small></p>
+    </div>
+  ))}
 
   <h2>Veelgestelde vragen</h2>
   {faq.map((item) => (
@@ -155,16 +172,17 @@ const faq = [
     </details>
   ))}
 
-  <h2>Waarom Ieper</h2>
-  <p>
-    Omdat we hier zitten. Je kan langskomen, we kennen de streek, en je weet wie er aan
-    je marketing werkt. Dat scheelt een pak uitleg.
-  </p>
-
-  <h2>Iets bespreken?</h2>
-  <p>
-    Stuur een mail naar <a href="mailto:kjell@veryklear.be">kjell@veryklear.be</a> en
-    zeg kort waar je mee bezig bent. Denken we dat je ons niet nodig hebt, dan zeggen we
-    dat ook.
-  </p>
+  <div class="cta-block">
+    <h2>Iets bespreken?</h2>
+    <p>
+      Stuur een mail naar <a href="mailto:kjell@veryklear.be">kjell@veryklear.be</a> en
+      zeg kort waar je mee bezig bent.
+    </p>
+    <ul class="points">
+      <li>Je krijgt een eerlijk antwoord, ook als dat "je hebt ons niet nodig" is.</li>
+      <li>Je zit nergens aan vast tot je zelf zegt dat het mag.</li>
+      <li>Langskomen in Ieper kan altijd.</li>
+    </ul>
+    <a class="btn" href="mailto:kjell@veryklear.be">Stuur een mail &rarr;</a>
+  </div>
 </Base>
