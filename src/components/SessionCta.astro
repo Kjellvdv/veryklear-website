@@ -1,7 +1,8 @@
 ---
 // Shared closing CTA. The session is the front door to all three services, so
 // every page except /strategiesessie itself ends here.
-// Price stays out of the button and sits in the line underneath.
+// NO PRICING here or anywhere else in a CTA box. The price lives on the booking
+// page only (/strategiesessie), where someone has arrived ready to decide.
 const {
   heading = 'Weten of dit iets voor jou is?',
   body = 'Eén gesprek van een uur, en je weet waar je best aan begint. Denken we dat je ons niet nodig hebt, dan zeggen we dat ook.',
@@ -13,9 +14,6 @@ const {
   <p>{body}</p>
   <a class="btn" href="/strategiesessie">Boek een strategiesessie &rarr;</a>
   <p class="muted">
-    <small>
-      60 minuten &middot; 90 euro excl. btw &middot; of stuur gewoon
-      <a href="mailto:kjell@veryklear.be">een mail</a>.
-    </small>
+    <small>Of stuur gewoon <a href="mailto:kjell@veryklear.be">een mail</a>.</small>
   </p>
 </div>
