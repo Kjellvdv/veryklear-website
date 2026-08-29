@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
+import SessionCta from '../../components/SessionCta.astro';
 
 export async function getStaticPaths() {
   const posts = await getCollection('artikels', ({ data }) => !data.draft);
@@ -26,4 +27,6 @@ const { Content } = await post.render();
 
   <hr />
   <p><a href="/artikels">Terug naar alle artikels</a></p>
+
+  <SessionCta />
 </Base>

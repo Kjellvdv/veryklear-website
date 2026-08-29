@@ -1,0 +1,21 @@
+---
+// Shared closing CTA. The session is the front door to all three services, so
+// every page except /strategiesessie itself ends here.
+// Price stays out of the button and sits in the line underneath.
+const {
+  heading = 'Weten of dit iets voor jou is?',
+  body = 'Eén gesprek van een uur, en je weet waar je best aan begint. Denken we dat je ons niet nodig hebt, dan zeggen we dat ook.',
+} = Astro.props;
+---
+
+<div class="cta-block">
+  <h2>{heading}</h2>
+  <p>{body}</p>
+  <a class="btn" href="/strategiesessie">Boek een strategiesessie &rarr;</a>
+  <p class="muted">
+    <small>
+      60 minuten &middot; 90 euro excl. btw &middot; of stuur gewoon
+      <a href="mailto:kjell@veryklear.be">een mail</a>.
+    </small>
+  </p>
+</div>

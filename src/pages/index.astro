@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
+import SessionCta from '../components/SessionCta.astro';
 
 const benefits = [
   {
@@ -111,7 +112,7 @@ const faq = [
     genoeg om er vandaag iets aan te doen, en net daarom blijft het jaar na jaar zo.
   </p>
 
-  <a class="btn" href="/strategiesessie">Boek een strategiesessie &middot; 90 euro excl. btw &rarr;</a>
+  <a class="btn" href="/strategiesessie">Boek een strategiesessie &rarr;</a>
 
   <h2>De drie diensten</h2>
   {features.map((f) => (
@@ -170,19 +171,7 @@ const faq = [
     </details>
   ))}
 
-  <div class="cta-block">
-    <h2>Iets bespreken?</h2>
-    <p>
-      Stuur een mail naar <a href="mailto:kjell@veryklear.be">kjell@veryklear.be</a> en
-      zeg kort waar je mee bezig bent.
-    </p>
-    <ul class="points">
-      <li>Je krijgt een eerlijk antwoord, ook als dat "je hebt ons niet nodig" is.</li>
-      <li>Je zit nergens aan vast tot je zelf zegt dat het mag.</li>
-      <li>Langskomen in Ieper kan altijd.</li>
-    </ul>
-    <a class="btn" href="mailto:kjell@veryklear.be">Stuur een mail &rarr;</a>
-  </div>
+  <SessionCta />
 
   <p class="muted">
     Liever eerst wat lezen? In de <a href="/artikels">artikels</a> staat hoe we naar
