@@ -4,6 +4,20 @@ import Footer from '../components/Footer.astro';
 import '../styles/global.css';
 
 const { title, description, path = '' } = Astro.props;
+
+// ─────────────────────────────────────────────────────────────────────────────
+// PREVIEW MODE. Set to false before this goes live on veryklear.be.
+//
+// While true, every page ships <meta name="robots" content="noindex, nofollow">
+// and no canonical tag. That is deliberate: the site is being previewed on
+// veryklear.com while veryklear.be still serves the old site, so indexing the
+// preview would put two different versions of the same business in Google, and
+// a canonical pointing at .be would point at content that does not match.
+//
+// Do NOT use robots.txt Disallow for this. A blocked crawler never reads the
+// noindex tag, so the page can still end up indexed from external links.
+// ─────────────────────────────────────────────────────────────────────────────
+const PREVIEW = true;
 ---
 
 <!doctype html>
@@ -13,7 +27,9 @@ const { title, description, path = '' } = Astro.props;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site).href} />
+    {PREVIEW
+      ? <meta name="robots" content="noindex, nofollow" />
+      : <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site).href} />}
   </head>
   <body>
     <Nav path={path} />
