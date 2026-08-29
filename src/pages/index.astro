@@ -2,21 +2,6 @@
 import Base from '../layouts/Base.astro';
 import SessionCta from '../components/SessionCta.astro';
 
-const benefits = [
-  {
-    label: 'Je weet waarom ze kopen',
-    body: 'Voor je iets uitgeeft, weet je waarom je beste klanten voor jou gekozen hebben en waar je er meer van vindt.',
-  },
-  {
-    label: 'Je moet niet alles ineens beslissen',
-    body: 'Eén stuk werk, en je ziet zelf wat het opbrengt voor er iets bij komt. Geen traject waar je in vastzit.',
-  },
-  {
-    label: 'Niets hangt af van wie tijd heeft',
-    body: 'Elke aanvraag komt binnen, krijgt antwoord en blijft opvolgbaar, ook op een drukke dag.',
-  },
-];
-
 const steps = [
   {
     n: 'Stap 1',
@@ -39,20 +24,20 @@ const features = [
   {
     href: '/strategie',
     title: 'Strategie',
-    body: 'Wie je klant is, waarom die bij jou koopt, en welke kanalen de moeite zijn. Daarna testen, kijken wat het doet, en bijsturen. Een paar maanden, met vaste momenten om samen te zitten.',
-    note: 'Begint met een strategiesessie.',
+    body: 'Weten wie je klant is en waarom die bij jou koopt. Daarna proberen, kijken wat het doet, en bijsturen.',
+    note: 'Een paar maanden, met vaste momenten samen.',
   },
   {
     href: '/websites',
     title: 'Websites',
-    body: 'Een site die uitlegt wat je doet en waar mensen ook effectief contact opnemen. Vertrokken van wat er moet staan, niet van hoe het eruitziet.',
+    body: 'Een site die uitlegt wat je doet, en waar mensen ook effectief contact opnemen.',
     note: 'Volstaat je huidige site, dan zeggen we dat.',
   },
   {
     href: '/automatisatie',
     title: 'Automatisatie',
-    body: 'Opvolging, klantenbeheer en rapportering die blijven draaien. Met AI waar het werk zich herhaalt, op de tools die je al betaalt.',
-    note: 'De kleinste versie: één taak die elke week terugkomt.',
+    body: 'Opvolging en rapportering die blijven draaien, op de tools die je al betaalt.',
+    note: 'Begint bij één taak die elke week terugkomt.',
   },
 ];
 
@@ -114,24 +99,26 @@ const faq = [
 
   <a class="btn" href="/strategiesessie">Boek een strategiesessie &rarr;</a>
 
-  <h2>De drie diensten</h2>
-  {features.map((f) => (
-    <div class="feature">
-      <h3><a href={f.href}>{f.title} &rarr;</a></h3>
-      <p>{f.body}</p>
-      <p class="muted"><small>{f.note}</small></p>
-    </div>
-  ))}
-
-  <h2>Wat het je oplevert</h2>
+  <h2>Waar wil je beginnen?</h2>
   <ul class="cards">
-    {benefits.map((item) => (
+    {features.map((f) => (
       <li class="card">
-        <span class="card-label">{item.label}</span>
-        <p>{item.body}</p>
+        <a class="card-label" href={f.href}>{f.title} &rarr;</a>
+        <p>{f.body}</p>
+        <p class="note">{f.note}</p>
       </li>
     ))}
   </ul>
+
+  <h2>Wat er verandert</h2>
+  <p>
+    Je geeft geen geld meer uit aan dingen waarvan achteraf niemand kan zeggen of ze
+    iets gedaan hebben. Wat je doet, heb je gekozen, en je kan uitleggen waarom.
+  </p>
+  <p>
+    En met het beetje tijd en geld dat een zaak daarvoor heeft, is dat eigenlijk het
+    enige dat telt.
+  </p>
 
   <h2>Waarom het hier anders loopt</h2>
   <p>
