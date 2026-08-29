@@ -1,0 +1,61 @@
+---
+import Base from '../layouts/Base.astro';
+
+// Only Willow is named. The rest are real partners whose names Kjell has not
+// given yet — see gtm/products.yml. Don't invent names or logos here.
+const partners = [
+  {
+    title: 'Sociale media',
+    body: 'Posts, reels en video voor Instagram en Facebook. Zegt de strategie dat je daar moet zijn, dan wordt het gemaakt door mensen die niets anders doen.',
+  },
+  {
+    title: 'LinkedIn',
+    body: 'Samen met Willow, waar we al jaren mee werken. Vooral relevant als je klanten andere bedrijven zijn.',
+  },
+  {
+    title: 'Ontwerp',
+    body: 'Voor een logo, een huisstijl of een site die er echt moet uitspringen, werken we samen met ontwerpers uit de streek.',
+  },
+  {
+    title: 'Bouw en platformen',
+    body: 'Een webshop met veel schakels, een app, of iets dat verder gaat dan wat wij zelf bouwen. Dan halen we er iemand bij die dat dagelijks doet.',
+  },
+];
+---
+
+<Base
+  title="Partners — Very Klear"
+  description="Very Klear blijft klein en werkt samen met vaste partners voor sociale media, LinkedIn, ontwerp en zwaardere bouwprojecten."
+  path="/partners"
+>
+  <h1>Met wie we werken</h1>
+  <p class="lead">
+    Very Klear blijft bewust klein. Wat er buiten valt, doen we niet half: daar halen we
+    iemand bij die er elke dag mee bezig is.
+  </p>
+
+  {partners.map((p) => (
+    <div class="feature">
+      <h3>{p.title}</h3>
+      <p>{p.body}</p>
+    </div>
+  ))}
+
+  <h2>Je hebt maar één aanspreekpunt</h2>
+  <p>
+    Je moet niet zelf drie partijen aan het werk houden. Wij blijven het aanspreekpunt,
+    ook wanneer een stuk van het werk bij iemand anders ligt. En als een partner beter
+    geplaatst is om het rechtstreeks met jou te doen, zeggen we dat ook gewoon.
+  </p>
+
+  <hr />
+
+  <p>
+    Stuur een mail naar <a href="mailto:kjell@veryklear.be">kjell@veryklear.be</a> en
+    zeg kort waar je mee bezig bent.
+  </p>
+  <p class="muted">
+    Verder kijken: <a href="/strategie">strategie</a>,
+    <a href="/websites">websites</a> of <a href="/automatisatie">automatisatie</a>.
+  </p>
+</Base>

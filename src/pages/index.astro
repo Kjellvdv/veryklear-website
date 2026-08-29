@@ -24,13 +24,13 @@ const steps = [
   },
   {
     n: 'Stap 2',
-    label: 'We bellen je beste klanten',
-    body: 'Een half uur elk. Wat probeerden ze op te lossen, en wanneer wisten ze dat het goed zat?',
+    label: 'Eén stuk werk',
+    body: 'Strategie, een site of de automatisatie erachter. Klein genoeg om apart te beoordelen.',
   },
   {
     n: 'Stap 3',
-    label: 'Je krijgt één blad',
-    body: 'Wie je klant is, wat je belooft, en waar je die mensen vindt. Daarmee beoordeel je elke offerte die binnenkomt.',
+    label: 'Je kijkt wat het opbrengt',
+    body: 'Pas als je dat gezien hebt, beslis je of er iets bij komt. Vaak komt er niets bij, en dat is prima.',
   },
 ];
 
@@ -111,7 +111,16 @@ const faq = [
     genoeg om er vandaag iets aan te doen, en net daarom blijft het jaar na jaar zo.
   </p>
 
-  <a class="btn" href="/strategie">Begin bij strategie &rarr;</a>
+  <a class="btn" href="mailto:kjell@veryklear.be">Stuur een mail &rarr;</a>
+
+  <h2>De drie diensten</h2>
+  {features.map((f) => (
+    <div class="feature">
+      <h3><a href={f.href}>{f.title} &rarr;</a></h3>
+      <p>{f.body}</p>
+      <p class="muted"><small>{f.note}</small></p>
+    </div>
+  ))}
 
   <h2>Wat het je oplevert</h2>
   <ul class="cards">
@@ -135,7 +144,7 @@ const faq = [
     wat teksten schrijft.
   </p>
 
-  <h2>Hoe een strategie loopt</h2>
+  <h2>Hoe het meestal loopt</h2>
   <ul class="cards">
     {steps.map((step) => (
       <li class="card">
@@ -146,14 +155,12 @@ const faq = [
     ))}
   </ul>
 
-  <h2>De drie diensten</h2>
-  {features.map((f) => (
-    <div class="feature">
-      <h3><a href={f.href}>{f.title} &rarr;</a></h3>
-      <p>{f.body}</p>
-      <p class="muted"><small>{f.note}</small></p>
-    </div>
-  ))}
+  <h2>Wat we zelf niet doen</h2>
+  <p>
+    Very Klear blijft klein. Voor sociale media, ontwerp of een zwaardere bouw werken we
+    met vaste <a href="/partners">partners</a> die daar elke dag mee bezig zijn. Jij
+    houdt één aanspreekpunt.
+  </p>
 
   <h2>Veelgestelde vragen</h2>
   {faq.map((item) => (
@@ -176,4 +183,9 @@ const faq = [
     </ul>
     <a class="btn" href="mailto:kjell@veryklear.be">Stuur een mail &rarr;</a>
   </div>
+
+  <p class="muted">
+    Liever eerst wat lezen? In de <a href="/artikels">artikels</a> staat hoe we naar
+    marketing kijken, zonder dat je daarvoor moet bellen.
+  </p>
 </Base>
