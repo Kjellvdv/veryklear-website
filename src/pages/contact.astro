@@ -8,24 +8,34 @@ import SessionCta from '../components/SessionCta.astro';
   description="Contactgegevens van Very Klear, marketingbureau uit Ieper."
   path="/contact"
 >
-  <h1>Contact</h1>
-  <p class="lead">
-    Een mail is het snelst. Zeg er kort bij waar je mee bezig bent, dan kunnen we
-    meteen iets zinnigs antwoorden.
-  </p>
+  <section class="hero">
+    <div class="shell">
+      <p class="eyebrow">Contact</p>
+      <h1 class="display">Een mail is het snelst.</h1>
+      <p class="lead prose">
+        Zeg er kort bij waar je mee bezig bent, dan kunnen we meteen iets zinnigs
+        antwoorden.
+      </p>
+      <div class="btn-row">
+        <a class="btn" href="mailto:kjell@veryklear.be">kjell@veryklear.be</a>
+      </div>
+    </div>
+  </section>
 
-  <h2>Rechtstreeks</h2>
-  <p>
-    <a href="mailto:kjell@veryklear.be">kjell@veryklear.be</a>
-  </p>
+  <section class="section">
+    <div class="shell split">
+      <div><span class="idx">01</span><h2>Adres</h2></div>
+      <div class="prose">
+        <p>
+          Very Klear<br />
+          Breydelhofstraat 52<br />
+          8900 Ieper<br />
+          BTW BE1014759659
+        </p>
+      </div>
+    </div>
+  </section>
 
-  <h2>Adres</h2>
-  <p>
-    Very Klear<br />
-    Breydelhofstraat 52<br />
-    8900 Ieper<br />
-    BTW BE1014759659
-  </p>
   <SessionCta
     heading="Liever meteen een gesprek?"
     body="Eén uur waarin we overlopen waar je staat en wat de moeite is om aan te pakken."

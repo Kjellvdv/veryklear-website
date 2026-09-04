@@ -2,25 +2,7 @@
 import Base from '../layouts/Base.astro';
 import SessionCta from '../components/SessionCta.astro';
 
-const steps = [
-  {
-    n: 'Stap 1',
-    label: 'Een gesprek',
-    body: 'Over wat vandaag werkt en wat niet. Geen verkooppraatje: het meeste bruikbare zit al in je zaak.',
-  },
-  {
-    n: 'Stap 2',
-    label: 'Eén stuk werk',
-    body: 'Strategie, een site of de automatisatie erachter. Klein genoeg om apart te beoordelen.',
-  },
-  {
-    n: 'Stap 3',
-    label: 'Je kijkt wat het doet',
-    body: 'En daarna passen we aan. Er is geen enkele waarheid: je test, je leert, en dat blijft duren zolang het loopt.',
-  },
-];
-
-const features = [
+const services = [
   {
     href: '/strategie',
     title: 'Strategie',
@@ -41,35 +23,20 @@ const features = [
   },
 ];
 
+const steps = [
+  { n: '01', label: 'Een gesprek', body: 'Over wat vandaag werkt en wat niet. Geen verkooppraatje: het meeste bruikbare zit al in je zaak.' },
+  { n: '02', label: 'Eén stuk werk', body: 'Strategie, een site of de automatisatie erachter. Klein genoeg om apart te beoordelen.' },
+  { n: '03', label: 'Je kijkt wat het doet', body: 'En daarna passen we aan. Er is geen enkele waarheid: je test, je leert, en dat blijft duren.' },
+];
+
 const faq = [
-  {
-    q: 'Is die strategie gewoon een manier om me een groter traject aan te smeren?',
-    a: 'Nee. Het is een aparte dienst met een eigen prijs en een blad dat van jou is. Een normale afloop is dat we zeggen dat je huidige site volstaat, of dat een tool volstaat waar wij niets aan verdienen. Je kan er ook mee naar iemand anders stappen.',
-  },
-  {
-    q: 'Waarom zou ik in zee gaan met een naam waar ik nog nooit van gehoord heb?',
-    a: 'Terechte vraag. Het antwoord is dat je klein kan beginnen: één dienst, met een resultaat dat je kan beoordelen voor je verder gaat. Achter Very Klear zit een tiental jaar B2B-marketing en automatisatie, ervaring die je bij een lokaal bureau zelden vindt.',
-  },
-  {
-    q: 'Hebben wij marketing nodig als onze klanten via via komen?',
-    a: 'Mond-tot-mond is een kanaal, en meestal een goed. De vraag is of je weet waarom het werkt, want dat vertelt je hoe je er meer van krijgt.',
-  },
-  {
-    q: 'Wat als ik maar één ding nodig heb en de rest nooit?',
-    a: 'Dan is dat perfect in orde. Elke dienst staat op zichzelf. Wie enkel strategie koopt en daarmee stopt, heeft iets volledigs gekocht. Er wordt hier niets gebundeld om een maandbedrag te doen kloppen.',
-  },
-  {
-    q: 'Is AI niet iets voor grote bedrijven met een IT-afdeling?',
-    a: 'Meestal niet. De tools die je al betaalt, met een deftige instructie erachter, brengen je verder dan de meeste bedrijven ooit geraken.',
-  },
-  {
-    q: 'Wat kost het?',
-    a: 'Dat hangt af van wat je nodig hebt, en dat weten we pas na een gesprek. Wel dit alvast: we zijn goedkoper dan een groot bureau en duurder dan het nichtje dat ook wat schrijft. Kies je op prijs alleen, dan zijn we niet de juiste.',
-  },
-  {
-    q: 'Werken jullie ook buiten Ieper?',
-    a: 'In en rond Ieper, ver genoeg dat langskomen nog normaal is. Zit je verder, stuur gerust een mail, dan zeggen we of het zinvol is.',
-  },
+  { q: 'Is die strategie gewoon een manier om me een groter traject aan te smeren?', a: 'Nee. Het is een aparte dienst met een eigen prijs en een blad dat van jou is. Een normale afloop is dat we zeggen dat je huidige site volstaat, of dat een tool volstaat waar wij niets aan verdienen. Je kan er ook mee naar iemand anders stappen.' },
+  { q: 'Waarom zou ik in zee gaan met een naam waar ik nog nooit van gehoord heb?', a: 'Terechte vraag. Het antwoord is dat je klein kan beginnen: één dienst, met een resultaat dat je kan beoordelen voor je verder gaat. Achter Very Klear zit een tiental jaar B2B-marketing en automatisatie, ervaring die je bij een lokaal bureau zelden vindt.' },
+  { q: 'Hebben wij marketing nodig als onze klanten via via komen?', a: 'Mond-tot-mond is een kanaal, en meestal een goed. De vraag is of je weet waarom het werkt, want dat vertelt je hoe je er meer van krijgt.' },
+  { q: 'Wat als ik maar één ding nodig heb en de rest nooit?', a: 'Dan is dat perfect in orde. Elke dienst staat op zichzelf. Wie enkel strategie koopt en daarmee stopt, heeft iets volledigs gekocht. Er wordt hier niets gebundeld om een maandbedrag te doen kloppen.' },
+  { q: 'Is AI niet iets voor grote bedrijven met een IT-afdeling?', a: 'Meestal niet. De tools die je al betaalt, met een deftige instructie erachter, brengen je verder dan de meeste bedrijven ooit geraken.' },
+  { q: 'Wat kost het?', a: 'Dat hangt af van wat je nodig hebt, en dat weten we pas na een gesprek. Wel dit alvast: we zijn goedkoper dan een groot bureau en duurder dan het nichtje dat ook wat schrijft. Kies je op prijs alleen, dan zijn we niet de juiste.' },
+  { q: 'Werken jullie ook buiten Ieper?', a: 'In en rond Ieper, ver genoeg dat langskomen nog normaal is. Zit je verder, stuur gerust een mail, dan zeggen we of het zinvol is.' },
 ];
 ---
 
@@ -78,98 +45,116 @@ const faq = [
   description="Waarom je beste klanten voor jou kozen, is wat je nodig hebt om er meer van te vinden. Marketingbureau in Ieper: strategie, website en automatisatie."
   path="/"
 >
-  <div class="band band-ink">
-    <div class="band-inner">
-    <p class="primer">Marketingbureau in Ieper</p>
-    <h1>Meer klanten zoals je <em>beste</em> klanten.</h1>
-    <p class="lead">
-      Je beste klanten kwamen niet toevallig bij jou terecht. Waarom ze voor jou kozen, is
-      precies wat je nodig hebt om er meer van te vinden.
-    </p>
+  <section class="hero">
+    <div class="shell">
+      <p class="eyebrow">Marketingbureau in Ieper</p>
+      <h1 class="display">Meer klanten zoals je <em>beste</em> klanten.</h1>
+      <p class="lead prose">
+        Je beste klanten kwamen niet toevallig bij jou terecht. Waarom ze voor jou
+        kozen, is precies wat je nodig hebt om er meer van te vinden.
+      </p>
 
-    <ul class="points">
-      <li>Je klanten komen via via. Dat werkt, tot je er meer wil.</li>
-      <li>Er ging vorig jaar geld naar marketing en niemand kan zeggen wat het gedaan heeft.</li>
-      <li>Je site levert niets op, maar doet ook geen kwaad. Of toch?</li>
-    </ul>
+      <ul class="hero__points">
+        <li>Je klanten komen via via. Dat werkt, tot je er meer wil.</li>
+        <li>Er ging vorig jaar geld naar marketing en niemand kan zeggen wat het gedaan heeft.</li>
+        <li>Je site levert niets op, maar doet ook geen kwaad. Of toch?</li>
+      </ul>
 
-    <p>
-      Dat laatste is het venijn. Wie je naam hoort en gaat kijken, beslist op wat daar
-      staat, en je ziet nooit wie er niet gebeld heeft. Geen van die drie dingen loopt fout
-      genoeg om er vandaag iets aan te doen, en net daarom blijft het jaar na jaar zo.
-    </p>
-
-    <a class="btn" href="/strategiesessie">Boek een strategiesessie &rarr;</a>
+      <div class="btn-row">
+        <a class="btn" href="/strategiesessie">Boek een strategiesessie &rarr;</a>
+      </div>
     </div>
-  </div>
+  </section>
 
-  <h2>Waar wil je beginnen?</h2>
-  <ul class="cards">
-    {features.map((f) => (
-      <li class="card">
-        <a class="card-label" href={f.href}>{f.title} &rarr;</a>
-        <p>{f.body}</p>
-        <p class="note">{f.note}</p>
-      </li>
-    ))}
-  </ul>
-
-  <h2>Wat er verandert</h2>
-  <p>
-    Je geeft geen geld meer uit aan dingen waarvan achteraf niemand kan zeggen of ze
-    iets gedaan hebben. Wat je doet, heb je gekozen, en je kan uitleggen waarom.
-  </p>
-  <p>
-    En met het beetje tijd en geld dat een zaak daarvoor heeft, is dat eigenlijk het
-    enige dat telt.
-  </p>
-
-  <div class="band band-ink">
-    <div class="band-inner">
-    <h2>Waarom het hier anders loopt</h2>
-    <p>
-      Een lokaal webbureau begint bij de website, want de website is wat ze verkopen. Hier
-      begint het bij de vraag of een website wel is waar je geld naartoe moet. Dat is een
-      ongemakkelijk verkoopgesprek en een veel beter startpunt.
-    </p>
-    <p>
-      We hebben geen omzetdoelen te halen, dus minder aanraden kost ons niets. Wel zijn we
-      niet de goedkoopste: goedkoper dan een groot bureau, duurder dan het nichtje dat ook
-      wat teksten schrijft.
-    </p>
+  <section class="section">
+    <div class="shell split">
+      <div>
+        <span class="idx">01</span>
+        <h2>Waar wil je beginnen?</h2>
+      </div>
+      <div>
+        <p class="prose muted">
+          Dat laatste punt is het venijn. Wie je naam hoort en gaat kijken, beslist op
+          wat daar staat, en je ziet nooit wie er niet gebeld heeft. Geen van de drie
+          loopt fout genoeg om er vandaag iets aan te doen, en net daarom blijft het
+          jaar na jaar zo.
+        </p>
+        <ul class="tiles">
+          {services.map((s) => (
+            <li class="tile">
+              <a href={s.href}><span class="tile__title">{s.title} &rarr;</span></a>
+              <p>{s.body}</p>
+              <p class="tile__note">{s.note}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
-  </div>
+  </section>
 
-  <h2>Hoe het meestal loopt</h2>
-  <ul class="cards">
-    {steps.map((step) => (
-      <li class="card">
-        <span class="step">{step.n}</span>
-        <span class="card-label">{step.label}</span>
-        <p>{step.body}</p>
-      </li>
-    ))}
-  </ul>
+  <section class="section section--ink">
+    <div class="shell split">
+      <div>
+        <span class="idx">02</span>
+        <h2>Waarom het hier anders loopt</h2>
+      </div>
+      <div class="prose">
+        <p>
+          Een lokaal webbureau begint bij de website, want de website is wat ze
+          verkopen. Hier begint het bij de vraag of een website wel is waar je geld
+          naartoe moet. Dat is een ongemakkelijk verkoopgesprek en een veel beter
+          startpunt.
+        </p>
+        <p class="muted">
+          We hebben geen omzetdoelen te halen, dus minder aanraden kost ons niets. Wel
+          zijn we niet de goedkoopste: goedkoper dan een groot bureau, duurder dan het
+          nichtje dat ook wat teksten schrijft.
+        </p>
+      </div>
+    </div>
+  </section>
 
-  <h2>Wat we zelf niet doen</h2>
-  <p>
-    Very Klear blijft klein. Voor sociale media, ontwerp of een zwaardere bouw werken we
-    met vaste <a href="/partners">partners</a> die daar elke dag mee bezig zijn. Jij
-    houdt één aanspreekpunt.
-  </p>
+  <section class="section">
+    <div class="shell split">
+      <div>
+        <span class="idx">03</span>
+        <h2>Hoe het meestal loopt</h2>
+      </div>
+      <div>
+        <ul class="steps">
+          {steps.map((s) => (
+            <li>
+              <span class="idx">{s.n}</span>
+              <h3>{s.label}</h3>
+              <p>{s.body}</p>
+            </li>
+          ))}
+        </ul>
+        <p class="prose muted" style="margin-top:2rem">
+          Very Klear blijft klein. Voor sociale media, ontwerp of een zwaardere bouw
+          werken we met vaste <a href="/partners">partners</a> die daar elke dag mee
+          bezig zijn. Jij houdt één aanspreekpunt.
+        </p>
+      </div>
+    </div>
+  </section>
 
-  <h2>Veelgestelde vragen</h2>
-  {faq.map((item) => (
-    <details>
-      <summary>{item.q}</summary>
-      <p>{item.a}</p>
-    </details>
-  ))}
+  <section class="section section--tight">
+    <div class="shell split">
+      <div>
+        <span class="idx">04</span>
+        <h2>Veelgestelde vragen</h2>
+      </div>
+      <div class="faq">
+        {faq.map((item) => (
+          <details>
+            <summary>{item.q}</summary>
+            <p>{item.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
 
   <SessionCta />
-
-  <p class="muted">
-    Liever eerst wat lezen? In de <a href="/artikels">artikels</a> staat hoe we naar
-    marketing kijken, zonder dat je daarvoor moet bellen.
-  </p>
 </Base>

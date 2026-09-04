@@ -13,20 +13,31 @@ const posts = (await getCollection('artikels', ({ data }) => !data.draft)).sort(
   description="Stukken over marketingstrategie, automatisatie en websites."
   path="/artikels"
 >
-  <h1>Artikels</h1>
-  <p class="lead">Stukken over strategie, automatisatie en websites.</p>
+  <section class="hero">
+    <div class="shell">
+      <p class="eyebrow">Artikels</p>
+      <h1 class="display">Hoe we ernaar kijken.</h1>
+      <p class="lead prose">Stukken over strategie, automatisatie en websites.</p>
+    </div>
+  </section>
 
-  {posts.length === 0 ? (
-    <p class="muted">Nog niets gepubliceerd. Binnenkort meer.</p>
-  ) : (
-    <ul class="services">
-      {posts.map((post) => (
-        <li>
-          <a href={`/artikels/${post.slug}`}>{post.data.title}</a>
-          <p>{post.data.description}</p>
-        </li>
-      ))}
-    </ul>
-  )}
+  <section class="section">
+    <div class="shell">
+      {posts.length === 0 ? (
+        <p class="muted prose">Nog niets gepubliceerd. Binnenkort meer.</p>
+      ) : (
+        <ul class="steps">
+          {posts.map((post) => (
+            <li>
+              <span class="idx">{post.data.category}</span>
+              <h3><a href={`/artikels/${post.slug}`}>{post.data.title}</a></h3>
+              <p>{post.data.description}</p>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  </section>
+
   <SessionCta />
 </Base>

@@ -1,19 +1,20 @@
 ---
-// Shared closing CTA. The session is the front door to all three services, so
-// every page except /strategiesessie itself ends here.
-// NO PRICING here or anywhere else in a CTA box. The price lives on the booking
-// page only (/strategiesessie), where someone has arrived ready to decide.
+// The page's single red surface. Pricing stays on /strategiesessie only.
 const {
   heading = 'Weten of dit iets voor jou is?',
   body = 'Eén gesprek van een uur, en je weet waar je best aan begint. Denken we dat je ons niet nodig hebt, dan zeggen we dat ook.',
 } = Astro.props;
 ---
 
-<div class="cta-block">
-  <h2>{heading}</h2>
-  <p>{body}</p>
-  <a class="btn" href="/strategiesessie">Boek een strategiesessie &rarr;</a>
-  <p class="muted">
-    <small>Of stuur gewoon <a href="mailto:kjell@veryklear.be">een mail</a>.</small>
-  </p>
-</div>
+<section class="section section--red">
+  <div class="shell">
+    <div class="prose">
+      <h2>{heading}</h2>
+      <p class="lead">{body}</p>
+      <div class="btn-row">
+        <a class="btn" href="/strategiesessie">Boek een strategiesessie &rarr;</a>
+        <a href="mailto:kjell@veryklear.be">Of stuur gewoon een mail</a>
+      </div>
+    </div>
+  </div>
+</section>

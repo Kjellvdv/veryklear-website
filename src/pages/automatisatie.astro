@@ -3,21 +3,9 @@ import Base from '../layouts/Base.astro';
 import SessionCta from '../components/SessionCta.astro';
 
 const steps = [
-  {
-    n: 'Stap 1',
-    label: 'Het ding dat elke week terugkomt',
-    body: 'De offerte die je overtypt, de klant die je zou moeten bellen, de cijfers die je op het einde van de maand bij elkaar zoekt.',
-  },
-  {
-    n: 'Stap 2',
-    label: 'Bouwen met wat je al hebt',
-    body: 'Zelden een nieuw platform nodig. De tools die je al betaalt, met een deftige instructie erachter.',
-  },
-  {
-    n: 'Stap 3',
-    label: 'Vier weken laten draaien',
-    body: 'Pas als je ziet wat het oplevert, is het zinvol om er iets bij te zetten.',
-  },
+  { n: '01', label: 'Het ding dat elke week terugkomt', body: 'De offerte die je overtypt, de klant die je zou moeten bellen, de cijfers die je op het einde van de maand bij elkaar zoekt.' },
+  { n: '02', label: 'Bouwen met wat je al hebt', body: 'Zelden een nieuw platform nodig. De tools die je al betaalt, met een deftige instructie erachter.' },
+  { n: '03', label: 'Vier weken laten draaien', body: 'Pas als je ziet wat het oplevert, is het zinvol om er iets bij te zetten.' },
 ];
 ---
 
@@ -26,61 +14,81 @@ const steps = [
   description="Elke aanvraag wordt opgevolgd, en je ziet waar je klanten vandaan komen. Opvolging, klantenbeheer en rapportering, met AI waar het werk zich herhaalt."
   path="/automatisatie"
 >
-  <h1>Automatisatie</h1>
-  <p class="lead">
-    Na afloop wordt elke aanvraag opgevolgd zonder dat het afhangt van wie er die dag
-    tijd heeft, en zie je waar je klanten vandaan komen.
-  </p>
+  <section class="hero">
+    <div class="shell">
+      <p class="eyebrow">Automatisatie</p>
+      <h1 class="display">Elke aanvraag opgevolgd, ook op een drukke dag.</h1>
+      <p class="lead prose">
+        Zonder dat het afhangt van wie er tijd heeft. En je ziet waar je klanten vandaan
+        komen.
+      </p>
+    </div>
+  </section>
 
-  <h2>Waar het meestal misloopt</h2>
-  <p>
-    Iemand vult je formulier in, of belt, of stuurt een mail. En dan? Bij veel bedrijven
-    belandt dat in een mailbox en hangt de rest af van wie er toevallig tijd heeft. Het
-    loopt niet fout genoeg om er iets aan te doen, en net daarom blijft het zo.
-  </p>
+  <section class="section">
+    <div class="shell split">
+      <div><span class="idx">01</span><h2>Waar het meestal misloopt</h2></div>
+      <div class="prose">
+        <p>
+          Iemand vult je formulier in, of belt, of stuurt een mail. En dan? Bij veel
+          bedrijven belandt dat in een mailbox en hangt de rest af van wie er toevallig
+          tijd heeft. Het loopt niet fout genoeg om er iets aan te doen, en net daarom
+          blijft het zo.
+        </p>
+      </div>
+    </div>
+  </section>
 
-  <h2>Hoe het loopt</h2>
-  <ul class="cards">
-    {steps.map((step) => (
-      <li class="card">
-        <span class="step">{step.n}</span>
-        <span class="card-label">{step.label}</span>
-        <p>{step.body}</p>
-      </li>
-    ))}
-  </ul>
+  <section class="section">
+    <div class="shell split">
+      <div><span class="idx">02</span><h2>Hoe het loopt</h2></div>
+      <div>
+        <ul class="steps">
+          {steps.map((s) => (
+            <li><span class="idx">{s.n}</span><h3>{s.label}</h3><p>{s.body}</p></li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
 
-  <h2>Wat het teruggeeft</h2>
-  <p>
-    Het geld dat je hierin steekt, komt terug als werk dat niet meer gedaan moet worden.
-    Dat is de reden om eraan te beginnen. Dat de tools zelf weinig kosten is mooi
-    meegenomen, maar het is niet waarom je het doet.
-  </p>
+  <section class="section section--ink">
+    <div class="shell split">
+      <div><span class="idx">03</span><h2>Wat we niet automatiseren</h2></div>
+      <div class="prose">
+        <p>
+          Alles wat je eigen stem draagt, blijft van jou. Het antwoord aan een
+          ontevreden klant, de offerte met een prijs erin, het bericht na een moeilijk
+          gesprek. Dat gebeurt te weinig om er tijd mee te winnen, en één slechte versie
+          kost te veel.
+        </p>
+        <p class="muted">
+          Die afweging komt uit ondervinding. Vorig jaar automatiseerde ik het
+          herschrijven van oude blogartikels voor een klant, volledig, zonder er nog
+          naar om te kijken. De resultaten waren gewoon: sommige beter, sommige
+          slechter, de meeste net hetzelfde. Nu doe ik dat project opnieuw met mezelf
+          terug in de lus, en nu gaan de cijfers wel omhoog.
+        </p>
+      </div>
+    </div>
+  </section>
 
-  <h2>Wat we niet automatiseren</h2>
-  <p>
-    Alles wat je eigen stem draagt, blijft van jou. Het antwoord aan een ontevreden
-    klant, de offerte met een prijs erin, het bericht na een moeilijk gesprek. Dat
-    gebeurt te weinig om er tijd mee te winnen, en één slechte versie kost te veel.
-  </p>
-  <p>
-    Die afweging komt uit ondervinding. Vorig jaar automatiseerde ik het herschrijven
-    van oude blogartikels voor een klant, volledig, zonder er nog naar om te kijken. De
-    resultaten waren gewoon: sommige beter, sommige slechter, de meeste net hetzelfde.
-    Nu doe ik dat project opnieuw met mezelf terug in de lus, en nu gaan de cijfers wel
-    omhoog.
-  </p>
-
-  <h2>Ook op zichzelf</h2>
-  <p>
-    Hiervoor moeten we je site niet aanraken. Werkt je huidige site prima en loopt de
-    opvolging erachter mank, dan pakken we gewoon dat stuk aan.
-  </p>
+  <section class="section">
+    <div class="shell split">
+      <div><span class="idx">04</span><h2>Wat het teruggeeft</h2></div>
+      <div class="prose">
+        <p>
+          Het geld dat je hierin steekt, komt terug als werk dat niet meer gedaan moet
+          worden. Dat is de reden om eraan te beginnen. Dat de tools zelf weinig kosten
+          is mooi meegenomen, maar het is niet waarom je het doet.
+        </p>
+        <p class="muted">
+          Hiervoor moeten we je site trouwens niet aanraken. Werkt je huidige site prima
+          en loopt de opvolging erachter mank, dan pakken we gewoon dat stuk aan.
+        </p>
+      </div>
+    </div>
+  </section>
 
   <SessionCta />
-
-  <p class="muted">
-    Verder kijken: <a href="/strategie">strategie</a> of
-    <a href="/websites">websites</a>.
-  </p>
 </Base>

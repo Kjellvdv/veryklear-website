@@ -11,19 +11,14 @@ const links = [
 ];
 ---
 
-<header>
-  <div class="wrap">
-    <a class="brand" href="/" aria-label="Very Klear, naar de homepagina">
-      <img src="/vk-lockup-gradient.svg" alt="Very Klear" width="129" height="40" />
+<header class="masthead">
+  <div class="shell">
+    <a class="masthead__brand" href="/" aria-label="Very Klear, naar de homepagina">
+      <img src="/vk-lockup-gradient.svg" alt="Very Klear" width="161" height="50" />
     </a>
     <nav>
-      {links.map((link) => (
-        <a
-          href={link.href}
-          aria-current={path.startsWith(link.href) ? 'page' : undefined}
-        >
-          {link.label}
-        </a>
+      {links.map((l) => (
+        <a href={l.href} aria-current={path.startsWith(l.href) ? 'page' : undefined}>{l.label}</a>
       ))}
     </nav>
   </div>

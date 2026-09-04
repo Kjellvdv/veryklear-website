@@ -3,21 +3,9 @@ import Base from '../layouts/Base.astro';
 import SessionCta from '../components/SessionCta.astro';
 
 const steps = [
-  {
-    n: 'Stap 1',
-    label: 'Wat er moet staan',
-    body: 'Welke pagina\'s je nodig hebt en wat iemand als eerste leest. Dit is het stuk dat het verschil maakt.',
-  },
-  {
-    n: 'Stap 2',
-    label: 'De tekst',
-    body: 'Geschreven vanuit de strategie, niet achteraf ingevuld tussen de blokken.',
-  },
-  {
-    n: 'Stap 3',
-    label: 'Ontwerp, bouw, overdracht',
-    body: 'Sober, snel, leesbaar op een telefoon. Achteraf kan je zelf aanpassen wat je zelf wil aanpassen.',
-  },
+  { n: '01', label: 'Wat er moet staan', body: "Welke pagina's je nodig hebt en wat iemand als eerste leest. Dit is het stuk dat het verschil maakt." },
+  { n: '02', label: 'De tekst', body: 'Geschreven vanuit de strategie, niet achteraf ingevuld tussen de blokken.' },
+  { n: '03', label: 'Ontwerp, bouw, overdracht', body: 'Sober, snel, leesbaar op een telefoon. Achteraf kan je zelf aanpassen wat je zelf wil aanpassen.' },
 ];
 ---
 
@@ -26,51 +14,74 @@ const steps = [
   description="Wie je naam hoort en je opzoekt, belt daarna ook echt. Structuur, tekst en bouw, vertrokken vanuit je strategie."
   path="/websites"
 >
-  <h1>Websites</h1>
-  <p class="lead">
-    Na afloop belt iemand die je naam ergens opving en je is gaan opzoeken, ook echt.
-    Dat is het hele werk van een site voor een bedrijf zoals het jouwe.
-  </p>
+  <section class="hero">
+    <div class="shell">
+      <p class="eyebrow">Websites</p>
+      <h1 class="display">Wie je naam hoort, gaat kijken.</h1>
+      <p class="lead prose">
+        Na afloop belt die persoon ook echt. Dat is het hele werk van een site voor een
+        bedrijf zoals het jouwe.
+      </p>
+    </div>
+  </section>
 
-  <h2>Waar het meestal misloopt</h2>
-  <p>
-    Je site hoeft niet je belangrijkste kanaal te zijn. Bij de meeste bedrijven hier is
-    dat ook niet zo, want het werk komt via via binnen. Maar iedereen die je naam hoort,
-    gaat wel eerst even kijken. Staat daar iets van een paar jaar geleden dat niet meer
-    klopt, dan doet die pagina het omgekeerde van wat ze zou moeten doen.
-  </p>
+  <section class="section">
+    <div class="shell split">
+      <div><span class="idx">01</span><h2>Waar het meestal misloopt</h2></div>
+      <div class="prose">
+        <p>
+          Je site hoeft niet je belangrijkste kanaal te zijn. Bij de meeste bedrijven
+          hier is dat ook niet zo, want het werk komt via via binnen. Maar iedereen die
+          je naam hoort, gaat wel eerst even kijken. Staat daar iets van een paar jaar
+          geleden dat niet meer klopt, dan doet die pagina het omgekeerde van wat ze zou
+          moeten doen.
+        </p>
+      </div>
+    </div>
+  </section>
 
-  <h2>Hoe het loopt</h2>
-  <ul class="cards">
-    {steps.map((step) => (
-      <li class="card">
-        <span class="step">{step.n}</span>
-        <span class="card-label">{step.label}</span>
-        <p>{step.body}</p>
-      </li>
-    ))}
-  </ul>
+  <section class="section">
+    <div class="shell split">
+      <div><span class="idx">02</span><h2>Hoe het loopt</h2></div>
+      <div>
+        <ul class="steps">
+          {steps.map((s) => (
+            <li><span class="idx">{s.n}</span><h3>{s.label}</h3><p>{s.body}</p></li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
 
-  <h2>Geen herontwerp om het herontwerp</h2>
-  <p>
-    Als je huidige site het doet, blijven we ervan af. Vaak zit het probleem niet in hoe
-    de site eruitziet, maar in wat er staat en in welke volgorde. Dat is goedkoper op te
-    lossen dan een nieuwe site, en het scheelt meestal meer. Je hoort hier dus geregeld
-    dat je geen nieuwe site nodig hebt.
-  </p>
+  <section class="section section--ink">
+    <div class="shell split">
+      <div><span class="idx">03</span><h2>Geen herontwerp om het herontwerp</h2></div>
+      <div class="prose">
+        <p>
+          Als je huidige site het doet, blijven we ervan af. Vaak zit het probleem niet
+          in hoe de site eruitziet, maar in wat er staat en in welke volgorde. Dat is
+          goedkoper op te lossen dan een nieuwe site, en het scheelt meestal meer.
+        </p>
+        <p class="muted">
+          Je hoort hier dus geregeld dat je geen nieuwe site nodig hebt.
+        </p>
+      </div>
+    </div>
+  </section>
 
-  <h2>Als het groter wordt dan dit</h2>
-  <p>
-    Voor een webshop met veel schakels, een platform of een app werken we samen met
-    partners die daar dagelijks mee bezig zijn. Soms is Webflow of WordPress trouwens
-    het betere antwoord, gewoon omdat jij of iemand bij jou er daarna zelf mee verder
-    moet.
-  </p>
+  <section class="section">
+    <div class="shell split">
+      <div><span class="idx">04</span><h2>Als het groter wordt dan dit</h2></div>
+      <div class="prose">
+        <p>
+          Voor een webshop met veel schakels, een platform of een app werken we samen
+          met <a href="/partners">partners</a> die daar dagelijks mee bezig zijn. Soms is
+          Webflow of WordPress trouwens het betere antwoord, gewoon omdat jij of iemand
+          bij jou er daarna zelf mee verder moet.
+        </p>
+      </div>
+    </div>
+  </section>
 
   <SessionCta />
-
-  <p class="muted">
-    Verder kijken: <a href="/strategie">strategie</a> of
-    <a href="/automatisatie">automatisatie</a>.
-  </p>
 </Base>

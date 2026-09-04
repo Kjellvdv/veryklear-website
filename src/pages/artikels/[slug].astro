@@ -13,20 +13,25 @@ const { Content } = await post.render();
 ---
 
 <Base title={`${post.data.title} — Very Klear`} description={post.data.description} path="/artikels">
-  <h1>{post.data.title}</h1>
-  <p class="muted">
-    {post.data.category} &middot;
-    {post.data.published_at.toLocaleDateString('nl-BE', {
-      day: 'numeric',
-      month: 'long',
-      year: 'numeric',
-    })}
-  </p>
+  <section class="hero">
+    <div class="shell">
+      <p class="eyebrow">
+        {post.data.category} &middot;
+        {post.data.published_at.toLocaleDateString('nl-BE', { day: 'numeric', month: 'long', year: 'numeric' })}
+      </p>
+      <h1 class="display">{post.data.title}</h1>
+    </div>
+  </section>
 
-  <Content />
-
-  <hr />
-  <p><a href="/artikels">Terug naar alle artikels</a></p>
+  <section class="section">
+    <div class="shell">
+      <article class="prose">
+        <Content />
+        <hr />
+        <p class="muted"><a href="/artikels">Terug naar alle artikels</a></p>
+      </article>
+    </div>
+  </section>
 
   <SessionCta />
 </Base>

@@ -5,18 +5,8 @@ import '../styles/global.css';
 
 const { title, description, path = '' } = Astro.props;
 
-// ─────────────────────────────────────────────────────────────────────────────
 // PREVIEW MODE. Set to false before this goes live on veryklear.be.
-//
-// While true, every page ships <meta name="robots" content="noindex, nofollow">
-// and no canonical tag. That is deliberate: the site is being previewed on
-// veryklear.com while veryklear.be still serves the old site, so indexing the
-// preview would put two different versions of the same business in Google, and
-// a canonical pointing at .be would point at content that does not match.
-//
-// Do NOT use robots.txt Disallow for this. A blocked crawler never reads the
-// noindex tag, so the page can still end up indexed from external links.
-// ─────────────────────────────────────────────────────────────────────────────
+// See DEPLOY.md. While true every page ships noindex and no canonical.
 const PREVIEW = true;
 ---
 
@@ -34,7 +24,7 @@ const PREVIEW = true;
   </head>
   <body>
     <Nav path={path} />
-    <main class="wrap">
+    <main>
       <slot />
     </main>
     <Footer />
