@@ -81,6 +81,7 @@
 
 body {
   margin: 0;
+  overflow-x: hidden;
   background: var(--paper);
   color: var(--ink);
   font-family: var(--font);
@@ -112,7 +113,7 @@ h3 {
 }
 
 h1 {
-  font-size: 2.6rem;
+  font-size: clamp(2.6rem, 7vw, 3.4rem);
 }
 
 /* The emphasis pattern: a display line runs at 500 and the one word
@@ -170,12 +171,73 @@ hr {
   margin: var(--step) 0;
 }
 
+/* --- full-bleed bands ------------------------------------------ */
+
+/* Sections that break out of the reading column. The identity is high
+   contrast and graphic, which needs surfaces that run edge to edge rather
+   than tinted boxes floating inside a text column. */
+.band {
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  padding: var(--step) 0;
+}
+
+.band-inner {
+  max-width: var(--measure);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.band-ink {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.band-ink .primer {
+  color: var(--muted-on-ink);
+}
+
+.band-ink .lead {
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.band-ink .points li {
+  color: var(--muted-on-ink);
+}
+
+.band-ink a {
+  color: var(--paper);
+  text-decoration-color: var(--line-on-ink);
+}
+
+.band-ink .btn {
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.band-ink .btn:hover {
+  background: var(--bone);
+}
+
 /* --- header / nav ---------------------------------------------- */
 
+/* The header is ink on every page. That is the brand's second canvas doing
+   its share of the work, and it means the mark sits in white on black the
+   way the deck shows it. */
 header {
-  border-bottom: 1px solid var(--line);
-  padding: 1.25rem 0;
+  background: var(--ink);
+  padding: 1.5rem 0 1.25rem;
   margin-bottom: var(--step);
+}
+
+/* When the hero is also ink, the two surfaces are one slab. */
+header:has(+ main > .band-ink:first-child) {
+  margin-bottom: 0;
+}
+
+main > .band-ink:first-child {
+  margin-top: 0;
+  padding-top: 1rem;
 }
 
 /* The lockup plus six nav items is wider than the reading measure, so this
@@ -206,18 +268,18 @@ nav {
 
 nav a {
   font-size: 0.95rem;
-  color: var(--muted);
+  color: var(--muted-on-ink);
   text-decoration: none;
 }
 
 nav a:hover,
 nav a[aria-current="page"] {
-  color: var(--ink);
+  color: var(--paper);
 }
 
 nav a[aria-current="page"] {
   text-decoration: underline;
-  text-decoration-color: var(--ink);
+  text-decoration-color: var(--paper);
   text-underline-offset: 5px;
 }
 
@@ -337,9 +399,15 @@ h1 + .lead {
 .cta-block {
   background: var(--brand-gradient);
   color: var(--paper);
-  padding: 2rem 1.75rem;
-  margin-top: var(--step);
-  border-radius: var(--radius-frame);
+  padding: var(--step) 1.5rem;
+  margin: var(--step) calc(50% - 50vw) 0;
+  border-radius: 0;
+}
+
+.cta-block > * {
+  max-width: var(--measure);
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .cta-block h2 {
