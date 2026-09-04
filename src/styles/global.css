@@ -200,6 +200,37 @@ hr {
 .band-ink {
   background: var(--ink);
   color: var(--paper);
+  position: relative;
+  overflow: hidden;
+}
+
+/* The monogram as texture. It is angular and fast by design, so setting it
+   large and letting it run off the edge gives an ink surface something to
+   look at without adding a colour or a second accent. */
+.band-ink::after {
+  content: "";
+  position: absolute;
+  right: -8%;
+  bottom: -14%;
+  width: 62%;
+  min-width: 22rem;
+  aspect-ratio: 1080 / 385;
+  background: url('/vk-monogram-gradient.svg') no-repeat center / contain;
+  opacity: 1;
+  pointer-events: none;
+}
+
+.band-ink .band-inner {
+  position: relative;
+  z-index: 1;
+}
+
+/* Only the first ink surface on a page gets the mark at full strength.
+   A second one is a supporting section, not another hero. */
+main > .band-ink:not(:first-of-type)::after {
+  width: 34%;
+  opacity: 0.28;
+  bottom: -22%;
 }
 
 .band-ink .primer {

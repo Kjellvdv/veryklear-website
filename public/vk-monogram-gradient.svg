@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- DERIVED here, not from the designer: VK_4.svg with its white background
+     rect removed, so the gradient monogram sits on any surface. -->
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1080 385">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: url(#linear-gradient-2);
+      }
+
+      .cls-2 {
+        fill: #fff;
+      }
+
+      .cls-3 {
+        fill: url(#linear-gradient-4);
+      }
+
+      .cls-4 {
+        fill: url(#linear-gradient-3);
+      }
+
+      .cls-5 {
+        fill: url(#linear-gradient);
+      }
+    </style>
+    <linearGradient id="linear-gradient" x1="63.58" y1="68.68" x2="970.74" y2="293.18" gradientUnits="userSpaceOnUse">
+      <stop offset=".02" stop-color="#e23b5b"/>
+      <stop offset="1" stop-color="#c8102e"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-2" x1="50.6" y1="121.14" x2="957.76" y2="345.64" xlink:href="#linear-gradient"/>
+    <linearGradient id="linear-gradient-3" x1="63.43" y1="69.3" x2="970.59" y2="293.8" xlink:href="#linear-gradient"/>
+    <linearGradient id="linear-gradient-4" x1="114.44" y1="-136.83" x2="1021.6" y2="87.67" xlink:href="#linear-gradient"/>
+  </defs>
+  
+  <g id="Layer_1" data-name="Layer 1">
+    <g>
+      <path class="cls-5" d="M754.07.02l-81.14,143.34-114.35,201.95-22.47,39.7h-162.31l81.14-143.34,103.35-182.54C578.98,22.6,617.71.02,659.69.02h94.39Z"/>
+      <path class="cls-1" d="M510.39,0c-27.06,47.79-54.15,95.58-81.17,143.37-37.86,66.8-75.69,133.64-113.55,200.48-14.41,25.42-41.39,41.14-70.6,41.14h-67.72c-29.22,0-56.19-15.73-70.6-41.14-32.8-57.96-65.62-115.91-98.43-173.84-9.36-16.53-9.36-36.75,0-53.28L74.44,0h162.34l-66.14,116.71c-9.37,16.54-9.37,36.78,0,53.31,13.53,23.87,27.06,47.76,40.56,71.65l.04-.04c18.57-32.74,37.1-65.52,55.63-98.26,27.06-47.79,54.15-95.58,81.17-143.37h162.34Z"/>
+      <path class="cls-4" d="M839.93,151.64l-4.69-8.28h-162.32c33.82,59.72,67.64,119.45,101.45,179.17,21.86,38.61,62.8,62.47,107.17,62.47h90.51c-44.04-77.79-88.08-155.57-132.12-233.36Z"/>
+      <path class="cls-3" d="M881.36,61.89l-46.12,81.46h162.3L1078.7,0h-91.19c-43.95,0-84.5,23.64-106.15,61.88Z"/>
+    </g>
+  </g>
+</svg>
