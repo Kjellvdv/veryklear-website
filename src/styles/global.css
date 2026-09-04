@@ -1,20 +1,62 @@
 /* ---------------------------------------------------------------
    Very Klear — global styles
 
-   Deliberately small. Everything visual is a token below, so the
-   whole look can be changed from one place once the new brand
-   identity lands. No framework, no utility classes.
+   Carries the identity delivered 2026-09-03. Values come from
+   gtm/brand.yml, which was read out of the designer's deck rather
+   than eyeballed. Still no framework and no utility classes.
+
+   The rule that governs everything here: red is scarce. Roughly
+   60% neutral, 30% opposing surface, 10% red, one accented element
+   per surface. A page with red in three places has none.
    --------------------------------------------------------------- */
 
-:root {
-  --ink: #111111;
-  --muted: #666666;
-  --paper: #ffffff;
-  --line: #e4e4e4;
+/* --- fonts ----------------------------------------------------- */
 
-  /* Swap this one value for the Ypres red when the hex is decided.
-     Everything accented on the site reads from it. */
-  --accent: #111111;
+@font-face {
+  font-family: 'Fraunces';
+  src: url('/fonts/Fraunces-latin.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
+    U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Fraunces';
+  src: url('/fonts/Fraunces-latin-ext.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB,
+    U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/Inter-100-900.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --ink: #000000;
+  --paper: #ffffff;
+  --bone: #fcfcf1;
+  --muted: #666666;
+  --muted-on-ink: #a6a6a6;
+  --line: #e4e4e4;
+  --line-on-ink: rgba(255, 255, 255, 0.14);
+
+  /* The gradient IS the identity — the monogram itself is filled with
+     it, so a flat red is already a fallback. 135deg for full-bleed
+     surfaces, 90deg for bars and pills. */
+  --red-light: #e23b5b;
+  --red-deep: #c8102e;
+  --brand-gradient: linear-gradient(135deg, #e23b5b 0%, #c8102e 100%);
+  --brand-gradient-bar: linear-gradient(90deg, #e23b5b 0%, #c8102e 100%);
 
   --wash: #f7f7f6;
 
@@ -22,7 +64,15 @@
   --gap: 1.5rem;
   --step: 3.5rem;
 
-  --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  /* Corners stay square by default. The exceptions are the logo plate
+     and anything that should echo it: buttons and pills, at 0.27 of
+     their own height. Image frames sit at 28px. */
+  --radius: 0;
+  --radius-frame: 28px;
+
+  --font-display: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica,
+    Arial, sans-serif;
 }
 
 * {
@@ -50,21 +100,36 @@ body {
 h1,
 h2,
 h3 {
-  font-weight: 600;
-  line-height: 1.2;
-  letter-spacing: -0.015em;
+  font-family: var(--font-display);
+  /* Very Klear pins every Fraunces axis except weight. opsz 9 keeps the
+     drawing sturdy: the higher optical sizes get too delicate for this
+     brand. WONK 1 is the single-storey g, confirmed off the deck. */
+  font-variation-settings: 'opsz' 9, 'SOFT' 0, 'WONK' 1;
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
   margin: 0 0 0.75rem;
 }
 
 h1 {
-  font-size: 2.1rem;
+  font-size: 2.6rem;
 }
+
+/* The emphasis pattern: a display line runs at 500 and the one word
+   that matters jumps to 900. No colour on that word — if a line is
+   carrying red it should be 900 throughout instead. */
+h1 em,
+h1 strong {
+  font-style: normal;
+  font-weight: 900;
+}
+
 h2 {
-  font-size: 1.25rem;
+  font-size: 1.45rem;
   margin-top: var(--step);
 }
 h3 {
-  font-size: 1rem;
+  font-size: 1.05rem;
 }
 
 p {
@@ -87,7 +152,7 @@ a {
 }
 
 a:hover {
-  text-decoration-color: var(--accent);
+  text-decoration-color: var(--ink);
 }
 
 ul {
@@ -113,11 +178,18 @@ header {
   margin-bottom: var(--step);
 }
 
+/* The lockup plus six nav items is wider than the reading measure, so this
+   header always wraps. Made deliberate: mark on its own row, nav beneath. */
 header .wrap {
   display: flex;
   flex-wrap: wrap;
-  align-items: baseline;
-  gap: var(--gap);
+  align-items: center;
+  row-gap: 0.9rem;
+  column-gap: var(--gap);
+}
+
+header nav {
+  flex-basis: 100%;
 }
 
 .brand {
@@ -129,7 +201,7 @@ header .wrap {
 nav {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--gap);
+  gap: 1.2rem;
 }
 
 nav a {
@@ -145,7 +217,7 @@ nav a[aria-current="page"] {
 
 nav a[aria-current="page"] {
   text-decoration: underline;
-  text-decoration-color: var(--accent);
+  text-decoration-color: var(--ink);
   text-underline-offset: 5px;
 }
 
@@ -187,19 +259,34 @@ h1 + .lead {
   margin-top: -0.25rem;
 }
 
+/* Buttons are ink. The red is spent once per page on the closing block,
+   which is the deck's "loudest single moment, used once". Corner radius is
+   0.27 of the button's own height, the same ratio as the logo plate. */
 .btn {
   display: inline-block;
   background: var(--ink);
   color: var(--paper);
-  padding: 0.7rem 1.25rem;
+  padding: 0.75rem 1.4rem;
   text-decoration: none;
   font-weight: 600;
   font-size: 0.95rem;
+  line-height: 1.3;
+  border-radius: 0.72rem;
   margin: 0.5rem 0 1rem;
 }
 
 .btn:hover {
-  background: var(--accent);
+  background: #1f1f1f;
+}
+
+/* Inside the red block the button inverts, so the red stays one element. */
+.cta-block .btn {
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.cta-block .btn:hover {
+  background: var(--bone);
 }
 
 .points {
@@ -244,15 +331,30 @@ h1 + .lead {
   color: var(--muted);
 }
 
+/* This is the page's single red moment. The deck allows the gradient
+   full-bleed once per piece, and the closing CTA is where it earns its
+   place. Everything else on the page stays black, white and grey. */
 .cta-block {
-  background: var(--wash);
-  border: 1px solid var(--line);
-  padding: 1.75rem;
+  background: var(--brand-gradient);
+  color: var(--paper);
+  padding: 2rem 1.75rem;
   margin-top: var(--step);
+  border-radius: var(--radius-frame);
 }
 
 .cta-block h2 {
   margin-top: 0;
+  color: var(--paper);
+}
+
+.cta-block a {
+  color: var(--paper);
+  text-decoration-color: var(--line-on-ink);
+}
+
+.cta-block .muted,
+.cta-block .muted a {
+  color: rgba(255, 255, 255, 0.75);
 }
 
 /* --- cards ----------------------------------------------------- */
@@ -359,4 +461,10 @@ main {
   color: var(--muted);
   border-top: 1px solid var(--line);
   padding-top: 0.6rem;
+}
+
+.brand img {
+  display: block;
+  height: 2.4rem;
+  width: auto;
 }

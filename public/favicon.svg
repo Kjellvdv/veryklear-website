@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1080 1080">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: url(#linear-gradient-2);
+      }
+
+      .cls-2 {
+        fill: #fff;
+      }
+
+      .cls-3 {
+        fill: url(#linear-gradient-4);
+      }
+
+      .cls-4 {
+        fill: url(#linear-gradient-3);
+      }
+
+      .cls-5 {
+        fill: url(#linear-gradient);
+      }
+    </style>
+    <linearGradient id="linear-gradient" x1="170.27" y1="443.91" x2="874.27" y2="618.13" gradientUnits="userSpaceOnUse">
+      <stop offset=".02" stop-color="#e23b5b"/>
+      <stop offset="1" stop-color="#c8102e"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-2" x1="160.2" y1="484.62" x2="864.2" y2="658.85" xlink:href="#linear-gradient"/>
+    <linearGradient id="linear-gradient-3" x1="170.16" y1="444.39" x2="874.16" y2="618.61" xlink:href="#linear-gradient"/>
+    <linearGradient id="linear-gradient-4" x1="209.74" y1="284.43" x2="913.74" y2="458.65" xlink:href="#linear-gradient"/>
+  </defs>
+  <rect class="cls-2" x="0" width="1080" height="1080"/>
+  <g>
+    <path class="cls-5" d="M706.13,390.63l-62.97,111.24-88.74,156.72-17.44,30.81h-125.96l62.97-111.24,80.2-141.66c16.05-28.35,46.11-45.87,78.68-45.87h73.25Z"/>
+    <path class="cls-1" d="M517.02,390.61c-21,37.09-42.03,74.17-62.99,111.26-29.38,51.84-58.74,103.71-88.12,155.58-11.18,19.72-32.12,31.93-54.79,31.93h-52.56c-22.67,0-43.61-12.21-54.79-31.93-25.45-44.98-50.93-89.95-76.38-134.91-7.26-12.83-7.26-28.52,0-41.35l51.31-90.59h125.98l-51.33,90.57c-7.27,12.83-7.27,28.54,0,41.37,10.5,18.53,21,37.06,31.48,55.6l.03-.03c14.41-25.41,28.79-50.85,43.18-76.25,21-37.09,42.03-74.18,62.99-111.26h125.98Z"/>
+    <path class="cls-4" d="M772.76,508.29l-3.64-6.43h-125.96c26.24,46.35,52.49,92.7,78.73,139.05,16.97,29.96,48.74,48.48,83.17,48.48h70.24c-34.18-60.37-68.35-120.73-102.53-181.1Z"/>
+    <path class="cls-3" d="M804.91,438.64l-35.79,63.22h125.95l62.98-111.24h-70.77c-34.1,0-65.57,18.35-82.38,48.02Z"/>
+  </g>
+</svg>
