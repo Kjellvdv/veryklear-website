@@ -128,6 +128,13 @@ h1 strong {
 h2 {
   font-size: 1.45rem;
   margin-top: var(--step);
+  color: var(--red-deep);
+}
+
+/* On red or ink the heading cannot also be red. */
+.cta-block h2,
+.band-ink h2 {
+  color: var(--paper);
 }
 h3 {
   font-size: 1.05rem;
