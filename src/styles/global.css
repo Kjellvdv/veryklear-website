@@ -167,7 +167,9 @@ li {
 
 hr {
   border: 0;
-  border-top: 1px solid var(--line);
+  height: 3px;
+  background: var(--brand-gradient-bar);
+  width: 4rem;
   margin: var(--step) 0;
 }
 
@@ -210,13 +212,15 @@ hr {
   text-decoration-color: var(--line-on-ink);
 }
 
+/* Red on black is the deck's strongest pairing, and the ink hero is a
+   surface in its own right, so it gets its own single accent. */
 .band-ink .btn {
-  background: var(--paper);
-  color: var(--ink);
+  background: var(--brand-gradient-bar);
+  color: var(--paper);
 }
 
 .band-ink .btn:hover {
-  background: var(--bone);
+  filter: brightness(1.08);
 }
 
 /* --- header / nav ---------------------------------------------- */
@@ -228,6 +232,8 @@ header {
   background: var(--ink);
   padding: 1.5rem 0 1.25rem;
   margin-bottom: var(--step);
+  border-bottom: 5px solid transparent;
+  border-image: var(--brand-gradient-bar) 1;
 }
 
 /* When the hero is also ink, the two surfaces are one slab. */
@@ -465,7 +471,8 @@ h1 + .lead {
 .card .step {
   display: block;
   font-size: 0.8rem;
-  color: var(--muted);
+  font-weight: 600;
+  color: var(--red-deep);
   margin-bottom: 0.5rem;
 }
 
