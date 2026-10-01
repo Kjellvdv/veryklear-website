@@ -1,0 +1,150 @@
+---
+import Base from '../layouts/Base.astro';
+import Faq from '../components/Faq.astro';
+import CtaFinal from '../components/CtaFinal.astro';
+
+// No prices here: fractioneel pricing is null in products.yml.
+const faq = [
+  ['Hoe lang loopt een fractionele samenwerking?', 'Doorlopend, met vaste momenten om bij te sturen. Zolang het nut heeft, en we zeggen het als dat niet meer zo is.'],
+  ['Hoe vaak hebben we contact?', 'Vaste momenten die we samen afspreken, plus tussendoor als er iets is. Altijd met dezelfde persoon.'],
+  ['Wat als het niet klikt?', 'Dan stoppen we. Een samenwerking die niet werkt rekken heeft voor niemand zin.'],
+  ['Wat kost fractioneel?', 'Dat hangt af van wat er nodig is. We bespreken het na de strategiesessie, met een duidelijke scope.'],
+];
+---
+
+<Base
+  title="Fractioneel — Very Klear"
+  description="Fractioneel: van 0 naar 1 met een vaste partner. Positionering, marketing strategie en AI samen, plus klantenbeheer en opvolging."
+  path="/fractioneel"
+>
+  <section class="hero hero-page">
+    <div class="grain"></div>
+    <div class="wrap">
+      <a class="crumb" href="/">← Home</a>
+      <h1 class="h-page">Fractioneel.<br />Van 0 naar 1.</h1>
+      <p class="lead">Een vaste partner die je marketing mee opbouwt, van de basis tot een motor die draait. In plaats van voor elke nieuwe vraag opnieuw te beginnen.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-white" href="/contact">Plan een strategiesessie</a>
+        <a class="btn btn-ghost-white" href="#vergelijking">Vergelijk met op projectbasis</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="block block-first">
+    <div class="wrap">
+      <div class="s-head">
+        <h2 class="h-section">Wat 'van 0 naar 1' betekent.</h2>
+        <p class="lead">Niet alles tegelijk. Wel in de juiste volgorde, met dezelfde partner.</p>
+      </div>
+      <div class="card card-paper" style="padding:44px 36px">
+        <div class="timeline">
+          <div class="tl"><div class="dot">0</div><h3>Vertrekpunt</h3><p>Klanten via via, een site van jaren geleden, opvolging op goed geluk.</p></div>
+          <div class="tl"><div class="dot"></div><h3>De basis</h3><p>Positionering vastgelegd: wie je klant is en waarom die voor jou kiest.</p></div>
+          <div class="tl"><div class="dot"></div><h3>De motor</h3><p>Kanalen gekozen, site en opvolging die op elkaar aansluiten.</p></div>
+          <div class="tl end"><div class="dot">1</div><h3>Het draait</h3><p>Een systeem dat werkt zonder dat alles van één persoon afhangt.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" style="padding-top:0">
+    <div class="wrap">
+      <div class="s-head"><h2 class="h-section">Wat er in zit.</h2></div>
+      <div class="card card-grad cut" style="padding:40px">
+        <div class="grain"></div>
+        <div style="position:relative;display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:center">
+          <div>
+            <span class="label">De basis</span>
+            <h3 class="h-card" style="margin-top:6px;font-size:1.5rem">Alle drie de pijlers, samen.</h3>
+          </div>
+          <div class="leads-to" style="margin-top:0"><span>Positionering</span><span>Marketing strategie</span><span>AI inzetten</span></div>
+        </div>
+      </div>
+      <div class="grid-4" style="margin-top:20px">
+        <div class="card card-paper"><span class="label">Extra</span><h3 class="h-card" style="margin-top:6px">Klantenbeheer</h3><p class="muted">Een CRM dat georganiseerd blijft, zodat je nog weet wat een klant drie maanden geleden zei.</p></div>
+        <div class="card card-paper"><span class="label">Extra</span><h3 class="h-card" style="margin-top:6px">Van aanvraag naar verkoop</h3><p class="muted">Een duidelijke weg, in plaats van een proces dat per persoon verschilt.</p></div>
+        <div class="card card-paper"><span class="label">Extra</span><h3 class="h-card" style="margin-top:6px">Gespreksnotities</h3><p class="muted">Notities die achteraf nog iets zeggen, niet drie losse steekwoorden.</p></div>
+        <div class="card card-paper"><span class="label">Extra</span><h3 class="h-card" style="margin-top:6px">Leadlijsten</h3><p class="muted">Wie je nog kan bellen, en die lijst blijft ook bijgehouden.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" style="padding-top:0;scroll-margin-top:24px" id="vergelijking">
+    <div class="wrap">
+      <div class="s-head">
+        <h2 class="h-section">Op projectbasis of fractioneel?</h2>
+        <p class="lead">De grens is niet scherp. Deze vergelijking helpt je kiezen.</p>
+      </div>
+      <div class="compare">
+        <div class="card card-paper">
+          <h3 class="h-card">Op projectbasis</h3>
+          <dl>
+            <dt>Wat je koopt</dt><dd>Eén pijler</dd>
+            <dt>Duur</dt><dd>Een paar maanden, met een duidelijk einde</dd>
+            <dt>Goed als</dt><dd>Je weet waar het knelt en dat eerst wil oplossen</dd>
+            <dt>Klantenbeheer, leads, notities</dt><dd>Niet inbegrepen</dd>
+            <dt>Daarna</dt><dd>Je beslist zelf of er iets bijkomt</dd>
+          </dl>
+        </div>
+        <div class="card card-paper">
+          <h3 class="h-card">Fractioneel</h3>
+          <dl>
+            <dt>Wat je koopt</dt><dd>Alle drie de pijlers, en meer</dd>
+            <dt>Duur</dt><dd>Doorlopend, met vaste momenten</dd>
+            <dt>Goed als</dt><dd>Je een vaste partner wil die het geheel mee opbouwt</dd>
+            <dt>Klantenbeheer, leads, notities</dt><dd>Inbegrepen</dd>
+            <dt>Daarna</dt><dd>Samen bijsturen, zolang het nut heeft</dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" style="padding-top:0">
+    <div class="wrap">
+      <div class="grid-2 fit">
+        <div class="card card-paper yes">
+          <h3 class="h-card">Past goed als</h3>
+          <ul>
+            <li>je wil groeien en daar ook budget voor hebt</li>
+            <li>je zelf de marketingkeuzes maakt</li>
+            <li>er niemand voltijds met marketing bezig is</li>
+            <li>je een partner zoekt, geen uitvoerder zonder mening</li>
+          </ul>
+        </div>
+        <div class="card card-tint no">
+          <h3 class="h-card">Past niet als</h3>
+          <ul>
+            <li>je enkel een paar posts op Instagram zoekt</li>
+            <li>de prijs de doorslag geeft</li>
+            <li>het een bijberoep is zonder groeiplannen</li>
+            <li>je enkel handen wil, niet het denkwerk</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" style="padding-top:0">
+    <div class="wrap">
+      <div class="card card-paper" style="display:grid;grid-template-columns:auto 1fr;gap:22px;align-items:center">
+        <div class="note-badge" aria-hidden="true">!</div>
+        <p style="font-weight:600">Fractioneel is nieuw. We zeggen het ook als het nog niet het juiste moment is voor jouw zaak, en dan begin je beter met één pijler.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" style="padding-top:0">
+    <div class="wrap faq-layout">
+      <div class="s-head" style="margin-bottom:0">
+        <h2 class="h-section">Vragen over fractioneel.</h2>
+      </div>
+      <Faq items={faq} />
+    </div>
+  </section>
+
+  <CtaFinal
+    heading="Kijken of fractioneel past?"
+    body="Het begint met hetzelfde gesprek als elke andere weg. Een uur, eerlijk advies."
+  />
+</Base>

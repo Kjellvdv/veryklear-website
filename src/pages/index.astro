@@ -1,160 +1,210 @@
 ---
 import Base from '../layouts/Base.astro';
-import SessionCta from '../components/SessionCta.astro';
+import Faq from '../components/Faq.astro';
+import CtaFinal from '../components/CtaFinal.astro';
+import ArticleCard from '../components/ArticleCard.astro';
+import { getArticles } from '../lib/articles.js';
 
-const services = [
-  {
-    href: '/strategie',
-    title: 'Strategie',
-    body: 'Weten wie je klant is en waarom die bij jou koopt. Daarna proberen, kijken wat het doet, en bijsturen.',
-    note: 'Een paar maanden, met vaste momenten samen.',
-  },
-  {
-    href: '/websites',
-    title: 'Websites',
-    body: 'Een site die uitlegt wat je doet, en waar mensen ook effectief contact opnemen.',
-    note: 'Volstaat je huidige site, dan zeggen we dat.',
-  },
-  {
-    href: '/automatisatie',
-    title: 'Automatisatie',
-    body: 'Opvolging en rapportering die blijven draaien, op de tools die je al betaalt.',
-    note: 'Begint bij één taak die elke week terugkomt.',
-  },
-];
-
-const steps = [
-  { n: '01', label: 'Een gesprek', body: 'Over wat vandaag werkt en wat niet. Geen verkooppraatje: het meeste bruikbare zit al in je zaak.' },
-  { n: '02', label: 'Eén stuk werk', body: 'Strategie, een site of de automatisatie erachter. Klein genoeg om apart te beoordelen.' },
-  { n: '03', label: 'Je kijkt wat het doet', body: 'En daarna passen we aan. Er is geen enkele waarheid: je test, je leert, en dat blijft duren.' },
-];
+const recent = (await getArticles()).slice(0, 3);
 
 const faq = [
-  { q: 'Is die strategie gewoon een manier om me een groter traject aan te smeren?', a: 'Nee. Het is een aparte dienst met een eigen prijs en een blad dat van jou is. Een normale afloop is dat we zeggen dat je huidige site volstaat, of dat een tool volstaat waar wij niets aan verdienen. Je kan er ook mee naar iemand anders stappen.' },
-  { q: 'Waarom zou ik in zee gaan met een naam waar ik nog nooit van gehoord heb?', a: 'Terechte vraag. Het antwoord is dat je klein kan beginnen: één dienst, met een resultaat dat je kan beoordelen voor je verder gaat. Achter Very Klear zit een tiental jaar B2B-marketing en automatisatie, ervaring die je bij een lokaal bureau zelden vindt.' },
-  { q: 'Hebben wij marketing nodig als onze klanten via via komen?', a: 'Mond-tot-mond is een kanaal, en meestal een goed. De vraag is of je weet waarom het werkt, want dat vertelt je hoe je er meer van krijgt.' },
-  { q: 'Wat als ik maar één ding nodig heb en de rest nooit?', a: 'Dan is dat perfect in orde. Elke dienst staat op zichzelf. Wie enkel strategie koopt en daarmee stopt, heeft iets volledigs gekocht. Er wordt hier niets gebundeld om een maandbedrag te doen kloppen.' },
-  { q: 'Is AI niet iets voor grote bedrijven met een IT-afdeling?', a: 'Meestal niet. De tools die je al betaalt, met een deftige instructie erachter, brengen je verder dan de meeste bedrijven ooit geraken.' },
-  { q: 'Wat kost het?', a: 'Dat hangt af van wat je nodig hebt, en dat weten we pas na een gesprek. Wel dit alvast: we zijn goedkoper dan een groot bureau en duurder dan het nichtje dat ook wat schrijft. Kies je op prijs alleen, dan zijn we niet de juiste.' },
-  { q: 'Werken jullie ook buiten Ieper?', a: 'In en rond Ieper, ver genoeg dat langskomen nog normaal is. Zit je verder, stuur gerust een mail, dan zeggen we of het zinvol is.' },
+  ['We krijgen al ons werk via via. Hebben wij dat wel nodig?', 'Mond-tot-mond is een kanaal, en meestal een goed. De vraag is of je weet waarom het werkt, want dat vertelt je hoe je er meer van krijgt.'],
+  ['AI, is dat niet iets voor grote bedrijven?', 'Meestal niet. Een tool die je al betaalt, goed ingesteld, brengt je verder dan de meeste bedrijven ooit geraken. Een echt platform is pas nodig als je daar tegen de grenzen loopt.'],
+  ['Wat kost een pijler of fractioneel?', 'Dat hangt af van wat er nodig is, en dat bespreken we na de strategiesessie, met een duidelijke scope. We zijn niet de goedkoopste: goedkoper dan een groot bureau, duurder dan het nichtje dat ook wat teksten schrijft.'],
+  ['Wat is het verschil tussen op projectbasis en fractioneel?', 'Op projectbasis koop je één pijler en beoordeel je die voor er iets bijkomt. Fractioneel is een vaste samenwerking die het hele traject dekt, van 0 naar 1. Beide zijn een normale manier om te beginnen.'],
 ];
 ---
 
 <Base
-  title="Very Klear — marketingstrategie en automatisatie in Ieper"
-  description="Waarom je beste klanten voor jou kozen, is wat je nodig hebt om er meer van te vinden. Marketingbureau in Ieper: strategie, website en automatisatie."
+  title="Very Klear — positionering, marketing strategie en AI"
+  description="Marketing met technische diepgang. Positionering, marketing strategie en AI inzetten, op projectbasis of fractioneel."
   path="/"
 >
-  <section class="hero">
-    <div class="shell">
-      <p class="eyebrow">Marketingbureau in Ieper</p>
-      <h1 class="display">Meer klanten zoals je <em>beste</em> klanten.</h1>
-      <p class="lead prose">
-        Je beste klanten kwamen niet toevallig bij jou terecht. Waarom ze voor jou
-        kozen, is precies wat je nodig hebt om er meer van te vinden.
-      </p>
+  <section class="hero hero-home">
+    <div class="grain"></div>
+    <div class="wrap hero-grid">
+      <div>
+        <h1 class="h-display">Marketing met <strong>technische diepgang.</strong> Van positionering tot AI.</h1>
+        <p class="lead">Voor bedrijven die willen groeien en het deftig willen doen. Op projectbasis, of fractioneel als je een vaste partner wil.</p>
+        <div class="hero-ctas">
+          <a class="btn btn-white" href="/contact">Plan een strategiesessie</a>
+          <a class="btn btn-ghost-white" href="/diensten">Bekijk de diensten</a>
+        </div>
+      </div>
+      <aside class="hero-entry">
+        <span class="label">De eerste stap</span>
+        <h3 class="h-card" style="margin-top:6px">Strategiesessie</h3>
+        <p class="muted" style="margin-top:8px;font-size:.93rem">Eén gesprek van een uur. Je gaat buiten met een richting, en met een eerlijk antwoord op de vraag of je ons nodig hebt.</p>
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:20px;gap:12px">
+          <span class="muted" style="font-size:.88rem;font-weight:600">60 minuten</span>
+          <a class="link-arrow" href="/contact">Inplannen →</a>
+        </div>
+      </aside>
+    </div>
+  </section>
 
-      <ul class="hero__points">
-        <li>Je klanten komen via via. Dat werkt, tot je er meer wil.</li>
-        <li>Er ging vorig jaar geld naar marketing en niemand kan zeggen wat het gedaan heeft.</li>
-        <li>Je site levert niets op, maar doet ook geen kwaad. Of toch?</li>
-      </ul>
-
-      <div class="btn-row">
-        <a class="btn" href="/strategiesessie">Boek een strategiesessie &rarr;</a>
+  <section class="block block-first">
+    <div class="wrap">
+      <div class="s-head">
+        <h2 class="h-section">Waar het meestal vastloopt.</h2>
+        <p class="lead">Drie dingen die we bij bijna elk eerste gesprek horen.</p>
+      </div>
+      <div class="grid-3">
+        <article class="card card-paper problem">
+          <p class="q">"Onze klanten komen via via, maar niemand weet eigenlijk waarom."</p>
+          <p class="a muted">Zonder dat antwoord is elke keuze over kanalen, teksten of een nieuwe site een gok.</p>
+          <span class="tag">Positionering</span>
+        </article>
+        <article class="card card-paper problem">
+          <p class="q">"We doen een beetje van alles, en niets lijkt echt te werken."</p>
+          <p class="a muted">Een kanaal erbij omdat de concurrent het heeft. Een tool erbij omdat iedereen erover praat.</p>
+          <span class="tag">Marketing strategie</span>
+        </article>
+        <article class="card card-paper problem">
+          <p class="q">"Iedereen gebruikt AI, maar elk op zijn eigen manier."</p>
+          <p class="a muted">Verschillende tools, data die niemand controleert, en een factuur die stilaan oploopt.</p>
+          <span class="tag">AI inzetten</span>
+        </article>
       </div>
     </div>
   </section>
 
-  <section class="section">
-    <div class="shell split">
-      <div>
-        <span class="idx">01</span>
-        <h2>Waar wil je beginnen?</h2>
+  <section class="block" style="padding-top:0">
+    <div class="wrap">
+      <div class="s-head">
+        <h2 class="h-section">Twee manieren om samen te werken.</h2>
       </div>
-      <div>
-        <p class="prose muted">
-          Dat laatste punt is het venijn. Wie je naam hoort en gaat kijken, beslist op
-          wat daar staat, en je ziet nooit wie er niet gebeld heeft. Geen van de drie
-          loopt fout genoeg om er vandaag iets aan te doen, en net daarom blijft het
-          jaar na jaar zo.
-        </p>
-        <ul class="tiles">
-          {services.map((s) => (
-            <li class="tile">
-              <a href={s.href}><span class="tile__title">{s.title} &rarr;</span></a>
-              <p>{s.body}</p>
-              <p class="tile__note">{s.note}</p>
-            </li>
-          ))}
-        </ul>
+      <div class="grid-2">
+        <a class="card card-paper" href="/diensten" style="text-decoration:none">
+          <span class="label">Op projectbasis</span>
+          <h3 class="h-card" style="margin-top:6px">Eén pijler, goed uitgezocht.</h3>
+          <p class="muted">Je kiest positionering, marketing strategie of AI inzetten, en beoordeelt het resultaat voor er iets bijkomt.</p>
+          <div class="card-foot"><span class="link-arrow">Naar de diensten →</span></div>
+        </a>
+        <a class="card card-paper" href="/fractioneel" style="text-decoration:none">
+          <span class="label">Fractioneel</span>
+          <h3 class="h-card" style="margin-top:6px">Van 0 naar 1, met een vaste partner.</h3>
+          <p class="muted">Alle drie de pijlers samen, plus klantenbeheer en opvolging, in één doorlopende samenwerking.</p>
+          <div class="card-foot"><span class="link-arrow">Naar fractioneel →</span></div>
+        </a>
       </div>
     </div>
   </section>
 
-  <section class="section section--ink">
-    <div class="shell split">
-      <div>
-        <span class="idx">02</span>
-        <h2>Waarom het hier anders loopt</h2>
+  <section class="block" style="padding-top:0">
+    <div class="wrap">
+      <div class="s-head-row">
+        <div class="s-head">
+          <h2 class="h-section">Drie pijlers, in een vaste volgorde.</h2>
+          <p class="lead">Positionering komt eerst. De rest bouwt erop voort.</p>
+        </div>
+        <a class="link-arrow" href="/diensten">Alle details →</a>
       </div>
-      <div class="prose">
-        <p>
-          Een lokaal webbureau begint bij de website, want de website is wat ze
-          verkopen. Hier begint het bij de vraag of een website wel is waar je geld
-          naartoe moet. Dat is een ongemakkelijk verkoopgesprek en een veel beter
-          startpunt.
-        </p>
-        <p class="muted">
-          We hebben geen omzetdoelen te halen, dus minder aanraden kost ons niets. Wel
-          zijn we niet de goedkoopste: goedkoper dan een groot bureau, duurder dan het
-          nichtje dat ook wat teksten schrijft.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="shell split">
-      <div>
-        <span class="idx">03</span>
-        <h2>Hoe het meestal loopt</h2>
-      </div>
-      <div>
-        <ul class="steps">
-          {steps.map((s) => (
-            <li>
-              <span class="idx">{s.n}</span>
-              <h3>{s.label}</h3>
-              <p>{s.body}</p>
-            </li>
-          ))}
-        </ul>
-        <p class="prose muted" style="margin-top:2rem">
-          Very Klear blijft klein. Voor sociale media, ontwerp of een zwaardere bouw
-          werken we met vaste <a href="/partners">partners</a> die daar elke dag mee
-          bezig zijn. Jij houdt één aanspreekpunt.
-        </p>
+      <div class="flow">
+        <article class="card card-grad cut pillar-card">
+          <div class="grain"></div>
+          <span class="num">Pijler 1 · de basis</span>
+          <h3 class="h-card" style="margin-top:8px">Positionering</h3>
+          <ul>
+            <li>In welke markt speel je echt?</li>
+            <li>Wie is je ideale klant?</li>
+            <li>Waarom kiest die voor jou?</li>
+          </ul>
+        </article>
+        <span class="flow-arrow" aria-hidden="true">→</span>
+        <article class="card card-paper pillar-card">
+          <span class="num">Pijler 2 · de uitvoering</span>
+          <h3 class="h-card" style="margin-top:8px">Marketing strategie</h3>
+          <ul>
+            <li>Welke kanalen, en welke niet?</li>
+            <li>Hoeveel tijd, mensen en tools?</li>
+            <li>Klopt de weg van advertentie tot site?</li>
+          </ul>
+        </article>
+        <span class="flow-arrow" aria-hidden="true">→</span>
+        <article class="card card-paper pillar-card">
+          <span class="num">Pijler 3 · het werk</span>
+          <h3 class="h-card" style="margin-top:8px">AI inzetten</h3>
+          <ul>
+            <li>Waar bespaart AI echt werk?</li>
+            <li>Wat volstaat met een gewoon script?</li>
+            <li>Wat blijft beter mensenwerk?</li>
+          </ul>
+        </article>
       </div>
     </div>
   </section>
 
-  <section class="section section--tight">
-    <div class="shell split">
-      <div>
-        <span class="idx">04</span>
-        <h2>Veelgestelde vragen</h2>
-      </div>
-      <div class="faq">
-        {faq.map((item) => (
-          <details>
-            <summary>{item.q}</summary>
-            <p>{item.a}</p>
-          </details>
-        ))}
+  <section class="block" style="padding-top:0">
+    <div class="wrap">
+      <div class="card card-grad cut statement">
+        <div class="grain"></div>
+        <div style="position:relative">
+          <h2>Strategie en uitvoering bij dezelfde persoon. Geen overdracht, geen deck dat in een lade belandt.</h2>
+          <p class="muted" style="margin-top:16px;max-width:48ch">Wat we uitzoeken, bouwen we ook. En wat niet nodig is, zeggen we gewoon.</p>
+        </div>
+        <div class="facts" style="position:relative">
+          <div class="fact"><b>7 jaar</b><span>B2B tech marketing, van startups tot scale-ups</span></div>
+          <div class="fact"><b>3 pijlers</b><span>apart te kiezen, of samen als fractioneel</span></div>
+          <div class="fact"><b>1 persoon</b><span>van het eerste gesprek tot de uitvoering</span></div>
+        </div>
       </div>
     </div>
   </section>
 
-  <SessionCta />
+  <section class="block" style="padding-top:0">
+    <div class="wrap">
+      <div class="s-head"><h2 class="h-section">Zo begin je.</h2></div>
+      <div class="steps">
+        <div class="card card-paper step">
+          <div class="n"></div>
+          <h3 class="h-card">Een strategiesessie</h3>
+          <p class="muted">Een uur over wat nu werkt en wat niet. Geen pitch. Het meeste nuttige zit al in je zaak.</p>
+          <p class="meta">60 minuten</p>
+        </div>
+        <div class="card card-paper step">
+          <div class="n"></div>
+          <h3 class="h-card">Eén pijler, of fractioneel</h3>
+          <p class="muted">Klein genoeg om op zichzelf te beoordelen. Of meteen een vaste partner als dat al duidelijk is.</p>
+          <p class="meta">Een paar maanden, met vaste momenten</p>
+        </div>
+        <div class="card card-paper step">
+          <div class="n"></div>
+          <h3 class="h-card">Kijken wat het opbracht</h3>
+          <p class="muted">Pas daarna beslis je of er iets bij moet. Bijsturen hoort erbij, er is geen enige waarheid.</p>
+          <p class="meta">Testen, bijsturen, leren</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* Proof section (ZYGO story + quote) stays out until there's a real quote.
+      Nothing on this site is invented. */}
+
+  {recent.length > 0 && (
+    <section class="block" style="padding-top:0">
+      <div class="wrap">
+        <div class="s-head-row">
+          <div class="s-head"><h2 class="h-section">Recent geschreven.</h2></div>
+          <a class="link-arrow" href="/artikels">Alle artikels →</a>
+        </div>
+        <div class="grid-3">
+          {recent.map((post, i) => <ArticleCard post={post} index={i} />)}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <section class="block" style="padding-top:0">
+    <div class="wrap faq-layout">
+      <div class="s-head" style="margin-bottom:0">
+        <h2 class="h-section">Wat mensen ons meestal vragen.</h2>
+        <p class="lead">Staat je vraag er niet bij? Stel ze gewoon.</p>
+        <div style="margin-top:22px"><a class="btn btn-line" href="/contact">Stel je vraag</a></div>
+      </div>
+      <Faq items={faq} />
+    </div>
+  </section>
+
+  <CtaFinal />
 </Base>

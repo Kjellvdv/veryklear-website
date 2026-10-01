@@ -11,3 +11,12 @@
     Header set Cache-Control "public, max-age=0, must-revalidate"
   </FilesMatch>
 </IfModule>
+
+# Pages retired in the 2026-10-01 restructure (three pillars, two paths)
+<IfModule mod_alias.c>
+  RedirectMatch 301 ^/strategie/?$ /diensten#marketing-strategie
+  RedirectMatch 301 ^/automatisatie/?$ /diensten#ai-inzetten
+  RedirectMatch 301 ^/websites/?$ /diensten
+  RedirectMatch 301 ^/partners/?$ /diensten
+  RedirectMatch 301 ^/strategiesessie/?$ /contact
+</IfModule>

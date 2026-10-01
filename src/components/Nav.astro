@@ -1,25 +1,35 @@
 ---
+// Dark bar above the gradient hero (Kjell, 2026-10-01: "menu can stay dark").
 const { path = '' } = Astro.props;
 
 const links = [
-  { href: '/strategie', label: 'Strategie' },
-  { href: '/automatisatie', label: 'Automatisatie' },
-  { href: '/websites', label: 'Websites' },
-  { href: '/partners', label: 'Partners' },
+  { href: '/', label: 'Home' },
+  { href: '/diensten', label: 'Diensten' },
+  { href: '/fractioneel', label: 'Fractioneel' },
   { href: '/artikels', label: 'Artikels' },
   { href: '/contact', label: 'Contact' },
 ];
+const isActive = (href) => (href === '/' ? path === '' || path === '/' : path.startsWith(href));
 ---
 
-<header class="masthead">
-  <div class="shell">
-    <a class="masthead__brand" href="/" aria-label="Very Klear, naar de homepagina">
-      <img src="/vk-lockup-gradient.svg" alt="Very Klear" width="161" height="50" />
-    </a>
-    <nav>
+<header class="nav" id="nav">
+  <div class="wrap nav-row">
+    <a href="/" aria-label="Very Klear, naar de startpagina"><svg class="logo" viewBox="0 0 960 163" aria-hidden="true"><use href="#vk-lockup" /></svg></a>
+    <nav class="nav-links" aria-label="Hoofdmenu">
       {links.map((l) => (
-        <a href={l.href} aria-current={path.startsWith(l.href) ? 'page' : undefined}>{l.label}</a>
+        <a href={l.href} class={isActive(l.href) ? 'is-active' : undefined} aria-current={isActive(l.href) ? 'page' : undefined}>{l.label}</a>
       ))}
     </nav>
+    <a class="nav-cta" href="/contact">Plan een strategiesessie</a>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav">Menu</button>
   </div>
 </header>
+
+<script>
+  const nav = document.getElementById('nav');
+  const btn = nav?.querySelector('.menu-btn');
+  btn?.addEventListener('click', () => {
+    nav.classList.toggle('open');
+    btn.setAttribute('aria-expanded', String(nav.classList.contains('open')));
+  });
+</script>

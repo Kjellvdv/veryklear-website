@@ -1,43 +1,97 @@
 ---
-import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
-import SessionCta from '../../components/SessionCta.astro';
+import CtaFinal from '../../components/CtaFinal.astro';
+import ArticleCard from '../../components/ArticleCard.astro';
+import { getArticles, PILLARS } from '../../lib/articles.js';
 
-const posts = (await getCollection('artikels', ({ data }) => !data.draft)).sort(
-  (a, b) => b.data.published_at.getTime() - a.data.published_at.getTime()
-);
+const posts = await getArticles();
+const [featured, ...rest] = posts;
 ---
 
 <Base
   title="Artikels — Very Klear"
-  description="Stukken over marketingstrategie, automatisatie en websites."
+  description="Eén idee per artikel, over positionering, marketing strategie en AI."
   path="/artikels"
 >
-  <section class="hero">
-    <div class="shell">
-      <p class="eyebrow">Artikels</p>
-      <h1 class="display">Hoe we ernaar kijken.</h1>
-      <p class="lead prose">Stukken over strategie, automatisatie en websites.</p>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="shell">
-      {posts.length === 0 ? (
-        <p class="muted prose">Nog niets gepubliceerd. Binnenkort meer.</p>
-      ) : (
-        <ul class="steps">
-          {posts.map((post) => (
-            <li>
-              <span class="idx">{post.data.category}</span>
-              <h3><a href={`/artikels/${post.slug}`}>{post.data.title}</a></h3>
-              <p>{post.data.description}</p>
-            </li>
-          ))}
-        </ul>
+  <section class="hero hero-page">
+    <div class="grain"></div>
+    <div class="wrap">
+      <a class="crumb" href="/">← Home</a>
+      <h1 class="h-page">Artikels.</h1>
+      <p class="lead">Eén idee per artikel, over positionering, marketing strategie en AI. Kort genoeg om tussen twee afspraken te lezen.</p>
+      {posts.length > 1 && (
+        <div class="hero-chips" id="filterChips">
+          <button class="chip on" type="button" data-filter="all">Alles</button>
+          {PILLARS.map((p) => <button class="chip" type="button" data-filter={p}>{p}</button>)}
+        </div>
       )}
     </div>
   </section>
 
-  <SessionCta />
+  <section class="block block-first">
+    <div class="wrap">
+      {posts.length === 0 ? (
+        <div class="card card-paper empty">
+          <h3 class="h-card">Nog niets gepubliceerd.</h3>
+          <p class="muted" style="margin-top:8px">Het eerste artikel komt binnenkort.</p>
+        </div>
+      ) : (
+        <>
+          <a class="card card-grad cut art-featured" href={`/artikels/${featured.slug}`} data-cat={featured.data.category}>
+            <div class="grain"></div>
+            <div class="feat-body" style="position:relative">
+              <span class="label">Uitgelicht · {featured.data.category}</span>
+              <h2 style="font-size:clamp(1.5rem,2.6vw,2rem);font-weight:800;line-height:1.2">{featured.data.title}</h2>
+              <p class="muted">{featured.data.description}</p>
+              <span class="link-arrow" style="margin-top:8px">Lees het artikel →</span>
+            </div>
+            <div class="feat-art"></div>
+          </a>
+
+          {rest.length > 0 && (
+            <>
+              <div class="s-head-row" style="margin-top:56px">
+                <div class="s-head"><h2 class="h-section">Alle artikels</h2></div>
+                <span class="muted" id="artCount" style="font-size:.9rem">{rest.length} {rest.length === 1 ? 'artikel' : 'artikels'}</span>
+              </div>
+              <div class="grid-3" id="artGrid">
+                {rest.map((post, i) => <ArticleCard post={post} index={i} />)}
+              </div>
+              <div class="card card-paper empty" id="artEmpty" hidden>
+                <h3 class="h-card">Nog niets in deze categorie.</h3>
+                <p class="muted" style="margin-top:8px">Er komt binnenkort een artikel bij.</p>
+              </div>
+            </>
+          )}
+        </>
+      )}
+    </div>
+  </section>
+
+  <CtaFinal
+    variant="paper"
+    heading="Liever praten dan lezen?"
+    body="Eén uur, over jouw zaak in plaats van in het algemeen."
+  />
 </Base>
+
+<script>
+  const chips = document.querySelectorAll('#filterChips .chip');
+  const featured = document.querySelector('.art-featured');
+  const cards = document.querySelectorAll('#artGrid .art');
+  const empty = document.getElementById('artEmpty');
+  const count = document.getElementById('artCount');
+
+  chips.forEach((chip) => {
+    chip.addEventListener('click', () => {
+      const f = chip.dataset.filter;
+      chips.forEach((c) => c.classList.toggle('on', c === chip));
+      const show = (el) => f === 'all' || el.dataset.cat === f;
+      if (featured) featured.hidden = !show(featured);
+      let n = 0;
+      cards.forEach((c) => { c.hidden = !show(c); if (!c.hidden) n++; });
+      if (empty) empty.hidden = n > 0 || (featured && !featured.hidden);
+      if (count) count.textContent = n + (n === 1 ? ' artikel' : ' artikels');
+    });
+  });
+</script>

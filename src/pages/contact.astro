@@ -1,43 +1,118 @@
 ---
 import Base from '../layouts/Base.astro';
-import SessionCta from '../components/SessionCta.astro';
+
+const topics = ['Positionering', 'Marketing strategie', 'AI inzetten', 'Fractioneel', 'Weet ik nog niet'];
 ---
 
 <Base
   title="Contact — Very Klear"
-  description="Contactgegevens van Very Klear, marketingbureau uit Ieper."
+  description="Plan een strategiesessie of stuur een mail naar Very Klear."
   path="/contact"
 >
-  <section class="hero">
-    <div class="shell">
-      <p class="eyebrow">Contact</p>
-      <h1 class="display">Een mail is het snelst.</h1>
-      <p class="lead prose">
-        Zeg er kort bij waar je mee bezig bent, dan kunnen we meteen iets zinnigs
-        antwoorden.
-      </p>
-      <div class="btn-row">
-        <a class="btn" href="mailto:kjell@veryklear.be">kjell@veryklear.be</a>
+  <section class="hero hero-page">
+    <div class="grain"></div>
+    <div class="wrap">
+      <a class="crumb" href="/">← Home</a>
+      <h1 class="h-page">Laten we praten.</h1>
+      <p class="lead">Plan een strategiesessie, of stuur gewoon een mail. Zeg er kort bij waar je mee bezig bent, dan kunnen we meteen iets zinnigs antwoorden.</p>
+    </div>
+  </section>
+
+  <section class="block block-first">
+    <div class="wrap contact-grid">
+      <div class="card card-paper">
+        <h2 class="h-section" style="font-size:1.6rem">Stuur een bericht</h2>
+        <p class="muted" style="margin-top:8px">Je krijgt antwoord van Kjell zelf.</p>
+        <!-- No form backend yet: submitting opens the visitor's mail app with the
+             message filled in, addressed to kjell@veryklear.be. -->
+        <form class="form" id="contactForm" style="margin-top:28px" action="mailto:kjell@veryklear.be" method="post" enctype="text/plain">
+          <div class="row">
+            <div class="field"><label for="f-name">Naam</label><input id="f-name" name="name" autocomplete="name" placeholder="Voornaam en naam" required /></div>
+            <div class="field"><label for="f-company">Bedrijf</label><input id="f-company" name="company" autocomplete="organization" placeholder="Naam van je zaak" /></div>
+          </div>
+          <div class="field"><label for="f-mail">E-mail</label><input id="f-mail" name="email" type="email" autocomplete="email" placeholder="jij@jouwzaak.be" required /></div>
+          <div class="field">
+            <span class="label-like" style="display:block;font-size:.85rem;font-weight:700;margin-bottom:7px">Waarover gaat het?</span>
+            <div class="chips" id="topicChips">
+              {topics.map((t) => <button type="button" class="chip chip-dark" data-topic={t} aria-pressed="false">{t}</button>)}
+            </div>
+          </div>
+          <div class="field">
+            <label for="f-msg">Waar ben je mee bezig?</label>
+            <textarea id="f-msg" name="message" placeholder="Een paar zinnen volstaan. Wat loopt er goed, wat niet?"></textarea>
+            <p class="hint">Hoe concreter, hoe nuttiger ons antwoord.</p>
+          </div>
+          <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
+            <button class="btn btn-red" type="submit">Verstuur</button>
+            <span class="form-note">Of mail rechtstreeks naar <a href="mailto:kjell@veryklear.be">kjell@veryklear.be</a></span>
+          </div>
+          <p class="sent" id="sent" role="status">Je mailprogramma opent met je bericht klaar. Druk daar op verzenden.</p>
+        </form>
+      </div>
+
+      <div class="side-stack">
+        <div class="card card-grad cut session">
+          <div class="grain"></div>
+          <div style="position:relative">
+            <span class="label">De aanbevolen eerste stap</span>
+            <h3 class="h-card" style="margin-top:6px;font-size:1.4rem">Strategiesessie</h3>
+            <p class="muted" style="margin-top:10px">Eén uur, en je weet waar je het best begint.</p>
+            <ul>
+              <li>60 minuten, online of bij jou</li>
+              <li>Een richting waar je mee verder kan</li>
+              <li>Welke pijler of weg zinvol is</li>
+              <li>Een eerlijk 'nee' als je ons niet nodig hebt</li>
+            </ul>
+            <div style="margin-top:22px"><a class="btn btn-white" href="mailto:kjell@veryklear.be?subject=Strategiesessie">Kies een moment</a></div>
+          </div>
+        </div>
+        <div class="card card-paper">
+          <span class="label">Praktisch</span>
+          <div class="detail-list" style="margin-top:12px">
+            <div><span>E-mail</span><a href="mailto:kjell@veryklear.be">kjell@veryklear.be</a></div>
+            <div><span>Adres</span><b style="text-align:right">Breydelhofstraat 52<br />8900 Ieper</b></div>
+            <div><span>BTW</span><b>BE1014759659</b></div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="section">
-    <div class="shell split">
-      <div><span class="idx">01</span><h2>Adres</h2></div>
-      <div class="prose">
-        <p>
-          Very Klear<br />
-          Breydelhofstraat 52<br />
-          8900 Ieper<br />
-          BTW BE1014759659
-        </p>
+  <section class="block" style="padding-top:0">
+    <div class="wrap">
+      <div class="s-head"><h2 class="h-section">Wat er na je bericht gebeurt.</h2></div>
+      <div class="steps">
+        <div class="card card-paper step"><div class="n"></div><h3 class="h-card">Antwoord</h3><p class="muted">Een eerste reactie op wat je schreef, van Kjell zelf.</p></div>
+        <div class="card card-paper step"><div class="n"></div><h3 class="h-card">Strategiesessie</h3><p class="muted">Een uur samen, als het zinvol lijkt. Anders zeggen we dat meteen.</p></div>
+        <div class="card card-paper step"><div class="n"></div><h3 class="h-card">Voorstel</h3><p class="muted">Een pijler of fractioneel, op maat, met een duidelijke scope.</p></div>
       </div>
     </div>
   </section>
-
-  <SessionCta
-    heading="Liever meteen een gesprek?"
-    body="Eén uur waarin we overlopen waar je staat en wat de moeite is om aan te pakken."
-  />
 </Base>
+
+<script>
+  const chips = document.querySelectorAll('#topicChips .chip');
+  chips.forEach((c) => {
+    c.addEventListener('click', () => {
+      c.classList.toggle('on');
+      c.setAttribute('aria-pressed', String(c.classList.contains('on')));
+    });
+  });
+
+  // Build a readable mail instead of the browser's raw form encoding.
+  const form = document.getElementById('contactForm') as HTMLFormElement;
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (!form.reportValidity()) return;
+    const v = (n: string) => (form.elements.namedItem(n) as HTMLInputElement).value.trim();
+    const topics = [...chips].filter((c) => c.classList.contains('on')).map((c) => (c as HTMLElement).dataset.topic);
+    const subject = `Bericht via veryklear: ${v('company') || v('name')}`;
+    const lines = [`Naam: ${v('name')}`];
+    if (v('company')) lines.push(`Bedrijf: ${v('company')}`);
+    lines.push(`E-mail: ${v('email')}`);
+    if (topics.length) lines.push(`Onderwerp: ${topics.join(', ')}`);
+    const body = [...lines, '', v('message')].join('\n');
+    window.location.href = `mailto:kjell@veryklear.be?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    document.getElementById('sent')?.classList.add('show');
+  });
+</script>

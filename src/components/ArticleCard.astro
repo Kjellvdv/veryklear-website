@@ -1,0 +1,17 @@
+---
+import { readingMinutes, formatDate } from '../lib/articles.js';
+
+// Thumbnails are brand surfaces, never stock photos. They cycle by position.
+const { post, index = 0 } = Astro.props;
+const thumbs = ['', 'alt', 'alt2'];
+---
+
+<a class="card card-paper art" href={`/artikels/${post.slug}`} data-cat={post.data.category}>
+  <div class={`thumb ${thumbs[index % 3]}`}></div>
+  <div class="body">
+    <span class="label">{post.data.category}</span>
+    <h3>{post.data.title}</h3>
+    <p class="muted" style="font-size:.92rem">{post.data.description}</p>
+    <div class="meta"><span>{formatDate(post.data.published_at)}</span><span>&middot;</span><span>{readingMinutes(post.body)} min</span></div>
+  </div>
+</a>

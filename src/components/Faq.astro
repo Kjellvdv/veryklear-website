@@ -1,0 +1,13 @@
+---
+// items: [question, answer][]. First item opens by default.
+const { items = [] } = Astro.props;
+---
+
+<div class="card card-paper faq">
+  {items.map(([q, a], i) => (
+    <details open={i === 0}>
+      <summary>{q}<span class="ic" aria-hidden="true">+</span></summary>
+      <p class="ans">{a}</p>
+    </details>
+  ))}
+</div>
