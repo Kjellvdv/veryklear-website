@@ -274,6 +274,11 @@ section.block > .wrap{position:relative;z-index:1}
 .cta-final p{margin-top:12px;max-width:46ch}
 @media (max-width:700px){.cta-final{padding:36px 26px}}
 
+/* side project band (VC Rater): paper, so it never competes with the red CTA */
+.side-band{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;padding:28px 36px}
+.side-band h3{font-size:1.15rem;font-weight:800;line-height:1.3}
+.side-band p{margin-top:6px;font-size:.95rem;max-width:58ch}
+
 /* contact */
 .contact-grid{display:grid;grid-template-columns:1.25fr .85fr;gap:20px;align-items:start}
 @media (max-width:900px){.contact-grid{grid-template-columns:1fr}}
@@ -328,7 +333,8 @@ section.block > .wrap{position:relative;z-index:1}
 /* footer — white, no black surfaces on the site */
 footer.site{background:#fff;margin-top:24px;padding:64px 0 32px;border-top:1px solid var(--line);position:relative}
 footer.site::before{content:"";position:absolute;top:-1px;left:0;right:0;height:4px;background:var(--grad)}
-.f-top{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:36px}
+.f-top{display:grid;grid-template-columns:1.4fr repeat(4,1fr);gap:32px}
+@media (max-width:980px){.f-top{grid-template-columns:1fr 1fr 1fr}.f-top > :first-child{grid-column:1/-1}}
 @media (max-width:820px){.f-top{grid-template-columns:1fr 1fr}}
 .f-top .logo{color:var(--ink);height:20px;width:118px}
 .f-top p{margin-top:16px;font-size:.92rem;color:var(--muted);max-width:34ch}
