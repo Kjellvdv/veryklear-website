@@ -1,0 +1,32 @@
+---
+// The closing CTA on every page. The strategiesessie is free for now, but that
+// is never highlighted (products.yml strategiesessie.price_status).
+const {
+  heading = 'Eén uur om te weten wat de moeite waard is.',
+  body = 'Denken we dat je ons niet nodig hebt, dan zeggen we dat ook. Dat je huidige aanpak volstaat, is hier een normaal antwoord.',
+  variant = 'grad',
+} = Astro.props;
+---
+
+<section class="block" style="padding-top:0">
+  <div class="wrap">
+    {variant === 'grad' ? (
+      <div class="card card-grad cut cta-final">
+        <div class="grain"></div>
+        <div style="position:relative">
+          <h2>{heading}</h2>
+          <p class="muted">{body}</p>
+        </div>
+        <div style="position:relative"><a class="btn btn-white" href="/contact">Plan een strategiesessie</a></div>
+      </div>
+    ) : (
+      <div class="card card-paper cta-final">
+        <div>
+          <h2>{heading}</h2>
+          <p class="muted">{body}</p>
+        </div>
+        <a class="btn btn-red" href="/contact">Plan een strategiesessie</a>
+      </div>
+    )}
+  </div>
+</section>

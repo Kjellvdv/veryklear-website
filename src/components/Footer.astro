@@ -1,14 +1,35 @@
 ---
+// White footer, no black surfaces. Address and VAT from
+// ~/brands/very-klear/memory/project_very-klear-entity.md.
 const year = new Date().getFullYear();
 ---
 
-<div class="site-footer__rule"></div>
-<footer class="site-footer">
-  <div class="shell">
-    <p>
-      Very Klear &middot; Breydelhofstraat 52, 8900 Ieper &middot; BTW BE1014759659<br />
-      <a href="mailto:kjell@veryklear.be">kjell@veryklear.be</a>
-    </p>
-    <p>&copy; {year} Very Klear</p>
+<footer class="site">
+  <div class="wrap">
+    <div class="f-top">
+      <div>
+        <svg class="logo" viewBox="0 0 960 163" role="img" aria-label="Very Klear"><use href="#vk-lockup" /></svg>
+        <p>Positionering, marketing strategie en AI. Op projectbasis, of fractioneel als je een vaste partner wil.</p>
+      </div>
+      <div class="f-col"><h4>Diensten</h4><ul>
+        <li><a href="/diensten#positionering">Positionering</a></li>
+        <li><a href="/diensten#marketing-strategie">Marketing strategie</a></li>
+        <li><a href="/diensten#ai-inzetten">AI inzetten</a></li>
+      </ul></div>
+      <div class="f-col"><h4>Very Klear</h4><ul>
+        <li><a href="/fractioneel">Fractioneel</a></li>
+        <li><a href="/artikels">Artikels</a></li>
+        <li><a href="/contact">Contact</a></li>
+      </ul></div>
+      <div class="f-col"><h4>Contact</h4><ul>
+        <li><a href="mailto:kjell@veryklear.be">kjell@veryklear.be</a></li>
+        <li><a href="/contact">Breydelhofstraat 52, 8900 Ieper</a></li>
+      </ul></div>
+      <div class="f-col"><h4>Door ons gemaakt</h4><ul>
+        <li><a href="https://vcrater.com" target="_blank" rel="noopener">VC Rater</a></li>
+        <li><a href="https://thecopygalaxy.com" target="_blank" rel="noopener">The Copy Galaxy</a></li>
+      </ul></div>
+    </div>
+    <div class="f-bottom"><span>&copy; {year} Very Klear &middot; Kjell Vandevyvere</span><span>BTW BE1014759659</span></div>
   </div>
 </footer>

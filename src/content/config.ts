@@ -1,13 +1,13 @@
 import { defineCollection, z } from 'astro:content';
 
-/* Deliberately loose for now. Very Klear's content model still has to be
-   rebuilt — the inherited one is 31 English B2B SaaS leaves. */
+/* Categories are the three pillars (decided 2026-10-01, see
+   ~/brands/very-klear/memory/decisions_content-categories.md). */
 const artikels = defineCollection({
   type: 'content',
   schema: z.object({
     title: z.string(),
     description: z.string(),
-    category: z.enum(['Strategie', 'Automatisatie', 'Websites']),
+    category: z.enum(['Positionering', 'Marketing strategie', 'AI inzetten']),
     published_at: z.coerce.date(),
     draft: z.boolean().default(false),
   }),

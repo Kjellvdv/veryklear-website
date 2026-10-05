@@ -1,0 +1,193 @@
+---
+import Base from '../layouts/Base.astro';
+import Faq from '../components/Faq.astro';
+import CtaFinal from '../components/CtaFinal.astro';
+
+const faq = [
+  ['Moet ik met positionering beginnen?', 'Meestal wel, want de andere twee bouwen erop voort. Staat je positionering al, dan kan je meteen naar marketing strategie of AI inzetten.'],
+  ['Kunnen jullie niet gewoon de website doen?', 'Een website komt er als positionering of marketing strategie uitwijst dat dat de volgende stap is. Ze wordt niet meer apart verkocht, zodat ze altijd op iets echts gebouwd is.'],
+  ['Hoe lang duurt een pijler?', 'Een paar maanden, met vaste momenten. Het is geen sessie en geen rapport: testen en bijsturen hoort erbij.'],
+  ['Kan ik later een pijler bijnemen?', 'Ja, dat is normaal. Alles in één keer kopen is zelden de beste start.'],
+];
+---
+
+<Base
+  title="Diensten — Very Klear"
+  description="Op projectbasis: positionering, marketing strategie of AI inzetten. Drie pijlers, apart te kiezen."
+  path="/diensten"
+>
+  <section class="hero hero-page">
+    <div class="grain"></div>
+    <div class="wrap">
+      <a class="crumb" href="/">← Home</a>
+      <h1 class="h-page">Op projectbasis.<br />Drie pijlers, apart te kiezen.</h1>
+      <p class="lead">Je laat één pijler goed uitzoeken en beoordeelt het resultaat, voor je beslist of er iets bijkomt.</p>
+      <div class="hero-chips">
+        <a class="chip" href="#positionering">Positionering</a>
+        <a class="chip" href="#marketing-strategie">Marketing strategie</a>
+        <a class="chip" href="#ai-inzetten">AI inzetten</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="block block-first">
+    <div class="wrap">
+
+      <article class="pillar" id="positionering">
+        <div class="pillar-intro">
+          <span class="label">Pijler 1 · de basis</span>
+          <h2 class="h-section">Positionering</h2>
+          <p class="lead">Het fundament onder alles. Waar je zaak past in de markt, wie je ideale klant is, en waarom die voor jou kiest. Messaging, een website of een campagne volgen hieruit, niet omgekeerd.</p>
+          <div class="when">
+            <div class="when-item">Je kan niet in één zin zeggen waarom klanten voor jou kiezen.</div>
+            <div class="when-item">Je herschrijft je site, maar het voelt nooit juist.</div>
+            <div class="when-item">Je start iets nieuws en wil het van bij het begin goed zetten.</div>
+          </div>
+        </div>
+        <div class="pillar-detail">
+          <div class="card card-grad cut">
+            <div class="grain"></div>
+            <h3 class="h-card" style="position:relative">Wat we samen uitzoeken</h3>
+            <ul class="q-list" style="position:relative">
+              <li>In welke categorie speel je?</li>
+              <li>Met wie word je vergeleken?</li>
+              <li>Wie is je ideale klant?</li>
+              <li>Wat gelooft en wil die klant?</li>
+              <li>Wat maakt je echt anders?</li>
+              <li>Waarom kiezen klanten voor jou?</li>
+            </ul>
+          </div>
+          <div class="deliver">
+            <div class="card card-paper">
+              <span class="label">Hoe het start</span>
+              <p style="margin-top:8px">Gesprekken met een paar van je beste klanten: wat ze wilden oplossen, wat ze eerder gebruikten, en wanneer ze wisten dat het werkte.</p>
+            </div>
+            <div class="card card-paper">
+              <span class="label">Wat je krijgt</span>
+              <p style="margin-top:8px">Eén blad over wie je klant is en wat je belooft. Een werkdocument dat scherper wordt, geen rapport voor de lade.</p>
+            </div>
+          </div>
+          <div class="card card-paper">
+            <span class="label">Waar het naartoe kan</span>
+            <div class="leads-to"><span>Messaging &amp; teksten</span><span>Nieuwe website</span><span>Communicatiecampagne</span><span>Marketing strategie</span></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="pillar" id="marketing-strategie">
+        <div class="pillar-intro">
+          <span class="label">Pijler 2 · de uitvoering</span>
+          <h2 class="h-section">Marketing strategie</h2>
+          <p class="lead">Hoe je effectief naar de markt gaat. Welke kanalen, tools en mensen, hoeveel tijd waar naartoe gaat, en of alles op elkaar aansluit, van advertentie tot landingspagina.</p>
+          <div class="when">
+            <div class="when-item">Je doet een beetje van alles, maar niets lijkt te werken.</div>
+            <div class="when-item">Je weet niet of je beter posts, ads of persaandacht doet.</div>
+            <div class="when-item">Je advertenties sturen mensen naar een pagina die niets zegt.</div>
+          </div>
+        </div>
+        <div class="pillar-detail">
+          <div class="card card-paper">
+            <h3 class="h-card">Wat we samen uitzoeken</h3>
+            <ul class="q-list">
+              <li>Welke kanalen, en welke niet?</li>
+              <li>Organisch, betaald, digitaal of offline?</li>
+              <li>Welke tools heb je echt nodig?</li>
+              <li>Hoeveel mensen en welke experts?</li>
+              <li>Hoe vaak posten, en waar?</li>
+              <li>Pers, events of billboards?</li>
+              <li>Klopt je customer journey?</li>
+              <li>Waar hoort AI wel en niet?</li>
+            </ul>
+          </div>
+          <div class="deliver">
+            <div class="card card-paper">
+              <span class="label">Hoe het start</span>
+              <p style="margin-top:8px">Een eerlijke blik op waar je tijd en budget nu naartoe gaan, en of die kanalen ooit bewust gekozen zijn.</p>
+            </div>
+            <div class="card card-grad cut">
+              <div class="grain"></div>
+              <span class="label" style="position:relative">Wat je krijgt</span>
+              <p style="margin-top:8px;position:relative">Een kanaalplan waar je mee verder kan. Soms blijkt daaruit dat een nieuwe site of landingspagina de volgende stap is.</p>
+            </div>
+          </div>
+          <div class="card card-paper">
+            <span class="label">Waar het naartoe kan</span>
+            <div class="leads-to"><span>Website of landingspagina</span><span>Campagne</span><span>AI inzetten</span><span>Fractioneel</span></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="pillar" id="ai-inzetten">
+        <div class="pillar-intro">
+          <span class="label">Pijler 3 · het werk</span>
+          <h2 class="h-section">AI inzetten</h2>
+          <p class="lead">AI aan het werk zetten waar het echt helpt, in marketing, sales en klantencontact. En duidelijk maken wat beter mensenwerk blijft, zodat je contact met klanten beter wordt in plaats van automatisch.</p>
+          <div class="when">
+            <div class="when-item">Iedereen in je team gebruikt AI, maar elk anders.</div>
+            <div class="when-item">Je weet niet of de info die eruit komt klopt.</div>
+            <div class="when-item">Dezelfde taak komt elke week terug en vreet tijd.</div>
+          </div>
+        </div>
+        <div class="pillar-detail">
+          <div class="card card-paper">
+            <h3 class="h-card">Wat we samen bouwen</h3>
+            <ul class="q-list">
+              <li>Eén manier van werken voor het hele team</li>
+              <li>Data die klopt voor ze erin gaat</li>
+              <li>Geen ruis, geen onnodige kosten</li>
+              <li>Script waar het kan, AI waar het moet</li>
+              <li>Voorbereiding van verkoopgesprekken</li>
+              <li>Opvolging die niet vergeten wordt</li>
+            </ul>
+          </div>
+          <div class="grid-2" style="gap:16px">
+            <div class="card card-tint">
+              <span class="label">AI doet</span>
+              <p style="margin-top:8px">Voorbereiden, samenvatten, opvolgen, het werk dat elke week terugkomt.</p>
+            </div>
+            <div class="card card-paper">
+              <span class="label">Jij doet</span>
+              <p style="margin-top:8px">Het verkoopgesprek zelf, de lastige mail, alles waar je eigen stem in zit.</p>
+            </div>
+          </div>
+          <div class="card card-grad cut">
+            <div class="grain"></div>
+            <span class="label" style="position:relative">Wat je krijgt</span>
+            <p style="margin-top:8px;position:relative">Een helder overzicht van wat AI nodig heeft, wat een script volstaat en wat manueel blijft, plus één toepassing die effectief draait.</p>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="block" style="padding-top:0">
+    <div class="wrap">
+      <div class="s-head">
+        <h2 class="h-section">Meer dan wat één persoon aankan.</h2>
+        <p class="lead">Voor wat buiten de drie pijlers valt, werken we met vaste partners. Het denkwerk en het contact blijven bij Kjell.</p>
+      </div>
+      <div class="partners">
+        <div class="partner"><b>Design</b><span>Websites, logo, huisstijl · Altin</span></div>
+        <div class="partner"><b>LinkedIn</b><span>Content en verspreiding · Willow</span></div>
+        <div class="partner"><b>Social content</b><span>Posts, reels, video</span></div>
+        <div class="partner"><b>Platform</b><span>Complexere sites en apps</span></div>
+        <div class="partner"><b>GTM engineering</b><span>CRM en de techniek erachter</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" style="padding-top:0">
+    <div class="wrap faq-layout">
+      <div class="s-head" style="margin-bottom:0">
+        <h2 class="h-section">Welke pijler eerst?</h2>
+        <p class="lead">Meestal positionering. Maar dat bekijken we samen in de strategiesessie.</p>
+      </div>
+      <Faq items={faq} />
+    </div>
+  </section>
+
+  <CtaFinal
+    heading="Twijfel je welke pijler eerst?"
+    body="Daar is de strategiesessie voor. Een uur, en je weet waar je het best begint."
+  />
+</Base>
