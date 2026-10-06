@@ -18,6 +18,15 @@ export const PILLAR_SLUG = {
   'AI implementeren': 'ai',
 };
 
+// Copy file for each pillar's dienst page: src/content/copy/<file>.yaml.
+export const PILLAR_COPY = {
+  Positionering: 'dienst-positionering',
+  'Marketing strategie': 'dienst-marketing-strategie',
+  'AI implementeren': 'dienst-ai-implementeren',
+};
+
+export const pillarUrl = (name) => `/${PILLAR_SLUG[name]}`;
+
 export const pillarForSlug = (slug) => PILLARS.find((p) => PILLAR_SLUG[p] === slug);
 
 // Lower-case a pillar name mid-sentence, keeping acronyms: "AI implementeren" -> "AI implementeren".

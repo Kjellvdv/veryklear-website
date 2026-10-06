@@ -1,0 +1,89 @@
+# Dienst page: Marketing strategie (veryklear.com/marketing-strategie).
+# Change the text after the colon, keep the indentation. Fields ending in _html
+# may contain <br> or <strong>. The artikels at the bottom are added automatically.
+
+meta:
+  title: Marketing strategie — Very Klear
+  description: Welke kanalen, tools en mensen, hoeveel tijd waar naartoe gaat, en of alles op elkaar aansluit, van advertentie tot landingspagina.
+
+hero:
+  label: Pijler 2 · de uitvoering
+  title_html: Marketing strategie.<br />Minder kanalen, beter gekozen.
+  lead: Hoe je effectief naar de markt gaat. Welke kanalen, tools en mensen, hoeveel tijd waar naartoe gaat, en of alles op elkaar aansluit, van advertentie tot landingspagina.
+  button: Plan een strategiesessie
+
+when:
+  title: Je zit hier als
+  items:
+    - Je doet een beetje van alles, maar niets lijkt te werken.
+    - Er kwam een kanaal bij omdat de concurrent het heeft.
+    - Je weet niet of je beter posts, ads of persaandacht doet.
+    - Je advertenties sturen mensen naar een pagina die niets zegt.
+
+questions:
+  title: Wat we samen uitzoeken
+  lead: Van de grote keuzes tot het detail van een landingspagina.
+  items:
+    - Welke kanalen, en welke niet?
+    - Organisch, betaald, digitaal of offline?
+    - Welke tools heb je echt nodig?
+    - Hoeveel mensen en welke experts?
+    - Hoe vaak posten, en waar?
+    - Pers, events of billboards?
+    - Klopt je customer journey?
+    - Waar hoort AI wel en niet?
+
+approach:
+  title: Hoe het verloopt
+  lead: Een paar maanden, met vaste momenten. Kiezen, uitproberen, kijken wat het opbracht.
+  steps:
+    - title: Waar gaan tijd en budget nu naartoe?
+      text: Een eerlijke blik op wat je vandaag doet, en of die kanalen ooit bewust gekozen zijn of gewoon zijn blijven hangen.
+    - title: Kiezen wat blijft
+      text: Een kanaalplan met minder, maar beter. Wie wat doet, hoeveel tijd het vraagt en welke tools ervoor nodig zijn.
+    - title: De weg nalopen
+      text: Van advertentie tot contact. Sluit de pagina aan op wat de advertentie belooft, en is een eigen landingspagina zinvol?
+
+deliver:
+  title: Wat je krijgt
+  text: Een kanaalplan waar je mee verder kan. Soms blijkt daaruit dat een nieuwe site of landingspagina de volgende stap is, en dan zit dat werk hier, niet als apart project.
+
+leads_to:
+  title: Waar het naartoe kan
+  lead: Een plan is pas iets waard als het uitgevoerd wordt.
+  items:
+    - title: Website of landingspagina
+      text: Met een design- of platformpartner, afhankelijk van wat er nodig is.
+      href: /partners
+    - title: Een campagne
+      text: Gericht, met een begin en een einde, op de kanalen die overbleven.
+    - title: AI implementeren
+      text: Waar het werk elke week terugkomt, en AI of een script het kan dragen.
+      href: /ai
+    - title: Fractioneel
+      text: Als je iemand zoekt die het plan mee blijft uitvoeren.
+      href: /fractioneel
+
+partners:
+  title: Met wie we dit uitwerken
+  lead: Het plan en de keuzes blijven bij Kjell. De uitvoering per kanaal kan bij een vaste partner liggen.
+  keys: [linkedin, social_content, fotografie, platform]
+
+faq:
+  title: Vragen over marketing strategie
+  items:
+    - q: Moet ik op elk kanaal aanwezig zijn?
+      a: Bijna nooit. Eén kanaal goed doen brengt meer op dan vijf half. Welk kanaal dat is, hangt af van waar je klanten echt zitten.
+    - q: Doen jullie ook de uitvoering?
+      a: Deels zelf, deels met vaste partners voor bijvoorbeeld LinkedIn, social content of fotografie. Het contact blijft bij Kjell.
+    - q: Hebben jullie mijn positionering nodig?
+      a: Het helpt. Weet je nog niet voor wie je het doet, dan is elke kanaalkeuze een gok. Dat bekijken we in de strategiesessie.
+    - q: Wat kost het?
+      a: Dat hangt af van wat er nodig is. We bespreken het na de strategiesessie, met een duidelijke scope.
+
+articles:
+  title: Artikels over marketing strategie
+
+cta:
+  heading: Benieuwd welke kanalen je kan schrappen?
+  body: Daar is de strategiesessie voor. Een uur, over wat nu werkt en wat niet.

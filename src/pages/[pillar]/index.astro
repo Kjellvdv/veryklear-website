@@ -1,9 +1,15 @@
 ---
+// One page per dienst: /positionering, /marketing-strategie, /ai.
+// Copy lives in src/content/copy/dienst-<pillar>.yaml; partner cards come from
+// partners.yaml. The pillar's artikels are listed near the bottom, and the
+// artikels themselves live under this URL (/<pillar>/<slug>).
 import Base from '../../layouts/Base.astro';
+import Faq from '../../components/Faq.astro';
 import CtaFinal from '../../components/CtaFinal.astro';
 import ArticleCard from '../../components/ArticleCard.astro';
-import { getArticles, PILLARS, PILLAR_SLUG, PILLAR_ANCHOR, pillarLower } from '../../lib/articles.js';
-import { getCopy, fillPillar } from '../../lib/copy.js';
+import PartnerCard from '../../components/PartnerCard.astro';
+import { getArticles, PILLARS, PILLAR_SLUG, PILLAR_COPY } from '../../lib/articles.js';
+import { getCopy } from '../../lib/copy.js';
 
 export async function getStaticPaths() {
   const posts = await getArticles();
@@ -14,40 +20,138 @@ export async function getStaticPaths() {
 }
 
 const { name, posts } = Astro.props;
-const slug = PILLAR_SLUG[name];
-// Copy lives in src/content/copy/artikels.yaml (pillar_page).
-const a = await getCopy('artikels');
-const c = a.pillar_page;
+const c = await getCopy(PILLAR_COPY[name]);
+const partners = await getCopy('partners');
+const { dienst_page: d } = await getCopy('site');
 ---
 
-<Base
-  title={fillPillar(c.meta_title, name)}
-  description={fillPillar(c.meta_description, name)}
-  path={`/${slug}`}
->
+<Base title={c.meta.title} description={c.meta.description} path="/diensten">
   <section class="hero hero-page">
     <div class="grain"></div>
     <div class="wrap">
-      <a class="crumb" href="/artikels">{c.crumb}</a>
-      <h1 class="h-page">{name}.</h1>
-      <p class="lead">{fillPillar(c.lead_before_link, name)} <a href={`/diensten#${PILLAR_ANCHOR[name]}`} style="color:inherit;text-decoration:underline">{c.lead_link}</a>.</p>
+      <a class="crumb" href="/diensten">{d.crumb}</a>
+      <span class="label" style="color:#fff;display:block">{c.hero.label}</span>
+      <h1 class="h-page" style="margin-top:8px" set:html={c.hero.title_html} />
+      <p class="lead">{c.hero.lead}</p>
+      <div class="hero-ctas">
+        <a class="btn btn-white" href="/contact">{c.hero.button}</a>
+      </div>
     </div>
   </section>
 
   <section class="block block-first">
-    <div class="wrap">
-      {posts.length === 0 ? (
-        <div class="card card-paper empty">
-          <h3 class="h-card">{a.empty_category_title}</h3>
-          <p class="muted" style="margin-top:8px">{a.empty_category_body}</p>
+    <div class="wrap pillar">
+      <div class="pillar-intro">
+        <h2 class="h-section">{c.when.title}</h2>
+        <div class="when">{c.when.items.map((w) => <div class="when-item">{w}</div>)}</div>
+      </div>
+      <div class="card card-grad cut">
+        <div class="grain"></div>
+        <div style="position:relative">
+          <h3 class="h-card">{c.questions.title}</h3>
+          {c.questions.lead && <p class="muted" style="margin-top:8px">{c.questions.lead}</p>}
+          <ul class="q-list">{c.questions.items.map((q) => <li>{q}</li>)}</ul>
         </div>
-      ) : (
-        <div class="grid-3">
-          {posts.map((post, i) => <ArticleCard post={post} index={i} />)}
-        </div>
-      )}
+      </div>
     </div>
   </section>
 
-  <CtaFinal variant="paper" copy={a.cta} />
+  <section class="block" style="padding-top:0">
+    <div class="wrap">
+      <div class="s-head">
+        <h2 class="h-section">{c.approach.title}</h2>
+        <p class="lead">{c.approach.lead}</p>
+      </div>
+      <div class="steps">
+        {c.approach.steps.map((s) => (
+          <div class="card card-paper step">
+            <div class="n"></div>
+            <h3 class="h-card">{s.title}</h3>
+            <p class="muted">{s.text}</p>
+          </div>
+        ))}
+      </div>
+      <div class="card card-tint deliver-band">
+        <span class="label">{c.deliver.title}</span>
+        <p>{c.deliver.text}</p>
+      </div>
+    </div>
+  </section>
+
+  {c.split && (
+    <section class="block" style="padding-top:0">
+      <div class="wrap grid-3">
+        <div class="card card-tint">
+          <span class="label">{c.split.ai_title}</span>
+          <p style="margin-top:8px">{c.split.ai}</p>
+        </div>
+        <div class="card card-paper">
+          <span class="label">{c.split.you_title}</span>
+          <p style="margin-top:8px">{c.split.you}</p>
+        </div>
+        <div class="card card-paper">
+          <span class="label">{c.split.never_title}</span>
+          <ul class="never-list">{c.split.never.map((n) => <li>{n}</li>)}</ul>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <section class="block" style="padding-top:0">
+    <div class="wrap">
+      <div class="s-head">
+        <h2 class="h-section">{c.leads_to.title}</h2>
+        <p class="lead">{c.leads_to.lead}</p>
+      </div>
+      <div class="grid-4">
+        {c.leads_to.items.map((l) => {
+          const Tag = l.href ? 'a' : 'div';
+          return (
+            <Tag class="card card-paper next-card" href={l.href}>
+              <h3 class="h-card">{l.title}</h3>
+              <p class="muted">{l.text}</p>
+              {l.href && <span class="link-arrow">→</span>}
+            </Tag>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <section class="block" style="padding-top:0">
+    <div class="wrap">
+      <div class="s-head-row">
+        <div class="s-head">
+          <h2 class="h-section">{c.partners.title}</h2>
+          <p class="lead">{c.partners.lead}</p>
+        </div>
+        <a class="link-arrow" href="/partners">{d.all_partners}</a>
+      </div>
+      <div class="partners partners-lg">
+        {c.partners.keys.map((k) => <PartnerCard partner={partners.items[k]} />)}
+      </div>
+    </div>
+  </section>
+
+  {posts.length > 0 && (
+    <section class="block" style="padding-top:0">
+      <div class="wrap">
+        <div class="s-head"><h2 class="h-section">{c.articles.title}</h2></div>
+        <div class="grid-3">
+          {posts.map((post, i) => <ArticleCard post={post} index={i} />)}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <section class="block" style="padding-top:0">
+    <div class="wrap faq-layout">
+      <div class="s-head" style="margin-bottom:0">
+        <h2 class="h-section">{c.faq.title}</h2>
+      </div>
+      <Faq items={c.faq.items} />
+    </div>
+  </section>
+
+  <CtaFinal copy={c.cta} />
 </Base>

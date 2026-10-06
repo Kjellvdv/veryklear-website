@@ -1,0 +1,88 @@
+# Dienst page: Positionering (veryklear.com/positionering).
+# Change the text after the colon, keep the indentation. Fields ending in _html
+# may contain <br> or <strong>. The artikels at the bottom are added automatically.
+# Source of truth for what this pillar is: ~/brands/very-klear/gtm/products.yml.
+
+meta:
+  title: Positionering — Very Klear
+  description: Waar je zaak past in de markt, wie je ideale klant is en waarom die voor jou kiest. Het fundament onder je marketing.
+
+hero:
+  label: Pijler 1 · de basis
+  title_html: Positionering.<br />Het fundament onder alles.
+  lead: Waar je zaak past in de markt, wie je ideale klant is, en waarom die voor jou kiest. Messaging, een website of een campagne volgen hieruit, niet omgekeerd.
+  button: Plan een strategiesessie
+
+when:
+  title: Je zit hier als
+  items:
+    - Je kan niet in één zin zeggen waarom klanten voor jou kiezen.
+    - Je herschrijft je site, maar het voelt nooit juist.
+    - Je klanten komen via via, maar niemand weet eigenlijk waarom.
+    - Je start iets nieuws en wil het van bij het begin goed zetten.
+
+questions:
+  title: Wat we samen uitzoeken
+  lead: Zes vragen. Samen bepalen ze hoe je over je zaak praat, op je site, in een offerte en aan de toog.
+  items:
+    - In welke categorie speel je?
+    - Met wie word je vergeleken?
+    - Wie is je ideale klant?
+    - Wat gelooft en wil die klant?
+    - Wat maakt je echt anders?
+    - Waarom kiezen klanten voor jou?
+
+approach:
+  title: Hoe het verloopt
+  lead: Geen sessie en geen rapport. Een paar maanden, met vaste momenten, waarin het beeld scherper wordt.
+  steps:
+    - title: Gesprekken met je beste klanten
+      text: Wat wilden ze oplossen, wat gebruikten ze eerder, en wanneer wisten ze dat het werkte. Daar zit het antwoord meestal al.
+    - title: Een eerste versie op één blad
+      text: Wie je klant is en wat je belooft, kort genoeg om te onthouden. Vroeg in het traject, zodat er iets is om te testen.
+    - title: Testen en bijsturen
+      text: We proberen het uit in teksten en gesprekken, kijken wat het deed, en passen aan. Er is geen enige waarheid.
+
+deliver:
+  title: Wat je krijgt
+  text: Een richting die scherper wordt naarmate je ze gebruikt. Het blad over je klant en je belofte is een werkdocument, geen rapport voor de lade.
+
+leads_to:
+  title: Waar het naartoe kan
+  lead: Staat de basis, dan kan je verder bouwen. Altijd in deze richting, nooit omgekeerd.
+  items:
+    - title: Messaging en teksten
+      text: Hoe je het zegt, op je site, in offertes en in gesprekken.
+    - title: Een nieuwe website
+      text: Met een designpartner, als je huidige site het verhaal niet draagt.
+      href: /partners
+    - title: Een communicatiecampagne
+      text: Als er iets te vertellen valt aan een grotere groep.
+    - title: Marketing strategie
+      text: Welke kanalen en hoeveel tijd, nu je weet voor wie.
+      href: /marketing-strategie
+
+partners:
+  title: Met wie we dit uitwerken
+  lead: Het denkwerk blijft bij Kjell. Voor het maakwerk dat eruit volgt, werken we met vaste partners.
+  # Keys from partners.yaml
+  keys: [design, fotografie]
+
+faq:
+  title: Vragen over positionering
+  items:
+    - q: Moet ik hier echt mee beginnen?
+      a: Meestal wel, want marketing strategie en AI bouwen erop voort. Staat je positionering al, dan zeggen we dat in de strategiesessie en begin je beter met iets anders.
+    - q: Is dit niet gewoon een nieuwe slogan?
+      a: Nee. Een slogan komt pas helemaal op het einde, als hij al nodig is. Dit gaat over wie je klant is en waarom die kiest, en daar volgt de rest uit.
+    - q: Hoe lang duurt het?
+      a: Een paar maanden, met vaste momenten. Het eerste blad is er vroeg, de rest is testen en bijsturen.
+    - q: Wat kost het?
+      a: Dat hangt af van wat er nodig is. We bespreken het na de strategiesessie, met een duidelijke scope.
+
+articles:
+  title: Artikels over positionering
+
+cta:
+  heading: Weten of positionering je eerste stap is?
+  body: Daar is de strategiesessie voor. Een uur, en je weet waar je het best begint.

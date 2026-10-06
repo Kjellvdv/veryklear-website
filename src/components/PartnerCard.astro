@@ -1,0 +1,10 @@
+---
+// One partner from partners.yaml. The name only shows once a partner agreed to it.
+const { partner } = Astro.props;
+---
+
+<div class="partner">
+  <b>{partner.title}</b>
+  <span>{partner.text}</span>
+  {partner.name && <span class="partner-name">{partner.name}</span>}
+</div>

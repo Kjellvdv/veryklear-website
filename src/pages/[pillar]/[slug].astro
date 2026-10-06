@@ -1,7 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import ArticleCard from '../../components/ArticleCard.astro';
-import { getArticles, readingMinutes, formatDate, PILLAR_ANCHOR, PILLAR_SLUG, pillarLower } from '../../lib/articles.js';
+import { getArticles, readingMinutes, formatDate, PILLAR_SLUG, pillarUrl } from '../../lib/articles.js';
 import { getCopy, fillPillar } from '../../lib/copy.js';
 
 export async function getStaticPaths() {
@@ -54,7 +54,7 @@ const related = [
             <p class="muted" style="margin-top:8px">{c.cta_body}</p>
             <div style="margin-top:18px;display:flex;gap:12px;flex-wrap:wrap">
               <a class="btn btn-white" href="/contact">{c.cta_button}</a>
-              <a class="btn btn-ghost-white" href={`/diensten#${PILLAR_ANCHOR[post.data.category]}`}>{fillPillar(c.cta_more, post.data.category)}</a>
+              <a class="btn btn-ghost-white" href={pillarUrl(post.data.category)}>{fillPillar(c.cta_more, post.data.category)}</a>
             </div>
           </div>
         </div>

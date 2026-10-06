@@ -1,0 +1,98 @@
+# Dienst page: AI implementeren (veryklear.com/ai).
+# Change the text after the colon, keep the indentation. Fields ending in _html
+# may contain <br> or <strong>. The artikels at the bottom are added automatically.
+# Named for the building, not the diagnosing: keep the copy hands-on.
+
+meta:
+  title: AI implementeren — Very Klear
+  description: AI aan het werk zetten waar het echt helpt, in marketing, sales en klantencontact. En duidelijk maken wat beter mensenwerk blijft.
+
+hero:
+  label: Pijler 3 · het werk
+  title_html: AI implementeren.<br />Waar het echt werk scheelt.
+  lead: AI aan het werk zetten waar het echt helpt, in marketing, sales en klantencontact. En duidelijk maken wat beter mensenwerk blijft, zodat je contact met klanten beter wordt in plaats van automatisch.
+  button: Plan een strategiesessie
+
+when:
+  title: Je zit hier als
+  items:
+    - Iedereen in je team gebruikt AI, maar elk anders.
+    - Je weet niet of de info die eruit komt klopt.
+    - Dezelfde taak komt elke week terug en vreet tijd.
+    - De factuur voor tools loopt op, en niemand weet waarvoor.
+
+questions:
+  title: Wat we samen bouwen
+  lead: Niet alles automatiseren. Wel de juiste dingen, op één manier.
+  items:
+    - Eén manier van werken voor het hele team
+    - Data die klopt voor ze erin gaat
+    - Geen ruis, geen onnodige kosten
+    - Script waar het kan, AI waar het moet
+    - Voorbereiding van verkoopgesprekken
+    - Opvolging die niet vergeten wordt
+
+approach:
+  title: Hoe het verloopt
+  lead: Klein beginnen, met iets dat effectief draait.
+  steps:
+    - title: Waar loopt het vast?
+      text: Wat nu per persoon of per tool verschilt, en welke taak elke week terugkomt. De offerte die telkens opnieuw getypt wordt, de klant die niemand terugbelde.
+    - title: AI, script of mensenwerk
+      text: Per taak een eerlijke keuze. Veel heeft geen AI nodig, een gewoon script volstaat. En sommige dingen blijven beter bij jou.
+    - title: Eén toepassing die draait
+      text: We bouwen de eerste toepassing echt, in de tools die je al gebruikt, en kijken wat ze opleverde.
+
+deliver:
+  title: Wat je krijgt
+  text: Een helder overzicht van wat AI nodig heeft, wat een script volstaat en wat manueel blijft, plus één toepassing die effectief draait.
+
+# The AI-specific block: what AI does, what stays with you.
+split:
+  ai_title: AI doet
+  ai: Voorbereiden, samenvatten, opvolgen, het werk dat elke week terugkomt.
+  you_title: Jij doet
+  you: Het verkoopgesprek zelf, de lastige mail, alles waar je eigen stem in zit.
+  never_title: Wat we nooit automatiseren
+  never:
+    - Een antwoord aan een ontevreden klant
+    - Een offerte met een prijs erin
+    - Het bericht na een moeilijk gesprek
+    - Het verkoopgesprek zelf
+
+leads_to:
+  title: Waar het naartoe kan
+  lead: Werkt de eerste toepassing, dan komt de volgende vanzelf.
+  items:
+    - title: Een volgende toepassing
+      text: De tweede taak die elke week terugkomt.
+    - title: CRM en opvolging
+      text: Met een GTM engineering partner, als het technischer wordt.
+      href: /partners
+    - title: Fractioneel
+      text: Als AI een vast onderdeel wordt van hoe je verkoopt en opvolgt.
+      href: /fractioneel
+
+partners:
+  title: Met wie we dit uitwerken
+  lead: Kjell bouwt de eerste toepassingen zelf. Voor het zwaardere technische werk is er een vaste partner.
+  keys: [gtm_engineering, platform]
+
+faq:
+  title: Vragen over AI implementeren
+  items:
+    - q: AI, is dat niet iets voor grote bedrijven?
+      a: Meestal niet. Een tool die je al betaalt, goed ingesteld, brengt je verder dan de meeste bedrijven ooit geraken. Een echt platform is pas nodig als je daar tegen de grenzen loopt.
+    - q: Moeten we nieuwe tools kopen?
+      a: Zelden. We beginnen met wat je al hebt. Is er toch iets nodig, dan zeggen we waarom en wat het kost.
+    - q: Is onze data veilig?
+      a: Dat is een van de eerste dingen die we bekijken. Welke data gaat waar naartoe, en wat hoort daar niet thuis.
+    - q: Wat kost het?
+      a: Dat hangt af van wat er nodig is. We bespreken het na de strategiesessie, met een duidelijke scope.
+
+articles:
+  title: Artikels over AI implementeren
+
+cta:
+  heading: Welke taak komt bij jou elke week terug?
+  body: Daar beginnen we mee in de strategiesessie. Een uur, en je weet of AI er iets aan verandert.
