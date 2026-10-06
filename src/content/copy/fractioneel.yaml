@@ -1,0 +1,115 @@
+# Fractioneel page copy (veryklear.com/fractioneel).
+# Change the text after the colon, keep the indentation. Fields ending in _html
+# may contain <br> (line break) or <strong>.
+# No prices on this page: fractioneel pricing is null in products.yml.
+
+meta:
+  title: Fractionele head of marketing — Very Klear
+  description: 'Een fractionele head of marketing: iemand die je marketing leidt en van 0 naar 1 opbouwt, zonder voltijdse aanwerving.'
+
+hero:
+  crumb: ← Home
+  title_html: Je fractionele<br />head of marketing.
+  lead: Iemand die je marketing leidt en mee opbouwt, van de basis tot een motor die draait, zonder dat je een voltijdse marketeer moet aanwerven. Van 0 naar 1, met dezelfde persoon.
+  button_primary: Plan een strategiesessie
+  button_secondary: Vergelijk met op projectbasis
+
+# The 0 -> 1 timeline. Four steps; the first shows "0", the last "1".
+timeline:
+  title: Wat 'van 0 naar 1' betekent.
+  lead: Niet alles tegelijk. Wel in de juiste volgorde, met dezelfde partner.
+  steps:
+    - title: Vertrekpunt
+      text: Klanten via via, een site van jaren geleden, opvolging op goed geluk.
+    - title: De basis
+      text: 'Positionering vastgelegd: wie je klant is en waarom die voor jou kiest.'
+    - title: De motor
+      text: Kanalen gekozen, site en opvolging die op elkaar aansluiten.
+    - title: Het draait
+      text: Een systeem dat werkt zonder dat alles van één persoon afhangt.
+
+included:
+  title: Wat er in zit.
+  base_label: De basis
+  base_title: Alle drie de pijlers, samen.
+  extra_label: Extra
+  extras:
+    - title: Klantenbeheer
+      text: Een CRM dat georganiseerd blijft, zodat je nog weet wat een klant drie maanden geleden zei.
+    - title: Van aanvraag naar verkoop
+      text: Een duidelijke weg, in plaats van een proces dat per persoon verschilt.
+    - title: Gespreksnotities
+      text: Notities die achteraf nog iets zeggen, niet drie losse steekwoorden.
+    - title: Leadlijsten
+      text: Wie je nog kan bellen, en die lijst blijft ook bijgehouden.
+
+# Two identical columns, same rows. No "recommended" badge: both paths weigh the same.
+compare:
+  title: Op projectbasis of fractioneel?
+  lead: De grens is niet scherp. Deze vergelijking helpt je kiezen.
+  columns:
+    - title: Op projectbasis
+      rows:
+        - label: Wat je koopt
+          value: Eén pijler
+        - label: Duur
+          value: Een paar maanden, met een duidelijk einde
+        - label: Goed als
+          value: Je weet waar het knelt en dat eerst wil oplossen
+        - label: Klantenbeheer, leads, notities
+          value: Niet inbegrepen
+        - label: Daarna
+          value: Je beslist zelf of er iets bijkomt
+    - title: Fractioneel
+      rows:
+        - label: Wat je koopt
+          value: 'Een head of marketing, deeltijds: alle drie de pijlers, en meer'
+        - label: Duur
+          value: Doorlopend, met vaste momenten
+        - label: Goed als
+          value: Je een vaste partner wil die het geheel mee opbouwt
+        - label: Klantenbeheer, leads, notities
+          value: Inbegrepen
+        - label: Daarna
+          value: Samen bijsturen, zolang het nut heeft
+
+fit:
+  yes_title: Past goed als
+  yes:
+    - je wil groeien en daar ook budget voor hebt
+    - je zelf de marketingkeuzes maakt
+    - er niemand voltijds met marketing bezig is
+    - je een partner zoekt, geen uitvoerder zonder mening
+  no_title: Past niet als
+  no:
+    - je enkel een paar posts op Instagram zoekt
+    - de prijs de doorslag geeft
+    - het een bijberoep is zonder groeiplannen
+    - je enkel handen wil, niet het denkwerk
+
+note: Fractioneel is nieuw. We zeggen het ook als het nog niet het juiste moment is voor jouw zaak, en dan begin je beter met één pijler.
+
+# VC Rater: Kjell's own product. Shown on this page only (Kjell, 2026-10-05).
+vcrater:
+  label: Ook van ons · VC Rater
+  title: Een seed ronde aan het ophalen?
+  body: VC Rater zoekt de Europese investeerders die echt passen bij jouw ronde, op fase, sector en ticket. Nog in beperkte toegang.
+  button: Vraag toegang tot VC Rater
+
+faq:
+  title: Vragen over fractioneel.
+  items:
+    - q: Waarom geen voltijdse marketeer aanwerven?
+      a: 'Als er genoeg werk is voor een voltijdse marketingverantwoordelijke, doe dat zeker. Fractioneel is voor de fase ervoor: je hebt iemand nodig die richting geeft en het geheel opbouwt, maar nog geen volle job.'
+    - q: Hoe lang loopt een fractionele samenwerking?
+      a: Doorlopend, met vaste momenten om bij te sturen. Zolang het nut heeft, en we zeggen het als dat niet meer zo is.
+    - q: Hoe vaak hebben we contact?
+      a: Vaste momenten die we samen afspreken, plus tussendoor als er iets is. Altijd met dezelfde persoon.
+    - q: Wat als het niet klikt?
+      a: Dan stoppen we. Een samenwerking die niet werkt rekken heeft voor niemand zin.
+    - q: Wat kost fractioneel?
+      a: Dat hangt af van wat er nodig is. We bespreken het na de strategiesessie, met een duidelijke scope.
+
+cta:
+  heading: Kijken of een fractionele head of marketing past?
+  body: Het begint met hetzelfde gesprek als elke andere weg. Een uur, eerlijk advies.

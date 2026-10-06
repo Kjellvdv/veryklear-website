@@ -1,43 +1,35 @@
 ---
+// Copy lives in src/content/copy/home.yaml. This file is layout only.
 import Base from '../layouts/Base.astro';
 import Faq from '../components/Faq.astro';
 import CtaFinal from '../components/CtaFinal.astro';
 import ArticleCard from '../components/ArticleCard.astro';
 import { getArticles } from '../lib/articles.js';
+import { getCopy } from '../lib/copy.js';
 
+const c = await getCopy('home');
 const recent = (await getArticles()).slice(0, 3);
-
-const faq = [
-  ['We krijgen al ons werk via via. Hebben wij dat wel nodig?', 'Mond-tot-mond is een kanaal, en meestal een goed. De vraag is of je weet waarom het werkt, want dat vertelt je hoe je er meer van krijgt.'],
-  ['AI, is dat niet iets voor grote bedrijven?', 'Meestal niet. Een tool die je al betaalt, goed ingesteld, brengt je verder dan de meeste bedrijven ooit geraken. Een echt platform is pas nodig als je daar tegen de grenzen loopt.'],
-  ['Wat kost een pijler of fractioneel?', 'Dat hangt af van wat er nodig is, en dat bespreken we na de strategiesessie, met een duidelijke scope. We zijn niet de goedkoopste: goedkoper dan een groot bureau, duurder dan het nichtje dat ook wat teksten schrijft.'],
-  ['Wat is het verschil tussen op projectbasis en fractioneel?', 'Op projectbasis koop je één pijler en beoordeel je die voor er iets bijkomt. Fractioneel krijg je een head of marketing, deeltijds, die het hele traject mee opbouwt, van 0 naar 1. Beide zijn een normale manier om te beginnen.'],
-];
 ---
 
-<Base
-  title="Very Klear — positionering, marketing strategie en AI"
-  description="Marketing met technische diepgang. Positionering, marketing strategie en AI implementeren, op projectbasis of fractioneel."
-  path="/"
->
+<Base title={c.meta.title} description={c.meta.description} path="/">
   <section class="hero hero-home">
     <div class="grain"></div>
     <div class="wrap hero-grid">
       <div>
-        <h1 class="h-display">Marketing met <strong>technische diepgang.</strong> Van positionering tot AI.</h1>
-        <p class="lead">Voor bedrijven die willen groeien en het deftig willen doen. Op projectbasis, of fractioneel als je een vaste partner wil.</p>
+        <h1 class="h-display" set:html={c.hero.title_html} />
+        <p class="lead">{c.hero.lead}</p>
         <div class="hero-ctas">
-          <a class="btn btn-white" href="/contact">Plan een strategiesessie</a>
-          <a class="btn btn-ghost-white" href="/diensten">Bekijk de diensten</a>
+          <a class="btn btn-white" href="/contact">{c.hero.button_primary}</a>
+          <a class="btn btn-ghost-white" href="/diensten">{c.hero.button_secondary}</a>
         </div>
       </div>
       <aside class="hero-entry">
-        <span class="label">De eerste stap</span>
-        <h3 class="h-card" style="margin-top:6px">Strategiesessie</h3>
-        <p class="muted" style="margin-top:8px;font-size:.93rem">Eén gesprek van een uur. Je gaat buiten met een richting, en met een eerlijk antwoord op de vraag of je ons nodig hebt.</p>
+        <span class="label">{c.hero.entry.label}</span>
+        <h3 class="h-card" style="margin-top:6px">{c.hero.entry.title}</h3>
+        <p class="muted" style="margin-top:8px;font-size:.93rem">{c.hero.entry.body}</p>
         <div style="display:flex;align-items:center;justify-content:space-between;margin-top:20px;gap:12px">
-          <span class="muted" style="font-size:.88rem;font-weight:600">60 minuten</span>
-          <a class="link-arrow" href="/contact">Inplannen →</a>
+          <span class="muted" style="font-size:.88rem;font-weight:600">{c.hero.entry.meta}</span>
+          <a class="link-arrow" href="/contact">{c.hero.entry.link}</a>
         </div>
       </aside>
     </div>
@@ -46,25 +38,17 @@ const faq = [
   <section class="block block-first">
     <div class="wrap">
       <div class="s-head">
-        <h2 class="h-section">Waar het meestal vastloopt.</h2>
-        <p class="lead">Drie dingen die we bij bijna elk eerste gesprek horen.</p>
+        <h2 class="h-section">{c.problems.title}</h2>
+        <p class="lead">{c.problems.lead}</p>
       </div>
       <div class="grid-3">
-        <article class="card card-paper problem">
-          <p class="q">"Onze klanten komen via via, maar niemand weet eigenlijk waarom."</p>
-          <p class="a muted">Zonder dat antwoord is elke keuze over kanalen, teksten of een nieuwe site een gok.</p>
-          <span class="tag">Positionering</span>
-        </article>
-        <article class="card card-paper problem">
-          <p class="q">"We doen een beetje van alles, en niets lijkt echt te werken."</p>
-          <p class="a muted">Een kanaal erbij omdat de concurrent het heeft. Een tool erbij omdat iedereen erover praat.</p>
-          <span class="tag">Marketing strategie</span>
-        </article>
-        <article class="card card-paper problem">
-          <p class="q">"Iedereen gebruikt AI, maar elk op zijn eigen manier."</p>
-          <p class="a muted">Verschillende tools, data die niemand controleert, en een factuur die stilaan oploopt.</p>
-          <span class="tag">AI implementeren</span>
-        </article>
+        {c.problems.items.map((p) => (
+          <article class="card card-paper problem">
+            <p class="q">{p.quote}</p>
+            <p class="a muted">{p.body}</p>
+            <span class="tag">{p.tag}</span>
+          </article>
+        ))}
       </div>
     </div>
   </section>
@@ -72,21 +56,17 @@ const faq = [
   <section class="block" style="padding-top:0">
     <div class="wrap">
       <div class="s-head">
-        <h2 class="h-section">Twee manieren om samen te werken.</h2>
+        <h2 class="h-section">{c.paths.title}</h2>
       </div>
       <div class="grid-2">
-        <a class="card card-paper" href="/diensten" style="text-decoration:none">
-          <span class="label">Op projectbasis</span>
-          <h3 class="h-card" style="margin-top:6px">Eén pijler, goed uitgezocht.</h3>
-          <p class="muted">Je kiest positionering, marketing strategie of AI implementeren, en beoordeelt het resultaat voor er iets bijkomt.</p>
-          <div class="card-foot"><span class="link-arrow">Naar de diensten →</span></div>
-        </a>
-        <a class="card card-paper" href="/fractioneel" style="text-decoration:none">
-          <span class="label">Fractioneel</span>
-          <h3 class="h-card" style="margin-top:6px">Een fractionele head of marketing.</h3>
-          <p class="muted">Iemand die je marketing leidt: alle drie de pijlers samen, plus klantenbeheer en opvolging, zonder voltijdse aanwerving.</p>
-          <div class="card-foot"><span class="link-arrow">Naar fractioneel →</span></div>
-        </a>
+        {[[c.paths.project, '/diensten'], [c.paths.fractional, '/fractioneel']].map(([p, href]) => (
+          <a class="card card-paper" href={href} style="text-decoration:none">
+            <span class="label">{p.label}</span>
+            <h3 class="h-card" style="margin-top:6px">{p.title}</h3>
+            <p class="muted">{p.body}</p>
+            <div class="card-foot"><span class="link-arrow">{p.link}</span></div>
+          </a>
+        ))}
       </div>
     </div>
   </section>
@@ -95,42 +75,23 @@ const faq = [
     <div class="wrap">
       <div class="s-head-row">
         <div class="s-head">
-          <h2 class="h-section">Drie pijlers, in een vaste volgorde.</h2>
-          <p class="lead">Positionering komt eerst. De rest bouwt erop voort.</p>
+          <h2 class="h-section">{c.pillars.title}</h2>
+          <p class="lead">{c.pillars.lead}</p>
         </div>
-        <a class="link-arrow" href="/diensten">Alle details →</a>
+        <a class="link-arrow" href="/diensten">{c.pillars.link}</a>
       </div>
       <div class="flow">
-        <article class="card card-grad cut pillar-card">
-          <div class="grain"></div>
-          <span class="num">Pijler 1 · de basis</span>
-          <h3 class="h-card" style="margin-top:8px">Positionering</h3>
-          <ul>
-            <li>In welke markt speel je echt?</li>
-            <li>Wie is je ideale klant?</li>
-            <li>Waarom kiest die voor jou?</li>
-          </ul>
-        </article>
-        <span class="flow-arrow" aria-hidden="true">→</span>
-        <article class="card card-paper pillar-card">
-          <span class="num">Pijler 2 · de uitvoering</span>
-          <h3 class="h-card" style="margin-top:8px">Marketing strategie</h3>
-          <ul>
-            <li>Welke kanalen, en welke niet?</li>
-            <li>Hoeveel tijd, mensen en tools?</li>
-            <li>Klopt de weg van advertentie tot site?</li>
-          </ul>
-        </article>
-        <span class="flow-arrow" aria-hidden="true">→</span>
-        <article class="card card-paper pillar-card">
-          <span class="num">Pijler 3 · het werk</span>
-          <h3 class="h-card" style="margin-top:8px">AI implementeren</h3>
-          <ul>
-            <li>Waar bespaart AI echt werk?</li>
-            <li>Wat volstaat met een gewoon script?</li>
-            <li>Wat blijft beter mensenwerk?</li>
-          </ul>
-        </article>
+        {c.pillars.items.map((p, i) => (
+          <>
+            {i > 0 && <span class="flow-arrow" aria-hidden="true">→</span>}
+            <article class={`card pillar-card ${i === 0 ? 'card-grad cut' : 'card-paper'}`}>
+              {i === 0 && <div class="grain"></div>}
+              <span class="num">{p.label}</span>
+              <h3 class="h-card" style="margin-top:8px">{p.title}</h3>
+              <ul>{p.questions.map((q) => <li>{q}</li>)}</ul>
+            </article>
+          </>
+        ))}
       </div>
     </div>
   </section>
@@ -140,13 +101,11 @@ const faq = [
       <div class="card card-grad cut statement">
         <div class="grain"></div>
         <div style="position:relative">
-          <h2>Strategie en uitvoering bij dezelfde persoon. Geen overdracht, geen deck dat in een lade belandt.</h2>
-          <p class="muted" style="margin-top:16px;max-width:48ch">Wat we uitzoeken, bouwen we ook. En wat niet nodig is, zeggen we gewoon.</p>
+          <h2>{c.statement.title}</h2>
+          <p class="muted" style="margin-top:16px;max-width:48ch">{c.statement.body}</p>
         </div>
         <div class="facts" style="position:relative">
-          <div class="fact"><b>7 jaar</b><span>B2B tech marketing, van startups tot scale-ups</span></div>
-          <div class="fact"><b>3 pijlers</b><span>apart te kiezen, of samen als fractioneel</span></div>
-          <div class="fact"><b>1 persoon</b><span>van het eerste gesprek tot de uitvoering</span></div>
+          {c.statement.facts.map((f) => <div class="fact"><b>{f.value}</b><span>{f.text}</span></div>)}
         </div>
       </div>
     </div>
@@ -154,26 +113,16 @@ const faq = [
 
   <section class="block" style="padding-top:0">
     <div class="wrap">
-      <div class="s-head"><h2 class="h-section">Zo begin je.</h2></div>
+      <div class="s-head"><h2 class="h-section">{c.steps.title}</h2></div>
       <div class="steps">
-        <div class="card card-paper step">
-          <div class="n"></div>
-          <h3 class="h-card">Een strategiesessie</h3>
-          <p class="muted">Een uur over wat nu werkt en wat niet. Geen pitch. Het meeste nuttige zit al in je zaak.</p>
-          <p class="meta">60 minuten</p>
-        </div>
-        <div class="card card-paper step">
-          <div class="n"></div>
-          <h3 class="h-card">Eén pijler, of fractioneel</h3>
-          <p class="muted">Klein genoeg om op zichzelf te beoordelen. Of meteen een vaste partner als dat al duidelijk is.</p>
-          <p class="meta">Een paar maanden, met vaste momenten</p>
-        </div>
-        <div class="card card-paper step">
-          <div class="n"></div>
-          <h3 class="h-card">Kijken wat het opbracht</h3>
-          <p class="muted">Pas daarna beslis je of er iets bij moet. Bijsturen hoort erbij, er is geen enige waarheid.</p>
-          <p class="meta">Testen, bijsturen, leren</p>
-        </div>
+        {c.steps.items.map((s) => (
+          <div class="card card-paper step">
+            <div class="n"></div>
+            <h3 class="h-card">{s.title}</h3>
+            <p class="muted">{s.body}</p>
+            <p class="meta">{s.meta}</p>
+          </div>
+        ))}
       </div>
     </div>
   </section>
@@ -185,8 +134,8 @@ const faq = [
     <section class="block" style="padding-top:0">
       <div class="wrap">
         <div class="s-head-row">
-          <div class="s-head"><h2 class="h-section">Recent geschreven.</h2></div>
-          <a class="link-arrow" href="/artikels">Alle artikels →</a>
+          <div class="s-head"><h2 class="h-section">{c.recent.title}</h2></div>
+          <a class="link-arrow" href="/artikels">{c.recent.link}</a>
         </div>
         <div class="grid-3">
           {recent.map((post, i) => <ArticleCard post={post} index={i} />)}
@@ -198,13 +147,13 @@ const faq = [
   <section class="block" style="padding-top:0">
     <div class="wrap faq-layout">
       <div class="s-head" style="margin-bottom:0">
-        <h2 class="h-section">Wat mensen ons meestal vragen.</h2>
-        <p class="lead">Staat je vraag er niet bij? Stel ze gewoon.</p>
-        <div style="margin-top:22px"><a class="btn btn-line" href="/contact">Stel je vraag</a></div>
+        <h2 class="h-section">{c.faq.title}</h2>
+        <p class="lead">{c.faq.lead}</p>
+        <div style="margin-top:22px"><a class="btn btn-line" href="/contact">{c.faq.button}</a></div>
       </div>
-      <Faq items={faq} />
+      <Faq items={c.faq.items} />
     </div>
   </section>
 
-  <CtaFinal />
+  <CtaFinal copy={c.cta} />
 </Base>

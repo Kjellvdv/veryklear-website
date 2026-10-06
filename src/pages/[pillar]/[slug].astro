@@ -2,6 +2,7 @@
 import Base from '../../layouts/Base.astro';
 import ArticleCard from '../../components/ArticleCard.astro';
 import { getArticles, readingMinutes, formatDate, PILLAR_ANCHOR, PILLAR_SLUG, pillarLower } from '../../lib/articles.js';
+import { getCopy, fillPillar } from '../../lib/copy.js';
 
 export async function getStaticPaths() {
   const posts = await getArticles();
@@ -14,6 +15,8 @@ export async function getStaticPaths() {
 const { post, posts } = Astro.props;
 const { Content, headings } = await post.render();
 const toc = headings.filter((h) => h.depth === 2);
+// Copy around the artikel lives in src/content/copy/artikels.yaml (article).
+const c = (await getCopy('artikels')).article;
 
 // Related: same pillar first, then the most recent of the rest.
 const others = posts.filter((p) => p.slug !== post.slug);
@@ -27,13 +30,13 @@ const related = [
   <section class="hero hero-page">
     <div class="grain"></div>
     <div class="wrap narrow">
-      <a class="crumb" href="/artikels">← Alle artikels</a>
+      <a class="crumb" href="/artikels">{c.crumb}</a>
       <a class="label" href={`/${PILLAR_SLUG[post.data.category]}`} style="color:#fff;display:block">{post.data.category}</a>
       <h1 class="h-page" style="margin-top:8px">{post.data.title}</h1>
       <div class="article-meta">
-        <span>Kjell Vandevyvere</span><span>·</span>
+        <span>{c.author}</span><span>·</span>
         <span>{formatDate(post.data.published_at, 'long')}</span><span>·</span>
-        <span>{readingMinutes(post.body)} min lezen</span>
+        <span>{readingMinutes(post.body)} {c.reading_time}</span>
       </div>
     </div>
   </section>
@@ -45,11 +48,11 @@ const related = [
         <div class="card card-grad cut inline-cta">
           <div class="grain"></div>
           <div style="position:relative">
-            <h3 class="h-card">Benieuwd wat dit voor jouw zaak betekent?</h3>
-            <p class="muted" style="margin-top:8px">Daar is de strategiesessie voor. Een uur, over jouw situatie.</p>
+            <h3 class="h-card">{c.cta_title}</h3>
+            <p class="muted" style="margin-top:8px">{c.cta_body}</p>
             <div style="margin-top:18px;display:flex;gap:12px;flex-wrap:wrap">
-              <a class="btn btn-white" href="/contact">Plan een strategiesessie</a>
-              <a class="btn btn-ghost-white" href={`/diensten#${PILLAR_ANCHOR[post.data.category]}`}>Meer over {pillarLower(post.data.category)}</a>
+              <a class="btn btn-white" href="/contact">{c.cta_button}</a>
+              <a class="btn btn-ghost-white" href={`/diensten#${PILLAR_ANCHOR[post.data.category]}`}>{fillPillar(c.cta_more, post.data.category)}</a>
             </div>
           </div>
         </div>
@@ -57,16 +60,16 @@ const related = [
       <aside class="toc">
         {toc.length > 0 && (
           <div class="card card-paper" style="padding:26px">
-            <span class="label">In dit artikel</span>
+            <span class="label">{c.toc_label}</span>
             <ol>
               {toc.map((h) => <li><a href={`#${h.slug}`}>{h.text}</a></li>)}
             </ol>
           </div>
         )}
         <div class="card card-paper" style={`padding:26px${toc.length > 0 ? ';margin-top:16px' : ''}`}>
-          <span class="label">Geschreven door</span>
-          <p style="margin-top:8px;font-weight:700">Kjell Vandevyvere</p>
-          <p class="muted" style="font-size:.9rem;margin-top:4px">Zeven jaar B2B tech marketing. Schrijft over wat werkt, en wat niet.</p>
+          <span class="label">{c.author_label}</span>
+          <p style="margin-top:8px;font-weight:700">{c.author}</p>
+          <p class="muted" style="font-size:.9rem;margin-top:4px">{c.author_bio}</p>
         </div>
       </aside>
     </div>
@@ -75,7 +78,7 @@ const related = [
   {related.length > 0 && (
     <section class="block" style="padding-top:0">
       <div class="wrap">
-        <div class="s-head"><h2 class="h-section">Lees ook</h2></div>
+        <div class="s-head"><h2 class="h-section">{c.related_title}</h2></div>
         <div class="grid-3">
           {related.map((p, i) => <ArticleCard post={p} index={i} />)}
         </div>

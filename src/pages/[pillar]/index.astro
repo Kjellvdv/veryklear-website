@@ -3,6 +3,7 @@ import Base from '../../layouts/Base.astro';
 import CtaFinal from '../../components/CtaFinal.astro';
 import ArticleCard from '../../components/ArticleCard.astro';
 import { getArticles, PILLARS, PILLAR_SLUG, PILLAR_ANCHOR, pillarLower } from '../../lib/articles.js';
+import { getCopy, fillPillar } from '../../lib/copy.js';
 
 export async function getStaticPaths() {
   const posts = await getArticles();
@@ -14,19 +15,22 @@ export async function getStaticPaths() {
 
 const { name, posts } = Astro.props;
 const slug = PILLAR_SLUG[name];
+// Copy lives in src/content/copy/artikels.yaml (pillar_page).
+const a = await getCopy('artikels');
+const c = a.pillar_page;
 ---
 
 <Base
-  title={`${name} — artikels — Very Klear`}
-  description={`Artikels over ${pillarLower(name)}. Eén idee per artikel.`}
+  title={fillPillar(c.meta_title, name)}
+  description={fillPillar(c.meta_description, name)}
   path={`/${slug}`}
 >
   <section class="hero hero-page">
     <div class="grain"></div>
     <div class="wrap">
-      <a class="crumb" href="/artikels">← Alle artikels</a>
+      <a class="crumb" href="/artikels">{c.crumb}</a>
       <h1 class="h-page">{name}.</h1>
-      <p class="lead">Artikels over {pillarLower(name)}. Meer over de dienst staat op <a href={`/diensten#${PILLAR_ANCHOR[name]}`} style="color:inherit;text-decoration:underline">diensten</a>.</p>
+      <p class="lead">{fillPillar(c.lead_before_link, name)} <a href={`/diensten#${PILLAR_ANCHOR[name]}`} style="color:inherit;text-decoration:underline">{c.lead_link}</a>.</p>
     </div>
   </section>
 
@@ -34,8 +38,8 @@ const slug = PILLAR_SLUG[name];
     <div class="wrap">
       {posts.length === 0 ? (
         <div class="card card-paper empty">
-          <h3 class="h-card">Nog niets in deze categorie.</h3>
-          <p class="muted" style="margin-top:8px">Er komt binnenkort een artikel bij.</p>
+          <h3 class="h-card">{a.empty_category_title}</h3>
+          <p class="muted" style="margin-top:8px">{a.empty_category_body}</p>
         </div>
       ) : (
         <div class="grid-3">
@@ -45,9 +49,5 @@ const slug = PILLAR_SLUG[name];
     </div>
   </section>
 
-  <CtaFinal
-    variant="paper"
-    heading="Liever praten dan lezen?"
-    body="Eén uur, over jouw zaak in plaats van in het algemeen."
-  />
+  <CtaFinal variant="paper" copy={a.cta} />
 </Base>

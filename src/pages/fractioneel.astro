@@ -1,32 +1,25 @@
 ---
+// Copy lives in src/content/copy/fractioneel.yaml. This file is layout only.
 import Base from '../layouts/Base.astro';
 import Faq from '../components/Faq.astro';
 import CtaFinal from '../components/CtaFinal.astro';
+import { PILLARS } from '../lib/articles.js';
+import { getCopy } from '../lib/copy.js';
 
-// No prices here: fractioneel pricing is null in products.yml.
-const faq = [
-  ['Waarom geen voltijdse marketeer aanwerven?', 'Als er genoeg werk is voor een voltijdse marketingverantwoordelijke, doe dat zeker. Fractioneel is voor de fase ervoor: je hebt iemand nodig die richting geeft en het geheel opbouwt, maar nog geen volle job.'],
-  ['Hoe lang loopt een fractionele samenwerking?', 'Doorlopend, met vaste momenten om bij te sturen. Zolang het nut heeft, en we zeggen het als dat niet meer zo is.'],
-  ['Hoe vaak hebben we contact?', 'Vaste momenten die we samen afspreken, plus tussendoor als er iets is. Altijd met dezelfde persoon.'],
-  ['Wat als het niet klikt?', 'Dan stoppen we. Een samenwerking die niet werkt rekken heeft voor niemand zin.'],
-  ['Wat kost fractioneel?', 'Dat hangt af van wat er nodig is. We bespreken het na de strategiesessie, met een duidelijke scope.'],
-];
+const c = await getCopy('fractioneel');
+const last = c.timeline.steps.length - 1;
 ---
 
-<Base
-  title="Fractionele head of marketing — Very Klear"
-  description="Een fractionele head of marketing: iemand die je marketing leidt en van 0 naar 1 opbouwt, zonder voltijdse aanwerving."
-  path="/fractioneel"
->
+<Base title={c.meta.title} description={c.meta.description} path="/fractioneel">
   <section class="hero hero-page">
     <div class="grain"></div>
     <div class="wrap">
-      <a class="crumb" href="/">← Home</a>
-      <h1 class="h-page">Je fractionele<br />head of marketing.</h1>
-      <p class="lead">Iemand die je marketing leidt en mee opbouwt, van de basis tot een motor die draait, zonder dat je een voltijdse marketeer moet aanwerven. Van 0 naar 1, met dezelfde persoon.</p>
+      <a class="crumb" href="/">{c.hero.crumb}</a>
+      <h1 class="h-page" set:html={c.hero.title_html} />
+      <p class="lead">{c.hero.lead}</p>
       <div class="hero-ctas">
-        <a class="btn btn-white" href="/contact">Plan een strategiesessie</a>
-        <a class="btn btn-ghost-white" href="#vergelijking">Vergelijk met op projectbasis</a>
+        <a class="btn btn-white" href="/contact">{c.hero.button_primary}</a>
+        <a class="btn btn-ghost-white" href="#vergelijking">{c.hero.button_secondary}</a>
       </div>
     </div>
   </section>
@@ -34,15 +27,18 @@ const faq = [
   <section class="block block-first">
     <div class="wrap">
       <div class="s-head">
-        <h2 class="h-section">Wat 'van 0 naar 1' betekent.</h2>
-        <p class="lead">Niet alles tegelijk. Wel in de juiste volgorde, met dezelfde partner.</p>
+        <h2 class="h-section">{c.timeline.title}</h2>
+        <p class="lead">{c.timeline.lead}</p>
       </div>
       <div class="card card-paper" style="padding:44px 36px">
         <div class="timeline">
-          <div class="tl"><div class="dot">0</div><h3>Vertrekpunt</h3><p>Klanten via via, een site van jaren geleden, opvolging op goed geluk.</p></div>
-          <div class="tl"><div class="dot"></div><h3>De basis</h3><p>Positionering vastgelegd: wie je klant is en waarom die voor jou kiest.</p></div>
-          <div class="tl"><div class="dot"></div><h3>De motor</h3><p>Kanalen gekozen, site en opvolging die op elkaar aansluiten.</p></div>
-          <div class="tl end"><div class="dot">1</div><h3>Het draait</h3><p>Een systeem dat werkt zonder dat alles van één persoon afhangt.</p></div>
+          {c.timeline.steps.map((s, i) => (
+            <div class={i === last ? 'tl end' : 'tl'}>
+              <div class="dot">{i === 0 ? '0' : i === last ? '1' : ''}</div>
+              <h3>{s.title}</h3>
+              <p>{s.text}</p>
+            </div>
+          ))}
         </div>
       </div>
     </div>
@@ -50,22 +46,21 @@ const faq = [
 
   <section class="block" style="padding-top:0">
     <div class="wrap">
-      <div class="s-head"><h2 class="h-section">Wat er in zit.</h2></div>
+      <div class="s-head"><h2 class="h-section">{c.included.title}</h2></div>
       <div class="card card-grad cut" style="padding:40px">
         <div class="grain"></div>
         <div style="position:relative;display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:center">
           <div>
-            <span class="label">De basis</span>
-            <h3 class="h-card" style="margin-top:6px;font-size:1.5rem">Alle drie de pijlers, samen.</h3>
+            <span class="label">{c.included.base_label}</span>
+            <h3 class="h-card" style="margin-top:6px;font-size:1.5rem">{c.included.base_title}</h3>
           </div>
-          <div class="leads-to" style="margin-top:0"><span>Positionering</span><span>Marketing strategie</span><span>AI implementeren</span></div>
+          <div class="leads-to" style="margin-top:0">{PILLARS.map((p) => <span>{p}</span>)}</div>
         </div>
       </div>
       <div class="grid-4" style="margin-top:20px">
-        <div class="card card-paper"><span class="label">Extra</span><h3 class="h-card" style="margin-top:6px">Klantenbeheer</h3><p class="muted">Een CRM dat georganiseerd blijft, zodat je nog weet wat een klant drie maanden geleden zei.</p></div>
-        <div class="card card-paper"><span class="label">Extra</span><h3 class="h-card" style="margin-top:6px">Van aanvraag naar verkoop</h3><p class="muted">Een duidelijke weg, in plaats van een proces dat per persoon verschilt.</p></div>
-        <div class="card card-paper"><span class="label">Extra</span><h3 class="h-card" style="margin-top:6px">Gespreksnotities</h3><p class="muted">Notities die achteraf nog iets zeggen, niet drie losse steekwoorden.</p></div>
-        <div class="card card-paper"><span class="label">Extra</span><h3 class="h-card" style="margin-top:6px">Leadlijsten</h3><p class="muted">Wie je nog kan bellen, en die lijst blijft ook bijgehouden.</p></div>
+        {c.included.extras.map((e) => (
+          <div class="card card-paper"><span class="label">{c.included.extra_label}</span><h3 class="h-card" style="margin-top:6px">{e.title}</h3><p class="muted">{e.text}</p></div>
+        ))}
       </div>
     </div>
   </section>
@@ -73,30 +68,18 @@ const faq = [
   <section class="block" style="padding-top:0;scroll-margin-top:24px" id="vergelijking">
     <div class="wrap">
       <div class="s-head">
-        <h2 class="h-section">Op projectbasis of fractioneel?</h2>
-        <p class="lead">De grens is niet scherp. Deze vergelijking helpt je kiezen.</p>
+        <h2 class="h-section">{c.compare.title}</h2>
+        <p class="lead">{c.compare.lead}</p>
       </div>
       <div class="compare">
-        <div class="card card-paper">
-          <h3 class="h-card">Op projectbasis</h3>
-          <dl>
-            <dt>Wat je koopt</dt><dd>Eén pijler</dd>
-            <dt>Duur</dt><dd>Een paar maanden, met een duidelijk einde</dd>
-            <dt>Goed als</dt><dd>Je weet waar het knelt en dat eerst wil oplossen</dd>
-            <dt>Klantenbeheer, leads, notities</dt><dd>Niet inbegrepen</dd>
-            <dt>Daarna</dt><dd>Je beslist zelf of er iets bijkomt</dd>
-          </dl>
-        </div>
-        <div class="card card-paper">
-          <h3 class="h-card">Fractioneel</h3>
-          <dl>
-            <dt>Wat je koopt</dt><dd>Een head of marketing, deeltijds: alle drie de pijlers, en meer</dd>
-            <dt>Duur</dt><dd>Doorlopend, met vaste momenten</dd>
-            <dt>Goed als</dt><dd>Je een vaste partner wil die het geheel mee opbouwt</dd>
-            <dt>Klantenbeheer, leads, notities</dt><dd>Inbegrepen</dd>
-            <dt>Daarna</dt><dd>Samen bijsturen, zolang het nut heeft</dd>
-          </dl>
-        </div>
+        {c.compare.columns.map((col) => (
+          <div class="card card-paper">
+            <h3 class="h-card">{col.title}</h3>
+            <dl>
+              {col.rows.map((r) => <><dt>{r.label}</dt><dd>{r.value}</dd></>)}
+            </dl>
+          </div>
+        ))}
       </div>
     </div>
   </section>
@@ -105,22 +88,12 @@ const faq = [
     <div class="wrap">
       <div class="grid-2 fit">
         <div class="card card-paper yes">
-          <h3 class="h-card">Past goed als</h3>
-          <ul>
-            <li>je wil groeien en daar ook budget voor hebt</li>
-            <li>je zelf de marketingkeuzes maakt</li>
-            <li>er niemand voltijds met marketing bezig is</li>
-            <li>je een partner zoekt, geen uitvoerder zonder mening</li>
-          </ul>
+          <h3 class="h-card">{c.fit.yes_title}</h3>
+          <ul>{c.fit.yes.map((l) => <li>{l}</li>)}</ul>
         </div>
         <div class="card card-tint no">
-          <h3 class="h-card">Past niet als</h3>
-          <ul>
-            <li>je enkel een paar posts op Instagram zoekt</li>
-            <li>de prijs de doorslag geeft</li>
-            <li>het een bijberoep is zonder groeiplannen</li>
-            <li>je enkel handen wil, niet het denkwerk</li>
-          </ul>
+          <h3 class="h-card">{c.fit.no_title}</h3>
+          <ul>{c.fit.no.map((l) => <li>{l}</li>)}</ul>
         </div>
       </div>
     </div>
@@ -130,21 +103,20 @@ const faq = [
     <div class="wrap">
       <div class="card card-paper" style="display:grid;grid-template-columns:auto 1fr;gap:22px;align-items:center">
         <div class="note-badge" aria-hidden="true">!</div>
-        <p style="font-weight:600">Fractioneel is nieuw. We zeggen het ook als het nog niet het juiste moment is voor jouw zaak, en dan begin je beter met één pijler.</p>
+        <p style="font-weight:600">{c.note}</p>
       </div>
     </div>
   </section>
 
-  {/* VC Rater: Kjell's own product. Fractioneel only (Kjell, 2026-10-05). */}
   <section class="block" style="padding-top:0">
     <div class="wrap">
       <div class="card card-paper side-band">
         <div>
-          <span class="label">Ook van ons · VC Rater</span>
-          <h3 style="margin-top:6px">Een seed ronde aan het ophalen?</h3>
-          <p class="muted">VC Rater zoekt de Europese investeerders die echt passen bij jouw ronde, op fase, sector en ticket. Nog in beperkte toegang.</p>
+          <span class="label">{c.vcrater.label}</span>
+          <h3 style="margin-top:6px">{c.vcrater.title}</h3>
+          <p class="muted">{c.vcrater.body}</p>
         </div>
-        <a class="btn btn-line" href="https://vcrater.com" target="_blank" rel="noopener">Vraag toegang tot VC Rater</a>
+        <a class="btn btn-line" href="https://vcrater.com" target="_blank" rel="noopener">{c.vcrater.button}</a>
       </div>
     </div>
   </section>
@@ -152,14 +124,11 @@ const faq = [
   <section class="block" style="padding-top:0">
     <div class="wrap faq-layout">
       <div class="s-head" style="margin-bottom:0">
-        <h2 class="h-section">Vragen over fractioneel.</h2>
+        <h2 class="h-section">{c.faq.title}</h2>
       </div>
-      <Faq items={faq} />
+      <Faq items={c.faq.items} />
     </div>
   </section>
 
-  <CtaFinal
-    heading="Kijken of een fractionele head of marketing past?"
-    body="Het begint met hetzelfde gesprek als elke andere weg. Een uur, eerlijk advies."
-  />
+  <CtaFinal copy={c.cta} />
 </Base>

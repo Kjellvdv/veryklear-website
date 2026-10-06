@@ -1,0 +1,124 @@
+# Home page copy (veryklear.be/).
+#
+# How to edit: change the text after the colon. Keep the indentation as it is.
+# Text after ">-" can run over several lines; it's joined into one paragraph.
+# Only fields ending in _html may contain <strong> (heavy word) or <br> (line break).
+# Save, and the preview at localhost:4321 updates.
+
+meta:
+  title: Very Klear — positionering, marketing strategie en AI
+  description: Marketing met technische diepgang. Positionering, marketing strategie en AI implementeren, op projectbasis of fractioneel.
+
+hero:
+  title_html: Marketing met <strong>technische diepgang.</strong> Van positionering tot AI.
+  lead: Voor bedrijven die willen groeien en het deftig willen doen. Op projectbasis, of fractioneel als je een vaste partner wil.
+  button_primary: Plan een strategiesessie
+  button_secondary: Bekijk de diensten
+  # The white card on the right of the hero
+  entry:
+    label: De eerste stap
+    title: Strategiesessie
+    body: Eén gesprek van een uur. Je gaat buiten met een richting, en met een eerlijk antwoord op de vraag of je ons nodig hebt.
+    meta: 60 minuten
+    link: Inplannen →
+
+problems:
+  title: Waar het meestal vastloopt.
+  lead: Drie dingen die we bij bijna elk eerste gesprek horen.
+  items:
+    - quote: '"Onze klanten komen via via, maar niemand weet eigenlijk waarom."'
+      body: Zonder dat antwoord is elke keuze over kanalen, teksten of een nieuwe site een gok.
+      tag: Positionering
+    - quote: '"We doen een beetje van alles, en niets lijkt echt te werken."'
+      body: Een kanaal erbij omdat de concurrent het heeft. Een tool erbij omdat iedereen erover praat.
+      tag: Marketing strategie
+    - quote: '"Iedereen gebruikt AI, maar elk op zijn eigen manier."'
+      body: Verschillende tools, data die niemand controleert, en een factuur die stilaan oploopt.
+      tag: AI implementeren
+
+paths:
+  title: Twee manieren om samen te werken.
+  # Keep these two the same length: the two paths carry equal weight.
+  project:
+    label: Op projectbasis
+    title: Eén pijler, goed uitgezocht.
+    body: Je kiest positionering, marketing strategie of AI implementeren, en beoordeelt het resultaat voor er iets bijkomt.
+    link: Naar de diensten →
+  fractional:
+    label: Fractioneel
+    title: Een fractionele head of marketing.
+    body: 'Iemand die je marketing leidt: alle drie de pijlers samen, plus klantenbeheer en opvolging, zonder voltijdse aanwerving.'
+    link: Naar fractioneel →
+
+pillars:
+  title: Drie pijlers, in een vaste volgorde.
+  lead: Positionering komt eerst. De rest bouwt erop voort.
+  link: Alle details →
+  items:
+    - label: Pijler 1 · de basis
+      title: Positionering
+      questions:
+        - In welke markt speel je echt?
+        - Wie is je ideale klant?
+        - Waarom kiest die voor jou?
+    - label: Pijler 2 · de uitvoering
+      title: Marketing strategie
+      questions:
+        - Welke kanalen, en welke niet?
+        - Hoeveel tijd, mensen en tools?
+        - Klopt de weg van advertentie tot site?
+    - label: Pijler 3 · het werk
+      title: AI implementeren
+      questions:
+        - Waar bespaart AI echt werk?
+        - Wat volstaat met een gewoon script?
+        - Wat blijft beter mensenwerk?
+
+statement:
+  title: Strategie en uitvoering bij dezelfde persoon. Geen overdracht, geen deck dat in een lade belandt.
+  body: Wat we uitzoeken, bouwen we ook. En wat niet nodig is, zeggen we gewoon.
+  # Facts must be true and checkable. No "seven years of AI".
+  facts:
+    - value: 7 jaar
+      text: B2B tech marketing, van startups tot scale-ups
+    - value: 3 pijlers
+      text: apart te kiezen, of samen als fractioneel
+    - value: 1 persoon
+      text: van het eerste gesprek tot de uitvoering
+
+steps:
+  title: Zo begin je.
+  items:
+    - title: Een strategiesessie
+      body: Een uur over wat nu werkt en wat niet. Geen pitch. Het meeste nuttige zit al in je zaak.
+      meta: 60 minuten
+    - title: Eén pijler, of fractioneel
+      body: Klein genoeg om op zichzelf te beoordelen. Of meteen een vaste partner als dat al duidelijk is.
+      meta: Een paar maanden, met vaste momenten
+    - title: Kijken wat het opbracht
+      body: Pas daarna beslis je of er iets bij moet. Bijsturen hoort erbij, er is geen enige waarheid.
+      meta: Testen, bijsturen, leren
+
+# Only shows once at least one artikel is published.
+recent:
+  title: Recent geschreven.
+  link: Alle artikels →
+
+faq:
+  title: Wat mensen ons meestal vragen.
+  lead: Staat je vraag er niet bij? Stel ze gewoon.
+  button: Stel je vraag
+  items:
+    - q: We krijgen al ons werk via via. Hebben wij dat wel nodig?
+      a: Mond-tot-mond is een kanaal, en meestal een goed. De vraag is of je weet waarom het werkt, want dat vertelt je hoe je er meer van krijgt.
+    - q: AI, is dat niet iets voor grote bedrijven?
+      a: Meestal niet. Een tool die je al betaalt, goed ingesteld, brengt je verder dan de meeste bedrijven ooit geraken. Een echt platform is pas nodig als je daar tegen de grenzen loopt.
+    - q: Wat kost een pijler of fractioneel?
+      a: 'Dat hangt af van wat er nodig is, en dat bespreken we na de strategiesessie, met een duidelijke scope. We zijn niet de goedkoopste: goedkoper dan een groot bureau, duurder dan het nichtje dat ook wat teksten schrijft.'
+    - q: Wat is het verschil tussen op projectbasis en fractioneel?
+      a: Op projectbasis koop je één pijler en beoordeel je die voor er iets bijkomt. Fractioneel krijg je een head of marketing, deeltijds, die het hele traject mee opbouwt, van 0 naar 1. Beide zijn een normale manier om te beginnen.
+
+# Closing red block. Leave out to use the default from site.yaml.
+cta:
+  heading: Eén uur om te weten wat de moeite waard is.
+  body: Denken we dat je ons niet nodig hebt, dan zeggen we dat ook. Dat je huidige aanpak volstaat, is hier een normaal antwoord.

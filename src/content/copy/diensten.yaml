@@ -1,0 +1,129 @@
+# Diensten page copy (veryklear.be/diensten).
+# Change the text after the colon, keep the indentation. Fields ending in _html
+# may contain <br> (line break) or <strong>.
+#
+# The three pillars share one fixed structure. Keep them the same shape:
+# intro + "je zit hier als" situations on the left, details on the right.
+
+meta:
+  title: Diensten — Very Klear
+  description: 'Op projectbasis: positionering, marketing strategie of AI implementeren. Drie pijlers, apart te kiezen.'
+
+hero:
+  crumb: ← Home
+  title_html: Op projectbasis.<br />Drie pijlers, apart te kiezen.
+  lead: Je laat één pijler goed uitzoeken en beoordeelt het resultaat, voor je beslist of er iets bijkomt.
+
+pillars:
+  positionering:
+    label: Pijler 1 · de basis
+    title: Positionering
+    lead: Het fundament onder alles. Waar je zaak past in de markt, wie je ideale klant is, en waarom die voor jou kiest. Messaging, een website of een campagne volgen hieruit, niet omgekeerd.
+    when:
+      - Je kan niet in één zin zeggen waarom klanten voor jou kiezen.
+      - Je herschrijft je site, maar het voelt nooit juist.
+      - Je start iets nieuws en wil het van bij het begin goed zetten.
+    questions_title: Wat we samen uitzoeken
+    questions:
+      - In welke categorie speel je?
+      - Met wie word je vergeleken?
+      - Wie is je ideale klant?
+      - Wat gelooft en wil die klant?
+      - Wat maakt je echt anders?
+      - Waarom kiezen klanten voor jou?
+    start_label: Hoe het start
+    start: 'Gesprekken met een paar van je beste klanten: wat ze wilden oplossen, wat ze eerder gebruikten, en wanneer ze wisten dat het werkte.'
+    deliver_label: Wat je krijgt
+    deliver: Eén blad over wie je klant is en wat je belooft. Een werkdocument dat scherper wordt, geen rapport voor de lade.
+    leads_to_label: Waar het naartoe kan
+    leads_to:
+      - Messaging & teksten
+      - Nieuwe website
+      - Communicatiecampagne
+      - Marketing strategie
+
+  marketing_strategie:
+    label: Pijler 2 · de uitvoering
+    title: Marketing strategie
+    lead: Hoe je effectief naar de markt gaat. Welke kanalen, tools en mensen, hoeveel tijd waar naartoe gaat, en of alles op elkaar aansluit, van advertentie tot landingspagina.
+    when:
+      - Je doet een beetje van alles, maar niets lijkt te werken.
+      - Je weet niet of je beter posts, ads of persaandacht doet.
+      - Je advertenties sturen mensen naar een pagina die niets zegt.
+    questions_title: Wat we samen uitzoeken
+    questions:
+      - Welke kanalen, en welke niet?
+      - Organisch, betaald, digitaal of offline?
+      - Welke tools heb je echt nodig?
+      - Hoeveel mensen en welke experts?
+      - Hoe vaak posten, en waar?
+      - Pers, events of billboards?
+      - Klopt je customer journey?
+      - Waar hoort AI wel en niet?
+    start_label: Hoe het start
+    start: Een eerlijke blik op waar je tijd en budget nu naartoe gaan, en of die kanalen ooit bewust gekozen zijn.
+    deliver_label: Wat je krijgt
+    deliver: Een kanaalplan waar je mee verder kan. Soms blijkt daaruit dat een nieuwe site of landingspagina de volgende stap is.
+    leads_to_label: Waar het naartoe kan
+    leads_to:
+      - Website of landingspagina
+      - Campagne
+      - AI implementeren
+      - Fractioneel
+
+  ai_implementeren:
+    label: Pijler 3 · het werk
+    title: AI implementeren
+    lead: AI aan het werk zetten waar het echt helpt, in marketing, sales en klantencontact. En duidelijk maken wat beter mensenwerk blijft, zodat je contact met klanten beter wordt in plaats van automatisch.
+    when:
+      - Iedereen in je team gebruikt AI, maar elk anders.
+      - Je weet niet of de info die eruit komt klopt.
+      - Dezelfde taak komt elke week terug en vreet tijd.
+    questions_title: Wat we samen bouwen
+    questions:
+      - Eén manier van werken voor het hele team
+      - Data die klopt voor ze erin gaat
+      - Geen ruis, geen onnodige kosten
+      - Script waar het kan, AI waar het moet
+      - Voorbereiding van verkoopgesprekken
+      - Opvolging die niet vergeten wordt
+    ai_does_label: AI doet
+    ai_does: Voorbereiden, samenvatten, opvolgen, het werk dat elke week terugkomt.
+    you_do_label: Jij doet
+    you_do: Het verkoopgesprek zelf, de lastige mail, alles waar je eigen stem in zit.
+    deliver_label: Wat je krijgt
+    deliver: Een helder overzicht van wat AI nodig heeft, wat een script volstaat en wat manueel blijft, plus één toepassing die effectief draait.
+
+# The partner network: delivery behind both paths, not a fourth pillar.
+# Only name partners who've confirmed. Never say where partners are based.
+partners:
+  title: Meer dan wat één persoon aankan.
+  lead: Voor wat buiten de drie pijlers valt, werken we met vaste partners. Het denkwerk en het contact blijven bij Kjell.
+  items:
+    - title: Design
+      text: Websites, logo, huisstijl · Altin
+    - title: LinkedIn
+      text: Content en verspreiding · Willow
+    - title: Social content
+      text: Posts, reels, video
+    - title: Platform
+      text: Complexere sites en apps
+    - title: GTM engineering
+      text: CRM en de techniek erachter
+
+faq:
+  title: Welke pijler eerst?
+  lead: Meestal positionering. Maar dat bekijken we samen in de strategiesessie.
+  items:
+    - q: Moet ik met positionering beginnen?
+      a: Meestal wel, want de andere twee bouwen erop voort. Staat je positionering al, dan kan je meteen naar marketing strategie of AI implementeren.
+    - q: Kunnen jullie niet gewoon de website doen?
+      a: Een website komt er als positionering of marketing strategie uitwijst dat dat de volgende stap is. Ze wordt niet meer apart verkocht, zodat ze altijd op iets echts gebouwd is.
+    - q: Hoe lang duurt een pijler?
+      a: 'Een paar maanden, met vaste momenten. Het is geen sessie en geen rapport: testen en bijsturen hoort erbij.'
+    - q: Kan ik later een pijler bijnemen?
+      a: Ja, dat is normaal. Alles in één keer kopen is zelden de beste start.
+
+cta:
+  heading: Twijfel je welke pijler eerst?
+  body: Daar is de strategiesessie voor. Een uur, en je weet waar je het best begint.
