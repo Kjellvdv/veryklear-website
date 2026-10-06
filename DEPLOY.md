@@ -1,50 +1,41 @@
 # Deploying Very Klear
 
-Static Astro build. No server, no CI. `npm run build` produces `dist/`, and
-`dist/` is what gets uploaded.
+Static Astro build, deployed by GitHub Actions to GitHub Pages on every push to
+`main`. Same setup as kjellv-website. `.github/workflows/deploy.yml` does the
+work; there is nothing to upload by hand.
 
-## Where it runs
+## Domains
 
-SiteGround, same as the current live site. That is why `public/.htaccess` exists
-(Apache cache headers). GitHub Pages would ignore that file, and would mean
-moving DNS away from hosting that is already paid for, so it is not worth it.
+- **veryklear.com** is the live home (decided 2026-10-06). `public/CNAME` holds
+  it, and it ships inside `dist/` so later deploys keep the custom domain bound.
+- **veryklear.be** 301-redirects to .com from SiteGround (Site Tools, Domain >
+  Redirects), keeping the path. Its MX records stay on SiteGround, so
+  `kjell@veryklear.be` keeps working.
 
-## Deploying
+## DNS for veryklear.com
+
+Apex A records to GitHub Pages:
 
 ```
-npm run build
+185.199.108.153
+185.199.109.153
+185.199.110.153
+185.199.111.153
 ```
 
-Then upload the **contents** of `dist/` to the document root via SiteGround File
-Manager or SFTP.
+Optionally `www` as a CNAME to `kjellvdv.github.io`. Then in the repo's Settings >
+Pages: source "GitHub Actions", custom domain `veryklear.com`, and tick
+"Enforce HTTPS" once the certificate is issued.
 
-**Include `.htaccess`.** File Manager hides dotfiles by default. Turn on "show
-hidden files" or the cache headers silently do not ship.
+## Redirects
 
-## Preview vs live
+GitHub Pages ignores `.htaccess`, so retired URLs (/strategie, /automatisatie,
+/websites, /partners, /strategiesessie) are static redirect pages generated from
+`redirects` in `astro.config.mjs`. Add new ones there.
 
-Right now the site is a **preview on veryklear.com** while veryklear.be still
-serves the old site.
+## Preview mode
 
-`src/layouts/Base.astro` has `const PREVIEW = true`. While that is true every
-page ships `noindex, nofollow` and no canonical tag, so the preview cannot be
-indexed and cannot compete with .be.
-
-**Before going live on veryklear.be:**
-
-1. Set `PREVIEW = false` in `src/layouts/Base.astro`.
-2. `npm run build` and check: `grep -c noindex dist/index.html` must return 0,
-   and `grep -c canonical dist/index.html` must return 1.
-3. Upload.
-4. Decide what .com does afterwards. Most likely a 301 to .be, so the two
-   domains never serve the same content at once.
-
-Kjell owns both domains. `astro.config.mjs` has `site: 'https://veryklear.be'`,
-which is the intended permanent home and drives the canonical tags once preview
-mode is off.
-
-## Extra safety for the preview
-
-SiteGround can password-protect a directory from cPanel. Worth switching on for
-the .com preview: `noindex` stops search engines, a password stops everyone
-else, and neither touches the code.
+`src/layouts/Base.astro` has `const PREVIEW`. It is `false` now. Setting it to
+`true` makes every page ship `noindex, nofollow` and no canonical tag. After a
+build, `grep -c noindex dist/index.html` should be 0 and
+`grep -c canonical dist/index.html` should be 1.
