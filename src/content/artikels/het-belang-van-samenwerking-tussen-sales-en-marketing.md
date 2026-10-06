@@ -5,7 +5,7 @@ description: In kleine bedrijven heerst er vaak een strijd tussen verkoop en
   beide sneller hun doelen kunnen bereiken.
 category: Marketing strategie
 published_at: 2026-09-30
-draft: true
+draft: false
 image: /artikels/het-belang-van-samenwerking-tussen-sales-en-marketing.jpg
 image_alt: Een bureau van bovenaf met een opgenomen telefoonhoorn, een kop
   koffie, een opengeslagen orderboek en een laptop.
