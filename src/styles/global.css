@@ -319,12 +319,14 @@ section.block > .wrap{position:relative;z-index:1}
 .article-body li + li{margin-top:6px}
 .article-body h3{font-size:1.15rem;font-weight:800;margin-top:28px}
 .article-body blockquote{margin:0;border-left:4px solid var(--red-deep);padding:4px 0 4px 22px;font-size:1.2rem;font-weight:700;line-height:1.5}
-/* Sidebar (contents, author) on the left, article on the right. The hero uses
-   the same grid so the title lines up with the body (Kjell, 2026-10-06). The
+/* Sidebar (contents, author) on the left, article on the right. The hero starts
+   at the sidebar's left edge and is as wide as the article column (Kjell, 2026-10-06). The
    article stays first in the HTML, so on mobile it comes before the sidebar. */
 .article-layout{display:grid;grid-template-columns:260px minmax(0,1fr);gap:28px;align-items:start}
 .article-layout > .toc{grid-column:1;grid-row:1}
 .article-layout > .article-main{grid-column:2;grid-row:1;max-width:760px}
+.article-hero{max-width:min(760px,calc(100% - 288px))}
+@media (max-width:980px){.article-hero{max-width:none}}
 @media (max-width:980px){.article-layout{grid-template-columns:1fr}.article-layout > .toc,.article-layout > .article-main{grid-column:auto;grid-row:auto}}
 .toc{position:sticky;top:24px}
 .toc ol{margin:12px 0 0;padding-left:18px;display:grid;gap:8px;font-size:.92rem}
