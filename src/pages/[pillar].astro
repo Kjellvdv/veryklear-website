@@ -1,0 +1,53 @@
+---
+import Base from '../layouts/Base.astro';
+import CtaFinal from '../components/CtaFinal.astro';
+import ArticleCard from '../components/ArticleCard.astro';
+import { getArticles, PILLARS, PILLAR_SLUG, PILLAR_ANCHOR } from '../lib/articles.js';
+
+export async function getStaticPaths() {
+  const posts = await getArticles();
+  return PILLARS.map((name) => ({
+    params: { pillar: PILLAR_SLUG[name] },
+    props: { name, posts: posts.filter((p) => p.data.category === name) },
+  }));
+}
+
+const { name, posts } = Astro.props;
+const slug = PILLAR_SLUG[name];
+---
+
+<Base
+  title={`${name} — artikels — Very Klear`}
+  description={`Artikels over ${name.toLowerCase()}. Eén idee per artikel.`}
+  path={`/${slug}`}
+>
+  <section class="hero hero-page">
+    <div class="grain"></div>
+    <div class="wrap">
+      <a class="crumb" href="/artikels">← Alle artikels</a>
+      <h1 class="h-page">{name}.</h1>
+      <p class="lead">Artikels over {name.toLowerCase()}. Meer over de dienst staat op <a href={`/diensten#${PILLAR_ANCHOR[name]}`} style="color:inherit;text-decoration:underline">diensten</a>.</p>
+    </div>
+  </section>
+
+  <section class="block block-first">
+    <div class="wrap">
+      {posts.length === 0 ? (
+        <div class="card card-paper empty">
+          <h3 class="h-card">Nog niets in deze categorie.</h3>
+          <p class="muted" style="margin-top:8px">Er komt binnenkort een artikel bij.</p>
+        </div>
+      ) : (
+        <div class="grid-3">
+          {posts.map((post, i) => <ArticleCard post={post} index={i} />)}
+        </div>
+      )}
+    </div>
+  </section>
+
+  <CtaFinal
+    variant="paper"
+    heading="Liever praten dan lezen?"
+    body="Eén uur, over jouw zaak in plaats van in het algemeen."
+  />
+</Base>

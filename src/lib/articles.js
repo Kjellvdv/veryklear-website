@@ -9,6 +9,15 @@ export const PILLAR_ANCHOR = {
   'AI inzetten': 'ai-inzetten',
 };
 
+// Category landing pages live at the top level: /marketing, /ai, /positionering.
+export const PILLAR_SLUG = {
+  Positionering: 'positionering',
+  'Marketing strategie': 'marketing',
+  'AI inzetten': 'ai',
+};
+
+export const pillarForSlug = (slug) => PILLARS.find((p) => PILLAR_SLUG[p] === slug);
+
 export async function getArticles() {
   const posts = await getCollection('artikels', ({ data }) => !data.draft);
   return posts.sort((a, b) => b.data.published_at.getTime() - a.data.published_at.getTime());

@@ -1,7 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import ArticleCard from '../../components/ArticleCard.astro';
-import { getArticles, readingMinutes, formatDate, PILLAR_ANCHOR } from '../../lib/articles.js';
+import { getArticles, readingMinutes, formatDate, PILLAR_ANCHOR, PILLAR_SLUG } from '../../lib/articles.js';
 
 export async function getStaticPaths() {
   const posts = await getArticles();
@@ -25,7 +25,7 @@ const related = [
     <div class="grain"></div>
     <div class="wrap narrow">
       <a class="crumb" href="/artikels">← Alle artikels</a>
-      <span class="label" style="color:#fff;display:block">{post.data.category}</span>
+      <a class="label" href={`/${PILLAR_SLUG[post.data.category]}`} style="color:#fff;display:block">{post.data.category}</a>
       <h1 class="h-page" style="margin-top:8px">{post.data.title}</h1>
       <div class="article-meta">
         <span>Kjell Vandevyvere</span><span>·</span>
