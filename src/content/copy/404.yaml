@@ -1,0 +1,23 @@
+# Page-not-found copy (shown for any address that doesn't exist).
+
+meta:
+  title: Pagina niet gevonden · Very Klear
+  description: Deze pagina bestaat niet (meer).
+
+title: Deze pagina bestaat niet.
+lead: Misschien is ze verhuisd, of zat er een tikfout in de link. Hier vind je wel je weg.
+links_title: Waar wil je naartoe?
+links:
+  - title: Diensten
+    text: Positionering, marketing strategie en AI implementeren.
+    href: /diensten
+  - title: Fractioneel
+    text: Een fractionele head of marketing.
+    href: /fractioneel
+  - title: Artikels
+    text: Eén idee per artikel.
+    href: /artikels
+  - title: Contact
+    text: Plan een strategiesessie of stuur een bericht.
+    href: /contact
+home: Naar de startpagina

@@ -1,8 +1,8 @@
 ---
-import Base from '../../layouts/Base.astro';
-import ArticleCard from '../../components/ArticleCard.astro';
-import { getArticles, readingMinutes, formatDate, PILLAR_SLUG, pillarUrl } from '../../lib/articles.js';
-import { getCopy, fillPillar } from '../../lib/copy.js';
+import Base from '../../../layouts/Base.astro';
+import ArticleCard from '../../../components/ArticleCard.astro';
+import { getArticles, readingMinutes, formatDate, PILLAR_SLUG, pillarUrl, pillarArticlesUrl } from '../../../lib/articles.js';
+import { getCopy, fillPillar } from '../../../lib/copy.js';
 
 export async function getStaticPaths() {
   const posts = await getArticles();
@@ -17,6 +17,7 @@ const { Content, headings } = await post.render();
 const toc = headings.filter((h) => h.depth === 2);
 // Copy around the artikel lives in src/content/copy/artikels.yaml (article).
 const c = (await getCopy('artikels')).article;
+const booking = (await getCopy('site')).booking_url;
 
 // Related: same pillar first, then the most recent of the rest.
 const others = posts.filter((p) => p.slug !== post.slug);
@@ -26,13 +27,13 @@ const related = [
 ].slice(0, 3);
 ---
 
-<Base title={`${post.data.title} — Very Klear`} description={post.data.description} path="/artikels">
+<Base title={`${post.data.title} · Very Klear`} description={post.data.description} path="/artikels">
   <section class="hero hero-page">
     <div class="grain"></div>
     <div class="wrap">
       <div class="article-hero">
       <a class="crumb" href="/artikels">{c.crumb}</a>
-      <a class="label" href={`/${PILLAR_SLUG[post.data.category]}`} style="color:#fff;display:block">{post.data.category}</a>
+      <a class="label" href={pillarArticlesUrl(post.data.category)} style="color:#fff;display:block">{post.data.category}</a>
       <h1 class="h-page" style="margin-top:8px">{post.data.title}</h1>
       <div class="article-meta">
         <span>{c.author}</span><span>·</span>
@@ -46,6 +47,9 @@ const related = [
   <section class="block block-first">
     <div class="wrap article-layout">
       <article class="article-body article-main">
+        {post.data.image && (
+          <figure class="article-figure"><img src={post.data.image} alt={post.data.image_alt} /></figure>
+        )}
         <Content />
         <div class="card card-grad cut inline-cta">
           <div class="grain"></div>
@@ -53,7 +57,7 @@ const related = [
             <h3 class="h-card">{c.cta_title}</h3>
             <p class="muted" style="margin-top:8px">{c.cta_body}</p>
             <div style="margin-top:18px;display:flex;gap:12px;flex-wrap:wrap">
-              <a class="btn btn-white" href="/contact">{c.cta_button}</a>
+              <a class="btn btn-white" href={booking} target="_blank" rel="noopener">{c.cta_button}</a>
               <a class="btn btn-ghost-white" href={pillarUrl(post.data.category)}>{fillPillar(c.cta_more, post.data.category)}</a>
             </div>
           </div>

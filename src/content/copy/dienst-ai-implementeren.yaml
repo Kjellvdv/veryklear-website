@@ -4,7 +4,7 @@
 # Named for the building, not the diagnosing: keep the copy hands-on.
 
 meta:
-  title: AI implementeren — Very Klear
+  title: AI implementeren · Very Klear
   description: AI aan het werk zetten waar het echt helpt, in marketing, sales en klantencontact. En duidelijk maken wat beter mensenwerk blijft.
 
 hero:
@@ -75,7 +75,7 @@ leads_to:
 
 partners:
   title: Met wie we dit uitwerken
-  lead: Kjell bouwt de eerste toepassingen zelf. Voor het zwaardere technische werk is er een vaste partner.
+  lead: De eerste toepassingen bouwen we zelf. Voor het zwaardere technische werk is er een vaste partner.
   keys: [gtm_engineering, platform]
 
 faq:

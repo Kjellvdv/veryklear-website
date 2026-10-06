@@ -26,13 +26,13 @@ const year = new Date().getFullYear();
       </ul></div>
       <div class="f-col"><h4>{f.col_contact}</h4><ul>
         <li><a href={`mailto:${f.email}`}>{f.email}</a></li>
-        <li><a href="/contact">{f.address}</a></li>
+        <li>{f.address}</li>
       </ul></div>
       <div class="f-col"><h4>{f.col_made_by_us}</h4><ul>
         <li><a href="https://vcrater.com" target="_blank" rel="noopener">VC Rater</a></li>
         <li><a href="https://thecopygalaxy.com" target="_blank" rel="noopener">The Copy Galaxy</a></li>
       </ul></div>
     </div>
-    <div class="f-bottom"><span>&copy; {year} {f.copyright}</span><span>BTW {f.vat_number}</span></div>
+    <div class="f-bottom"><span>&copy; {year} {f.copyright}</span><span><a href="/privacy">{f.privacy}</a> &middot; BTW {f.vat_number}</span></div>
   </div>
 </footer>

@@ -32,7 +32,10 @@ export const pillarForSlug = (slug) => PILLARS.find((p) => PILLAR_SLUG[p] === sl
 // Lower-case a pillar name mid-sentence, keeping acronyms: "AI implementeren" -> "AI implementeren".
 export const pillarLower = (name) => name.split(' ').map((w) => (w === w.toUpperCase() ? w : w.toLowerCase())).join(' ');
 
-export const articleUrl = (post) => `/${PILLAR_SLUG[post.data.category]}/${post.slug}`;
+// Artikels live under /artikels/<pillar>/<slug>; the pillar's artikel list is
+// /artikels/<pillar>. The bare /<pillar> URL is the dienst page.
+export const articleUrl = (post) => `/artikels/${PILLAR_SLUG[post.data.category]}/${post.slug}`;
+export const pillarArticlesUrl = (name) => `/artikels/${PILLAR_SLUG[name]}`;
 
 export async function getArticles() {
   const posts = await getCollection('artikels', ({ data }) => !data.draft);

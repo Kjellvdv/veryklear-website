@@ -4,11 +4,10 @@
 # No prices on this page: fractioneel pricing is null in products.yml.
 
 meta:
-  title: Fractionele head of marketing — Very Klear
+  title: Fractionele head of marketing · Very Klear
   description: 'Een fractionele head of marketing: iemand die je marketing leidt en van 0 naar 1 opbouwt, zonder voltijdse aanwerving.'
 
 hero:
-  crumb: ← Home
   title_html: Je fractionele<br />head of marketing.
   lead: Iemand die je marketing leidt en mee opbouwt, van de basis tot een motor die draait, zonder dat je een voltijdse marketeer moet aanwerven. Van 0 naar 1, met dezelfde persoon.
   button_primary: Plan een strategiesessie

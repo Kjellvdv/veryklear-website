@@ -7,7 +7,9 @@ const thumbs = ['', 'alt', 'alt2'];
 ---
 
 <a class="card card-paper art" href={articleUrl(post)} data-cat={post.data.category}>
-  <div class={`thumb ${thumbs[index % 3]}`}></div>
+  {post.data.image
+    ? <div class="thumb thumb-img"><img src={post.data.image} alt={post.data.image_alt} loading="lazy" /></div>
+    : <div class={`thumb ${thumbs[index % 3]}`}></div>}
   <div class="body">
     <span class="label">{post.data.category}</span>
     <h3>{post.data.title}</h3>

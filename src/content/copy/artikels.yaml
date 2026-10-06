@@ -5,9 +5,8 @@
 
 overview:
   meta:
-    title: Artikels — Very Klear
+    title: Artikels · Very Klear
     description: Eén idee per artikel, over positionering, marketing strategie en AI.
-  crumb: ← Home
   title: Artikels.
   lead: Eén idee per artikel, over positionering, marketing strategie en AI. Kort genoeg om tussen twee afspraken te lezen.
   filter_all: Alles
@@ -18,6 +17,16 @@ overview:
   all_title: Alle artikels
   count_one: artikel
   count_many: artikels
+
+# The artikel list per pillar (/artikels/positionering, ...).
+# {pillar} becomes the pillar name in lower case, {Pillar} as written.
+pillar_page:
+  crumb: ← Alle artikels
+  meta_title: '{Pillar}: artikels · Very Klear'
+  meta_description: Artikels over {pillar}. Eén idee per artikel.
+  title: '{Pillar}.'
+  lead_before_link: Artikels over {pillar}. Wat we daarin voor je doen, lees je bij
+  lead_link: '{pillar}'
 
 # Shown when a list (overview filter or pillar page) has nothing yet.
 empty_category_title: Nog niets in deze categorie.

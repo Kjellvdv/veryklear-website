@@ -8,6 +8,7 @@ import { getArticles } from '../lib/articles.js';
 import { getCopy } from '../lib/copy.js';
 
 const c = await getCopy('home');
+const booking = (await getCopy('site')).booking_url;
 const recent = (await getArticles()).slice(0, 3);
 ---
 
@@ -19,7 +20,7 @@ const recent = (await getArticles()).slice(0, 3);
         <h1 class="h-display" set:html={c.hero.title_html} />
         <p class="lead">{c.hero.lead}</p>
         <div class="hero-ctas">
-          <a class="btn btn-white" href="/contact">{c.hero.button_primary}</a>
+          <a class="btn btn-white" href={booking} target="_blank" rel="noopener">{c.hero.button_primary}</a>
           <a class="btn btn-ghost-white" href="/diensten">{c.hero.button_secondary}</a>
         </div>
       </div>
@@ -29,7 +30,7 @@ const recent = (await getArticles()).slice(0, 3);
         <p class="muted" style="margin-top:8px;font-size:.93rem">{c.hero.entry.body}</p>
         <div style="display:flex;align-items:center;justify-content:space-between;margin-top:20px;gap:12px">
           <span class="muted" style="font-size:.88rem;font-weight:600">{c.hero.entry.meta}</span>
-          <a class="link-arrow" href="/contact">{c.hero.entry.link}</a>
+          <a class="link-arrow" href={booking} target="_blank" rel="noopener">{c.hero.entry.link}</a>
         </div>
       </aside>
     </div>

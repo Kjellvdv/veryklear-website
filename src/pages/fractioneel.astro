@@ -7,6 +7,7 @@ import { PILLARS } from '../lib/articles.js';
 import { getCopy } from '../lib/copy.js';
 
 const c = await getCopy('fractioneel');
+const booking = (await getCopy('site')).booking_url;
 const last = c.timeline.steps.length - 1;
 ---
 
@@ -14,11 +15,10 @@ const last = c.timeline.steps.length - 1;
   <section class="hero hero-page">
     <div class="grain"></div>
     <div class="wrap">
-      <a class="crumb" href="/">{c.hero.crumb}</a>
       <h1 class="h-page" set:html={c.hero.title_html} />
       <p class="lead">{c.hero.lead}</p>
       <div class="hero-ctas">
-        <a class="btn btn-white" href="/contact">{c.hero.button_primary}</a>
+        <a class="btn btn-white" href={booking} target="_blank" rel="noopener">{c.hero.button_primary}</a>
         <a class="btn btn-ghost-white" href="#vergelijking">{c.hero.button_secondary}</a>
       </div>
     </div>
@@ -101,8 +101,7 @@ const last = c.timeline.steps.length - 1;
 
   <section class="block" style="padding-top:0">
     <div class="wrap">
-      <div class="card card-paper" style="display:grid;grid-template-columns:auto 1fr;gap:22px;align-items:center">
-        <div class="note-badge" aria-hidden="true">!</div>
+      <div class="card card-paper">
         <p style="font-weight:600">{c.note}</p>
       </div>
     </div>

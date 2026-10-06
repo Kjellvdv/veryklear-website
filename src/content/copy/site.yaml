@@ -1,15 +1,17 @@
 # Copy shared by every page: menu, footer, the closing call to action.
 # Same rules as the page files: change the text after the colon, keep the indentation.
 
+# Where every "Plan een strategiesessie" button goes (TidyCal, Kjell 2026-10-06).
+booking_url: https://tidycal.com/kjellvandevyvere/discovery
+
 nav:
   cta: Plan een strategiesessie
   menu_button: Menu
-  # The menu items themselves (Home, Diensten, ...) live in src/components/Nav.astro,
+  # The menu items themselves (Diensten, Fractioneel, ...) live in src/components/Nav.astro,
   # because each one is tied to a page address.
 
 # Shared bits on the three dienst pages (/positionering, /marketing-strategie, /ai).
 dienst_page:
-  crumb: ← Diensten
   all_partners: Alle partners →
 
 # Default closing red block. A page can override it with its own cta: section.
@@ -29,3 +31,4 @@ footer:
   address: Breydelhofstraat 52, 8900 Ieper
   vat_number: BE1014759659
   copyright: Very Klear · Kjell Vandevyvere
+  privacy: Privacy

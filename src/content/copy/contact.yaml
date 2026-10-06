@@ -3,17 +3,16 @@
 # The e-mail address, street address and VAT number come from site.yaml (footer).
 
 meta:
-  title: Contact — Very Klear
+  title: Contact · Very Klear
   description: Plan een strategiesessie of stuur een mail naar Very Klear.
 
 hero:
-  crumb: ← Home
   title: Laten we praten.
   lead: Plan een strategiesessie, of stuur gewoon een mail. Zeg er kort bij waar je mee bezig bent, dan kunnen we meteen iets zinnigs antwoorden.
 
 form:
   title: Stuur een bericht
-  intro: Je krijgt antwoord van Kjell zelf.
+  intro: Je krijgt een persoonlijk antwoord, geen automatische mail.
   name_label: Naam
   name_placeholder: Voornaam en naam
   company_label: Bedrijf
@@ -30,6 +29,10 @@ form:
   message_hint: Hoe concreter, hoe nuttiger ons antwoord.
   submit: Verstuur
   or_mail: Of mail rechtstreeks naar
+  sending: Versturen…
+  sent_ok: Bedankt, je bericht is verstuurd. Je hoort snel van ons.
+  error: Dat lukte niet. Probeer opnieuw, of mail ons rechtstreeks.
+  # Only shown while no form key is set in src/lib/form.js.
   sent: Je mailprogramma opent met je bericht klaar. Druk daar op verzenden.
 
 # The red card on the right. Never show a price or "gratis" here.
@@ -54,7 +57,7 @@ after:
   title: Wat er na je bericht gebeurt.
   steps:
     - title: Antwoord
-      text: Een eerste reactie op wat je schreef, van Kjell zelf.
+      text: Een eerste, persoonlijke reactie op wat je schreef.
     - title: Strategiesessie
       text: Een uur samen, als het zinvol lijkt. Anders zeggen we dat meteen.
     - title: Voorstel

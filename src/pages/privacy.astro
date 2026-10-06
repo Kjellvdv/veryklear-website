@@ -1,0 +1,39 @@
+---
+// Copy lives in src/content/copy/privacy.yaml; company details in site.yaml.
+import Base from '../layouts/Base.astro';
+import { getCopy } from '../lib/copy.js';
+
+const c = await getCopy('privacy');
+const { footer: site } = await getCopy('site');
+---
+
+<Base title={c.meta.title} description={c.meta.description} path="/privacy">
+  <section class="hero hero-page">
+    <div class="grain"></div>
+    <div class="wrap">
+      <h1 class="h-page">{c.hero.title}</h1>
+      <p class="lead">{c.hero.lead}</p>
+    </div>
+  </section>
+
+  <section class="block block-first">
+    <div class="wrap">
+      <article class="article-body legal">
+        {c.sections.map((s) => (
+          <>
+            <h2>{s.title}</h2>
+            <p>{s.body}</p>
+          </>
+        ))}
+        <h2>{c.contact_title}</h2>
+        <p>
+          Very Klear<br />
+          {site.address}<br />
+          BTW {site.vat_number}<br />
+          <a href={`mailto:${site.email}`}>{site.email}</a>
+        </p>
+        <p class="muted">{c.updated}</p>
+      </article>
+    </div>
+  </section>
+</Base>

@@ -14,5 +14,7 @@ export default defineConfig({
     '/strategiesessie': '/contact',
     // /marketing was the pillar's first slug, live for a few hours on 2026-10-06.
     '/marketing': '/marketing-strategie',
+    // Artikels moved from /<pillar>/<slug> to /artikels/<pillar>/<slug> (2026-10-06).
+    '/marketing-strategie/een-kanaal-erbij-is-zelden-het-antwoord': '/artikels/marketing-strategie/een-kanaal-erbij-is-zelden-het-antwoord',
   },
 });
