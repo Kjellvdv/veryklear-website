@@ -1,0 +1,61 @@
+# Contact page copy (veryklear.com/contact).
+# Change the text after the colon, keep the indentation.
+# The e-mail address, street address and VAT number come from site.yaml (footer).
+
+meta:
+  title: Contact — Very Klear
+  description: Plan een strategiesessie of stuur een mail naar Very Klear.
+
+hero:
+  crumb: ← Home
+  title: Laten we praten.
+  lead: Plan een strategiesessie, of stuur gewoon een mail. Zeg er kort bij waar je mee bezig bent, dan kunnen we meteen iets zinnigs antwoorden.
+
+form:
+  title: Stuur een bericht
+  intro: Je krijgt antwoord van Kjell zelf.
+  name_label: Naam
+  name_placeholder: Voornaam en naam
+  company_label: Bedrijf
+  company_placeholder: Naam van je zaak
+  email_label: E-mail
+  email_placeholder: jij@jouwzaak.be
+  topics_label: Waarover gaat het?
+  # The pillar names are added automatically in front of these.
+  topics_extra:
+    - Fractioneel
+    - Weet ik nog niet
+  message_label: Waar ben je mee bezig?
+  message_placeholder: Een paar zinnen volstaan. Wat loopt er goed, wat niet?
+  message_hint: Hoe concreter, hoe nuttiger ons antwoord.
+  submit: Verstuur
+  or_mail: Of mail rechtstreeks naar
+  sent: Je mailprogramma opent met je bericht klaar. Druk daar op verzenden.
+
+# The red card on the right. Never show a price or "gratis" here.
+session:
+  label: De aanbevolen eerste stap
+  title: Strategiesessie
+  body: Eén uur, en je weet waar je het best begint.
+  points:
+    - 60 minuten, online of bij jou
+    - Een richting waar je mee verder kan
+    - Welke pijler of weg zinvol is
+    - Een eerlijk 'nee' als je ons niet nodig hebt
+  button: Kies een moment
+
+practical:
+  label: Praktisch
+  email_label: E-mail
+  address_label: Adres
+  vat_label: BTW
+
+after:
+  title: Wat er na je bericht gebeurt.
+  steps:
+    - title: Antwoord
+      text: Een eerste reactie op wat je schreef, van Kjell zelf.
+    - title: Strategiesessie
+      text: Een uur samen, als het zinvol lijkt. Anders zeggen we dat meteen.
+    - title: Voorstel
+      text: Een pijler of fractioneel, op maat, met een duidelijke scope.

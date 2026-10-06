@@ -13,4 +13,12 @@ const artikels = defineCollection({
   }),
 });
 
-export const collections = { artikels };
+/* Page copy, one YAML file per page in src/content/copy/. Loose on purpose:
+   the templates read the fields they need, and a missing field shows up as an
+   empty spot in the preview rather than a build error. */
+const copy = defineCollection({
+  type: 'data',
+  schema: z.record(z.any()),
+});
+
+export const collections = { artikels, copy };

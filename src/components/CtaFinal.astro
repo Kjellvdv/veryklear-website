@@ -1,11 +1,14 @@
 ---
 // The closing CTA on every page. The strategiesessie is free for now, but that
 // is never highlighted (products.yml strategiesessie.price_status).
-const {
-  heading = 'Eén uur om te weten wat de moeite waard is.',
-  body = 'Denken we dat je ons niet nodig hebt, dan zeggen we dat ook. Dat je huidige aanpak volstaat, is hier een normaal antwoord.',
-  variant = 'grad',
-} = Astro.props;
+// Copy: pass a page's `cta` section as `copy`; missing fields fall back to site.yaml.
+import { getCopy } from '../lib/copy.js';
+
+const site = await getCopy('site');
+const { copy = {}, variant = 'grad' } = Astro.props;
+const heading = copy.heading ?? site.cta.heading;
+const body = copy.body ?? site.cta.body;
+const button = copy.button ?? site.cta.button;
 ---
 
 <section class="block" style="padding-top:0">
@@ -17,7 +20,7 @@ const {
           <h2>{heading}</h2>
           <p class="muted">{body}</p>
         </div>
-        <div style="position:relative"><a class="btn btn-white" href="/contact">Plan een strategiesessie</a></div>
+        <div style="position:relative"><a class="btn btn-white" href="/contact">{button}</a></div>
       </div>
     ) : (
       <div class="card card-paper cta-final">
@@ -25,7 +28,7 @@ const {
           <h2>{heading}</h2>
           <p class="muted">{body}</p>
         </div>
-        <a class="btn btn-red" href="/contact">Plan een strategiesessie</a>
+        <a class="btn btn-red" href="/contact">{button}</a>
       </div>
     )}
   </div>

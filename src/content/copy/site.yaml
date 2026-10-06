@@ -1,0 +1,26 @@
+# Copy shared by every page: menu, footer, the closing call to action.
+# Same rules as the page files: change the text after the colon, keep the indentation.
+
+nav:
+  cta: Plan een strategiesessie
+  menu_button: Menu
+  # The menu items themselves (Home, Diensten, ...) live in src/components/Nav.astro,
+  # because each one is tied to a page address.
+
+# Default closing red block. A page can override it with its own cta: section.
+cta:
+  heading: Eén uur om te weten wat de moeite waard is.
+  body: Denken we dat je ons niet nodig hebt, dan zeggen we dat ook. Dat je huidige aanpak volstaat, is hier een normaal antwoord.
+  button: Plan een strategiesessie
+
+footer:
+  about: Positionering, marketing strategie en AI. Op projectbasis, of fractioneel als je een vaste partner wil.
+  col_services: Diensten
+  col_company: Very Klear
+  col_contact: Contact
+  col_made_by_us: Door ons gemaakt
+  # Legal details: keep in line with ~/brands/very-klear/memory/project_very-klear-entity.md
+  email: kjell@veryklear.be
+  address: Breydelhofstraat 52, 8900 Ieper
+  vat_number: BE1014759659
+  copyright: Very Klear · Kjell Vandevyvere

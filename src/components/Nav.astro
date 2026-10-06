@@ -1,5 +1,8 @@
 ---
 // Dark bar above the gradient hero (Kjell, 2026-10-01: "menu can stay dark").
+import { getCopy } from '../lib/copy.js';
+
+const site = await getCopy('site');
 const { path = '' } = Astro.props;
 
 const links = [
@@ -20,8 +23,8 @@ const isActive = (href) => (href === '/' ? path === '' || path === '/' : path.st
         <a href={l.href} class={isActive(l.href) ? 'is-active' : undefined} aria-current={isActive(l.href) ? 'page' : undefined}>{l.label}</a>
       ))}
     </nav>
-    <a class="nav-cta" href="/contact">Plan een strategiesessie</a>
-    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav">Menu</button>
+    <a class="nav-cta" href="/contact">{site.nav.cta}</a>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav">{site.nav.menu_button}</button>
   </div>
 </header>
 

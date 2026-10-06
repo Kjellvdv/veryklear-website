@@ -1,0 +1,51 @@
+# Copy around the artikels: the overview page, the pillar listing pages
+# (/positionering, /marketing, /ai) and the frame around each artikel.
+# The artikels themselves are Markdown files in src/content/artikels/.
+# Change the text after the colon, keep the indentation.
+
+overview:
+  meta:
+    title: Artikels — Very Klear
+    description: Eén idee per artikel, over positionering, marketing strategie en AI.
+  crumb: ← Home
+  title: Artikels.
+  lead: Eén idee per artikel, over positionering, marketing strategie en AI. Kort genoeg om tussen twee afspraken te lezen.
+  filter_all: Alles
+  empty_title: Nog niets gepubliceerd.
+  empty_body: Het eerste artikel komt binnenkort.
+  featured_label: Uitgelicht
+  featured_link: Lees het artikel →
+  all_title: Alle artikels
+  count_one: artikel
+  count_many: artikels
+
+# One page per pillar. {pillar} is replaced by the pillar name, in lower case.
+pillar_page:
+  crumb: ← Alle artikels
+  meta_title: '{Pillar} — artikels — Very Klear'
+  meta_description: Artikels over {pillar}. Eén idee per artikel.
+  lead_before_link: Artikels over {pillar}. Meer over de dienst staat op
+  lead_link: diensten
+
+# Shown when a list (overview filter or pillar page) has nothing yet.
+empty_category_title: Nog niets in deze categorie.
+empty_category_body: Er komt binnenkort een artikel bij.
+
+# The frame around a single artikel.
+article:
+  crumb: ← Alle artikels
+  author: Kjell Vandevyvere
+  reading_time: min lezen
+  cta_title: Benieuwd wat dit voor jouw zaak betekent?
+  cta_body: Daar is de strategiesessie voor. Een uur, over jouw situatie.
+  cta_button: Plan een strategiesessie
+  cta_more: Meer over {pillar}
+  toc_label: In dit artikel
+  author_label: Geschreven door
+  author_bio: Oprichter en zaakvoerder van Very Klear. Zeven jaar B2B tech marketing. Schrijft over wat werkt, en wat niet.
+  related_title: Lees ook
+
+# Closing block on the overview and pillar pages (white, not red).
+cta:
+  heading: Liever praten dan lezen?
+  body: Eén uur, over jouw zaak in plaats van in het algemeen.

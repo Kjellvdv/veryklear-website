@@ -1,52 +1,54 @@
 ---
+// Copy lives in src/content/copy/contact.yaml; contact details in site.yaml.
 import Base from '../layouts/Base.astro';
+import { PILLARS } from '../lib/articles.js';
+import { getCopy } from '../lib/copy.js';
 
-const topics = ['Positionering', 'Marketing strategie', 'AI implementeren', 'Fractioneel', 'Weet ik nog niet'];
+const c = await getCopy('contact');
+const { footer: site } = await getCopy('site');
+const topics = [...PILLARS, ...c.form.topics_extra];
+const [street, city] = site.address.split(', ');
 ---
 
-<Base
-  title="Contact — Very Klear"
-  description="Plan een strategiesessie of stuur een mail naar Very Klear."
-  path="/contact"
->
+<Base title={c.meta.title} description={c.meta.description} path="/contact">
   <section class="hero hero-page">
     <div class="grain"></div>
     <div class="wrap">
-      <a class="crumb" href="/">← Home</a>
-      <h1 class="h-page">Laten we praten.</h1>
-      <p class="lead">Plan een strategiesessie, of stuur gewoon een mail. Zeg er kort bij waar je mee bezig bent, dan kunnen we meteen iets zinnigs antwoorden.</p>
+      <a class="crumb" href="/">{c.hero.crumb}</a>
+      <h1 class="h-page">{c.hero.title}</h1>
+      <p class="lead">{c.hero.lead}</p>
     </div>
   </section>
 
   <section class="block block-first">
     <div class="wrap contact-grid">
       <div class="card card-paper">
-        <h2 class="h-section" style="font-size:1.6rem">Stuur een bericht</h2>
-        <p class="muted" style="margin-top:8px">Je krijgt antwoord van Kjell zelf.</p>
+        <h2 class="h-section" style="font-size:1.6rem">{c.form.title}</h2>
+        <p class="muted" style="margin-top:8px">{c.form.intro}</p>
         <!-- No form backend yet: submitting opens the visitor's mail app with the
              message filled in, addressed to kjell@veryklear.be. -->
-        <form class="form" id="contactForm" style="margin-top:28px" action="mailto:kjell@veryklear.be" method="post" enctype="text/plain">
+        <form class="form" id="contactForm" style="margin-top:28px" action={`mailto:${site.email}`} method="post" enctype="text/plain">
           <div class="row">
-            <div class="field"><label for="f-name">Naam</label><input id="f-name" name="name" autocomplete="name" placeholder="Voornaam en naam" required /></div>
-            <div class="field"><label for="f-company">Bedrijf</label><input id="f-company" name="company" autocomplete="organization" placeholder="Naam van je zaak" /></div>
+            <div class="field"><label for="f-name">{c.form.name_label}</label><input id="f-name" name="name" autocomplete="name" placeholder={c.form.name_placeholder} required /></div>
+            <div class="field"><label for="f-company">{c.form.company_label}</label><input id="f-company" name="company" autocomplete="organization" placeholder={c.form.company_placeholder} /></div>
           </div>
-          <div class="field"><label for="f-mail">E-mail</label><input id="f-mail" name="email" type="email" autocomplete="email" placeholder="jij@jouwzaak.be" required /></div>
+          <div class="field"><label for="f-mail">{c.form.email_label}</label><input id="f-mail" name="email" type="email" autocomplete="email" placeholder={c.form.email_placeholder} required /></div>
           <div class="field">
-            <span class="label-like" style="display:block;font-size:.85rem;font-weight:700;margin-bottom:7px">Waarover gaat het?</span>
+            <span class="label-like" style="display:block;font-size:.85rem;font-weight:700;margin-bottom:7px">{c.form.topics_label}</span>
             <div class="chips" id="topicChips">
               {topics.map((t) => <button type="button" class="chip chip-dark" data-topic={t} aria-pressed="false">{t}</button>)}
             </div>
           </div>
           <div class="field">
-            <label for="f-msg">Waar ben je mee bezig?</label>
-            <textarea id="f-msg" name="message" placeholder="Een paar zinnen volstaan. Wat loopt er goed, wat niet?"></textarea>
-            <p class="hint">Hoe concreter, hoe nuttiger ons antwoord.</p>
+            <label for="f-msg">{c.form.message_label}</label>
+            <textarea id="f-msg" name="message" placeholder={c.form.message_placeholder}></textarea>
+            <p class="hint">{c.form.message_hint}</p>
           </div>
           <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
-            <button class="btn btn-red" type="submit">Verstuur</button>
-            <span class="form-note">Of mail rechtstreeks naar <a href="mailto:kjell@veryklear.be">kjell@veryklear.be</a></span>
+            <button class="btn btn-red" type="submit">{c.form.submit}</button>
+            <span class="form-note">{c.form.or_mail} <a href={`mailto:${site.email}`}>{site.email}</a></span>
           </div>
-          <p class="sent" id="sent" role="status">Je mailprogramma opent met je bericht klaar. Druk daar op verzenden.</p>
+          <p class="sent" id="sent" role="status">{c.form.sent}</p>
         </form>
       </div>
 
@@ -54,24 +56,19 @@ const topics = ['Positionering', 'Marketing strategie', 'AI implementeren', 'Fra
         <div class="card card-grad cut session">
           <div class="grain"></div>
           <div style="position:relative">
-            <span class="label">De aanbevolen eerste stap</span>
-            <h3 class="h-card" style="margin-top:6px;font-size:1.4rem">Strategiesessie</h3>
-            <p class="muted" style="margin-top:10px">Eén uur, en je weet waar je het best begint.</p>
-            <ul>
-              <li>60 minuten, online of bij jou</li>
-              <li>Een richting waar je mee verder kan</li>
-              <li>Welke pijler of weg zinvol is</li>
-              <li>Een eerlijk 'nee' als je ons niet nodig hebt</li>
-            </ul>
-            <div style="margin-top:22px"><a class="btn btn-white" href="mailto:kjell@veryklear.be?subject=Strategiesessie">Kies een moment</a></div>
+            <span class="label">{c.session.label}</span>
+            <h3 class="h-card" style="margin-top:6px;font-size:1.4rem">{c.session.title}</h3>
+            <p class="muted" style="margin-top:10px">{c.session.body}</p>
+            <ul>{c.session.points.map((p) => <li>{p}</li>)}</ul>
+            <div style="margin-top:22px"><a class="btn btn-white" href={`mailto:${site.email}?subject=Strategiesessie`}>{c.session.button}</a></div>
           </div>
         </div>
         <div class="card card-paper">
-          <span class="label">Praktisch</span>
+          <span class="label">{c.practical.label}</span>
           <div class="detail-list" style="margin-top:12px">
-            <div><span>E-mail</span><a href="mailto:kjell@veryklear.be">kjell@veryklear.be</a></div>
-            <div><span>Adres</span><b style="text-align:right">Breydelhofstraat 52<br />8900 Ieper</b></div>
-            <div><span>BTW</span><b>BE1014759659</b></div>
+            <div><span>{c.practical.email_label}</span><a href={`mailto:${site.email}`}>{site.email}</a></div>
+            <div><span>{c.practical.address_label}</span><b style="text-align:right">{street}<br />{city}</b></div>
+            <div><span>{c.practical.vat_label}</span><b>{site.vat_number}</b></div>
           </div>
         </div>
       </div>
@@ -80,11 +77,9 @@ const topics = ['Positionering', 'Marketing strategie', 'AI implementeren', 'Fra
 
   <section class="block" style="padding-top:0">
     <div class="wrap">
-      <div class="s-head"><h2 class="h-section">Wat er na je bericht gebeurt.</h2></div>
+      <div class="s-head"><h2 class="h-section">{c.after.title}</h2></div>
       <div class="steps">
-        <div class="card card-paper step"><div class="n"></div><h3 class="h-card">Antwoord</h3><p class="muted">Een eerste reactie op wat je schreef, van Kjell zelf.</p></div>
-        <div class="card card-paper step"><div class="n"></div><h3 class="h-card">Strategiesessie</h3><p class="muted">Een uur samen, als het zinvol lijkt. Anders zeggen we dat meteen.</p></div>
-        <div class="card card-paper step"><div class="n"></div><h3 class="h-card">Voorstel</h3><p class="muted">Een pijler of fractioneel, op maat, met een duidelijke scope.</p></div>
+        {c.after.steps.map((s) => <div class="card card-paper step"><div class="n"></div><h3 class="h-card">{s.title}</h3><p class="muted">{s.text}</p></div>)}
       </div>
     </div>
   </section>
@@ -112,7 +107,7 @@ const topics = ['Positionering', 'Marketing strategie', 'AI implementeren', 'Fra
     lines.push(`E-mail: ${v('email')}`);
     if (topics.length) lines.push(`Onderwerp: ${topics.join(', ')}`);
     const body = [...lines, '', v('message')].join('\n');
-    window.location.href = `mailto:kjell@veryklear.be?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.location.href = `${form.getAttribute('action')}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     document.getElementById('sent')?.classList.add('show');
   });
 </script>
