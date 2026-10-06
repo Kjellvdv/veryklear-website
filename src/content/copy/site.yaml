@@ -4,7 +4,7 @@
 nav:
   cta: Plan een strategiesessie
   menu_button: Menu
-  # The menu items themselves (Home, Diensten, ...) live in src/components/Nav.astro,
+  # The menu items themselves (Diensten, Fractioneel, ...) live in src/components/Nav.astro,
   # because each one is tied to a page address.
 
 # Shared bits on the three dienst pages (/positionering, /marketing-strategie, /ai).
