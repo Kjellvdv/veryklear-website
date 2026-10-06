@@ -10,6 +10,10 @@ const artikels = defineCollection({
     category: z.enum(['Positionering', 'Marketing strategie', 'AI implementeren']),
     published_at: z.coerce.date(),
     draft: z.boolean().default(false),
+    /* Illustration in the locked ink-line style (design-spec.md, "Artikel
+       illustrations"). Path under public/, e.g. /artikels/<slug>.jpg. */
+    image: z.string().optional(),
+    image_alt: z.string().default(''),
   }),
 });
 

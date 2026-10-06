@@ -5,6 +5,8 @@ description: Waarom een extra kanaal meestal niet oplost wat er misloopt, en
 category: Marketing strategie
 published_at: 2026-10-06
 draft: false
+image: /artikels/een-kanaal-erbij-is-zelden-het-antwoord.jpg
+image_alt: "Een bureau van bovenaf met een waaier flyers, een smartphone, een krant, een pen en een rood handgeschreven briefje bovenop."
 ---
 
 Als het wat rustiger is dan je zou willen, komt deze vraag bijna vanzelf: moeten we niet beginnen op Instagram posten, of eens iets proberen met advertenties? Een extra marketingkanaal erbij pakken, voelt als iets doen. Maar het lost zelden op wat er eigenlijk misloopt.

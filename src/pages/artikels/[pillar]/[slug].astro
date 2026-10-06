@@ -1,8 +1,8 @@
 ---
-import Base from '../../layouts/Base.astro';
-import ArticleCard from '../../components/ArticleCard.astro';
-import { getArticles, readingMinutes, formatDate, PILLAR_SLUG, pillarUrl } from '../../lib/articles.js';
-import { getCopy, fillPillar } from '../../lib/copy.js';
+import Base from '../../../layouts/Base.astro';
+import ArticleCard from '../../../components/ArticleCard.astro';
+import { getArticles, readingMinutes, formatDate, PILLAR_SLUG, pillarUrl, pillarArticlesUrl } from '../../../lib/articles.js';
+import { getCopy, fillPillar } from '../../../lib/copy.js';
 
 export async function getStaticPaths() {
   const posts = await getArticles();
@@ -26,13 +26,13 @@ const related = [
 ].slice(0, 3);
 ---
 
-<Base title={`${post.data.title} — Very Klear`} description={post.data.description} path="/artikels">
+<Base title={`${post.data.title} · Very Klear`} description={post.data.description} path="/artikels">
   <section class="hero hero-page">
     <div class="grain"></div>
     <div class="wrap">
       <div class="article-hero">
       <a class="crumb" href="/artikels">{c.crumb}</a>
-      <a class="label" href={`/${PILLAR_SLUG[post.data.category]}`} style="color:#fff;display:block">{post.data.category}</a>
+      <a class="label" href={pillarArticlesUrl(post.data.category)} style="color:#fff;display:block">{post.data.category}</a>
       <h1 class="h-page" style="margin-top:8px">{post.data.title}</h1>
       <div class="article-meta">
         <span>{c.author}</span><span>·</span>
@@ -46,6 +46,9 @@ const related = [
   <section class="block block-first">
     <div class="wrap article-layout">
       <article class="article-body article-main">
+        {post.data.image && (
+          <figure class="article-figure"><img src={post.data.image} alt={post.data.image_alt} /></figure>
+        )}
         <Content />
         <div class="card card-grad cut inline-cta">
           <div class="grain"></div>

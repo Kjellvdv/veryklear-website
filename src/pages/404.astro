@@ -1,0 +1,35 @@
+---
+// GitHub Pages serves dist/404.html for every address that doesn't exist.
+// Copy lives in src/content/copy/404.yaml.
+import Base from '../layouts/Base.astro';
+import { getCopy } from '../lib/copy.js';
+
+const c = await getCopy('404');
+---
+
+<Base title={c.meta.title} description={c.meta.description} path="/404">
+  <section class="hero hero-page">
+    <div class="grain"></div>
+    <div class="wrap">
+      <span class="label" style="color:#fff;display:block">404</span>
+      <h1 class="h-page" style="margin-top:8px">{c.title}</h1>
+      <p class="lead">{c.lead}</p>
+      <div class="hero-ctas"><a class="btn btn-white" href="/">{c.home}</a></div>
+    </div>
+  </section>
+
+  <section class="block block-first">
+    <div class="wrap">
+      <div class="s-head"><h2 class="h-section">{c.links_title}</h2></div>
+      <div class="grid-4">
+        {c.links.map((l) => (
+          <a class="card card-paper next-card" href={l.href}>
+            <h3 class="h-card">{l.title}</h3>
+            <p class="muted">{l.text}</p>
+            <span class="link-arrow">→</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</Base>

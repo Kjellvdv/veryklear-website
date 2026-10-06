@@ -1,0 +1,32 @@
+# Privacy page copy (veryklear.com/privacy).
+# Keep this factual and in line with what the site actually does. If the site
+# ever adds analytics, cookies or another form service, update this page first.
+# Company details come from site.yaml (footer).
+
+meta:
+  title: Privacy · Very Klear
+  description: Welke gegevens Very Klear verwerkt via deze website, waarom, en wat je rechten zijn.
+
+hero:
+  title: Privacy.
+  lead: Kort en concreet. Deze site verzamelt zo weinig mogelijk, en wat je ons stuurt gebruiken we enkel om je te antwoorden.
+
+updated: Laatst bijgewerkt op 6 oktober 2026.
+
+sections:
+  - title: Wie is verantwoordelijk
+    body: Very Klear is verantwoordelijk voor de verwerking van je gegevens via deze website. Je vindt onze contactgegevens onderaan deze pagina.
+  - title: Wat we verzamelen
+    body: Enkel wat je zelf invult in het contactformulier, of wat je ons mailt. Dat is je naam, je bedrijf, je e-mailadres, het onderwerp en je bericht.
+  - title: Waarom
+    body: Om je vraag te beantwoorden en een eventueel gesprek of voorstel op te volgen. We gebruiken je gegevens niet voor nieuwsbrieven of reclame, en we verkopen ze aan niemand.
+  - title: Wie ze nog ziet
+    body: Het contactformulier verstuurt je bericht via Web3Forms naar onze mailbox. De site zelf draait op GitHub Pages, dat zoals elke webhost technische gegevens zoals je IP-adres kan bijhouden om de site veilig te houden. Meer niet.
+  - title: Cookies en tracking
+    body: Deze site gebruikt geen cookies en geen analytics. Ook het lettertype staat op onze eigen server, zodat er bij een bezoek geen gegevens naar Google of andere partijen gaan.
+  - title: Hoe lang we ze bewaren
+    body: Zolang nodig om je vraag op te volgen. Word je klant, dan bewaren we wat nodig is voor de samenwerking en de boekhouding, zo lang als de wet dat vraagt.
+  - title: Je rechten
+    body: Je kan altijd vragen welke gegevens we van je hebben, ze laten aanpassen of laten wissen. Stuur daarvoor een mail. Ben je niet tevreden met hoe we ermee omgaan, dan kan je terecht bij de Gegevensbeschermingsautoriteit (gegevensbeschermingsautoriteit.be).
+
+contact_title: Contact

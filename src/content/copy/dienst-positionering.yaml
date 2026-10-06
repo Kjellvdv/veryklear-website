@@ -4,7 +4,7 @@
 # Source of truth for what this pillar is: ~/brands/very-klear/gtm/products.yml.
 
 meta:
-  title: Positionering — Very Klear
+  title: Positionering · Very Klear
   description: Waar je zaak past in de markt, wie je ideale klant is en waarom die voor jou kiest. Het fundament onder je marketing.
 
 hero:
@@ -64,7 +64,7 @@ leads_to:
 
 partners:
   title: Met wie we dit uitwerken
-  lead: Het denkwerk blijft bij Kjell. Voor het maakwerk dat eruit volgt, werken we met vaste partners.
+  lead: Het denkwerk blijft bij ons. Voor het maakwerk dat eruit volgt, werken we met vaste partners.
   # Keys from partners.yaml
   keys: [design, fotografie]
 

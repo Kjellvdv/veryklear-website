@@ -9,7 +9,6 @@ nav:
 
 # Shared bits on the three dienst pages (/positionering, /marketing-strategie, /ai).
 dienst_page:
-  crumb: ← Diensten
   all_partners: Alle partners →
 
 # Default closing red block. A page can override it with its own cta: section.
@@ -29,3 +28,4 @@ footer:
   address: Breydelhofstraat 52, 8900 Ieper
   vat_number: BE1014759659
   copyright: Very Klear · Kjell Vandevyvere
+  privacy: Privacy

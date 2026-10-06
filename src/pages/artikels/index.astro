@@ -45,7 +45,9 @@ const [featured, ...rest] = posts;
               <p class="muted">{featured.data.description}</p>
               <span class="link-arrow" style="margin-top:8px">{c.featured_link}</span>
             </div>
-            <div class="feat-art"></div>
+            {featured.data.image
+              ? <div class="feat-art feat-img"><img src={featured.data.image} alt={featured.data.image_alt} /></div>
+              : <div class="feat-art"></div>}
           </a>
 
           {rest.length > 0 && (
