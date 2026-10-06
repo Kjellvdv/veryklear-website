@@ -4,7 +4,7 @@ description: Waarom een extra kanaal meestal niet oplost wat er misloopt, en
   waarom je beter eerst uitzoekt waarom mond-tot-mond werkt.
 category: Marketing strategie
 published_at: 2026-10-06
-draft: true
+draft: false
 ---
 
 Als het wat rustiger is dan je zou willen, komt deze vraag bijna vanzelf: moeten we niet beginnen op Instagram posten, of eens iets proberen met advertenties? Een extra marketingkanaal erbij pakken, voelt als iets doen. Maar het lost zelden op wat er eigenlijk misloopt.
