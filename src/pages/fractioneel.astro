@@ -7,6 +7,7 @@ import { PILLARS } from '../lib/articles.js';
 import { getCopy } from '../lib/copy.js';
 
 const c = await getCopy('fractioneel');
+const booking = (await getCopy('site')).booking_url;
 const last = c.timeline.steps.length - 1;
 ---
 
@@ -17,7 +18,7 @@ const last = c.timeline.steps.length - 1;
       <h1 class="h-page" set:html={c.hero.title_html} />
       <p class="lead">{c.hero.lead}</p>
       <div class="hero-ctas">
-        <a class="btn btn-white" href="/contact">{c.hero.button_primary}</a>
+        <a class="btn btn-white" href={booking} target="_blank" rel="noopener">{c.hero.button_primary}</a>
         <a class="btn btn-ghost-white" href="#vergelijking">{c.hero.button_secondary}</a>
       </div>
     </div>

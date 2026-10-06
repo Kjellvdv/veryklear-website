@@ -6,7 +6,7 @@ import { getCopy } from '../lib/copy.js';
 import { WEB3FORMS_KEY, WEB3FORMS_ENDPOINT } from '../lib/form.js';
 
 const c = await getCopy('contact');
-const { footer: site } = await getCopy('site');
+const { footer: site, booking_url: booking } = await getCopy('site');
 const topics = [...PILLARS, ...c.form.topics_extra];
 const [street, city] = site.address.split(', ');
 ---
@@ -61,7 +61,7 @@ const [street, city] = site.address.split(', ');
             <h3 class="h-card" style="margin-top:6px;font-size:1.4rem">{c.session.title}</h3>
             <p class="muted" style="margin-top:10px">{c.session.body}</p>
             <ul>{c.session.points.map((p) => <li>{p}</li>)}</ul>
-            <div style="margin-top:22px"><a class="btn btn-white" href={`mailto:${site.email}?subject=Strategiesessie`}>{c.session.button}</a></div>
+            <div style="margin-top:22px"><a class="btn btn-white" href={booking} target="_blank" rel="noopener">{c.session.button}</a></div>
           </div>
         </div>
         <div class="card card-paper">

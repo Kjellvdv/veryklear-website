@@ -9,6 +9,7 @@ const { copy = {}, variant = 'grad' } = Astro.props;
 const heading = copy.heading ?? site.cta.heading;
 const body = copy.body ?? site.cta.body;
 const button = copy.button ?? site.cta.button;
+const booking = site.booking_url;
 ---
 
 <section class="block" style="padding-top:0">
@@ -20,7 +21,7 @@ const button = copy.button ?? site.cta.button;
           <h2>{heading}</h2>
           <p class="muted">{body}</p>
         </div>
-        <div style="position:relative"><a class="btn btn-white" href="/contact">{button}</a></div>
+        <div style="position:relative"><a class="btn btn-white" href={booking} target="_blank" rel="noopener">{button}</a></div>
       </div>
     ) : (
       <div class="card card-paper cta-final">
@@ -28,7 +29,7 @@ const button = copy.button ?? site.cta.button;
           <h2>{heading}</h2>
           <p class="muted">{body}</p>
         </div>
-        <a class="btn btn-red" href="/contact">{button}</a>
+        <a class="btn btn-red" href={booking} target="_blank" rel="noopener">{button}</a>
       </div>
     )}
   </div>

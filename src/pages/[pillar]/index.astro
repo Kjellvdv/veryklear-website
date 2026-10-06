@@ -22,6 +22,7 @@ export async function getStaticPaths() {
 const { name, posts } = Astro.props;
 const c = await getCopy(PILLAR_COPY[name]);
 const partners = await getCopy('partners');
+const booking = (await getCopy('site')).booking_url;
 const { dienst_page: d } = await getCopy('site');
 ---
 
@@ -33,7 +34,7 @@ const { dienst_page: d } = await getCopy('site');
       <h1 class="h-page" style="margin-top:8px" set:html={c.hero.title_html} />
       <p class="lead">{c.hero.lead}</p>
       <div class="hero-ctas">
-        <a class="btn btn-white" href="/contact">{c.hero.button}</a>
+        <a class="btn btn-white" href={booking} target="_blank" rel="noopener">{c.hero.button}</a>
       </div>
     </div>
   </section>
