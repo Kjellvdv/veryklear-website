@@ -1,0 +1,59 @@
+# Partners page copy (veryklear.com/partners), also used for the partner cards
+# on the dienst pages and the diensten overview.
+#
+# Rules (from ~/brands/very-klear/gtm/products.yml):
+# - Only name a partner when they've confirmed. Leave `name` empty otherwise.
+# - Never say where a partner is based.
+# - Partners are the delivery behind the pillars and fractioneel, not a fourth pillar.
+
+meta:
+  title: Partners — Very Klear
+  description: Voor wat buiten de drie pijlers valt, werkt Very Klear met vaste partners. Het denkwerk en het contact blijven bij Kjell.
+
+hero:
+  crumb: ← Diensten
+  title_html: Meer dan wat<br />één persoon aankan.
+  lead: Voor wat buiten de drie pijlers valt, werken we met vaste partners. Het denkwerk en het contact blijven bij Kjell.
+
+how:
+  title: Hoe dat werkt
+  items:
+    - title: Eén aanspreekpunt
+      text: Je praat met Kjell, van het eerste gesprek tot de oplevering. De partner doet het maakwerk, niet het denkwerk.
+    - title: Pas als het nodig is
+      text: Een partner komt erbij als een pijler of een fractionele samenwerking uitwijst dat er iets gemaakt moet worden. Niet omgekeerd.
+    - title: Goed in één ding
+      text: Vaste partners, elk gekozen voor één vak. Zo hoef je zelf niet te zoeken wie wat kan.
+
+list_title: Onze partners
+# Order here is the order on the page. `name` stays empty until the partner
+# has agreed to be named.
+items:
+  design:
+    title: Design
+    text: Websites, logo en huisstijl. Altin ontwierp ook de identiteit van Very Klear.
+    name: Altin
+  fotografie:
+    title: Fotografie
+    text: Portretten, en fotoshoots voor je socials. Echte beelden van je zaak en je mensen, geen stockfoto's.
+    name: ''
+  linkedin:
+    title: LinkedIn
+    text: Content en verspreiding op LinkedIn, voor wie daar zijn klanten vindt.
+    name: Willow
+  social_content:
+    title: Social content
+    text: Posts, reels en video voor Instagram en Facebook, als onderdeel van een groter plan.
+    name: ''
+  platform:
+    title: Platform
+    text: Complexere websites en apps, of een site op het platform dat je al gebruikt.
+    name: ''
+  gtm_engineering:
+    title: GTM engineering
+    text: CRM en de techniek die marketing, verkoop en opvolging met elkaar verbindt.
+    name: ''
+
+cta:
+  heading: Weten wie je nodig hebt?
+  body: Dat zoeken we uit in de strategiesessie. Een uur, en je weet wat er gemaakt moet worden en door wie.

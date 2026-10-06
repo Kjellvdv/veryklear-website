@@ -8,10 +8,9 @@ export default defineConfig({
   // redirect page instead. These replace the old .htaccess rules (2026-10-01
   // restructure: three pillars, two paths).
   redirects: {
-    '/strategie': '/diensten#marketing-strategie',
-    '/automatisatie': '/diensten#ai-implementeren',
+    '/strategie': '/marketing-strategie',
+    '/automatisatie': '/ai',
     '/websites': '/diensten',
-    '/partners': '/diensten',
     '/strategiesessie': '/contact',
     // /marketing was the pillar's first slug, live for a few hours on 2026-10-06.
     '/marketing': '/marketing-strategie',

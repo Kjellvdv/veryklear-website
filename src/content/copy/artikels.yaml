@@ -19,14 +19,6 @@ overview:
   count_one: artikel
   count_many: artikels
 
-# One page per pillar. {pillar} is replaced by the pillar name, in lower case.
-pillar_page:
-  crumb: ← Alle artikels
-  meta_title: '{Pillar} — artikels — Very Klear'
-  meta_description: Artikels over {pillar}. Eén idee per artikel.
-  lead_before_link: Artikels over {pillar}. Meer over de dienst staat op
-  lead_link: diensten
-
 # Shown when a list (overview filter or pillar page) has nothing yet.
 empty_category_title: Nog niets in deze categorie.
 empty_category_body: Er komt binnenkort een artikel bij.

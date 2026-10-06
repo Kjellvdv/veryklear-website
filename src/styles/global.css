@@ -250,11 +250,31 @@ section.block > .wrap{position:relative;z-index:1}
 .card-grad .leads-to span{background:rgba(255,255,255,.18)}
 
 /* partners strip */
-.partners{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.partners{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px}
 @media (max-width:860px){.partners{grid-template-columns:1fr 1fr}}
 .partner{background:#fff;border-radius:var(--radius-sm);padding:18px;box-shadow:0 1px 2px rgba(0,0,0,.05)}
 .partner b{display:block;font-size:.95rem}
-.partner span{font-size:.84rem;color:var(--muted)}
+.partner span{font-size:.84rem;color:var(--muted);display:block}
+.partner .partner-name{margin-top:8px;font-weight:700;color:var(--red-deep)}
+.partners-lg{grid-template-columns:repeat(3,1fr);gap:20px}
+.partners-lg .partner{padding:32px;border-radius:var(--radius-card);box-shadow:var(--shadow)}
+.partners-lg .partner b{font-size:1.2rem;font-weight:800;margin-bottom:8px}
+.partners-lg .partner span{font-size:.97rem;line-height:1.6}
+@media (max-width:900px){.partners-lg{grid-template-columns:1fr 1fr}}
+@media (max-width:640px){.partners-lg{grid-template-columns:1fr}}
+
+/* dienst pages */
+.deliver-band{margin-top:20px;display:grid;grid-template-columns:200px 1fr;gap:24px;align-items:baseline}
+.deliver-band p{font-size:1.1rem;font-weight:600;line-height:1.55}
+@media (max-width:700px){.deliver-band{grid-template-columns:1fr;gap:8px}}
+.next-card{display:flex;flex-direction:column;gap:10px;text-decoration:none;color:inherit}
+.next-card p{margin-top:0!important;flex:1}
+a.next-card:hover .h-card{color:var(--red-deep)}
+.never-list{list-style:none;margin:12px 0 0;padding:0;display:grid;gap:8px;font-size:.95rem}
+.never-list li{display:flex;gap:10px}
+.never-list li::before{content:"–";font-weight:900;color:var(--muted)}
+.overview-card{display:flex;flex-direction:column;text-decoration:none;color:inherit}
+.overview-card ul{flex:1}
 
 /* FAQ */
 .faq{padding:6px 36px}
@@ -314,10 +334,10 @@ section.block > .wrap{position:relative;z-index:1}
 .article-body .intro{font-size:1.2rem;font-weight:600;line-height:1.6}
 .article-body .pq{border-left:4px solid var(--red-deep);padding:4px 0 4px 22px;font-size:1.25rem;font-weight:700;line-height:1.5}
 .article-body .inline-cta{margin-top:36px}
-.article-body a{color:var(--red-deep);text-underline-offset:3px}
+.article-body a:not(.btn){color:var(--red-deep);text-underline-offset:3px}
 .article-body ul,.article-body ol{padding-left:22px}
 .article-body li + li{margin-top:6px}
-.article-body h3{font-size:1.15rem;font-weight:800;margin-top:28px}
+.article-body h3:not(.h-card){font-size:1.15rem;font-weight:800;margin-top:28px}
 .article-body blockquote{margin:0;border-left:4px solid var(--red-deep);padding:4px 0 4px 22px;font-size:1.2rem;font-weight:700;line-height:1.5}
 /* Sidebar (contents, author) on the left, article on the right. The hero starts
    at the sidebar's left edge and is as wide as the article column (Kjell, 2026-10-06). The

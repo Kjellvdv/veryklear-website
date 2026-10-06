@@ -7,6 +7,11 @@ nav:
   # The menu items themselves (Home, Diensten, ...) live in src/components/Nav.astro,
   # because each one is tied to a page address.
 
+# Shared bits on the three dienst pages (/positionering, /marketing-strategie, /ai).
+dienst_page:
+  crumb: ← Diensten
+  all_partners: Alle partners →
+
 # Default closing red block. A page can override it with its own cta: section.
 cta:
   heading: Eén uur om te weten wat de moeite waard is.

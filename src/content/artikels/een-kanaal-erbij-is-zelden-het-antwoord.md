@@ -37,7 +37,7 @@ Kijk ook naar wie er doorverwijst. Vaak zijn het een paar klanten die steeds opn
 
 Met die antwoorden kan je meer dan met een extra kanaal. Je gebruikt de woorden van je klanten op je site en in je offertes, zodat wie na een aanbeveling gaat kijken, herkent wat er verteld werd. En als je toch een kanaal toevoegt, kies je het kanaal waar mensen zoals je doorverwijzers zitten, in plaats van het kanaal waar de concurrent zit. 
 
-Hoe we dat bij Very Klear helen uitzoeken, lees je onder [positionering](/diensten#positionering).
+Hoe we dat bij Very Klear helpen uitzoeken, lees je onder [positionering](/positionering).
 
 ## Breder gaan helpt zelden
 

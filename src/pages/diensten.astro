@@ -1,12 +1,13 @@
 ---
-// Copy lives in src/content/copy/diensten.yaml. This file is layout only.
+// The short overview. Each pillar has its own page; copy lives in
+// src/content/copy/diensten.yaml.
 import Base from '../layouts/Base.astro';
 import Faq from '../components/Faq.astro';
 import CtaFinal from '../components/CtaFinal.astro';
+import { PILLARS, pillarUrl } from '../lib/articles.js';
 import { getCopy } from '../lib/copy.js';
 
 const c = await getCopy('diensten');
-const { positionering: pos, marketing_strategie: ms, ai_implementeren: ai } = c.pillars;
 ---
 
 <Base title={c.meta.title} description={c.meta.description} path="/diensten">
@@ -16,118 +17,36 @@ const { positionering: pos, marketing_strategie: ms, ai_implementeren: ai } = c.
       <a class="crumb" href="/">{c.hero.crumb}</a>
       <h1 class="h-page" set:html={c.hero.title_html} />
       <p class="lead">{c.hero.lead}</p>
-      <div class="hero-chips">
-        <a class="chip" href="#positionering">{pos.title}</a>
-        <a class="chip" href="#marketing-strategie">{ms.title}</a>
-        <a class="chip" href="#ai-implementeren">{ai.title}</a>
-      </div>
     </div>
   </section>
 
   <section class="block block-first">
-    <div class="wrap">
-
-      <article class="pillar" id="positionering">
-        <div class="pillar-intro">
-          <span class="label">{pos.label}</span>
-          <h2 class="h-section">{pos.title}</h2>
-          <p class="lead">{pos.lead}</p>
-          <div class="when">{pos.when.map((w) => <div class="when-item">{w}</div>)}</div>
-        </div>
-        <div class="pillar-detail">
-          <div class="card card-grad cut">
-            <div class="grain"></div>
-            <h3 class="h-card" style="position:relative">{pos.questions_title}</h3>
-            <ul class="q-list" style="position:relative">{pos.questions.map((q) => <li>{q}</li>)}</ul>
-          </div>
-          <div class="deliver">
-            <div class="card card-paper">
-              <span class="label">{pos.start_label}</span>
-              <p style="margin-top:8px">{pos.start}</p>
-            </div>
-            <div class="card card-paper">
-              <span class="label">{pos.deliver_label}</span>
-              <p style="margin-top:8px">{pos.deliver}</p>
-            </div>
-          </div>
-          <div class="card card-paper">
-            <span class="label">{pos.leads_to_label}</span>
-            <div class="leads-to">{pos.leads_to.map((l) => <span>{l}</span>)}</div>
-          </div>
-        </div>
-      </article>
-
-      <article class="pillar" id="marketing-strategie">
-        <div class="pillar-intro">
-          <span class="label">{ms.label}</span>
-          <h2 class="h-section">{ms.title}</h2>
-          <p class="lead">{ms.lead}</p>
-          <div class="when">{ms.when.map((w) => <div class="when-item">{w}</div>)}</div>
-        </div>
-        <div class="pillar-detail">
-          <div class="card card-paper">
-            <h3 class="h-card">{ms.questions_title}</h3>
-            <ul class="q-list">{ms.questions.map((q) => <li>{q}</li>)}</ul>
-          </div>
-          <div class="deliver">
-            <div class="card card-paper">
-              <span class="label">{ms.start_label}</span>
-              <p style="margin-top:8px">{ms.start}</p>
-            </div>
-            <div class="card card-grad cut">
-              <div class="grain"></div>
-              <span class="label" style="position:relative">{ms.deliver_label}</span>
-              <p style="margin-top:8px;position:relative">{ms.deliver}</p>
-            </div>
-          </div>
-          <div class="card card-paper">
-            <span class="label">{ms.leads_to_label}</span>
-            <div class="leads-to">{ms.leads_to.map((l) => <span>{l}</span>)}</div>
-          </div>
-        </div>
-      </article>
-
-      <article class="pillar" id="ai-implementeren">
-        <div class="pillar-intro">
-          <span class="label">{ai.label}</span>
-          <h2 class="h-section">{ai.title}</h2>
-          <p class="lead">{ai.lead}</p>
-          <div class="when">{ai.when.map((w) => <div class="when-item">{w}</div>)}</div>
-        </div>
-        <div class="pillar-detail">
-          <div class="card card-paper">
-            <h3 class="h-card">{ai.questions_title}</h3>
-            <ul class="q-list">{ai.questions.map((q) => <li>{q}</li>)}</ul>
-          </div>
-          <div class="grid-2" style="gap:16px">
-            <div class="card card-tint">
-              <span class="label">{ai.ai_does_label}</span>
-              <p style="margin-top:8px">{ai.ai_does}</p>
-            </div>
-            <div class="card card-paper">
-              <span class="label">{ai.you_do_label}</span>
-              <p style="margin-top:8px">{ai.you_do}</p>
-            </div>
-          </div>
-          <div class="card card-grad cut">
-            <div class="grain"></div>
-            <span class="label" style="position:relative">{ai.deliver_label}</span>
-            <p style="margin-top:8px;position:relative">{ai.deliver}</p>
-          </div>
-        </div>
-      </article>
+    <div class="wrap grid-3">
+      {c.pillars.map((p, i) => (
+        <a class={`card pillar-card overview-card ${i === 0 ? 'card-grad cut' : 'card-paper'}`} href={pillarUrl(PILLARS[i])}>
+          {i === 0 && <div class="grain"></div>}
+          <span class="num">{p.label}</span>
+          <h2 class="h-card" style="margin-top:8px;font-size:1.5rem">{p.title}</h2>
+          <p class={i === 0 ? '' : 'muted'} style="margin-top:10px">{p.text}</p>
+          <ul>{p.points.map((q) => <li>{q}</li>)}</ul>
+          <div class="card-foot"><span class="link-arrow">{p.link}</span></div>
+        </a>
+      ))}
     </div>
   </section>
 
   <section class="block" style="padding-top:0">
-    <div class="wrap">
-      <div class="s-head">
-        <h2 class="h-section">{c.partners.title}</h2>
-        <p class="lead">{c.partners.lead}</p>
-      </div>
-      <div class="partners">
-        {c.partners.items.map((p) => <div class="partner"><b>{p.title}</b><span>{p.text}</span></div>)}
-      </div>
+    <div class="wrap grid-2">
+      <a class="card card-paper overview-card" href="/partners">
+        <h2 class="h-card" style="font-size:1.35rem">{c.partners.title}</h2>
+        <p class="muted" style="margin-top:10px;flex:1">{c.partners.lead}</p>
+        <div class="card-foot"><span class="link-arrow">{c.partners.link}</span></div>
+      </a>
+      <a class="card card-tint overview-card" href="/fractioneel">
+        <h2 class="h-card" style="font-size:1.35rem">{c.fractional.title}</h2>
+        <p style="margin-top:10px;flex:1">{c.fractional.text}</p>
+        <div class="card-foot"><span class="link-arrow">{c.fractional.link}</span></div>
+      </a>
     </div>
   </section>
 
