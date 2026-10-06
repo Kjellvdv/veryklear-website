@@ -29,7 +29,8 @@ const related = [
 <Base title={`${post.data.title} — Very Klear`} description={post.data.description} path="/artikels">
   <section class="hero hero-page">
     <div class="grain"></div>
-    <div class="wrap narrow">
+    <div class="wrap article-layout">
+      <div class="article-main">
       <a class="crumb" href="/artikels">{c.crumb}</a>
       <a class="label" href={`/${PILLAR_SLUG[post.data.category]}`} style="color:#fff;display:block">{post.data.category}</a>
       <h1 class="h-page" style="margin-top:8px">{post.data.title}</h1>
@@ -38,12 +39,13 @@ const related = [
         <span>{formatDate(post.data.published_at, 'long')}</span><span>·</span>
         <span>{readingMinutes(post.body)} {c.reading_time}</span>
       </div>
+      </div>
     </div>
   </section>
 
   <section class="block block-first">
     <div class="wrap article-layout">
-      <article class="article-body">
+      <article class="article-body article-main">
         <Content />
         <div class="card card-grad cut inline-cta">
           <div class="grain"></div>
