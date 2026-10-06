@@ -2,7 +2,7 @@
 import Base from '../../layouts/Base.astro';
 import CtaFinal from '../../components/CtaFinal.astro';
 import ArticleCard from '../../components/ArticleCard.astro';
-import { getArticles, PILLARS } from '../../lib/articles.js';
+import { getArticles, PILLARS, articleUrl } from '../../lib/articles.js';
 
 const posts = await getArticles();
 const [featured, ...rest] = posts;
@@ -37,7 +37,7 @@ const [featured, ...rest] = posts;
         </div>
       ) : (
         <>
-          <a class="card card-grad cut art-featured" href={`/artikels/${featured.slug}`} data-cat={featured.data.category}>
+          <a class="card card-grad cut art-featured" href={articleUrl(featured)} data-cat={featured.data.category}>
             <div class="grain"></div>
             <div class="feat-body" style="position:relative">
               <span class="label">Uitgelicht · {featured.data.category}</span>

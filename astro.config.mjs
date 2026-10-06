@@ -9,9 +9,11 @@ export default defineConfig({
   // restructure: three pillars, two paths).
   redirects: {
     '/strategie': '/diensten#marketing-strategie',
-    '/automatisatie': '/diensten#ai-inzetten',
+    '/automatisatie': '/diensten#ai-implementeren',
     '/websites': '/diensten',
     '/partners': '/diensten',
     '/strategiesessie': '/contact',
+    // /marketing was the pillar's first slug, live for a few hours on 2026-10-06.
+    '/marketing': '/marketing-strategie',
   },
 });

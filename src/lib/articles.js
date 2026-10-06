@@ -1,22 +1,29 @@
 import { getCollection } from 'astro:content';
 
-export const PILLARS = ['Positionering', 'Marketing strategie', 'AI inzetten'];
+export const PILLARS = ['Positionering', 'Marketing strategie', 'AI implementeren'];
 
 // Anchor on /diensten for each pillar, used by article CTAs.
 export const PILLAR_ANCHOR = {
   Positionering: 'positionering',
   'Marketing strategie': 'marketing-strategie',
-  'AI inzetten': 'ai-inzetten',
+  'AI implementeren': 'ai-implementeren',
 };
 
-// Category landing pages live at the top level: /marketing, /ai, /positionering.
+// Each pillar is a top-level section: /positionering, /marketing-strategie, /ai.
+// The section index lists its artikels, and artikels live under it:
+// /marketing-strategie/<slug>.
 export const PILLAR_SLUG = {
   Positionering: 'positionering',
-  'Marketing strategie': 'marketing',
-  'AI inzetten': 'ai',
+  'Marketing strategie': 'marketing-strategie',
+  'AI implementeren': 'ai',
 };
 
 export const pillarForSlug = (slug) => PILLARS.find((p) => PILLAR_SLUG[p] === slug);
+
+// Lower-case a pillar name mid-sentence, keeping acronyms: "AI implementeren" -> "AI implementeren".
+export const pillarLower = (name) => name.split(' ').map((w) => (w === w.toUpperCase() ? w : w.toLowerCase())).join(' ');
+
+export const articleUrl = (post) => `/${PILLAR_SLUG[post.data.category]}/${post.slug}`;
 
 export async function getArticles() {
   const posts = await getCollection('artikels', ({ data }) => !data.draft);

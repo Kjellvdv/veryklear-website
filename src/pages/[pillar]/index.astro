@@ -1,8 +1,8 @@
 ---
-import Base from '../layouts/Base.astro';
-import CtaFinal from '../components/CtaFinal.astro';
-import ArticleCard from '../components/ArticleCard.astro';
-import { getArticles, PILLARS, PILLAR_SLUG, PILLAR_ANCHOR } from '../lib/articles.js';
+import Base from '../../layouts/Base.astro';
+import CtaFinal from '../../components/CtaFinal.astro';
+import ArticleCard from '../../components/ArticleCard.astro';
+import { getArticles, PILLARS, PILLAR_SLUG, PILLAR_ANCHOR, pillarLower } from '../../lib/articles.js';
 
 export async function getStaticPaths() {
   const posts = await getArticles();
@@ -18,7 +18,7 @@ const slug = PILLAR_SLUG[name];
 
 <Base
   title={`${name} — artikels — Very Klear`}
-  description={`Artikels over ${name.toLowerCase()}. Eén idee per artikel.`}
+  description={`Artikels over ${pillarLower(name)}. Eén idee per artikel.`}
   path={`/${slug}`}
 >
   <section class="hero hero-page">
@@ -26,7 +26,7 @@ const slug = PILLAR_SLUG[name];
     <div class="wrap">
       <a class="crumb" href="/artikels">← Alle artikels</a>
       <h1 class="h-page">{name}.</h1>
-      <p class="lead">Artikels over {name.toLowerCase()}. Meer over de dienst staat op <a href={`/diensten#${PILLAR_ANCHOR[name]}`} style="color:inherit;text-decoration:underline">diensten</a>.</p>
+      <p class="lead">Artikels over {pillarLower(name)}. Meer over de dienst staat op <a href={`/diensten#${PILLAR_ANCHOR[name]}`} style="color:inherit;text-decoration:underline">diensten</a>.</p>
     </div>
   </section>
 

@@ -7,7 +7,7 @@ const artikels = defineCollection({
   schema: z.object({
     title: z.string(),
     description: z.string(),
-    category: z.enum(['Positionering', 'Marketing strategie', 'AI inzetten']),
+    category: z.enum(['Positionering', 'Marketing strategie', 'AI implementeren']),
     published_at: z.coerce.date(),
     draft: z.boolean().default(false),
   }),
