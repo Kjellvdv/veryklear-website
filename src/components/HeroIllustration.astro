@@ -12,8 +12,8 @@
   class="hero-illus"
   src="/hero/ieper.webp"
   alt=""
-  width="1800"
-  height="1013"
+  width="1400"
+  height="1274"
   decoding="async"
   fetchpriority="high"
 />
@@ -23,13 +23,16 @@
     position: absolute;
     right: 0;
     bottom: 0;
-    width: min(58%, 1050px);
-    height: auto;
+    height: 96%;
+    width: auto;
+    max-width: 62%;
+    object-fit: contain;
+    object-position: right bottom;
     z-index: 0;
     pointer-events: none;
     user-select: none;
   }
   @media (max-width: 900px) {
-    .hero-illus { width: 130%; right: -15%; }
+    .hero-illus { height: auto; width: 100%; max-width: none; }
   }
 </style>
