@@ -21,7 +21,7 @@ sections:
   - title: Waarom
     body: Om je vraag te beantwoorden en een eventueel gesprek of voorstel op te volgen. We gebruiken je gegevens niet voor nieuwsbrieven of reclame, en we verkopen ze aan niemand.
   - title: Wie ze nog ziet
-    body: Het contactformulier verstuurt je bericht via Web3Forms naar onze mailbox. De site zelf draait op GitHub Pages, dat zoals elke webhost technische gegevens zoals je IP-adres kan bijhouden om de site veilig te houden. Meer niet.
+    body: Het contactformulier stuurt je bericht rechtstreeks naar onze eigen mailserver, zonder tussenpartij. De site zelf draait op GitHub Pages, dat zoals elke webhost technische gegevens zoals je IP-adres kan bijhouden om de site veilig te houden. Meer niet.
   - title: Cookies en tracking
     body: Deze site gebruikt geen cookies en geen analytics. Ook het lettertype staat op onze eigen server, zodat er bij een bezoek geen gegevens naar Google of andere partijen gaan.
   - title: Hoe lang we ze bewaren
