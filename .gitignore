@@ -6,3 +6,6 @@ dist/
 
 # Local preview config for Claude Code
 .claude/launch.json
+
+# Contact form SMTP password lives on the server only
+forms/contact-config.php

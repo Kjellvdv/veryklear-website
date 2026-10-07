@@ -24,12 +24,35 @@ After changing `contact.php`, upload it again by hand (step 3).
    should see `{"success":false,"message":"POST only"}`. That means it works.
    Then send a test message from https://veryklear.com/contact.
 
+## Sending through a mailbox (required)
+
+PHP's built-in `mail()` gets silently dropped on SiteGround (found 2026-10-07:
+the script reported success, nothing arrived). So the script logs in to a real
+mailbox and sends over SMTP, like a mail app.
+
+1. **Create the mailbox.** Site Tools → Email → Accounts → create
+   `website@veryklear.be` with a strong password.
+2. **Look up the outgoing server.** Same page, on that mailbox: ⋮ → Mail
+   Configuration → Manual settings. Note the outgoing (SMTP) server name and
+   port (465 with SSL).
+3. **Make the settings file.** Copy `contact-config.example.php` to a file named
+   `contact-config.php` and fill in the server, port and password.
+4. **Upload it one folder above `public_html`** of the forms subdomain, so it
+   can never be opened in a browser. (Next to `contact.php` also works, as a
+   fallback, but above is safer.) Never commit the real file; `.gitignore`
+   already excludes it.
+5. **Upload the new `contact.php`** over the old one in `public_html`.
+6. **Test** by sending a message from https://veryklear.com/contact.
+
+If sending fails, the visitor sees the error pop-up and the reason lands in the
+site's PHP error log (Site Tools → Statistics → Error Log), starting with `[vk-form]`.
+
 ## What it does
 
 - Only accepts posts from veryklear.com (and the local preview).
 - Drops bots that tick the hidden `botcheck` field.
 - Allows 5 messages per hour per IP address.
-- Sends from `website@veryklear.com` with Reply-To set to the visitor, so
-  hitting reply in your mail answers them directly.
+- Sends from the form mailbox (`website@veryklear.be`) with Reply-To set to
+  the visitor, so hitting reply in your mail answers them directly.
 
 To change the inbox, edit `TO_ADDRESS` at the top of `contact.php`.

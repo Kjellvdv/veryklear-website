@@ -6,12 +6,16 @@
  * next to this file). The contact page on veryklear.com posts JSON here in the
  * background; this script checks it and mails it to the inbox below.
  *
+ * Sending: it logs in to a real mailbox over SMTP (settings in
+ * contact-config.php, which lives on the server only, one folder above
+ * public_html). PHP's own mail() turned out to be silently dropped by
+ * SiteGround (2026-10-07), so it is only a fallback when no config is found.
+ *
  * It is not part of the Astro build and is not deployed by GitHub Actions.
  * After changing it, upload it again through SiteGround's File Manager.
  */
 
-const TO_ADDRESS   = 'kjell@veryklear.be';
-const FROM_ADDRESS = 'website@veryklear.com';   // covered by veryklear.com's SPF on SiteGround
+const TO_ADDRESS = 'kjell@veryklear.be';
 const ALLOWED_ORIGINS = [
     'https://veryklear.com',
     'https://www.veryklear.com',
@@ -19,6 +23,11 @@ const ALLOWED_ORIGINS = [
     'http://localhost:4324',
 ];
 const MAX_PER_HOUR = 5;        // per IP address
+
+// SMTP settings: SMTP_HOST, SMTP_PORT, SMTP_SECURE ('ssl' or 'tls'), SMTP_USER, SMTP_PASS.
+foreach ([__DIR__ . '/../contact-config.php', __DIR__ . '/contact-config.php'] as $config) {
+    if (is_file($config)) { require $config; break; }
+}
 
 header('Content-Type: application/json; charset=utf-8');
 header('X-Content-Type-Options: nosniff');
@@ -35,6 +44,54 @@ function reply(int $status, bool $ok, string $message = ''): void {
     http_response_code($status);
     echo json_encode(['success' => $ok, 'message' => $message]);
     exit;
+}
+
+/*
+ * Minimal SMTP client: connect, log in, send one message, quit.
+ * Returns '' on success, or the server's error line.
+ */
+function smtp_send(string $from, string $to, string $data): string {
+    $secure = defined('SMTP_SECURE') ? SMTP_SECURE : 'ssl';
+    $host = ($secure === 'ssl' ? 'ssl://' : '') . SMTP_HOST;
+    $port = defined('SMTP_PORT') ? SMTP_PORT : 465;
+    $fp = @stream_socket_client("$host:$port", $errno, $errstr, 15);
+    if (!$fp) return "connect: $errstr ($errno)";
+    stream_set_timeout($fp, 15);
+
+    $read = function () use ($fp): string {
+        $out = '';
+        while (($line = fgets($fp, 515)) !== false) {
+            $out .= $line;
+            if (strlen($line) < 4 || $line[3] === ' ') break;  // last line of a reply
+        }
+        return $out;
+    };
+    $cmd = function (string $line, int $expect) use ($fp, $read): string {
+        if ($line !== '') fwrite($fp, $line . "\r\n");
+        $res = $read();
+        return ((int) substr($res, 0, 3) === $expect) ? '' : trim($res);
+    };
+
+    $helo = gethostname() ?: 'forms.veryklear.com';
+    if ($e = $cmd('', 220)) return $e;
+    if ($e = $cmd("EHLO $helo", 250)) return $e;
+    if ($secure === 'tls') {
+        if ($e = $cmd('STARTTLS', 220)) return $e;
+        if (!stream_socket_enable_crypto($fp, true, STREAM_CRYPTO_METHOD_TLS_CLIENT)) return 'starttls failed';
+        if ($e = $cmd("EHLO $helo", 250)) return $e;
+    }
+    if ($e = $cmd('AUTH LOGIN', 334)) return $e;
+    if ($e = $cmd(base64_encode(SMTP_USER), 334)) return $e;
+    if ($e = $cmd(base64_encode(SMTP_PASS), 235)) return 'login failed';
+    if ($e = $cmd("MAIL FROM:<$from>", 250)) return $e;
+    if ($e = $cmd("RCPT TO:<$to>", 250)) return $e;
+    if ($e = $cmd('DATA', 354)) return $e;
+    // Dot-stuffing: a line starting with "." gets an extra "." in SMTP.
+    $body = preg_replace('/^\./m', '..', str_replace(["\r\n", "\r"], "\n", $data));
+    if ($e = $cmd(str_replace("\n", "\r\n", $body) . "\r\n.", 250)) return $e;
+    $cmd('QUIT', 221);
+    fclose($fp);
+    return '';
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
@@ -91,24 +148,46 @@ $lines[] = $message !== '' ? $message : '(geen bericht)';
 $lines[] = '';
 $lines[] = '--';
 $lines[] = 'Verstuurd via het contactformulier op veryklear.com. Antwoorden gaat rechtstreeks naar de afzender.';
+$text = implode("\n", $lines);
 
-$headers = [
-    'From: Very Klear website <' . FROM_ADDRESS . '>',
-    'Reply-To: ' . ($name !== '' ? '"' . str_replace('"', '', $name) . '" ' : '') . "<$email>",
-    'Content-Type: text/plain; charset=utf-8',
-    'Content-Transfer-Encoding: 8bit',
-];
+$fromAddress = defined('SMTP_USER') ? SMTP_USER : 'website@veryklear.com';
+$encodedSubject = '=?UTF-8?B?' . base64_encode($subject) . '?=';
+$replyTo = '"' . str_replace('"', '', $name) . "\" <$email>";
 
-$sent = mail(
-    TO_ADDRESS,
-    '=?UTF-8?B?' . base64_encode($subject) . '?=',
-    implode("\n", $lines),
-    implode("\r\n", $headers),
-    '-f' . FROM_ADDRESS
-);
-
-if (!$sent) {
-    reply(500, false, 'Mail could not be sent');
+if (defined('SMTP_HOST') && defined('SMTP_USER') && defined('SMTP_PASS')) {
+    $headers = [
+        'Date: ' . date('r'),
+        'From: Very Klear website <' . $fromAddress . '>',
+        'To: <' . TO_ADDRESS . '>',
+        'Reply-To: ' . $replyTo,
+        'Subject: ' . $encodedSubject,
+        'Message-ID: <' . bin2hex(random_bytes(12)) . '@forms.veryklear.com>',
+        'MIME-Version: 1.0',
+        'Content-Type: text/plain; charset=utf-8',
+        'Content-Transfer-Encoding: 8bit',
+    ];
+    $error = smtp_send($fromAddress, TO_ADDRESS, implode("\n", $headers) . "\n\n" . $text);
+    if ($error !== '') {
+        error_log('[vk-form] SMTP: ' . $error);
+        reply(500, false, 'Mail could not be sent');
+    }
+} else {
+    // Fallback without SMTP settings. SiteGround drops these, so set up contact-config.php.
+    $sent = mail(
+        TO_ADDRESS,
+        $encodedSubject,
+        $text,
+        implode("\r\n", [
+            'From: Very Klear website <' . $fromAddress . '>',
+            'Reply-To: ' . $replyTo,
+            'Content-Type: text/plain; charset=utf-8',
+            'Content-Transfer-Encoding: 8bit',
+        ]),
+        '-f' . $fromAddress
+    );
+    if (!$sent) {
+        reply(500, false, 'Mail could not be sent');
+    }
 }
 
 $hits[] = time();
