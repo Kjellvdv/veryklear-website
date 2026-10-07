@@ -3,7 +3,7 @@
 import Base from '../layouts/Base.astro';
 import { PILLARS } from '../lib/articles.js';
 import { getCopy } from '../lib/copy.js';
-import { WEB3FORMS_KEY, WEB3FORMS_ENDPOINT } from '../lib/form.js';
+import { FORM_ENDPOINT } from '../lib/form.js';
 
 const c = await getCopy('contact');
 const { footer: site, booking_url: booking } = await getCopy('site');
@@ -25,9 +25,9 @@ const [street, city] = site.address.split(', ');
       <div class="card card-paper">
         <h2 class="h-section" style="font-size:1.6rem">{c.form.title}</h2>
         <p class="muted" style="margin-top:8px">{c.form.intro}</p>
-        <!-- Sends through Web3Forms (src/lib/form.js). Without a key it falls back
-             to opening the visitor's mail app, addressed to the site e-mail. -->
-        <form class="form" id="contactForm" style="margin-top:28px" action={WEB3FORMS_KEY ? WEB3FORMS_ENDPOINT : `mailto:${site.email}`} method="post" data-key={WEB3FORMS_KEY} data-mailto={site.email} data-sending={c.form.sending} data-error={c.form.error}>
+        <!-- Posts in the background to forms/contact.php on SiteGround
+             (src/lib/form.js). The visitor stays on this page. -->
+        <form class="form" id="contactForm" style="margin-top:28px" action={FORM_ENDPOINT} method="post" data-sending={c.form.sending} data-error={c.form.error}>
           <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
           <div class="row">
             <div class="field"><label for="f-name">{c.form.name_label}</label><input id="f-name" name="name" autocomplete="name" placeholder={c.form.name_placeholder} required /></div>
@@ -49,7 +49,7 @@ const [street, city] = site.address.split(', ');
             <button class="btn btn-red" type="submit">{c.form.submit}</button>
             <span class="form-note">{c.form.or_mail} <a href={`mailto:${site.email}`}>{site.email}</a></span>
           </div>
-          <p class="sent" id="sent" role="status" data-ok={c.form.sent_ok} data-fallback={c.form.sent}></p>
+          <p class="sent" id="sent" role="status" data-ok={c.form.sent_ok}></p>
         </form>
       </div>
 
@@ -109,21 +109,6 @@ const [street, city] = site.address.split(', ');
     if (!form.reportValidity()) return;
     const v = (n: string) => (form.elements.namedItem(n) as HTMLInputElement).value.trim();
     const topics = [...chips].filter((c) => c.classList.contains('on')).map((c) => (c as HTMLElement).dataset.topic);
-    const subject = `Bericht via veryklear.com: ${v('company') || v('name')}`;
-    const key = form.dataset.key;
-
-    if (!key) {
-      // No backend configured: open the visitor's mail app with the message filled in.
-      const lines = [`Naam: ${v('name')}`];
-      if (v('company')) lines.push(`Bedrijf: ${v('company')}`);
-      lines.push(`E-mail: ${v('email')}`);
-      if (topics.length) lines.push(`Onderwerp: ${topics.join(', ')}`);
-      const body = [...lines, '', v('message')].join('\n');
-      window.location.href = `mailto:${form.dataset.mailto}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-      show(sent.dataset.fallback || '');
-      return;
-    }
-
     if ((form.elements.namedItem('botcheck') as HTMLInputElement).checked) return;
     const label = button.textContent;
     button.disabled = true;
@@ -133,9 +118,6 @@ const [street, city] = site.address.split(', ');
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
         body: JSON.stringify({
-          access_key: key,
-          subject,
-          from_name: 'veryklear.com',
           name: v('name'),
           bedrijf: v('company'),
           email: v('email'),

@@ -32,8 +32,6 @@ form:
   sending: Versturen…
   sent_ok: Bedankt, je bericht is verstuurd. Je hoort snel van ons.
   error: Dat lukte niet. Probeer opnieuw, of mail ons rechtstreeks.
-  # Only shown while no form key is set in src/lib/form.js.
-  sent: Je mailprogramma opent met je bericht klaar. Druk daar op verzenden.
 
 # The red card on the right. Never show a price or "gratis" here.
 session:
