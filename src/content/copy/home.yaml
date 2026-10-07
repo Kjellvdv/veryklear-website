@@ -24,7 +24,6 @@ hero:
 
 problems:
   title: Waar het meestal vastloopt.
-  lead: Drie dingen die we bij bijna elk eerste gesprek horen.
   items:
     - quote: '"Onze klanten komen via via, maar niemand weet eigenlijk waarom."'
       body: Zonder dat antwoord is elke keuze over kanalen, teksten of een nieuwe site een gok.
@@ -52,7 +51,6 @@ paths:
 
 pillars:
   title: Drie diensten die in elkaar overlopen.
-  lead: Je kan bij elk van de drie instappen. Vaak volgt het ene uit het andere.
   link: Alle details →
   items:
     - title: Positionering
@@ -72,14 +70,16 @@ pillars:
         - Wat blijft beter mensenwerk?
 
 statement:
-  title: Strategie en uitvoering bij dezelfde persoon. Geen overdracht, geen deck dat in een lade belandt.
+  title: Strategie en uitvoering bij dezelfde persoon. Geen overdracht, geen presentatie die in een lade belandt.
   body: Wat we uitzoeken, bouwen we ook. En wat niet nodig is, zeggen we gewoon.
   # Facts must be true and checkable. No "seven years of AI".
   facts:
     - value: 7 jaar
       text: B2B tech marketing, van startups tot scale-ups
-    - value: 3 diensten
-      text: apart, na elkaar, of samen als fractioneel
+    # The number in this fact is counted from partners.yaml; {n} is replaced.
+    - value: '{n} partners'
+      text: vaste partners voor wat buiten onze diensten valt
+      href: /partners
     - value: 1 persoon
       text: van het eerste gesprek tot de uitvoering
 
@@ -103,7 +103,6 @@ recent:
 
 faq:
   title: Wat mensen ons meestal vragen.
-  lead: Staat je vraag er niet bij? Stel ze gewoon.
   button: Stel je vraag
   items:
     - q: We krijgen al ons werk via via. Hebben wij dat wel nodig?

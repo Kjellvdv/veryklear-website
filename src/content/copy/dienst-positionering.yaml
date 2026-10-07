@@ -22,7 +22,6 @@ when:
 
 questions:
   title: Wat we samen uitzoeken
-  lead: Zes vragen. Samen bepalen ze hoe je over je zaak praat, op je site, in een offerte en aan de toog.
   items:
     - In welke categorie speel je?
     - Met wie word je vergeleken?
@@ -33,7 +32,6 @@ questions:
 
 approach:
   title: Hoe het verloopt
-  lead: Geen sessie en geen rapport. Een paar maanden, met vaste momenten, waarin het beeld scherper wordt.
   steps:
     - title: Gesprekken met je beste klanten
       text: Wat wilden ze oplossen, wat gebruikten ze eerder, en wanneer wisten ze dat het werkte. Daar zit het antwoord meestal al.
@@ -48,7 +46,6 @@ deliver:
 
 leads_to:
   title: Waar het naartoe kan
-  lead: Staat de basis, dan kan je verder bouwen. Altijd in deze richting, nooit omgekeerd.
   items:
     - title: Messaging en teksten
       text: Hoe je het zegt, op je site, in offertes en in gesprekken.
@@ -63,7 +60,6 @@ leads_to:
 
 partners:
   title: Met wie we dit uitwerken
-  lead: Het denkwerk blijft bij ons. Voor het maakwerk dat eruit volgt, werken we met vaste partners.
   # Keys from partners.yaml
   keys: [design, fotografie]
 

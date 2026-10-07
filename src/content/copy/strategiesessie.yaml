@@ -1,0 +1,25 @@
+# Booking page (veryklear.com/strategiesessie). The calendar itself is TidyCal,
+# embedded below the intro; its address is `booking_url` in site.yaml.
+# Never show a price or "gratis" here (products.yml strategiesessie.price_status).
+
+meta:
+  title: Plan een strategiesessie · Very Klear
+  description: Kies een moment voor een strategiesessie van een uur met Very Klear.
+
+hero:
+  title: Plan een strategiesessie.
+  lead: Een uur over wat nu werkt en wat niet. Kies hieronder een moment dat je past.
+
+side:
+  title: Wat je eruit haalt
+  points:
+    - 60 minuten, online of bij jou
+    - Een richting waar je mee verder kan
+    - Waar je best begint
+    - Een eerlijk 'nee' als je ons niet nodig hebt
+  question: Liever eerst een vraag stellen?
+  question_link: Stuur een bericht →
+
+# Shown if the calendar can't load (blocked script, no connection).
+fallback: Lukt het niet om de agenda te laden? Open ze dan rechtstreeks.
+fallback_link: Open de agenda →

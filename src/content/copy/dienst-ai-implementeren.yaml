@@ -22,7 +22,6 @@ when:
 
 questions:
   title: Wat we samen bouwen
-  lead: Niet alles automatiseren. Wel de juiste dingen, op één manier.
   items:
     - Eén manier van werken voor het hele team
     - Data die klopt voor ze erin gaat
@@ -33,7 +32,6 @@ questions:
 
 approach:
   title: Hoe het verloopt
-  lead: Klein beginnen, met iets dat effectief draait.
   steps:
     - title: Waar loopt het vast?
       text: Wat nu per persoon of per tool verschilt, en welke taak elke week terugkomt. De offerte die telkens opnieuw getypt wordt, de klant die niemand terugbelde.
@@ -61,7 +59,6 @@ split:
 
 leads_to:
   title: Waar het naartoe kan
-  lead: Werkt de eerste toepassing, dan komt de volgende vanzelf.
   items:
     - title: Een volgende toepassing
       text: De tweede taak die elke week terugkomt.
@@ -74,7 +71,6 @@ leads_to:
 
 partners:
   title: Met wie we dit uitwerken
-  lead: De eerste toepassingen bouwen we zelf. Voor het zwaardere technische werk is er een vaste partner.
   keys: [gtm_engineering, platform]
 
 faq:

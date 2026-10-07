@@ -7,7 +7,7 @@ import { PILLARS } from '../lib/articles.js';
 import { getCopy } from '../lib/copy.js';
 
 const c = await getCopy('fractioneel');
-const booking = (await getCopy('site')).booking_url;
+const booking = (await getCopy('site')).booking_page;
 const last = c.timeline.steps.length - 1;
 ---
 
@@ -18,7 +18,7 @@ const last = c.timeline.steps.length - 1;
       <h1 class="h-page" set:html={c.hero.title_html} />
       <p class="lead">{c.hero.lead}</p>
       <div class="hero-ctas">
-        <a class="btn btn-white" href={booking} target="_blank" rel="noopener">{c.hero.button_primary}</a>
+        <a class="btn btn-white" href={booking}>{c.hero.button_primary}</a>
         <a class="btn btn-ghost-white" href="#vergelijking">{c.hero.button_secondary}</a>
       </div>
     </div>
@@ -28,7 +28,6 @@ const last = c.timeline.steps.length - 1;
     <div class="wrap">
       <div class="s-head">
         <h2 class="h-section">{c.timeline.title}</h2>
-        <p class="lead">{c.timeline.lead}</p>
       </div>
       <div class="card card-paper" style="padding:44px 36px">
         <div class="timeline">
@@ -69,7 +68,6 @@ const last = c.timeline.steps.length - 1;
     <div class="wrap">
       <div class="s-head">
         <h2 class="h-section">{c.compare.title}</h2>
-        <p class="lead">{c.compare.lead}</p>
       </div>
       <div class="compare">
         {c.compare.columns.map((col) => (

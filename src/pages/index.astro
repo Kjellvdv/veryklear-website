@@ -8,7 +8,8 @@ import { getArticles, PILLARS, pillarUrl } from '../lib/articles.js';
 import { getCopy } from '../lib/copy.js';
 
 const c = await getCopy('home');
-const booking = (await getCopy('site')).booking_url;
+const partnerCount = Object.keys((await getCopy('partners')).items).length;
+const booking = (await getCopy('site')).booking_page;
 const recent = (await getArticles()).slice(0, 3);
 ---
 
@@ -20,7 +21,7 @@ const recent = (await getArticles()).slice(0, 3);
         <h1 class="h-display" set:html={c.hero.title_html} />
         <p class="lead">{c.hero.lead}</p>
         <div class="hero-ctas">
-          <a class="btn btn-white" href={booking} target="_blank" rel="noopener">{c.hero.button_primary}</a>
+          <a class="btn btn-white" href={booking}>{c.hero.button_primary}</a>
           <a class="btn btn-ghost-white" href="/diensten">{c.hero.button_secondary}</a>
         </div>
       </div>
@@ -30,7 +31,7 @@ const recent = (await getArticles()).slice(0, 3);
         <p class="muted" style="margin-top:8px;font-size:.93rem">{c.hero.entry.body}</p>
         <div style="display:flex;align-items:center;justify-content:space-between;margin-top:20px;gap:12px">
           <span class="muted" style="font-size:.88rem;font-weight:600">{c.hero.entry.meta}</span>
-          <a class="link-arrow" href={booking} target="_blank" rel="noopener">{c.hero.entry.link}</a>
+          <a class="link-arrow" href={booking}>{c.hero.entry.link}</a>
         </div>
       </aside>
     </div>
@@ -40,7 +41,6 @@ const recent = (await getArticles()).slice(0, 3);
     <div class="wrap">
       <div class="s-head">
         <h2 class="h-section">{c.problems.title}</h2>
-        <p class="lead">{c.problems.lead}</p>
       </div>
       <div class="grid-3">
         {c.problems.items.map((p) => (
@@ -77,7 +77,6 @@ const recent = (await getArticles()).slice(0, 3);
       <div class="s-head-row">
         <div class="s-head">
           <h2 class="h-section">{c.pillars.title}</h2>
-          <p class="lead">{c.pillars.lead}</p>
         </div>
         <a class="link-arrow" href="/diensten">{c.pillars.link}</a>
       </div>
@@ -102,7 +101,10 @@ const recent = (await getArticles()).slice(0, 3);
           <p class="muted" style="margin-top:16px;max-width:48ch">{c.statement.body}</p>
         </div>
         <div class="facts" style="position:relative">
-          {c.statement.facts.map((f) => <div class="fact"><b>{f.value}</b><span>{f.text}</span></div>)}
+          {c.statement.facts.map((f) => {
+            const Tag = f.href ? 'a' : 'div';
+            return <Tag class="fact" href={f.href}><b>{f.value.replace('{n}', String(partnerCount))}</b><span>{f.text}</span></Tag>;
+          })}
         </div>
       </div>
     </div>
@@ -134,7 +136,7 @@ const recent = (await getArticles()).slice(0, 3);
           <div class="s-head"><h2 class="h-section">{c.recent.title}</h2></div>
           <a class="link-arrow" href="/artikels">{c.recent.link}</a>
         </div>
-        <div class="grid-3">
+        <div class={recent.length < 3 ? 'grid-2' : 'grid-3'}>
           {recent.map((post, i) => <ArticleCard post={post} index={i} />)}
         </div>
       </div>
@@ -145,7 +147,6 @@ const recent = (await getArticles()).slice(0, 3);
     <div class="wrap faq-layout">
       <div class="s-head" style="margin-bottom:0">
         <h2 class="h-section">{c.faq.title}</h2>
-        <p class="lead">{c.faq.lead}</p>
         <div style="margin-top:22px"><a class="btn btn-line" href="/contact">{c.faq.button}</a></div>
       </div>
       <Faq items={c.faq.items} />

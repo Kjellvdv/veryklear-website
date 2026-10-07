@@ -17,7 +17,7 @@ const { Content, headings } = await post.render();
 const toc = headings.filter((h) => h.depth === 2);
 // Copy around the artikel lives in src/content/copy/artikels.yaml (article).
 const c = (await getCopy('artikels')).article;
-const booking = (await getCopy('site')).booking_url;
+const booking = (await getCopy('site')).booking_page;
 
 // Related: same pillar first, then the most recent of the rest.
 const others = posts.filter((p) => p.slug !== post.slug);
@@ -57,7 +57,7 @@ const related = [
             <h3 class="h-card">{c.cta_title}</h3>
             <p class="muted" style="margin-top:8px">{c.cta_body}</p>
             <div style="margin-top:18px;display:flex;gap:12px;flex-wrap:wrap">
-              <a class="btn btn-white" href={booking} target="_blank" rel="noopener">{c.cta_button}</a>
+              <a class="btn btn-white" href={booking}>{c.cta_button}</a>
               <a class="btn btn-ghost-white" href={pillarUrl(post.data.category)}>{fillPillar(c.cta_more, post.data.category)}</a>
             </div>
           </div>
