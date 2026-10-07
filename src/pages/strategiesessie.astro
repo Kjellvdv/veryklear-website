@@ -1,0 +1,43 @@
+---
+// Booking page with the TidyCal calendar embedded. Every "Plan een
+// strategiesessie" button on the site points here. Copy lives in
+// src/content/copy/strategiesessie.yaml; the TidyCal address in site.yaml.
+import Base from '../layouts/Base.astro';
+import { getCopy } from '../lib/copy.js';
+
+const c = await getCopy('strategiesessie');
+const { booking_url } = await getCopy('site');
+// TidyCal's embed wants the path after tidycal.com/, e.g. kjellvandevyvere/discovery.
+const tidycalPath = new URL(booking_url).pathname.replace(/^\//, '');
+---
+
+<Base title={c.meta.title} description={c.meta.description} path="/strategiesessie">
+  <section class="hero hero-page">
+    <div class="grain"></div>
+    <div class="wrap">
+      <h1 class="h-page">{c.hero.title}</h1>
+      <p class="lead">{c.hero.lead}</p>
+    </div>
+  </section>
+
+  <section class="block block-first">
+    <div class="wrap booking-grid">
+      <div class="card card-paper booking-card">
+        <div class="tidycal-embed" data-path={tidycalPath}></div>
+        <noscript><p><a href={booking_url}>{c.fallback_link}</a></p></noscript>
+        <p class="muted booking-fallback">{c.fallback} <a href={booking_url} target="_blank" rel="noopener">{c.fallback_link}</a></p>
+      </div>
+      <aside class="card card-grad cut session">
+        <div class="grain"></div>
+        <div style="position:relative">
+          <h2 class="h-card" style="font-size:1.3rem">{c.side.title}</h2>
+          <ul>{c.side.points.map((p) => <li>{p}</li>)}</ul>
+          <p style="margin-top:24px;font-weight:600">{c.side.question}</p>
+          <a class="link-arrow" href="/contact" style="margin-top:6px">{c.side.question_link}</a>
+        </div>
+      </aside>
+    </div>
+  </section>
+</Base>
+
+<script is:inline src="https://asset-tidycal.b-cdn.net/js/embed.js" async></script>

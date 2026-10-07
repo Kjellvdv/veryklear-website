@@ -21,7 +21,6 @@ when:
 
 questions:
   title: Wat we samen uitzoeken
-  lead: Van de grote keuzes tot het detail van een landingspagina.
   items:
     - Welke kanalen, en welke niet?
     - Organisch, betaald, digitaal of offline?
@@ -34,7 +33,6 @@ questions:
 
 approach:
   title: Hoe het verloopt
-  lead: Een paar maanden, met vaste momenten. Kiezen, uitproberen, kijken wat het opbracht.
   steps:
     - title: Waar gaan tijd en budget nu naartoe?
       text: Een eerlijke blik op wat je vandaag doet, en of die kanalen ooit bewust gekozen zijn of gewoon zijn blijven hangen.
@@ -49,7 +47,6 @@ deliver:
 
 leads_to:
   title: Waar het naartoe kan
-  lead: Een plan is pas iets waard als het uitgevoerd wordt.
   items:
     - title: Website of landingspagina
       text: Met een design- of platformpartner, afhankelijk van wat er nodig is.
@@ -65,7 +62,6 @@ leads_to:
 
 partners:
   title: Met wie we dit uitwerken
-  lead: Het plan en de keuzes blijven bij ons. De uitvoering per kanaal kan bij een vaste partner liggen.
   keys: [linkedin, social_content, fotografie, platform]
 
 faq:

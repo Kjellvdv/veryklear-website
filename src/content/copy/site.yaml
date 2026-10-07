@@ -1,8 +1,10 @@
 # Copy shared by every page: menu, footer, the closing call to action.
 # Same rules as the page files: change the text after the colon, keep the indentation.
 
-# Where every "Plan een strategiesessie" button goes (TidyCal, Kjell 2026-10-06).
+# The TidyCal calendar, embedded on /strategiesessie (Kjell, 2026-10-07).
+# Every "Plan een strategiesessie" button goes to that page.
 booking_url: https://tidycal.com/kjellvandevyvere/discovery
+booking_page: /strategiesessie
 
 nav:
   cta: Plan een strategiesessie

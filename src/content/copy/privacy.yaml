@@ -23,7 +23,7 @@ sections:
   - title: Wie ze nog ziet
     body: Het contactformulier stuurt je bericht rechtstreeks naar onze eigen mailserver, zonder tussenpartij. De site zelf draait op GitHub Pages, dat zoals elke webhost technische gegevens zoals je IP-adres kan bijhouden om de site veilig te houden. Meer niet.
   - title: Cookies en tracking
-    body: Deze site gebruikt geen cookies en geen analytics. Ook het lettertype staat op onze eigen server, zodat er bij een bezoek geen gegevens naar Google of andere partijen gaan.
+    body: Deze site gebruikt zelf geen cookies en geen analytics. Ook het lettertype staat op onze eigen server, zodat er bij een bezoek geen gegevens naar Google of andere partijen gaan. Enkel op de pagina om een strategiesessie in te plannen laden we de agenda van TidyCal. Plan je een moment in, dan verwerkt TidyCal je naam, e-mailadres en het gekozen tijdstip.
   - title: Hoe lang we ze bewaren
     body: Zolang nodig om je vraag op te volgen. Word je klant, dan bewaren we wat nodig is voor de samenwerking en de boekhouding, zo lang als de wet dat vraagt.
   - title: Je rechten

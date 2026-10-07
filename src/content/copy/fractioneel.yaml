@@ -16,7 +16,6 @@ hero:
 # The 0 -> 1 timeline. Four steps; the first shows "0", the last "1".
 timeline:
   title: Wat 'van 0 naar 1' betekent.
-  lead: Niet alles tegelijk. Wel in de juiste volgorde, met dezelfde partner.
   steps:
     - title: Vertrekpunt
       text: Klanten via via, een site van jaren geleden, opvolging op goed geluk.
@@ -45,7 +44,6 @@ included:
 # Two identical columns, same rows. No "recommended" badge: both paths weigh the same.
 compare:
   title: Op projectbasis of fractioneel?
-  lead: De grens is niet scherp. Deze vergelijking helpt je kiezen.
   columns:
     - title: Op projectbasis
       rows:

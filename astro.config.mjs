@@ -11,7 +11,6 @@ export default defineConfig({
     '/strategie': '/marketing-strategie',
     '/automatisatie': '/ai',
     '/websites': '/diensten',
-    '/strategiesessie': '/contact',
     // /marketing was the pillar's first slug, live for a few hours on 2026-10-06.
     '/marketing': '/marketing-strategie',
     // Artikels moved from /<pillar>/<slug> to /artikels/<pillar>/<slug> (2026-10-06).
