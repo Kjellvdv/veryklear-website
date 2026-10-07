@@ -30,8 +30,7 @@ const { dienst_page: d } = await getCopy('site');
   <section class="hero hero-page">
     <div class="grain"></div>
     <div class="wrap">
-      <span class="label" style="color:#fff;display:block">{c.hero.label}</span>
-      <h1 class="h-page" style="margin-top:8px" set:html={c.hero.title_html} />
+      <h1 class="h-page" set:html={c.hero.title_html} />
       <p class="lead">{c.hero.lead}</p>
       <div class="hero-ctas">
         <a class="btn btn-white" href={booking} target="_blank" rel="noopener">{c.hero.button}</a>

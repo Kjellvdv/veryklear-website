@@ -41,34 +41,31 @@ paths:
   # Keep these two the same length: the two paths carry equal weight.
   project:
     label: Op projectbasis
-    title: Eén pijler, goed uitgezocht.
+    title: Eén vraag, goed uitgezocht.
     body: Je kiest positionering, marketing strategie of AI implementeren, en beoordeelt het resultaat voor er iets bijkomt.
     link: Naar de diensten →
   fractional:
     label: Fractioneel
     title: Een fractionele head of marketing.
-    body: 'Iemand die je marketing leidt: alle drie de pijlers samen, plus klantenbeheer en opvolging, zonder voltijdse aanwerving.'
+    body: 'Iemand die je marketing leidt: alle drie de diensten samen, plus klantenbeheer en opvolging, zonder voltijdse aanwerving.'
     link: Naar fractioneel →
 
 pillars:
-  title: Drie pijlers, in een vaste volgorde.
-  lead: Positionering komt eerst. De rest bouwt erop voort.
+  title: Drie diensten die in elkaar overlopen.
+  lead: Je kan bij elk van de drie instappen. Vaak volgt het ene uit het andere.
   link: Alle details →
   items:
-    - label: Pijler 1 · de basis
-      title: Positionering
+    - title: Positionering
       questions:
         - In welke markt speel je echt?
         - Wie is je ideale klant?
         - Waarom kiest die voor jou?
-    - label: Pijler 2 · de uitvoering
-      title: Marketing strategie
+    - title: Marketing strategie
       questions:
         - Welke kanalen, en welke niet?
         - Hoeveel tijd, mensen en tools?
         - Klopt de weg van advertentie tot site?
-    - label: Pijler 3 · het werk
-      title: AI implementeren
+    - title: AI implementeren
       questions:
         - Waar bespaart AI echt werk?
         - Wat volstaat met een gewoon script?
@@ -81,8 +78,8 @@ statement:
   facts:
     - value: 7 jaar
       text: B2B tech marketing, van startups tot scale-ups
-    - value: 3 pijlers
-      text: apart te kiezen, of samen als fractioneel
+    - value: 3 diensten
+      text: apart, na elkaar, of samen als fractioneel
     - value: 1 persoon
       text: van het eerste gesprek tot de uitvoering
 
@@ -92,7 +89,7 @@ steps:
     - title: Een strategiesessie
       body: Een uur over wat nu werkt en wat niet. Geen pitch. Het meeste nuttige zit al in je zaak.
       meta: 60 minuten
-    - title: Eén pijler, of fractioneel
+    - title: Eén dienst, of fractioneel
       body: Klein genoeg om op zichzelf te beoordelen. Of meteen een vaste partner als dat al duidelijk is.
       meta: Een paar maanden, met vaste momenten
     - title: Kijken wat het opbracht
@@ -113,10 +110,10 @@ faq:
       a: Mond-tot-mond is een kanaal, en meestal een goed. De vraag is of je weet waarom het werkt, want dat vertelt je hoe je er meer van krijgt.
     - q: AI, is dat niet iets voor grote bedrijven?
       a: Meestal niet. Een tool die je al betaalt, goed ingesteld, brengt je verder dan de meeste bedrijven ooit geraken. Een echt platform is pas nodig als je daar tegen de grenzen loopt.
-    - q: Wat kost een pijler of fractioneel?
+    - q: Wat kost het?
       a: 'Dat hangt af van wat er nodig is, en dat bespreken we na de strategiesessie, met een duidelijke scope. We zijn niet de goedkoopste: goedkoper dan een groot bureau, duurder dan het nichtje dat ook wat teksten schrijft.'
     - q: Wat is het verschil tussen op projectbasis en fractioneel?
-      a: Op projectbasis koop je één pijler en beoordeel je die voor er iets bijkomt. Fractioneel krijg je een head of marketing, deeltijds, die het hele traject mee opbouwt, van 0 naar 1. Beide zijn een normale manier om te beginnen.
+      a: Op projectbasis kies je één dienst en beoordeel je het resultaat voor er iets bijkomt. Fractioneel krijg je een head of marketing, deeltijds, die het hele traject mee opbouwt, van 0 naar 1. Beide zijn een normale manier om te beginnen.
 
 # Closing red block. Leave out to use the default from site.yaml.
 cta:

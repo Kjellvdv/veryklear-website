@@ -33,7 +33,7 @@ export async function ogPages() {
   ];
   for (const name of PILLARS) {
     const c = await getCopy(PILLAR_COPY[name]);
-    pages.push({ path: `/${PILLAR_SLUG[name]}`, title: plain(c.hero.title_html), label: c.hero.label });
+    pages.push({ path: `/${PILLAR_SLUG[name]}`, title: plain(c.hero.title_html), label: 'Diensten' });
     pages.push({ path: `/artikels/${PILLAR_SLUG[name]}`, title: `Artikels over ${name.split(' ').map((w) => (w === w.toUpperCase() ? w : w.toLowerCase())).join(' ')}`, label: 'Artikels' });
   }
   for (const post of await getArticles()) {

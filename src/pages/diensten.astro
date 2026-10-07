@@ -24,8 +24,7 @@ const c = await getCopy('diensten');
       {c.pillars.map((p, i) => (
         <a class={`card pillar-card overview-card ${i === 0 ? 'card-grad cut' : 'card-paper'}`} href={pillarUrl(PILLARS[i])}>
           {i === 0 && <div class="grain"></div>}
-          <span class="num">{p.label}</span>
-          <h2 class="h-card" style="margin-top:8px;font-size:1.5rem">{p.title}</h2>
+          <h2 class="h-card" style="font-size:1.5rem">{p.title}</h2>
           <p class={i === 0 ? '' : 'muted'} style="margin-top:10px">{p.text}</p>
           <ul>{p.points.map((q) => <li>{q}</li>)}</ul>
           <div class="card-foot"><span class="link-arrow">{p.link}</span></div>

@@ -4,7 +4,7 @@ import Base from '../layouts/Base.astro';
 import Faq from '../components/Faq.astro';
 import CtaFinal from '../components/CtaFinal.astro';
 import ArticleCard from '../components/ArticleCard.astro';
-import { getArticles } from '../lib/articles.js';
+import { getArticles, PILLARS, pillarUrl } from '../lib/articles.js';
 import { getCopy } from '../lib/copy.js';
 
 const c = await getCopy('home');
@@ -81,17 +81,13 @@ const recent = (await getArticles()).slice(0, 3);
         </div>
         <a class="link-arrow" href="/diensten">{c.pillars.link}</a>
       </div>
-      <div class="flow">
+      <div class="grid-3">
         {c.pillars.items.map((p, i) => (
-          <>
-            {i > 0 && <span class="flow-arrow" aria-hidden="true">→</span>}
-            <article class={`card pillar-card ${i === 0 ? 'card-grad cut' : 'card-paper'}`}>
-              {i === 0 && <div class="grain"></div>}
-              <span class="num">{p.label}</span>
-              <h3 class="h-card" style="margin-top:8px">{p.title}</h3>
-              <ul>{p.questions.map((q) => <li>{q}</li>)}</ul>
-            </article>
-          </>
+          <a class={`card pillar-card overview-card ${i === 0 ? 'card-grad cut' : 'card-paper'}`} href={pillarUrl(PILLARS[i])}>
+            {i === 0 && <div class="grain"></div>}
+            <h3 class="h-card">{p.title}</h3>
+            <ul>{p.questions.map((q) => <li>{q}</li>)}</ul>
+          </a>
         ))}
       </div>
     </div>

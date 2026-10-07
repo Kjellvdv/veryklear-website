@@ -30,7 +30,7 @@ timeline:
 included:
   title: Wat er in zit.
   base_label: De basis
-  base_title: Alle drie de pijlers, samen.
+  base_title: Alle drie de diensten, samen.
   extra_label: Extra
   extras:
     - title: Klantenbeheer
@@ -50,7 +50,7 @@ compare:
     - title: Op projectbasis
       rows:
         - label: Wat je koopt
-          value: Eén pijler
+          value: Eén dienst, of een paar na elkaar
         - label: Duur
           value: Een paar maanden, met een duidelijk einde
         - label: Goed als
@@ -62,7 +62,7 @@ compare:
     - title: Fractioneel
       rows:
         - label: Wat je koopt
-          value: 'Een head of marketing, deeltijds: alle drie de pijlers, en meer'
+          value: 'Een head of marketing, deeltijds: alle drie de diensten, en meer'
         - label: Duur
           value: Doorlopend, met vaste momenten
         - label: Goed als
@@ -86,7 +86,7 @@ fit:
     - het een bijberoep is zonder groeiplannen
     - je enkel handen wil, niet het denkwerk
 
-note: Fractioneel is nieuw. We zeggen het ook als het nog niet het juiste moment is voor jouw zaak, en dan begin je beter met één pijler.
+note: Fractioneel is nieuw. We zeggen het ook als het nog niet het juiste moment is voor jouw zaak, en dan begin je beter met één dienst.
 
 # VC Rater: Kjell's own product. Shown on this page only (Kjell, 2026-10-05).
 vcrater:

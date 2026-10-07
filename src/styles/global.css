@@ -280,6 +280,7 @@ a.next-card:hover .h-card{color:var(--red-deep)}
 .never-list li{display:flex;gap:10px}
 .never-list li::before{content:"–";font-weight:900;color:var(--muted)}
 .overview-card{display:flex;flex-direction:column;text-decoration:none;color:inherit}
+.overview-card.card-grad{color:#fff}
 .overview-card ul{flex:1}
 
 /* FAQ */
