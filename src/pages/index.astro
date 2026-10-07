@@ -4,6 +4,7 @@ import Base from '../layouts/Base.astro';
 import Faq from '../components/Faq.astro';
 import CtaFinal from '../components/CtaFinal.astro';
 import ArticleCard from '../components/ArticleCard.astro';
+import HeroIllustration from '../components/HeroIllustration.astro';
 import { getArticles, PILLARS, pillarUrl } from '../lib/articles.js';
 import { getCopy } from '../lib/copy.js';
 
@@ -15,6 +16,7 @@ const recent = (await getArticles()).slice(0, 3);
 <Base title={c.meta.title} description={c.meta.description} path="/">
   <section class="hero hero-home">
     <div class="grain"></div>
+    <HeroIllustration />
     <div class="wrap hero-grid">
       <div>
         <h1 class="h-display" set:html={c.hero.title_html} />
