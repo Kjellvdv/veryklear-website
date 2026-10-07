@@ -4,8 +4,8 @@
 // column is kept for a visual (pass it in the "visual" slot) and stays empty
 // otherwise, so the title never runs the full width.
 //
-// Props: title (may contain <br /> or <strong>), lead, label, crumb {text, href},
-// display (true on the home page for the larger headline).
+// Props: title (may contain <br />; no bold), lead, label, crumb {text, href},
+// display (optional larger headline; no page uses it since 2026-10-07).
 // Slots: default = buttons or filter chips under the intro; "lead" = an intro
 // with a link in it, instead of the lead prop; "visual" = the right column.
 const { title, lead, label, crumb, display = false } = Astro.props;

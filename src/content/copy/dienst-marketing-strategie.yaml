@@ -1,6 +1,6 @@
 # Dienst page: Marketing strategie (veryklear.com/marketing-strategie).
 # Change the text after the colon, keep the indentation. Fields ending in _html
-# may contain <br> or <strong>. The artikels at the bottom are added automatically.
+# may contain <br> (line break). No bold in titles. The artikels at the bottom are added automatically.
 
 meta:
   title: Marketing strategie · Very Klear

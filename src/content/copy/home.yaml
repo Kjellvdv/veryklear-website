@@ -2,7 +2,7 @@
 #
 # How to edit: change the text after the colon. Keep the indentation as it is.
 # Text after ">-" can run over several lines; it's joined into one paragraph.
-# Only fields ending in _html may contain <strong> (heavy word) or <br> (line break).
+# Only fields ending in _html may contain <br> (line break). No bold in titles.
 # Save, and the preview at localhost:4321 updates.
 
 meta:
@@ -10,7 +10,7 @@ meta:
   description: Marketing met technische diepgang. Positionering, marketing strategie en AI implementeren, op projectbasis of fractioneel.
 
 hero:
-  title_html: Marketing met <strong>technische diepgang.</strong> Van positionering tot AI.
+  title_html: Marketing met technische diepgang. Van positionering tot AI.
   lead: Voor bedrijven die willen groeien en het deftig willen doen. Op projectbasis, of fractioneel als je een vaste partner wil.
   button_primary: Plan een strategiesessie
   button_secondary: Bekijk de diensten

@@ -15,7 +15,7 @@ const recent = (await getArticles()).slice(0, 3);
 ---
 
 <Base title={c.meta.title} description={c.meta.description} path="/">
-  <Hero title={c.hero.title_html} lead={c.hero.lead} display>
+  <Hero title={c.hero.title_html} lead={c.hero.lead}>
     <a class="btn btn-white" href={booking}>{c.hero.button_primary}</a>
     <a class="btn btn-ghost-white" href="/diensten">{c.hero.button_secondary}</a>
   </Hero>
