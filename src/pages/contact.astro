@@ -27,7 +27,7 @@ const [street, city] = site.address.split(', ');
         <p class="muted" style="margin-top:8px">{c.form.intro}</p>
         <!-- Posts in the background to forms/contact.php on SiteGround
              (src/lib/form.js). The visitor stays on this page. -->
-        <form class="form" id="contactForm" style="margin-top:28px" action={FORM_ENDPOINT} method="post" data-sending={c.form.sending} data-error={c.form.error}>
+        <form class="form" id="contactForm" style="margin-top:28px" action={FORM_ENDPOINT} method="post" data-sending={c.form.sending}>
           <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
           <div class="row">
             <div class="field"><label for="f-name">{c.form.name_label}</label><input id="f-name" name="name" autocomplete="name" placeholder={c.form.name_placeholder} required /></div>
@@ -47,9 +47,8 @@ const [street, city] = site.address.split(', ');
           </div>
           <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
             <button class="btn btn-red" type="submit">{c.form.submit}</button>
-            <span class="form-note">{c.form.or_mail} <a href={`mailto:${site.email}`}>{site.email}</a></span>
           </div>
-          <p class="sent" id="sent" role="status" data-ok={c.form.sent_ok}></p>
+
         </form>
       </div>
 
@@ -76,6 +75,20 @@ const [street, city] = site.address.split(', ');
     </div>
   </section>
 
+  <!-- Pop-up after sending: one for success, one for an error. -->
+  <dialog class="form-dialog" id="dialogOk" aria-labelledby="dialogOkTitle">
+    <div class="form-dialog__icon" aria-hidden="true">✓</div>
+    <h2 id="dialogOkTitle" class="h-card">{c.form.sent_ok_title}</h2>
+    <p class="muted">{c.form.sent_ok}</p>
+    <form method="dialog"><button class="btn btn-red">{c.form.close}</button></form>
+  </dialog>
+  <dialog class="form-dialog form-dialog--error" id="dialogError" aria-labelledby="dialogErrorTitle">
+    <div class="form-dialog__icon" aria-hidden="true">!</div>
+    <h2 id="dialogErrorTitle" class="h-card">{c.form.error_title}</h2>
+    <p class="muted">{c.form.error} <a href={`mailto:${site.email}`}>{site.email}</a></p>
+    <form method="dialog"><button class="btn btn-line">{c.form.close}</button></form>
+  </dialog>
+
   <section class="block" style="padding-top:0">
     <div class="wrap">
       <div class="s-head"><h2 class="h-section">{c.after.title}</h2></div>
@@ -96,12 +109,12 @@ const [street, city] = site.address.split(', ');
   });
 
   const form = document.getElementById('contactForm') as HTMLFormElement;
-  const sent = document.getElementById('sent') as HTMLElement;
   const button = form.querySelector('button[type="submit"]') as HTMLButtonElement;
-  const show = (text: string, isError = false) => {
-    sent.textContent = text;
-    sent.classList.toggle('error', isError);
-    sent.classList.add('show');
+  const show = (id: string) => {
+    const dialog = document.getElementById(id) as HTMLDialogElement;
+    dialog.showModal();
+    // Close when clicking the dimmed backdrop, not just the button.
+    dialog.addEventListener('click', (e) => { if (e.target === dialog) dialog.close(); }, { once: true });
   };
 
   form.addEventListener('submit', async (e) => {
@@ -129,9 +142,9 @@ const [street, city] = site.address.split(', ');
       if (!data.success) throw new Error(data.message);
       form.reset();
       chips.forEach((c) => { c.classList.remove('on'); c.setAttribute('aria-pressed', 'false'); });
-      show(sent.dataset.ok || '');
+      show('dialogOk');
     } catch {
-      show(form.dataset.error || '', true);
+      show('dialogError');
     } finally {
       button.disabled = false;
       button.textContent = label;

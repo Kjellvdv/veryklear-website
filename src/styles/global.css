@@ -318,9 +318,17 @@ a.next-card:hover .h-card{color:var(--red-deep)}
 .field .hint{margin-top:6px;font-size:.8rem;color:var(--muted)}
 .chips{display:flex;flex-wrap:wrap;gap:8px}
 .form-note{font-size:.85rem;color:var(--muted)}
-.sent{display:none;padding:18px;border-radius:var(--radius-sm);background:var(--red-tint);color:var(--red-deep);font-weight:700}
-.sent.show{display:block}
-.sent.error{background:#fff;border:1.5px solid var(--red-deep)}
+.form-dialog{border:none;border-radius:var(--radius-card);padding:40px 36px 32px;max-width:420px;width:calc(100% - 32px);text-align:center;box-shadow:0 30px 70px -20px rgba(0,0,0,.45);color:var(--ink)}
+.form-dialog::backdrop{background:rgba(13,13,13,.55);backdrop-filter:blur(2px)}
+.form-dialog[open]{animation:dialog-in .18s ease-out}
+@keyframes dialog-in{from{opacity:0;transform:translateY(8px) scale(.98)}to{opacity:1;transform:none}}
+.form-dialog__icon{width:56px;height:56px;margin:0 auto 18px;border-radius:var(--radius-md);background:var(--grad);color:#fff;font-size:1.6rem;font-weight:900;display:flex;align-items:center;justify-content:center}
+.form-dialog--error .form-dialog__icon{background:#fff;color:var(--red-deep);border:2px solid var(--red-deep)}
+.form-dialog .h-card{font-size:1.35rem}
+.form-dialog p{margin-top:10px}
+.form-dialog p a{color:var(--red-deep);font-weight:600}
+.form-dialog form{margin-top:24px}
+.form-dialog .btn{min-width:140px;justify-content:center}
 .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
 .side-stack{display:grid;gap:20px}
 .session ul{list-style:none;margin:18px 0 0;padding:0;display:grid;gap:8px;font-size:.93rem}
