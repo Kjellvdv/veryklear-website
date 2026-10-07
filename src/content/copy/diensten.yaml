@@ -7,32 +7,30 @@
 
 meta:
   title: Diensten · Very Klear
-  description: 'Op projectbasis: positionering, marketing strategie of AI implementeren. Drie pijlers, apart te kiezen.'
+  description: 'Op projectbasis: positionering, marketing strategie of AI implementeren. Drie diensten die in elkaar overlopen.'
 
 hero:
-  title_html: Op projectbasis.<br />Drie pijlers, apart te kiezen.
-  lead: Je laat één pijler goed uitzoeken en beoordeelt het resultaat, voor je beslist of er iets bijkomt.
+  title_html: Drie diensten.<br />Begin waar het knelt.
+  lead: Positionering, marketing strategie en AI implementeren. Je kan bij elk van de drie instappen, en vaak volgt het ene uit het andere.
 
-# One card per pillar, in this order. Link text sits under each card.
+# One card per dienst, in this order. No numbers or 'pijler': they're entry points
+# that overlap or follow each other (Kjell, 2026-10-07).
 pillars:
-  - label: Pijler 1 · de basis
-    title: Positionering
+  - title: Positionering
     text: Waar je zaak past in de markt, wie je ideale klant is, en waarom die voor jou kiest.
     points:
       - In welke categorie speel je?
       - Wie is je ideale klant?
       - Waarom kiezen klanten voor jou?
     link: Meer over positionering →
-  - label: Pijler 2 · de uitvoering
-    title: Marketing strategie
+  - title: Marketing strategie
     text: Welke kanalen, tools en mensen, en of alles op elkaar aansluit, van advertentie tot landingspagina.
     points:
       - Welke kanalen, en welke niet?
       - Hoeveel tijd, mensen en tools?
       - Klopt je customer journey?
     link: Meer over marketing strategie →
-  - label: Pijler 3 · het werk
-    title: AI implementeren
+  - title: AI implementeren
     text: AI aan het werk zetten waar het echt helpt, en duidelijk maken wat beter mensenwerk blijft.
     points:
       - Eén manier van werken voor het team
@@ -42,27 +40,27 @@ pillars:
 
 partners:
   title: Meer dan wat één persoon aankan.
-  lead: Voor wat buiten de drie pijlers valt, werken we met vaste partners, van design en fotografie tot CRM. Het denkwerk en het contact blijven bij ons.
+  lead: Voor wat buiten onze diensten valt, werken we met vaste partners, van design en fotografie tot CRM. Het denkwerk en het contact blijven bij ons.
   link: Bekijk de partners →
 
 fractional:
   title: Liever alles samen?
-  text: Als fractionele head of marketing nemen we alle drie de pijlers op, plus klantenbeheer en opvolging.
+  text: Als fractionele head of marketing nemen we alle drie de diensten op, plus klantenbeheer en opvolging.
   link: Naar fractioneel →
 
 faq:
-  title: Welke pijler eerst?
+  title: Waar begin je best?
   lead: Meestal positionering. Maar dat bekijken we samen in de strategiesessie.
   items:
     - q: Moet ik met positionering beginnen?
       a: Meestal wel, want de andere twee bouwen erop voort. Staat je positionering al, dan kan je meteen naar marketing strategie of AI implementeren.
     - q: Kunnen jullie niet gewoon de website doen?
       a: Dat kan, op vraag. Meestal komt een website er als onderdeel van positionering of marketing strategie, zodat ze op iets echts gebouwd is.
-    - q: Hoe lang duurt een pijler?
+    - q: Hoe lang duurt het?
       a: 'Een paar maanden, met vaste momenten. Het is geen sessie en geen rapport: testen en bijsturen hoort erbij.'
-    - q: Kan ik later een pijler bijnemen?
-      a: Ja, dat is normaal. Alles in één keer kopen is zelden de beste start.
+    - q: Kan ik later iets bijnemen?
+      a: Ja, dat is normaal. Vaak volgt de ene dienst uit de andere. Alles in één keer kopen is zelden de beste start.
 
 cta:
-  heading: Twijfel je welke pijler eerst?
+  heading: Twijfel je waar je begint?
   body: Daar is de strategiesessie voor. Een uur, en je weet waar je het best begint.

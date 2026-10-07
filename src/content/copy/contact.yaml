@@ -44,7 +44,7 @@ session:
   points:
     - 60 minuten, online of bij jou
     - Een richting waar je mee verder kan
-    - Welke pijler of weg zinvol is
+    - Waar je best begint
     - Een eerlijk 'nee' als je ons niet nodig hebt
   button: Kies een moment
 
@@ -62,4 +62,4 @@ after:
     - title: Strategiesessie
       text: Een uur samen, als het zinvol lijkt. Anders zeggen we dat meteen.
     - title: Voorstel
-      text: Een pijler of fractioneel, op maat, met een duidelijke scope.
+      text: Eén of meer diensten, of fractioneel, met een duidelijke scope.
