@@ -28,10 +28,13 @@ form:
   message_placeholder: Een paar zinnen volstaan. Wat loopt er goed, wat niet?
   message_hint: Hoe concreter, hoe nuttiger ons antwoord.
   submit: Verstuur
-  or_mail: Of mail rechtstreeks naar
   sending: Versturen…
-  sent_ok: Bedankt, je bericht is verstuurd. Je hoort snel van ons.
-  error: Dat lukte niet. Probeer opnieuw, of mail ons rechtstreeks.
+  # Pop-up after sending
+  sent_ok_title: Bedankt, je bericht is verstuurd.
+  sent_ok: Je hoort snel van ons.
+  error_title: Dat lukte niet.
+  error: Probeer het zo meteen opnieuw, of mail ons rechtstreeks op
+  close: Sluiten
 
 # The red card on the right. Never show a price or "gratis" here.
 session:
