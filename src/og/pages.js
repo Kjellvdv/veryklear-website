@@ -26,7 +26,7 @@ export async function ogPages() {
     { path: '/diensten', title: plain(diensten.hero.title_html), label: 'Diensten' },
     { path: '/fractioneel', title: plain(fractioneel.hero.title_html), label: 'Fractioneel' },
     { path: '/partners', title: plain(partners.hero.title_html), label: 'Partners' },
-    { path: '/contact', title: contact.hero.title, label: 'Contact' },
+    { path: '/contact', title: contact.form.title, label: 'Contact' },
     { path: '/artikels', title: artikels.overview.title, label: 'Eén idee per artikel' },
     { path: '/privacy', title: privacy.hero.title, label: 'Privacy' },
     { path: '/404', title: notFound.title, label: '404' },
