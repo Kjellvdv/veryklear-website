@@ -1,5 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
+import Hero from '../../components/Hero.astro';
 import CtaFinal from '../../components/CtaFinal.astro';
 import ArticleCard from '../../components/ArticleCard.astro';
 import { getArticles, PILLARS, articleUrl } from '../../lib/articles.js';
@@ -14,19 +15,14 @@ const [featured, ...rest] = posts;
 ---
 
 <Base title={c.meta.title} description={c.meta.description} path="/artikels">
-  <section class="hero hero-page">
-    <div class="grain"></div>
-    <div class="wrap">
-      <h1 class="h-page">{c.title}</h1>
-      <p class="lead">{c.lead}</p>
-      {posts.length > 1 && (
-        <div class="hero-chips" id="filterChips">
-          <button class="chip on" type="button" data-filter="all">{c.filter_all}</button>
-          {PILLARS.map((p) => <button class="chip" type="button" data-filter={p}>{p}</button>)}
-        </div>
-      )}
-    </div>
-  </section>
+  <Hero title={c.title} lead={c.lead}>
+    {posts.length > 1 && (
+      <div class="hero-chips" id="filterChips">
+        <button class="chip on" type="button" data-filter="all">{c.filter_all}</button>
+        {PILLARS.map((p) => <button class="chip" type="button" data-filter={p}>{p}</button>)}
+      </div>
+    )}
+  </Hero>
 
   <section class="block block-first">
     <div class="wrap">

@@ -1,0 +1,28 @@
+---
+// The one hero every page uses (Kjell, 2026-10-07): same height, same spacing,
+// a 2:1 grid. Title, intro and buttons sit in the wide left column; the right
+// column is kept for a visual (pass it in the "visual" slot) and stays empty
+// otherwise, so the title never runs the full width.
+//
+// Props: title (may contain <br /> or <strong>), lead, label, crumb {text, href},
+// display (true on the home page for the larger headline).
+// Slots: default = buttons or filter chips under the intro; "lead" = an intro
+// with a link in it, instead of the lead prop; "visual" = the right column.
+const { title, lead, label, crumb, display = false } = Astro.props;
+const hasActions = Astro.slots.has('default');
+const hasLeadSlot = Astro.slots.has('lead');
+---
+
+<section class={`hero hero-std${display ? ' hero-std--display' : ''}`}>
+  <div class="grain"></div>
+  <div class="wrap hero-std__grid">
+    <div class="hero-std__text">
+      {crumb && <a class="crumb" href={crumb.href}>{crumb.text}</a>}
+      {label && <span class="label hero-std__label">{label}</span>}
+      <h1 class={display ? 'h-display' : 'h-page'} set:html={title} />
+      {hasLeadSlot ? <p class="lead"><slot name="lead" /></p> : lead && <p class="lead">{lead}</p>}
+      {hasActions && <div class="hero-ctas"><slot /></div>}
+    </div>
+    <div class="hero-std__visual"><slot name="visual" /></div>
+  </div>
+</section>

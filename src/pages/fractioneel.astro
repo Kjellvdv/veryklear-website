@@ -1,6 +1,7 @@
 ---
 // Copy lives in src/content/copy/fractioneel.yaml. This file is layout only.
 import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
 import Faq from '../components/Faq.astro';
 import CtaFinal from '../components/CtaFinal.astro';
 import { PILLARS } from '../lib/articles.js';
@@ -12,17 +13,10 @@ const last = c.timeline.steps.length - 1;
 ---
 
 <Base title={c.meta.title} description={c.meta.description} path="/fractioneel">
-  <section class="hero hero-page">
-    <div class="grain"></div>
-    <div class="wrap">
-      <h1 class="h-page" set:html={c.hero.title_html} />
-      <p class="lead">{c.hero.lead}</p>
-      <div class="hero-ctas">
-        <a class="btn btn-white" href={booking}>{c.hero.button_primary}</a>
-        <a class="btn btn-ghost-white" href="#vergelijking">{c.hero.button_secondary}</a>
-      </div>
-    </div>
-  </section>
+  <Hero title={c.hero.title_html} lead={c.hero.lead}>
+    <a class="btn btn-white" href={booking}>{c.hero.button_primary}</a>
+    <a class="btn btn-ghost-white" href="#vergelijking">{c.hero.button_secondary}</a>
+  </Hero>
 
   <section class="block block-first">
     <div class="wrap">

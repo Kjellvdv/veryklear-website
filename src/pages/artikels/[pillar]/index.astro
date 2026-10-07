@@ -3,6 +3,7 @@
 // /artikels/ai. The dienst page itself lives at /<pillar>.
 // Copy lives in src/content/copy/artikels.yaml (pillar_page).
 import Base from '../../../layouts/Base.astro';
+import Hero from '../../../components/Hero.astro';
 import CtaFinal from '../../../components/CtaFinal.astro';
 import ArticleCard from '../../../components/ArticleCard.astro';
 import { getArticles, PILLARS, PILLAR_SLUG, pillarUrl } from '../../../lib/articles.js';
@@ -22,14 +23,9 @@ const c = a.pillar_page;
 ---
 
 <Base title={fillPillar(c.meta_title, name)} description={fillPillar(c.meta_description, name)} path="/artikels">
-  <section class="hero hero-page">
-    <div class="grain"></div>
-    <div class="wrap">
-      <a class="crumb" href="/artikels">{c.crumb}</a>
-      <h1 class="h-page">{fillPillar(c.title, name)}</h1>
-      <p class="lead">{fillPillar(c.lead_before_link, name)} <a href={pillarUrl(name)} style="color:inherit;text-decoration:underline">{fillPillar(c.lead_link, name)}</a>.</p>
-    </div>
-  </section>
+  <Hero title={fillPillar(c.title, name)} crumb={{ text: c.crumb, href: '/artikels' }}>
+    <Fragment slot="lead">{fillPillar(c.lead_before_link, name)} <a href={pillarUrl(name)} style="color:inherit;text-decoration:underline">{fillPillar(c.lead_link, name)}</a>.</Fragment>
+  </Hero>
 
   <section class="block block-first">
     <div class="wrap">

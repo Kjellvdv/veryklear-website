@@ -14,13 +14,6 @@ hero:
   lead: Voor bedrijven die willen groeien en het deftig willen doen. Op projectbasis, of fractioneel als je een vaste partner wil.
   button_primary: Plan een strategiesessie
   button_secondary: Bekijk de diensten
-  # The white card on the right of the hero
-  entry:
-    label: De eerste stap
-    title: Strategiesessie
-    body: Eén gesprek van een uur. Je gaat buiten met een richting, en met een eerlijk antwoord op de vraag of je ons nodig hebt.
-    meta: 60 minuten
-    link: Inplannen →
 
 problems:
   title: Waar het meestal vastloopt.
