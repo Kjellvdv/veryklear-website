@@ -3,6 +3,7 @@
 // strategiesessie" button on the site points here. Copy lives in
 // src/content/copy/strategiesessie.yaml; the TidyCal address in site.yaml.
 import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
 import { getCopy } from '../lib/copy.js';
 
 const c = await getCopy('strategiesessie');
@@ -12,13 +13,7 @@ const tidycalPath = new URL(booking_url).pathname.replace(/^\//, '');
 ---
 
 <Base title={c.meta.title} description={c.meta.description} path="/strategiesessie">
-  <section class="hero hero-page">
-    <div class="grain"></div>
-    <div class="wrap">
-      <h1 class="h-page">{c.hero.title}</h1>
-      <p class="lead">{c.hero.lead}</p>
-    </div>
-  </section>
+  <Hero title={c.hero.title} lead={c.hero.lead} />
 
   <section class="block block-first">
     <div class="wrap booking-grid">

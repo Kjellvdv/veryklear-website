@@ -1,6 +1,7 @@
 ---
 // Copy lives in src/content/copy/home.yaml. This file is layout only.
 import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
 import Faq from '../components/Faq.astro';
 import CtaFinal from '../components/CtaFinal.astro';
 import ArticleCard from '../components/ArticleCard.astro';
@@ -14,28 +15,10 @@ const recent = (await getArticles()).slice(0, 3);
 ---
 
 <Base title={c.meta.title} description={c.meta.description} path="/">
-  <section class="hero hero-home">
-    <div class="grain"></div>
-    <div class="wrap hero-grid">
-      <div>
-        <h1 class="h-display" set:html={c.hero.title_html} />
-        <p class="lead">{c.hero.lead}</p>
-        <div class="hero-ctas">
-          <a class="btn btn-white" href={booking}>{c.hero.button_primary}</a>
-          <a class="btn btn-ghost-white" href="/diensten">{c.hero.button_secondary}</a>
-        </div>
-      </div>
-      <aside class="hero-entry">
-        <span class="label">{c.hero.entry.label}</span>
-        <h3 class="h-card" style="margin-top:6px">{c.hero.entry.title}</h3>
-        <p class="muted" style="margin-top:8px;font-size:.93rem">{c.hero.entry.body}</p>
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:20px;gap:12px">
-          <span class="muted" style="font-size:.88rem;font-weight:600">{c.hero.entry.meta}</span>
-          <a class="link-arrow" href={booking}>{c.hero.entry.link}</a>
-        </div>
-      </aside>
-    </div>
-  </section>
+  <Hero title={c.hero.title_html} lead={c.hero.lead}>
+    <a class="btn btn-white" href={booking}>{c.hero.button_primary}</a>
+    <a class="btn btn-ghost-white" href="/diensten">{c.hero.button_secondary}</a>
+  </Hero>
 
   <section class="block block-first">
     <div class="wrap">

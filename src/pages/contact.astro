@@ -1,5 +1,6 @@
 ---
 // Copy lives in src/content/copy/contact.yaml; contact details in site.yaml.
+// The one page without a hero (Kjell, 2026-10-07): it opens straight on the form.
 import Base from '../layouts/Base.astro';
 import { PILLARS } from '../lib/articles.js';
 import { getCopy } from '../lib/copy.js';
@@ -12,18 +13,10 @@ const [street, city] = site.address.split(', ');
 ---
 
 <Base title={c.meta.title} description={c.meta.description} path="/contact">
-  <section class="hero hero-page">
-    <div class="grain"></div>
-    <div class="wrap">
-      <h1 class="h-page">{c.hero.title}</h1>
-      <p class="lead">{c.hero.lead}</p>
-    </div>
-  </section>
-
-  <section class="block block-first">
+  <section class="block" style="padding-top:72px">
     <div class="wrap contact-grid">
       <div class="card card-paper">
-        <h2 class="h-section" style="font-size:1.6rem">{c.form.title}</h2>
+        <h1 class="h-section" style="font-size:1.6rem">{c.form.title}</h1>
         <p class="muted" style="margin-top:8px">{c.form.intro}</p>
         <!-- Posts in the background to forms/contact.php on SiteGround
              (src/lib/form.js). The visitor stays on this page. -->

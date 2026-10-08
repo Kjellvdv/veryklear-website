@@ -1,6 +1,6 @@
 # Dienst page: Positionering (veryklear.com/positionering).
 # Change the text after the colon, keep the indentation. Fields ending in _html
-# may contain <br> or <strong>. The artikels at the bottom are added automatically.
+# may contain <br> (line break). No bold in titles. The artikels at the bottom are added automatically.
 # Source of truth for what this pillar is: ~/brands/very-klear/gtm/products.yml.
 
 meta:

@@ -2,6 +2,7 @@
 // The short overview. Each pillar has its own page; copy lives in
 // src/content/copy/diensten.yaml.
 import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
 import Faq from '../components/Faq.astro';
 import CtaFinal from '../components/CtaFinal.astro';
 import { PILLARS, pillarUrl } from '../lib/articles.js';
@@ -11,13 +12,7 @@ const c = await getCopy('diensten');
 ---
 
 <Base title={c.meta.title} description={c.meta.description} path="/diensten">
-  <section class="hero hero-page">
-    <div class="grain"></div>
-    <div class="wrap">
-      <h1 class="h-page" set:html={c.hero.title_html} />
-      <p class="lead">{c.hero.lead}</p>
-    </div>
-  </section>
+  <Hero title={c.hero.title_html} lead={c.hero.lead} />
 
   <section class="block block-first">
     <div class="wrap grid-3">
