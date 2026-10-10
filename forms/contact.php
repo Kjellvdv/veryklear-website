@@ -182,12 +182,11 @@ if (defined('SMTP_HOST') && defined('SMTP_USER') && defined('SMTP_PASS')) {
     $error = smtp_send($fromAddress, TO_ADDRESS, implode("\n", $headers) . "\n\n" . $text);
     if ($error !== '') {
         // The reason never contains the password: it's the server's reply or a
-        // connection error. It goes to vk-form.log one folder above public_html,
-        // and into the reply so a test can see why without digging in SiteGround.
+        // connection error. It goes to vk-form.log, one folder above public_html.
         $reason = mb_substr(preg_replace('/\s+/', ' ', $error), 0, 200) . ' [config: ' . $configUsed . ']';
         error_log('[vk-form] SMTP: ' . $reason);
         @file_put_contents(__DIR__ . '/../vk-form.log', date('c') . " SMTP: $reason\n", FILE_APPEND);
-        reply(500, false, 'Mail could not be sent: ' . $reason);
+        reply(500, false, 'Mail could not be sent');  // details are in vk-form.log, not in public replies
     }
 } else {
     // Fallback without SMTP settings. SiteGround drops these, so set up contact-config.php.
