@@ -25,8 +25,9 @@ const ALLOWED_ORIGINS = [
 const MAX_PER_HOUR = 5;        // per IP address
 
 // SMTP settings: SMTP_HOST, SMTP_PORT, SMTP_SECURE ('ssl' or 'tls'), SMTP_USER, SMTP_PASS.
+$configUsed = '';
 foreach ([__DIR__ . '/../contact-config.php', __DIR__ . '/contact-config.php'] as $config) {
-    if (is_file($config)) { require $config; break; }
+    if (is_file($config)) { require $config; $configUsed = realpath($config); break; }
 }
 
 header('Content-Type: application/json; charset=utf-8');
@@ -82,7 +83,7 @@ function smtp_send(string $from, string $to, string $data): string {
     }
     if ($e = $cmd('AUTH LOGIN', 334)) return $e;
     if ($e = $cmd(base64_encode(SMTP_USER), 334)) return $e;
-    if ($e = $cmd(base64_encode(SMTP_PASS), 235)) return 'login failed';
+    if ($e = $cmd(base64_encode(SMTP_PASS), 235)) return 'login failed for ' . SMTP_USER . ': ' . $e;
     if ($e = $cmd("MAIL FROM:<$from>", 250)) return $e;
     if ($e = $cmd("RCPT TO:<$to>", 250)) return $e;
     if ($e = $cmd('DATA', 354)) return $e;
@@ -171,7 +172,7 @@ if (defined('SMTP_HOST') && defined('SMTP_USER') && defined('SMTP_PASS')) {
         // The reason never contains the password: it's the server's reply or a
         // connection error. It goes to vk-form.log one folder above public_html,
         // and into the reply so a test can see why without digging in SiteGround.
-        $reason = mb_substr(preg_replace('/\s+/', ' ', $error), 0, 160);
+        $reason = mb_substr(preg_replace('/\s+/', ' ', $error), 0, 200) . ' [config: ' . $configUsed . ']';
         error_log('[vk-form] SMTP: ' . $reason);
         @file_put_contents(__DIR__ . '/../vk-form.log', date('c') . " SMTP: $reason\n", FILE_APPEND);
         reply(500, false, 'Mail could not be sent: ' . $reason);
