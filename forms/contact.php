@@ -81,9 +81,21 @@ function smtp_send(string $from, string $to, string $data): string {
         if (!stream_socket_enable_crypto($fp, true, STREAM_CRYPTO_METHOD_TLS_CLIENT)) return 'starttls failed';
         if ($e = $cmd("EHLO $helo", 250)) return $e;
     }
-    if ($e = $cmd('AUTH LOGIN', 334)) return $e;
-    if ($e = $cmd(base64_encode(SMTP_USER), 334)) return $e;
-    if ($e = $cmd(base64_encode(SMTP_PASS), 235)) return 'login failed for ' . SMTP_USER . ': ' . $e;
+    // Log in: AUTH LOGIN first, AUTH PLAIN if that is refused.
+    $loginError = '';
+    if (!($e = $cmd('AUTH LOGIN', 334)) && !($e = $cmd(base64_encode(SMTP_USER), 334))) {
+        $e = $cmd(base64_encode(SMTP_PASS), 235);
+    }
+    if ($e) {
+        $loginError = $e;
+        $e = $cmd('AUTH PLAIN ' . base64_encode("\0" . SMTP_USER . "\0" . SMTP_PASS), 235);
+    }
+    if ($e) {
+        // A short fingerprint lets you compare the password in this file with
+        // another copy, without the password itself ever being shown.
+        $fp = substr(hash('sha256', SMTP_PASS), 0, 8) . ', ' . strlen(SMTP_PASS) . ' chars';
+        return 'login failed for ' . SMTP_USER . " (password fingerprint $fp): " . ($loginError ?: $e);
+    }
     if ($e = $cmd("MAIL FROM:<$from>", 250)) return $e;
     if ($e = $cmd("RCPT TO:<$to>", 250)) return $e;
     if ($e = $cmd('DATA', 354)) return $e;
