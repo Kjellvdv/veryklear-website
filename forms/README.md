@@ -31,7 +31,7 @@ the script reported success, nothing arrived). So the script logs in to a real
 mailbox and sends over SMTP, like a mail app.
 
 1. **Create the mailbox.** Site Tools → Email → Accounts → create
-   `website@veryklear.be` with a strong password.
+   `website@veryklear.com` with a strong password.
 2. **Look up the outgoing server.** Same page, on that mailbox: ⋮ → Mail
    Configuration → Manual settings. Note the outgoing (SMTP) server name and
    port (465 with SSL).
@@ -52,7 +52,7 @@ site's PHP error log (Site Tools → Statistics → Error Log), starting with `[
 - Only accepts posts from veryklear.com (and the local preview).
 - Drops bots that tick the hidden `botcheck` field.
 - Allows 5 messages per hour per IP address.
-- Sends from the form mailbox (`website@veryklear.be`) with Reply-To set to
+- Sends from the form mailbox (`website@veryklear.com`) with Reply-To set to
   the visitor, so hitting reply in your mail answers them directly.
 
 To change the inbox, edit `TO_ADDRESS` at the top of `contact.php`.

@@ -11,5 +11,5 @@
 const SMTP_HOST   = 'gnld7.siteground.eu'; // outgoing server name from Mail Configuration
 const SMTP_PORT   = 465;                   // 465 with 'ssl', or 587 with 'tls'
 const SMTP_SECURE = 'ssl';
-const SMTP_USER   = 'website@veryklear.be'; // the mailbox you created for the form
+const SMTP_USER   = 'website@veryklear.com'; // the mailbox you created for the form
 const SMTP_PASS   = 'PASTE-THE-MAILBOX-PASSWORD-HERE';
