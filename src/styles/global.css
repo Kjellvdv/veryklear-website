@@ -190,7 +190,9 @@ section.block > .wrap{position:relative;z-index:1}
 .statement h2{font-size:clamp(1.7rem,3.2vw,2.5rem);font-weight:800;line-height:1.12}
 .statement .facts{display:grid;gap:14px}
 .fact{background:rgba(255,255,255,.14);border-radius:var(--radius-sm);padding:16px 18px}
-.fact b{display:block;font-size:1.5rem;font-weight:900;font-variant-numeric:tabular-nums;line-height:1.1}
+.fact b{display:flex;align-items:baseline;gap:8px;font-size:1.1rem;font-weight:600;line-height:1}
+.fact .fig{font-size:2.6rem;font-weight:500;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.fact b + span{display:block;margin-top:6px}
 .fact span{font-size:.88rem;color:rgba(255,255,255,.86)}
 a.fact{display:block;text-decoration:none;color:inherit;transition:background .15s}
 a.fact:hover{background:rgba(255,255,255,.22)}
@@ -199,9 +201,30 @@ a.fact:hover{background:rgba(255,255,255,.22)}
 .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;counter-reset:s}
 @media (max-width:860px){.steps{grid-template-columns:1fr}}
 .step{counter-increment:s}
-.step .n{width:40px;height:40px;border-radius:var(--radius-sm);background:var(--grad);color:#fff;font-weight:900;display:flex;align-items:center;justify-content:center;margin-bottom:18px}
-.step .n::before{content:counter(s)}
+.step .n{display:flex;align-items:center;gap:10px;margin-bottom:12px;font-size:.82rem;font-weight:700;color:var(--red-deep);font-variant-numeric:tabular-nums}
+.step .n::before{content:"0" counter(s)}
+.step .n::after{content:"";width:28px;height:1px;background:var(--line)}
+/* Progress line over the steps: you start at the session, so the red runs part of the way. */
+.steps-track{height:2px;background:var(--line);margin:-12px 0 24px;position:relative}
+.steps-track::before{content:"";position:absolute;inset:0 auto 0 0;width:66%;background:var(--grad)}
+@media (max-width:860px){.steps-track{display:none}}
 .step .meta{margin-top:16px;font-size:.84rem;font-weight:700;color:var(--red-deep)}
+
+/* dark band: the one dark section on the home page (Kjell, 2026-10-12) */
+section.block-dark{background:var(--ink);color:#fff;margin:0 16px;border-radius:20px;overflow:hidden}
+section.block-dark::after{display:none!important}
+section.block-dark::before{content:"";position:absolute;top:-30%;right:-10%;width:55%;height:90%;pointer-events:none;
+  background:radial-gradient(closest-side,rgba(200,16,46,.32),rgba(200,16,46,0))}
+.btn-dark-line{color:#fff;border-color:rgba(255,255,255,.22);padding:12px 20px}
+.btn-dark-line:hover{border-color:#fff}
+.dark-card{background:#181818;border:1px solid #2b2b2b;color:#fff;text-decoration:none;transition:border-color .15s}
+.dark-card:hover{border-color:var(--red-light)}
+.big-num{display:block;font-size:clamp(3.6rem,6vw,5rem);font-weight:500;line-height:.9;letter-spacing:-.05em;color:var(--red-light);margin-bottom:22px;font-variant-numeric:tabular-nums}
+.dark-card ul{margin:18px 0 0;padding:0;list-style:none;font-size:.93rem;color:rgba(255,255,255,.78)}
+.dark-card li{padding:11px 0;border-top:1px solid #2b2b2b}
+.round-arrow{align-self:flex-end;margin-top:22px;width:40px;height:40px;border-radius:50%;background:#2b2b2b;display:flex;align-items:center;justify-content:center;transition:background .15s}
+.dark-card:hover .round-arrow{background:var(--grad)}
+@media (max-width:700px){section.block-dark{margin:0 8px;border-radius:16px}}
 
 /* article cards */
 .art{display:flex;flex-direction:column;text-decoration:none;color:inherit;padding:0;overflow:hidden;transition:transform .15s,box-shadow .15s}
