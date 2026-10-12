@@ -5,7 +5,6 @@ import Hero from '../components/Hero.astro';
 import Faq from '../components/Faq.astro';
 import CtaFinal from '../components/CtaFinal.astro';
 import ArticleCard from '../components/ArticleCard.astro';
-import Sketch from '../components/Sketch.astro';
 import { getArticles, PILLARS, pillarUrl } from '../lib/articles.js';
 import { getCopy } from '../lib/copy.js';
 
@@ -44,9 +43,9 @@ const recent = (await getArticles()).slice(0, 3);
         <h2 class="h-section">{c.paths.title}</h2>
       </div>
       <div class="grid-2">
-        {[[c.paths.project, '/diensten', 'pick'], [c.paths.fractional, '/fractioneel', 'curve']].map(([p, href, sketch]) => (
+        {[[c.paths.project, '/diensten', 'project'], [c.paths.fractional, '/fractioneel', 'fractioneel']].map(([p, href, illo]) => (
           <a class="card card-paper" href={href} style="text-decoration:none">
-            <Sketch name={sketch} />
+            <img class="card-illo" src={`/home/${illo}.webp`} alt="" loading="lazy" width="1200" height="600" />
             <span class="label">{p.label}</span>
             <h3 class="h-card" style="margin-top:6px">{p.title}</h3>
             <p class="muted">{p.body}</p>
@@ -105,7 +104,7 @@ const recent = (await getArticles()).slice(0, 3);
       <div class="steps">
         {c.steps.items.map((s, i) => (
           <div class="card card-paper step">
-            <Sketch name={['clock', 'timeline', 'adjust'][i]} />
+            <img class="card-illo" src={`/home/stap-${i + 1}.webp`} alt="" loading="lazy" width="1200" height="600" />
             <div class="n"></div>
             <h3 class="h-card">{s.title}</h3>
             <p class="muted">{s.body}</p>

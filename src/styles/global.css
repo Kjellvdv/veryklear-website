@@ -210,8 +210,11 @@ a.fact:hover{background:rgba(255,255,255,.22)}
 @media (max-width:860px){.steps-track{display:none}}
 .step .meta{margin-top:16px;font-size:.84rem;font-weight:700;color:var(--red-deep)}
 
+/* Ink illustrations at the top of the cards that explain something (same style as the artikels). */
+.card-illo{display:block;width:100%;height:auto;aspect-ratio:2/1;object-fit:cover;border-radius:8px;border:1px solid var(--line);background:#fff;margin-bottom:26px}
+
 /* dark band: the one dark section on the home page (Kjell, 2026-10-12) */
-section.block-dark{background:var(--ink);color:#fff;margin:0 16px;border-radius:20px;overflow:hidden}
+section.block-dark{background:var(--ink);color:#fff;overflow:hidden;padding:104px 0}
 section.block-dark::after{display:none!important}
 section.block-dark::before{content:"";position:absolute;top:-30%;right:-10%;width:55%;height:90%;pointer-events:none;
   background:radial-gradient(closest-side,rgba(200,16,46,.32),rgba(200,16,46,0))}
@@ -224,7 +227,6 @@ section.block-dark::before{content:"";position:absolute;top:-30%;right:-10%;widt
 .dark-card li{padding:11px 0;border-top:1px solid #2b2b2b}
 .round-arrow{align-self:flex-end;margin-top:22px;width:40px;height:40px;border-radius:50%;background:#2b2b2b;display:flex;align-items:center;justify-content:center;transition:background .15s}
 .dark-card:hover .round-arrow{background:var(--grad)}
-@media (max-width:700px){section.block-dark{margin:0 8px;border-radius:16px}}
 
 /* article cards */
 .art{display:flex;flex-direction:column;text-decoration:none;color:inherit;padding:0;overflow:hidden;transition:transform .15s,box-shadow .15s}
