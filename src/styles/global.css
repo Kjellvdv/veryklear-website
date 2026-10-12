@@ -210,9 +210,6 @@ a.fact:hover{background:rgba(255,255,255,.22)}
 @media (max-width:860px){.steps-track{display:none}}
 .step .meta{margin-top:16px;font-size:.84rem;font-weight:700;color:var(--red-deep)}
 
-/* Ink illustrations at the top of the cards that explain something (same style as the artikels). */
-.card-illo{display:block;width:100%;height:auto;aspect-ratio:2/1;object-fit:cover;border-radius:8px;border:1px solid var(--line);background:#fff;margin-bottom:26px}
-
 /* dark band: the one dark section on the home page (Kjell, 2026-10-12) */
 section.block-dark{background:var(--ink);color:#fff;overflow:hidden;padding:104px 0}
 section.block-dark::after{display:none!important}
