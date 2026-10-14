@@ -35,6 +35,9 @@ foreach ([__DIR__ . '/../contact-config.php', __DIR__ . '/contact-config.php'] a
 
 header('Content-Type: application/json; charset=utf-8');
 header('X-Content-Type-Options: nosniff');
+// A JSON endpoint is never meant to be framed or to load anything.
+header('X-Frame-Options: DENY');
+header("Content-Security-Policy: default-src 'none'; frame-ancestors 'none'");
 
 $origin = $_SERVER['HTTP_ORIGIN'] ?? '';
 if (in_array($origin, ALLOWED_ORIGINS, true)) {

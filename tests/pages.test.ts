@@ -115,6 +115,31 @@ describe("hosts and health", () => {
     expect((await request(app).get("/healthz").set("Host", "internal")).status).toBe(200);
   });
 
+  it("sends frame and CSP headers on every response, redirects and the health check included", async () => {
+    const { app } = setup({ env: { CANONICAL_HOST: "www.veryklear.com" } });
+    const responses = [
+      await nav(app, "/diensten"), // a page
+      await nav(app, "/diensten/"), // a slash redirect
+      await nav(app, "/nope"), // the 404 page
+      await nav(app, "/diensten", { host: "veryklear-production.up.railway.app" }), // host redirect
+      await request(app).get("/healthz").set("Host", "internal"),
+    ];
+    for (const res of responses) {
+      expect(res.headers["x-frame-options"]).toBe("SAMEORIGIN");
+      expect(res.headers["content-security-policy"]).toContain("frame-ancestors 'none'");
+      expect(res.headers["x-content-type-options"]).toBe("nosniff");
+    }
+  });
+
+  it("keeps the referrer on the way to the canonical host", async () => {
+    const { app } = setup({ env: { CANONICAL_HOST: "www.veryklear.com" } });
+    const hop = await nav(app, "/", { host: "veryklear-production.up.railway.app" });
+    expect(hop.status).toBe(301);
+    expect(hop.headers["referrer-policy"]).toBeUndefined();
+    // ...while the site itself still asks for same-origin.
+    expect((await nav(app, "/")).headers["referrer-policy"]).toBe("same-origin");
+  });
+
   it("serves any host when no canonical host is set", async () => {
     const { app } = setup();
     expect((await nav(app, "/", { host: "veryklear-production.up.railway.app" })).status).toBe(200);

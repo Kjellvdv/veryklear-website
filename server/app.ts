@@ -61,22 +61,8 @@ export function createApp({
     next();
   });
 
-  // Above the host redirect, so Railway's probe (which uses the internal hostname) passes.
-  app.get("/healthz", (_req, res) => {
-    db.prepare("SELECT 1").get();
-    res.json({ success: true });
-  });
-
-  if (cfg.CANONICAL_HOST) {
-    const host = cfg.CANONICAL_HOST;
-    app.use((req, res, next) => {
-      if (req.hostname === host) return next();
-      res.redirect(301, `https://${host}${req.originalUrl}`);
-    });
-  }
-
-  app.use(compression());
-
+  // Security headers go on every response this server makes, redirects and
+  // /healthz included: they sit above both, so a scanner never meets a bare one.
   // Two policies: the site's pages need their own scripts and styles, the TidyCal
   // embed and the form endpoint; the numbers page needs nothing but its inline CSS.
   const sitePolicy = helmet({
@@ -117,6 +103,25 @@ export function createApp({
   const policy: RequestHandler = (req, res, next) =>
     (forReport.has(req.path) ? reportPolicy : sitePolicy)(req, res, next);
   app.use(policy);
+
+  // Above the host redirect, so Railway's probe (which uses the internal hostname) passes.
+  app.get("/healthz", (_req, res) => {
+    db.prepare("SELECT 1").get();
+    res.json({ success: true });
+  });
+
+  if (cfg.CANONICAL_HOST) {
+    const host = cfg.CANONICAL_HOST;
+    app.use((req, res, next) => {
+      if (req.hostname === host) return next();
+      // A redirect's Referrer-Policy applies to the request it triggers; the site's
+      // "same-origin" would drop the referrer on the way to the canonical host.
+      res.removeHeader("Referrer-Policy");
+      res.redirect(301, `https://${host}${req.originalUrl}`);
+    });
+  }
+
+  app.use(compression());
 
   app.use(reportRouter(db, cfg, now));
   app.use(normalizeUrl(REDIRECTS));
