@@ -3,6 +3,19 @@
 # veryklear.com/strategiesessie -> https://www.veryklear.com/strategiesessie
 # The query string is kept. Replaces the Domain -> Redirects rule, which
 # dropped the path. Upload by hand; see DEPLOY.md.
+
+# Security headers on the redirect itself. The bare domain serves no page, only
+# this 301, but scanners judge the response they get. The real site's headers
+# come from the Express server (server/app.ts).
+# No Referrer-Policy here, on purpose: a browser applies the policy of a redirect
+# response to the request it follows, so even "no-referrer" would strip the
+# referrer before it reaches www and LinkedIn or Google visits would count as direct.
+<IfModule mod_headers.c>
+  Header always set Strict-Transport-Security "max-age=31536000"
+  Header always set Content-Security-Policy "default-src 'none'; frame-ancestors 'none'"
+  Header always set X-Content-Type-Options "nosniff"
+</IfModule>
+
 RewriteEngine On
 RewriteCond %{HTTP_HOST} ^veryklear\.com$ [NC]
 RewriteRule ^(.*)$ https://www.veryklear.com/$1 [R=301,L]

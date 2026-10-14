@@ -21,7 +21,7 @@ every push to `main`, so a content-desk publish goes live by itself.
 | Name | Record | Points to |
 |---|---|---|
 | `www.veryklear.com` | CNAME + TXT | Railway (both values come from the service's custom-domain dialog; the domain only verifies with both) |
-| `veryklear.com` | A | SiteGround's own server (`35.204.202.155`), which 301s to the same path on `https://www.veryklear.com` through `siteground/veryklear.com.htaccess`, uploaded as `.htaccess` in that site's `public_html`. Not through Domain → Redirects: that rule drops the path, so `veryklear.com/x` landed on the home page (replaced 2026-10-14). Certificate: Let's Encrypt, already present (Security → SSL Manager). |
+| `veryklear.com` | A | SiteGround's own server (`35.204.202.155`), which 301s to the same path on `https://www.veryklear.com` through `siteground/veryklear.com.htaccess`, uploaded as `.htaccess` in that site's `public_html`; the same file adds HSTS and a locked-down CSP to the redirect, because a scanner (Aikido, 2026-10-14) flags a 301 without them. It must not set a Referrer-Policy: a redirect's policy applies to the request it triggers, and referrers would be lost. Not through Domain → Redirects: that rule drops the path, so `veryklear.com/x` landed on the home page (replaced 2026-10-14). Certificate: Let's Encrypt, already present (Security → SSL Manager). |
 | `veryklear.be` | its own zone | SiteGround 301 to `https://www.veryklear.com`, path dropped (the old site's URLs don't exist on the new one, so home beats a 404) |
 | `forms.veryklear.com` | A | SiteGround, the contact-form backend (`forms/README.md`) |
 
