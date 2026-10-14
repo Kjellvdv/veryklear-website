@@ -37,7 +37,29 @@ const recent = (await getArticles()).slice(0, 3);
     </div>
   </section>
 
-  <section class="block" style="padding-top:0">
+  {/* The one dark band on the page: a rhythm break for the three services. */}
+  <section class="block block-dark">
+    <div class="wrap">
+      <div class="s-head-row">
+        <div class="s-head">
+          <h2 class="h-section">{c.pillars.title}</h2>
+        </div>
+        <a class="btn btn-dark-line" href="/diensten">{c.pillars.link}</a>
+      </div>
+      <div class="grid-3">
+        {c.pillars.items.map((p, i) => (
+          <a class="card dark-card overview-card" href={pillarUrl(PILLARS[i])}>
+            <span class="big-num">{String(i + 1).padStart(2, '0')}</span>
+            <h3 class="h-card">{p.title}</h3>
+            <ul>{p.questions.map((q) => <li>{q}</li>)}</ul>
+            <span class="round-arrow" aria-hidden="true">→</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
     <div class="wrap">
       <div class="s-head">
         <h2 class="h-section">{c.paths.title}</h2>
@@ -57,26 +79,6 @@ const recent = (await getArticles()).slice(0, 3);
 
   <section class="block" style="padding-top:0">
     <div class="wrap">
-      <div class="s-head-row">
-        <div class="s-head">
-          <h2 class="h-section">{c.pillars.title}</h2>
-        </div>
-        <a class="link-arrow" href="/diensten">{c.pillars.link}</a>
-      </div>
-      <div class="grid-3">
-        {c.pillars.items.map((p, i) => (
-          <a class={`card pillar-card overview-card ${i === 0 ? 'card-grad cut' : 'card-paper'}`} href={pillarUrl(PILLARS[i])}>
-            {i === 0 && <div class="grain"></div>}
-            <h3 class="h-card">{p.title}</h3>
-            <ul>{p.questions.map((q) => <li>{q}</li>)}</ul>
-          </a>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <section class="block" style="padding-top:0">
-    <div class="wrap">
       <div class="card card-grad cut statement">
         <div class="grain"></div>
         <div style="position:relative">
@@ -86,7 +88,8 @@ const recent = (await getArticles()).slice(0, 3);
         <div class="facts" style="position:relative">
           {c.statement.facts.map((f) => {
             const Tag = f.href ? 'a' : 'div';
-            return <Tag class="fact" href={f.href}><b>{f.value.replace('{n}', String(partnerCount))}</b><span>{f.text}</span></Tag>;
+            const [fig, ...unit] = f.value.replace('{n}', String(partnerCount)).split(' ');
+            return <Tag class="fact" href={f.href}><b><span class="fig">{fig}</span> {unit.join(' ')}</b><span>{f.text}</span></Tag>;
           })}
         </div>
       </div>
@@ -96,6 +99,7 @@ const recent = (await getArticles()).slice(0, 3);
   <section class="block" style="padding-top:0">
     <div class="wrap">
       <div class="s-head"><h2 class="h-section">{c.steps.title}</h2></div>
+      <div class="steps-track" aria-hidden="true"></div>
       <div class="steps">
         {c.steps.items.map((s) => (
           <div class="card card-paper step">
