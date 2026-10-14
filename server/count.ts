@@ -13,19 +13,53 @@ const clean = (v: unknown, max: number): string | null => {
 };
 
 /**
- * A real person opening a page, as far as a server can tell. Everything else
- * (assets, crawlers, prefetches, people who asked not to be tracked) is skipped.
- * Old Safari sends no Sec-Fetch headers at all, so their absence must not drop a visit.
+ * Why a page request is not counted as a visit. "ignore" is silent: assets,
+ * prefetches and people who asked not to be tracked leave no trace at all. The
+ * other reasons are automated traffic, kept as plain daily totals so the numbers
+ * page can show what the filter caught. No identifier is attached to any of them.
  */
-export function isNavigation(req: Request): boolean {
-  if (req.method !== "GET") return false;
-  if (!(req.get("accept") ?? "").includes("text/html")) return false;
-  if (isBot(req.get("user-agent") ?? "")) return false;
-  if (req.get("dnt") === "1" || req.get("sec-gpc") === "1") return false;
+export type Verdict = "count" | "ignore" | "bot" | "not-a-browser" | "no-language" | "datacenter";
+
+/**
+ * Browsers that send Sec-Fetch-Mode and Sec-Fetch-Dest on every navigation:
+ * Chrome (and everything built on it) from 80, Firefox from 90, Safari from 16.4.
+ * A user agent that claims one of these but sends neither header is an HTTP
+ * client wearing a browser's name. Older versions and other agents (in-app
+ * browsers, Firefox on iOS) send nothing predictable, so they are not judged.
+ */
+export function claimsModernBrowser(ua: string): boolean {
+  const chrome = /\bChrome\/(\d+)/.exec(ua);
+  if (chrome) return Number(chrome[1]) >= 80;
+  const firefox = /\bFirefox\/(\d+)/.exec(ua);
+  if (firefox) return Number(firefox[1]) >= 90;
+  const safari = /\bVersion\/(\d+)\.(\d+).*\bSafari\//.exec(ua);
+  if (safari) {
+    const major = Number(safari[1]);
+    return major > 16 || (major === 16 && Number(safari[2]) >= 4);
+  }
+  return false;
+}
+
+/**
+ * What a request is, judged on its headers alone. The network check comes after,
+ * in the counter, because it needs the IP address.
+ */
+export function classify(req: Request): Verdict {
+  if (req.method !== "GET") return "ignore";
+  if (!(req.get("accept") ?? "").includes("text/html")) return "ignore";
+  if (req.get("dnt") === "1" || req.get("sec-gpc") === "1") return "ignore";
+  if (req.get("sec-purpose") || req.get("purpose")) return "ignore"; // prefetch, prerender
   const dest = req.get("sec-fetch-dest");
-  if (dest && dest !== "document") return false;
-  if (req.get("sec-purpose") || req.get("purpose")) return false; // prefetch, prerender
-  return true;
+  if (dest && dest !== "document") return "ignore";
+
+  const ua = req.get("user-agent") ?? "";
+  if (isBot(ua)) return "bot";
+  if (claimsModernBrowser(ua) && (dest !== "document" || req.get("sec-fetch-mode") !== "navigate"))
+    return "not-a-browser";
+  // Every real browser sends a language. A script that borrowed a browser's
+  // headers usually forgot this one.
+  if ((req.get("accept-language") ?? "").trim() === "") return "no-language";
+  return "count";
 }
 
 export interface Referrer {
@@ -66,19 +100,33 @@ export function primaryLanguage(header: string | undefined): string | null {
 
 export type Counter = (req: Request, path: string) => void;
 
-export function createCounter(db: Db, now: () => number): Counter {
+export function createCounter(
+  db: Db,
+  now: () => number,
+  isDatacenter: (ip: string) => boolean = () => false,
+): Counter {
   const insert = db.prepare(`
     INSERT INTO pageviews
       (ts, day, path, ref_host, from_path, utm_source, utm_medium, utm_campaign, utm_content,
        utm_term, device, lang, visitor)
     VALUES (@ts, @day, @path, @ref_host, @from_path, @utm_source, @utm_medium, @utm_campaign,
             @utm_content, @utm_term, @device, @lang, @visitor)`);
+  const tally = db.prepare(`
+    INSERT INTO filtered (day, reason, n) VALUES (?, ?, 1)
+    ON CONFLICT (day, reason) DO UPDATE SET n = n + 1`);
 
   return (req, path) => {
-    if (!isNavigation(req)) return;
+    let verdict = classify(req);
+    if (verdict === "ignore") return;
     try {
       const ts = now();
       const day = dayOf(ts);
+      // The IP is compared to the ranges here and hashed below. Nowhere else.
+      if (verdict === "count" && isDatacenter(req.ip ?? "")) verdict = "datacenter";
+      if (verdict !== "count") {
+        tally.run(day, verdict);
+        return;
+      }
       const ua = req.get("user-agent") ?? "";
       const q = req.query as Record<string, unknown>;
       const ref = referrerOf(req.get("referer"), req.hostname);
@@ -95,7 +143,6 @@ export function createCounter(db: Db, now: () => number): Counter {
         utm_term: clean(q.utm_term, 100),
         device: deviceOf(ua),
         lang: primaryLanguage(req.get("accept-language")),
-        // The IP exists on this one line and nowhere else.
         visitor: visitorHash(saltFor(db, day), req.ip ?? "", ua),
       });
     } catch (err) {

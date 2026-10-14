@@ -163,3 +163,115 @@ describe("config", () => {
     expect(cfg.RETENTION_DAYS).toBe(400);
   });
 });
+
+describe("session flows", () => {
+  const MIN = 60_000;
+  const A = { ip: "198.51.100.1" };
+  const B = { ip: "198.51.100.2" };
+  const C = { ip: "198.51.100.3" };
+  const D = { ip: "198.51.100.4" };
+
+  async function walked() {
+    const ctx = setup({ start: Date.UTC(2026, 9, 13, 9, 0) });
+    const { app, advance } = ctx;
+    // A: home, diensten, a reload of diensten, contact
+    await nav(app, "/", A);
+    advance(MIN);
+    await nav(app, "/diensten", A);
+    advance(MIN);
+    await nav(app, "/diensten", A);
+    advance(MIN);
+    await nav(app, "/contact", A);
+    // B: the same route without the reload
+    await nav(app, "/", B);
+    advance(MIN);
+    await nav(app, "/diensten", B);
+    advance(MIN);
+    await nav(app, "/contact", B);
+    // C: one page only
+    await nav(app, "/artikels/ai", C);
+    // D: two sessions, 45 minutes apart
+    await nav(app, "/", D);
+    advance(45 * MIN);
+    await nav(app, "/", D);
+    advance(MIN);
+    await nav(app, "/artikels/ai", D);
+    return ctx;
+  }
+
+  it("builds sessions per visitor and day, and a reload is not a step", async () => {
+    const { app } = await walked();
+    const f = (await get(app, "/numeros.json?days=7")).body.data.flows;
+    // A, B and C: one session each. D: a session of one page, then one of two.
+    expect(f.sessions).toBe(5);
+    expect(f.singlePage).toBe(2); // C, and D's first
+    expect(f.pagesPerSession).toBe(2); // (3 + 3 + 1 + 1 + 2) / 5
+    expect(f.paths).toEqual([
+      { pages: ["/", "/diensten", "/contact"], more: false, sessions: 2 },
+      { pages: ["/", "/artikels/ai"], more: false, sessions: 1 },
+    ]);
+  });
+
+  it("counts entries, exits and the page opened next", async () => {
+    const { app } = await walked();
+    const f = (await get(app, "/numeros.json?days=7")).body.data.flows;
+    expect(f.entries[0]).toEqual({ path: "/", sessions: 4 });
+    expect(f.exits).toContainEqual({ path: "/contact", sessions: 2 });
+    expect(f.steps).toEqual([
+      { from: "/", to: "/diensten", sessions: 2 },
+      { from: "/diensten", to: "/contact", sessions: 2 },
+      { from: "/", to: "/artikels/ai", sessions: 1 },
+    ]);
+  });
+
+  it("never joins one visitor's pages across days", async () => {
+    const { app, advance } = setup({ start: Date.UTC(2026, 9, 13, 23, 50) });
+    await nav(app, "/", A);
+    advance(20 * MIN); // past midnight UTC: a new day, a new hash, a new session
+    await nav(app, "/contact", A);
+    const f = (await get(app, "/numeros.json?days=7")).body.data.flows;
+    expect(f.sessions).toBe(2);
+    expect(f.steps).toEqual([]);
+  });
+
+  it("cuts long routes at five pages and says so", async () => {
+    const { app, db } = setup();
+    const insert = db.prepare(
+      "INSERT INTO pageviews (ts, day, path, device, visitor) VALUES (?, '2026-10-13', ?, 'desktop', 'v1')",
+    );
+    const start = Date.UTC(2026, 9, 13, 9, 0);
+    ["/", "/diensten", "/ai", "/contact", "/privacy", "/partners", "/fractioneel"].forEach(
+      (path, i) => insert.run(start + i * MIN, path),
+    );
+    const f = (await get(app, "/numeros.json?days=7")).body.data.flows;
+    expect(f.paths).toEqual([
+      { pages: ["/", "/diensten", "/ai", "/contact", "/privacy"], more: true, sessions: 1 },
+    ]);
+    expect(f.steps).toHaveLength(6); // steps are counted over the whole session
+  });
+
+  it("shows flows and the automated-traffic totals on the page", async () => {
+    const { app } = await walked();
+    await nav(app, "/", { headers: { "Accept-Language": null } });
+    const html = (await get(app, "/numeros?days=7")).text;
+    expect(html).toContain("How visitors move through the site");
+    expect(html).toContain("/ &rarr; /diensten &rarr; /contact");
+    expect(html).toContain("Left out as automated traffic");
+    expect(html).toContain("Sends no browser language");
+    const json = (await get(app, "/numeros.json?days=7")).body.data;
+    expect(json.filtered).toEqual([{ reason: "no-language", requests: 1 }]);
+  });
+
+  it("copes with no data at all", async () => {
+    const { app } = setup();
+    const f = (await get(app, "/numeros.json")).body.data.flows;
+    expect(f).toMatchObject({
+      sessions: 0,
+      singlePage: 0,
+      pagesPerSession: 0,
+      entries: [],
+      steps: [],
+    });
+    expect((await get(app, "/numeros")).text).toContain("No sessions yet.");
+  });
+});

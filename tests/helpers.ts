@@ -12,8 +12,19 @@ export const UA =
 export const PHONE_UA =
   "Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Mobile/15E148 Safari/604.1";
 export const DAY = 86_400_000;
+/** A Chrome that must send Sec-Fetch headers, and an old Safari that predates them. */
+export const CHROME_UA =
+  "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36";
+export const OLD_SAFARI_UA =
+  "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.6 Safari/605.1.15";
 
-export function setup(opts: { start?: number; env?: Record<string, string> } = {}) {
+export function setup(
+  opts: {
+    start?: number;
+    env?: Record<string, string>;
+    isDatacenter?: (ip: string) => boolean;
+  } = {},
+) {
   let now = opts.start ?? Date.UTC(2026, 9, 13, 12, 0, 0);
   const db = openDb(":memory:");
   const cfg = loadConfig({
@@ -21,7 +32,12 @@ export function setup(opts: { start?: number; env?: Record<string, string> } = {
     DIST_DIR: FIXTURE,
     ...opts.env,
   } as NodeJS.ProcessEnv);
-  const app = createApp({ db, cfg, now: () => now });
+  const app = createApp({
+    db,
+    cfg,
+    now: () => now,
+    isDatacenter: opts.isDatacenter ?? (() => false),
+  });
   return {
     app,
     db,

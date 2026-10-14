@@ -1,8 +1,8 @@
 import { describe, expect, it } from "vitest";
 import Database from "better-sqlite3";
-import { isNavigation, primaryLanguage, referrerOf } from "../server/count";
+import { claimsModernBrowser, classify, primaryLanguage, referrerOf } from "../server/count";
 import { migrate, purge } from "../server/db";
-import { DAY, nav, PHONE_UA, rows, setup, UA } from "./helpers";
+import { CHROME_UA, DAY, nav, OLD_SAFARI_UA, PHONE_UA, rows, setup, UA } from "./helpers";
 
 describe("what a page visit records", () => {
   it("stores path, referring site, campaign, device and language, and nothing about the person", async () => {
@@ -67,9 +67,12 @@ describe("what a page visit records", () => {
     expect(src).not.toMatch(/[\u0000-\u001f]/);
   });
 
-  it("still counts a browser that sends no Sec-Fetch headers", async () => {
+  it("still counts a browser too old to send Sec-Fetch headers", async () => {
     const { app, db } = setup();
-    await nav(app, "/", { headers: { "Sec-Fetch-Dest": null, "Sec-Fetch-Mode": null } });
+    await nav(app, "/", {
+      ua: OLD_SAFARI_UA,
+      headers: { "Sec-Fetch-Dest": null, "Sec-Fetch-Mode": null },
+    });
     expect(rows(db)).toHaveLength(1);
   });
 });
@@ -118,13 +121,111 @@ describe("what is not counted", () => {
   });
 });
 
+describe("automated traffic that looks like a browser", () => {
+  const tallies = (db: ReturnType<typeof setup>["db"]) =>
+    Object.fromEntries(rows(db, "filtered").map((r) => [r.reason as string, r.n as number]));
+
+  it("drops a recent Chrome that sends no Sec-Fetch headers, and tallies it", async () => {
+    const { app, db } = setup();
+    await nav(app, "/", {
+      ua: CHROME_UA,
+      headers: { "Sec-Fetch-Dest": null, "Sec-Fetch-Mode": null },
+    });
+    expect(rows(db)).toHaveLength(0);
+    expect(tallies(db)).toEqual({ "not-a-browser": 1 });
+  });
+
+  it("drops a recent Safari that sends no Sec-Fetch headers", async () => {
+    const { app, db } = setup();
+    await nav(app, "/", { ua: UA, headers: { "Sec-Fetch-Dest": null, "Sec-Fetch-Mode": null } });
+    expect(tallies(db)).toEqual({ "not-a-browser": 1 });
+  });
+
+  it("drops a request without a browser language", async () => {
+    const { app, db } = setup();
+    await nav(app, "/", { headers: { "Accept-Language": null } });
+    await nav(app, "/", { headers: { "Accept-Language": "  " } });
+    expect(rows(db)).toHaveLength(0);
+    expect(tallies(db)).toEqual({ "no-language": 2 });
+  });
+
+  it("keeps a visit whose language header is odd but present", async () => {
+    const { app, db } = setup();
+    await nav(app, "/", { headers: { "Accept-Language": "*" } });
+    expect(rows(db)).toHaveLength(1);
+    expect(rows(db)[0]?.lang).toBeNull();
+  });
+
+  it("drops a visit from a data-centre address and counts it as such", async () => {
+    const farm = (ip: string) => ip === "198.51.100.99";
+    const { app, db } = setup({ isDatacenter: farm });
+    await nav(app, "/", { ip: "198.51.100.99" });
+    await nav(app, "/", { ip: "198.51.100.1" });
+    expect(rows(db)).toHaveLength(1);
+    expect(tallies(db)).toEqual({ datacenter: 1 });
+  });
+
+  it("tallies announced crawlers too, so the numbers page can show them", async () => {
+    const { app, db } = setup();
+    await nav(app, "/", { ua: "Mozilla/5.0 (compatible; Googlebot/2.1)" });
+    await nav(app, "/", { ua: "" });
+    expect(tallies(db)).toEqual({ bot: 2 });
+  });
+
+  it("does not tally what is not a page visit at all", async () => {
+    const { app, db } = setup();
+    await nav(app, "/", { headers: { DNT: "1" } });
+    await nav(app, "/", { headers: { "Sec-GPC": "1" } });
+    await nav(app, "/", { headers: { "Sec-Fetch-Dest": "image" } });
+    await nav(app, "/", { headers: { "Sec-Purpose": "prefetch" } });
+    await nav(app, "/", { headers: { Accept: "*/*" } });
+    expect(rows(db, "filtered")).toHaveLength(0);
+    expect(rows(db)).toHaveLength(0);
+  });
+
+  it("adds up per day and reason", async () => {
+    const { app, db, advance } = setup();
+    await nav(app, "/", { headers: { "Accept-Language": null } });
+    await nav(app, "/diensten", { headers: { "Accept-Language": null } });
+    advance(DAY);
+    await nav(app, "/", { headers: { "Accept-Language": null } });
+    const perDay = rows(db, "filtered").map((r) => `${r.day}:${r.reason}:${r.n}`);
+    expect(perDay.sort()).toEqual(["2026-10-13:no-language:2", "2026-10-14:no-language:1"]);
+  });
+
+  it("tells which user agents are expected to send Sec-Fetch headers", () => {
+    expect(claimsModernBrowser(CHROME_UA)).toBe(true);
+    expect(claimsModernBrowser(UA)).toBe(true); // Safari 17
+    expect(claimsModernBrowser(PHONE_UA)).toBe(true);
+    expect(claimsModernBrowser(OLD_SAFARI_UA)).toBe(false); // Safari 15.6
+    expect(
+      claimsModernBrowser("Mozilla/5.0 (X11; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0"),
+    ).toBe(true);
+    expect(
+      claimsModernBrowser("Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101 Firefox/78.0"),
+    ).toBe(false);
+    expect(
+      claimsModernBrowser(
+        "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.0.0 Safari/537.36",
+      ),
+    ).toBe(false);
+    expect(
+      claimsModernBrowser(
+        "Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) FxiOS/128.0 Mobile/15E148 Safari/605.1.15",
+      ),
+    ).toBe(false);
+    expect(claimsModernBrowser("Some-Unknown-Client/1.0")).toBe(false);
+  });
+});
+
 describe("privacy", () => {
   it("never writes the IP address or the user agent to the database", async () => {
     const { app, db } = setup();
     const ip = "198.51.100.23";
     await nav(app, "/", { ip });
     await nav(app, "/diensten", { ip });
-    const dump = JSON.stringify([rows(db), rows(db, "salts")]);
+    await nav(app, "/", { ip, headers: { "Accept-Language": null } }); // lands in the tally
+    const dump = JSON.stringify([rows(db), rows(db, "salts"), rows(db, "filtered")]);
     expect(dump).not.toContain(ip);
     expect(dump).not.toContain("Macintosh");
     expect(dump).not.toContain("Safari");
@@ -156,6 +257,16 @@ describe("privacy", () => {
     expect(rows(db)).toHaveLength(2);
     purge(db, now(), 2);
     expect(rows(db)).toHaveLength(1);
+  });
+
+  it("deletes the automated-traffic totals when they pass retention too", async () => {
+    const { app, db, advance, now } = setup();
+    await nav(app, "/", { headers: { "Accept-Language": null } });
+    advance(3 * DAY);
+    await nav(app, "/", { headers: { "Accept-Language": null } });
+    expect(rows(db, "filtered")).toHaveLength(2);
+    purge(db, now(), 2);
+    expect(rows(db, "filtered")).toHaveLength(1);
   });
 });
 
@@ -200,13 +311,16 @@ describe("helpers", () => {
     expect(cols).toContain("from_path");
   });
 
-  it("isNavigation is a pure function of the request", () => {
+  it("classify is a pure function of the request headers", () => {
     const fake = (h: Record<string, string>, method = "GET") =>
       ({ method, get: (k: string) => h[k.toLowerCase()] }) as never;
-    expect(isNavigation(fake({ accept: "text/html", "user-agent": UA }))).toBe(true);
-    expect(isNavigation(fake({ accept: "text/html", "user-agent": UA }, "HEAD"))).toBe(false);
-    expect(
-      isNavigation(fake({ accept: "text/html", "user-agent": UA, "sec-fetch-dest": "iframe" })),
-    ).toBe(false);
+    const browser = { accept: "text/html", "user-agent": UA, "accept-language": "nl-BE" };
+    const modern = { ...browser, "sec-fetch-dest": "document", "sec-fetch-mode": "navigate" };
+    expect(classify(fake(modern))).toBe("count");
+    expect(classify(fake(modern, "HEAD"))).toBe("ignore");
+    expect(classify(fake({ ...modern, "sec-fetch-dest": "iframe" }))).toBe("ignore");
+    expect(classify(fake(browser))).toBe("not-a-browser"); // Safari 17 without Sec-Fetch
+    expect(classify(fake({ ...modern, "accept-language": "" }))).toBe("no-language");
+    expect(classify(fake({ ...modern, "user-agent": "curl/8.4.0" }))).toBe("bot");
   });
 });

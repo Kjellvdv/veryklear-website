@@ -49,8 +49,9 @@ MX records for both domains stay on SiteGround, so `kjell@veryklear.be` keeps wo
   dependencies. `npm start` sets it at runtime. Railway injects `PORT`.
 - **Each deploy means a few seconds of downtime**, because one deployment at a
   time may hold the volume. Content publishes trigger deploys too.
-- **Volume backups** on in the dashboard. **DPA**: Railway's needs a DocuSign
-  (railway.com/legal/dpa); the DPA names the EU SCCs for transfers.
+- **Backups:** Railway's volume backups are Pro-plan only (checked 2026-10-14); on Hobby the
+  volume has none. It holds visit counts only. **DPA**: Railway's needs a DocuSign form,
+  linked as "here" under "Execution of this DPA" on railway.com/legal/dpa; optional for now.
 
 ## Cutover checklist (first time only)
 
@@ -65,7 +66,7 @@ MX records for both domains stay on SiteGround, so `kjell@veryklear.be` keeps wo
 4. Railway → Networking → custom domain `www.veryklear.com`. SiteGround: remove
    the old `www` CNAME (`kjellvdv.github.io`), add Railway's CNAME and TXT. Wait
    for the green check and the certificate. Then set `CANONICAL_HOST`.
-5. Sign the DPA, switch on volume backups.
+5. Sign the DPA (optional). Volume backups need the Pro plan.
 6. Quiet hour: apex A records to SiteGround, Let's Encrypt for the apex, 301 to
    www. Retarget the `.be` redirect to www. GitHub → Settings → Pages: remove
    the custom domain, source None. HTTPS on the apex errors until the certificate
@@ -80,6 +81,9 @@ MX records for both domains stay on SiteGround, so `kjell@veryklear.be` keeps wo
   Ranges 7, 30, 90, 365 days. `/numeros.json` gives the same as JSON; that is
   what Claude reads: `curl -u x:$REPORT_PASSWORD 'https://www.veryklear.com/numeros.json?days=30'`.
 - **Logs** (Railway → service → Logs): method, path, status, time. Never an IP.
+- **Datacenter ranges:** `npm run ranges:update`, read the diff, commit. Every month or two is plenty;
+  stale ranges only let a few more machines through. Hosting networks to add or drop live in
+  `scripts/update-datacenter-ranges.mjs`.
 - **Retired URLs:** add them to `src/redirects.js`. The server 301s them; Astro
   builds a stub from the same map.
 - **Preview mode:** `const PREVIEW` in `src/layouts/Base.astro`, `false` since

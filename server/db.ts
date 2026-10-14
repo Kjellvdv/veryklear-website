@@ -27,6 +27,15 @@ CREATE TABLE IF NOT EXISTS pageviews (
 CREATE INDEX IF NOT EXISTS pageviews_day ON pageviews (day);
 CREATE INDEX IF NOT EXISTS pageviews_ts ON pageviews (ts);
 
+-- Automated page requests the filter left out, as plain daily totals per reason.
+-- No identifier of any kind: it exists to show what the filter catches.
+CREATE TABLE IF NOT EXISTS filtered (
+  day    TEXT NOT NULL,           -- YYYY-MM-DD, UTC
+  reason TEXT NOT NULL,           -- bot | not-a-browser | no-language | datacenter
+  n      INTEGER NOT NULL,
+  PRIMARY KEY (day, reason)
+);
+
 CREATE TABLE IF NOT EXISTS salts (
   day  TEXT PRIMARY KEY,
   salt TEXT NOT NULL
@@ -59,7 +68,9 @@ const DAY_MS = 86_400_000;
 export function purge(db: Db, now: number, retentionDays: number): number {
   const cutoff = now - retentionDays * DAY_MS;
   const yesterday = new Date(now - DAY_MS).toISOString().slice(0, 10);
+  const cutoffDay = new Date(cutoff).toISOString().slice(0, 10);
   const a = db.prepare("DELETE FROM pageviews WHERE ts < ?").run(cutoff).changes;
   const b = db.prepare("DELETE FROM salts WHERE day < ?").run(yesterday).changes;
-  return a + b;
+  const c = db.prepare("DELETE FROM filtered WHERE day < ?").run(cutoffDay).changes;
+  return a + b + c;
 }

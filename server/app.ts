@@ -6,6 +6,7 @@ import { REDIRECTS } from "../src/redirects.js";
 import type { Config } from "./config";
 import { createCounter } from "./count";
 import type { Db } from "./db";
+import { type DatacenterCheck, loadMatcher } from "./datacenter";
 import { assetHeaders, listPages, normalizeUrl, servePages } from "./pages";
 import { reportPaths, reportRouter } from "./report";
 
@@ -13,9 +14,11 @@ interface Deps {
   db: Db;
   cfg: Config;
   now?: () => number;
+  /** Is this address a data centre? Defaults to the bundled ranges. */
+  isDatacenter?: DatacenterCheck;
 }
 
-export function createApp({ db, cfg, now = Date.now }: Deps) {
+export function createApp({ db, cfg, now = Date.now, isDatacenter = loadMatcher() }: Deps) {
   const dist = path.resolve(cfg.DIST_DIR);
   const pages = listPages(dist, REDIRECTS);
   const app = express();
@@ -96,7 +99,7 @@ export function createApp({ db, cfg, now = Date.now }: Deps) {
   app.use(reportRouter(db, cfg, now));
   app.use(normalizeUrl(REDIRECTS));
   app.use(express.static(dist, { index: false, redirect: false, setHeaders: assetHeaders(dist) }));
-  app.use(servePages({ dist, pages, count: createCounter(db, now) }));
+  app.use(servePages({ dist, pages, count: createCounter(db, now, isDatacenter) }));
 
   const errors: ErrorRequestHandler = (err, req, res, _next) => {
     const status = typeof err?.status === "number" ? err.status : 500;

@@ -11,7 +11,7 @@ dist/
 forms/contact-config.php
 
 # Server-side analytics (server/): local database and secrets
-data/
+/data/
 *.db
 *.db-wal
 *.db-shm

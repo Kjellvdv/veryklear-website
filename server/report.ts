@@ -27,6 +27,27 @@ export interface Report {
   }[];
   devices: { device: string; visitors: number; views: number }[];
   languages: { lang: string; visitors: number; views: number }[];
+  flows: Flows;
+  /** Automated page requests the filter left out, by reason, summed over the window. */
+  filtered: { reason: string; requests: number }[];
+}
+
+/**
+ * Sessions are built from what is already stored: one visitor's pages on one day,
+ * in order, with a new session after 30 minutes without a page. Nothing is added
+ * to the data, and since the visitor hash changes daily, no session spans days.
+ */
+export interface Flows {
+  sessions: number;
+  /** Sessions in which the visitor saw one page only (reloads included). */
+  singlePage: number;
+  pagesPerSession: number;
+  entries: { path: string; sessions: number }[];
+  exits: { path: string; sessions: number }[];
+  /** Page to the page opened next, across all multi-page sessions. */
+  steps: { from: string; to: string; sessions: number }[];
+  /** The first five pages of multi-page sessions. `more` is true when the session went on. */
+  paths: { pages: string[]; more: boolean; sessions: number }[];
 }
 
 /** The pages a visitor lands on when they act. The "where did they come from" table is about these. */
@@ -38,6 +59,86 @@ const str = (v: unknown): string => (typeof v === "string" ? v : "");
 // Visitors are unique per day: nothing identifies a person across days.
 const COUNTS = "COUNT(DISTINCT day || ':' || visitor) AS visitors, COUNT(*) AS views";
 const counts = (r: Raw) => ({ visitors: num(r.visitors), views: num(r.views) });
+
+export const SESSION_GAP_MS = 30 * 60_000;
+const PATH_STEPS = 5;
+
+const top = <T>(m: Map<string, T>, n: number, by: (v: T) => number) =>
+  [...m.entries()].sort((a, b) => by(b[1]) - by(a[1]) || (a[0] < b[0] ? -1 : 1)).slice(0, n);
+
+export function buildFlows(db: Db, from: string): Flows {
+  const rows = db
+    .prepare(
+      `SELECT day, visitor, ts, path FROM pageviews WHERE day >= @from ORDER BY day, visitor, ts`,
+    )
+    .iterate({ from }) as IterableIterator<{
+    day: string;
+    visitor: string;
+    ts: number;
+    path: string;
+  }>;
+
+  let sessions = 0;
+  let singlePage = 0;
+  let pageTotal = 0;
+  const entries = new Map<string, number>();
+  const exits = new Map<string, number>();
+  const steps = new Map<string, { from: string; to: string; sessions: number }>();
+  const paths = new Map<string, { pages: string[]; more: boolean; sessions: number }>();
+
+  let current: string[] = [];
+  const close = () => {
+    if (current.length === 0) return;
+    sessions++;
+    pageTotal += current.length;
+    const first = current[0] as string;
+    const last = current[current.length - 1] as string;
+    entries.set(first, (entries.get(first) ?? 0) + 1);
+    exits.set(last, (exits.get(last) ?? 0) + 1);
+    if (current.length === 1) {
+      singlePage++;
+    } else {
+      for (let i = 0; i < current.length - 1; i++) {
+        const a = current[i] as string;
+        const b = current[i + 1] as string;
+        const key = `${a}\u0000${b}`;
+        const hit = steps.get(key);
+        if (hit) hit.sessions++;
+        else steps.set(key, { from: a, to: b, sessions: 1 });
+      }
+      const pages = current.slice(0, PATH_STEPS);
+      const key = pages.join("\u0000") + (current.length > PATH_STEPS ? "\u0000…" : "");
+      const hit = paths.get(key);
+      if (hit) hit.sessions++;
+      else paths.set(key, { pages, more: current.length > PATH_STEPS, sessions: 1 });
+    }
+    current = [];
+  };
+
+  let key = "";
+  let last = 0;
+  for (const r of rows) {
+    const k = `${r.day}:${r.visitor}`;
+    if (k !== key || r.ts - last > SESSION_GAP_MS) {
+      close();
+      key = k;
+    }
+    last = r.ts;
+    // A reload is not a step.
+    if (current[current.length - 1] !== r.path) current.push(r.path);
+  }
+  close();
+
+  return {
+    sessions,
+    singlePage,
+    pagesPerSession: sessions === 0 ? 0 : Math.round((pageTotal / sessions) * 10) / 10,
+    entries: top(entries, 10, (n) => n).map(([path, n]) => ({ path, sessions: n })),
+    exits: top(exits, 10, (n) => n).map(([path, n]) => ({ path, sessions: n })),
+    steps: top(steps, 15, (v) => v.sessions).map(([, v]) => v),
+    paths: top(paths, 10, (v) => v.sessions).map(([, v]) => v),
+  };
+}
 
 /**
  * One window for everything: the last `days` UTC calendar days including today.
@@ -105,6 +206,11 @@ export function buildReport(db: Db, days: number, now: number): Report {
       `SELECT COALESCE(lang, '(unknown)') AS lang, ${COUNTS} FROM pageviews WHERE day >= @from
         GROUP BY lang ORDER BY visitors DESC, views DESC, lang LIMIT 10`,
     ).map((r) => ({ lang: str(r.lang), ...counts(r) })),
+    flows: buildFlows(db, from),
+    filtered: all(
+      `SELECT reason, SUM(n) AS requests FROM filtered WHERE day >= @from
+        GROUP BY reason ORDER BY requests DESC, reason`,
+    ).map((r) => ({ reason: str(r.reason), requests: num(r.requests) })),
   };
 }
 
@@ -124,7 +230,7 @@ const CSS = `
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.5 Inter,system-ui,-apple-system,sans-serif}
 main{max-width:980px;margin:0 auto;padding:32px 16px 64px}
-h1{font-size:1.4rem;margin:0 0 4px}h2{font-size:1.05rem;margin:36px 0 10px}
+h1{font-size:1.4rem;margin:0 0 4px}h2{font-size:1.05rem;margin:36px 0 10px}h3{font-size:.9rem;margin:20px 0 6px;color:var(--muted);font-weight:600}
 p.sub{margin:0;color:var(--muted)}
 nav{display:flex;flex-wrap:wrap;gap:8px 20px;margin:12px 0 0;color:var(--muted)}
 nav a{color:var(--muted);text-decoration:none}nav a.on{color:var(--fg);font-weight:600;border-bottom:2px solid var(--accent)}
@@ -148,6 +254,19 @@ function table(head: string[], rows: string[][], numeric: number[] = []): string
   return `<table><thead><tr>${head.map((h, i) => cell("th", esc(h), i)).join("")}</tr></thead><tbody>${rows
     .map((r) => `<tr>${r.map((v, i) => cell("td", v, i)).join("")}</tr>`)
     .join("")}</tbody></table>`;
+}
+
+const FILTER_LABELS: Record<string, string> = {
+  bot: "Announced crawlers and tools, or no user agent at all",
+  "not-a-browser": "Claims to be a recent browser, sends none of its headers",
+  "no-language": "Sends no browser language",
+  datacenter: "From a cloud or hosting network",
+};
+
+function flowSummary(f: Flows): string {
+  if (f.sessions === 0) return "No sessions yet.";
+  const single = Math.round((f.singlePage / f.sessions) * 100);
+  return `${f.sessions} sessions, ${f.pagesPerSession} pages each on average. ${single}% saw one page only.`;
 }
 
 export function renderHtml(r: Report, reportPath: string): string {
@@ -175,6 +294,7 @@ export function renderHtml(r: Report, reportPath: string): string {
 <div class="cards">
 <div class="card"><b>${r.totals.visitors}</b><span>Visitors</span></div>
 <div class="card"><b>${r.totals.views}</b><span>Pageviews</span></div>
+<div class="card"><b>${r.flows.sessions}</b><span>Sessions</span></div>
 <div class="card"><b>${r.days}</b><span>Days</span></div>
 </div>
 <h2>Visitors per day</h2>
@@ -185,6 +305,35 @@ ${table(
   ["Page", "Visitors", "Views"],
   r.pages.map((p) => [esc(p.path), String(p.visitors), String(p.views)]),
   [1, 2],
+)}
+<h2>How visitors move through the site</h2>
+<p class="sub">${esc(flowSummary(r.flows))}</p>
+<h3>Where sessions start</h3>
+${table(
+  ["Page", "Sessions"],
+  r.flows.entries.map((e) => [esc(e.path), String(e.sessions)]),
+  [1],
+)}
+<h3>Where they go next</h3>
+${table(
+  ["From", "To", "Sessions"],
+  r.flows.steps.map((x) => [esc(x.from), esc(x.to), String(x.sessions)]),
+  [2],
+)}
+<h3>Most common routes</h3>
+${table(
+  ["Route", "Sessions"],
+  r.flows.paths.map((x) => [
+    x.pages.map(esc).join(" &rarr; ") + (x.more ? " &rarr; &hellip;" : ""),
+    String(x.sessions),
+  ]),
+  [1],
+)}
+<h3>Where sessions end</h3>
+${table(
+  ["Page", "Sessions"],
+  r.flows.exits.map((e) => [esc(e.path), String(e.sessions)]),
+  [1],
 )}
 <h2>Clicks to contact and the booking page, by the page they came from</h2>
 ${table(
@@ -222,7 +371,13 @@ ${table(
   r.languages.map((l) => [esc(l.lang), String(l.visitors), String(l.views)]),
   [1, 2],
 )}
-<footer>Counted on the server from the page requests browsers make anyway: no script, no cookies. Visitors are per day: someone who comes on three days counts three times, because nothing identifies a person across days. "From" is the page of ours the visitor was on when they clicked; a typed address or a link from elsewhere shows as (direct). Known crawlers, Do Not Track and Global Privacy Control are left out. Days are UTC.</footer>
+<h2>Left out as automated traffic</h2>
+${table(
+  ["Why it was left out", "Requests"],
+  r.filtered.map((f) => [esc(FILTER_LABELS[f.reason] ?? f.reason), String(f.requests)]),
+  [1],
+)}
+<footer>Counted on the server from the page requests browsers make anyway: no script, no cookies. Visitors are per day: someone who comes on three days counts three times, because nothing identifies a person across days. "From" is the page of ours the visitor was on when they clicked; a typed address or a link from elsewhere shows as (direct). A session is one visitor's pages on one day, split after 30 minutes without a page; a reload is not a step. People behind the same address and browser can merge into one visitor. Do Not Track and Global Privacy Control are left out entirely. Automated traffic is not counted as visitors: its totals above are kept without any identifier. Days are UTC.</footer>
 </main></body></html>`;
 }
 

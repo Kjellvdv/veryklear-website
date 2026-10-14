@@ -11,7 +11,8 @@
     "start": "NODE_ENV=production node --import tsx server/index.ts",
     "check": "tsc -p tsconfig.server.json --noEmit",
     "lint": "eslint .",
-    "format": "prettier --write server tests",
+    "format": "prettier --write server tests scripts",
+    "ranges:update": "node scripts/update-datacenter-ranges.mjs",
     "test": "vitest run"
   },
   "dependencies": {

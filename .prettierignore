@@ -6,3 +6,4 @@ src
 forms
 package-lock.json
 *.md
+server/data
