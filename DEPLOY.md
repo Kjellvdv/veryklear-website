@@ -43,7 +43,7 @@ MX records for both domains stay on SiteGround, so `kjell@veryklear.be` keeps wo
   | `DATA_DIR` | `/data`, or leave it out: the server uses the volume's mount path by itself and refuses to start if `DATA_DIR` points anywhere else |
   | `REPORT_PASSWORD` | long and random, e.g. `openssl rand -base64 24` |
   | `RETENTION_DAYS` | `400` (the privacy page says 14 months; change both together) |
-  | `DATACENTER_FILTER` | `off` (default) or `on`: leave visits from cloud and hosting networks out of the count. Keep it off until `/numeros/whoami` shows the visitor's own address in the header the server uses (see Operating). |
+  | `DATACENTER_FILTER` | `off` (default) or `on`: leave visits from cloud and hosting networks out of the count. On in production since 2026-10-14, after `X-Real-IP` was wired in. |
   | `CANONICAL_HOST` | `www.veryklear.com`, but only once that domain is verified. Every other Host header then 301s there. |
 
   Never set `NODE_ENV=production` as a variable: it makes the build skip dev
@@ -61,9 +61,9 @@ MX records for both domains stay on SiteGround, so `kjell@veryklear.be` keeps wo
 2. Create the Railway service as above. Let it build. Open the
    `*.up.railway.app` address: pages, `/strategiesessie` with the calendar and a
    clean console, `/numeros` with the password.
-3. Phone on mobile data plus laptop on wifi, then `/numeros` → 2 visitors. If it
-   says 1, Railway's proxy sits more than one hop away and `trust proxy` in
-   `server/app.ts` needs the real count.
+3. Phone on mobile data plus laptop on wifi, then `/numeros` → 2 visitors, and
+   `/numeros/whoami` shows your own address in `ip`. If it shows Railway's, the
+   `X-Real-IP` handling in `server/app.ts` isn't taking effect.
 4. Railway → Networking → custom domain `www.veryklear.com`. SiteGround: remove
    the old `www` CNAME (`kjellvdv.github.io`), add Railway's CNAME and TXT. Wait
    for the green check and the certificate. Then set `CANONICAL_HOST`.
@@ -83,9 +83,8 @@ MX records for both domains stay on SiteGround, so `kjell@veryklear.be` keeps wo
   what Claude reads: `curl -u x:$REPORT_PASSWORD 'https://www.veryklear.com/numeros.json?days=30'`.
 - **Logs** (Railway → service → Logs): method, path, status, time. Never an IP.
 - **What the server sees for you:** `curl -u x:$REPORT_PASSWORD https://www.veryklear.com/numeros/whoami`
-  shows `req.ip` and the proxy headers for your own request, to your own eyes only. Check that the
-  address it picks is yours, not the proxy's, before `DATACENTER_FILTER=on`: the visitor hash and
-  the datacenter rule both read it.
+  shows `req.ip` and the proxy headers for your own request, to your own eyes only. `ip` must be your own
+  address, not the proxy's: the visitor hash and the datacenter rule both read it.
 - **Datacenter ranges:** `npm run ranges:update`, read the diff, commit. Every month or two is plenty;
   stale ranges only let a few more machines through. Hosting networks to add or drop live in
   `scripts/update-datacenter-ranges.mjs`.

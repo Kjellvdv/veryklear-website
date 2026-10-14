@@ -1,6 +1,7 @@
 import compression from "compression";
 import express, { type ErrorRequestHandler, type RequestHandler } from "express";
 import helmet from "helmet";
+import { isIP } from "node:net";
 import path from "node:path";
 import { REDIRECTS } from "../src/redirects.js";
 import type { Config } from "./config";
@@ -28,10 +29,26 @@ export function createApp({
   const pages = listPages(dist, REDIRECTS);
   const app = express();
 
-  // One proxy hop (Railway's edge). Without this every visitor shares one IP,
-  // the visitor count collapses and the report limiter becomes global.
+  // Railway's edge hands the app `X-Forwarded-For: <client>, <edge node>` and
+  // `X-Real-IP: <client>`, replacing whatever the client sent (checked 2026-10-14
+  // with /numeros/whoami, spoofed headers included). Express reads the rightmost
+  // entry, which is the edge node: every visitor through that node would share one
+  // address, one visitor hash per browser, and the report limiter would be shared
+  // too. X-Real-IP is the documented client address, so it wins when it is a valid
+  // IP; without it (local runs, tests) Express's own answer stands.
   app.set("trust proxy", 1);
   app.disable("x-powered-by");
+  let warnedNoRealIp = false;
+  app.use((req, _res, next) => {
+    const real = req.get("x-real-ip")?.trim();
+    if (real && isIP(real) !== 0) {
+      Object.defineProperty(req, "ip", { value: real, configurable: true });
+    } else if (!warnedNoRealIp && req.get("x-forwarded-for")) {
+      warnedNoRealIp = true;
+      console.warn("⚠️ [proxy] no X-Real-IP behind a proxy: visitor addresses are the proxy's");
+    }
+    next();
+  });
 
   // Method, path, status, time. No IP, no query string, no headers. Hashed assets
   // are skipped so the log stays readable.

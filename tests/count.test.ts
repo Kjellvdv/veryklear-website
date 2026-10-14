@@ -218,6 +218,42 @@ describe("automated traffic that looks like a browser", () => {
   });
 });
 
+describe("the visitor's address behind Railway's edge", () => {
+  // The edge sends "<client>, <edge node>" in X-Forwarded-For and the client in X-Real-IP.
+  const behindEdge = (client: string, node = "79.127.224.66") => ({
+    ip: `${client}, ${node}`,
+    headers: { "X-Real-IP": client },
+  });
+
+  it("tells visitors apart by their own address, not the edge node's", async () => {
+    const { app, db } = setup();
+    await nav(app, "/", behindEdge("198.51.100.1"));
+    await nav(app, "/diensten", behindEdge("198.51.100.1"));
+    await nav(app, "/", behindEdge("198.51.100.2"));
+    const v = rows(db).map((r) => r.visitor as string);
+    expect(v[0]).toBe(v[1]);
+    expect(v[0]).not.toBe(v[2]);
+  });
+
+  it("ignores an X-Real-IP that is not an address and falls back to Express's answer", async () => {
+    const { app, db } = setup();
+    await nav(app, "/", { ip: "198.51.100.1", headers: { "X-Real-IP": "<script>" } });
+    await nav(app, "/", { ip: "198.51.100.1" });
+    const v = rows(db).map((r) => r.visitor as string);
+    expect(v[0]).toBe(v[1]);
+  });
+
+  it("judges the datacenter rule on the visitor's address, not the edge node's", async () => {
+    const farm = (ip: string) => ip === "79.127.224.66"; // the edge node is in a hosted range
+    const { app, db } = setup({ isDatacenter: farm });
+    await nav(app, "/", behindEdge("198.51.100.1")); // a home connection behind that node
+    expect(rows(db)).toHaveLength(1);
+    expect(rows(db, "filtered")).toHaveLength(0);
+    await nav(app, "/", behindEdge("79.127.224.66")); // a visitor who really is in that range
+    expect(rows(db, "filtered")).toMatchObject([{ reason: "datacenter", n: 1 }]);
+  });
+});
+
 describe("privacy", () => {
   it("never writes the IP address or the user agent to the database", async () => {
     const { app, db } = setup();
