@@ -5,7 +5,7 @@ import { loadConfig } from "../server/config";
 import { openDb } from "../server/db";
 
 export const PASSWORD = "correct-horse-battery";
-export const FIXTURE = path.join(import.meta.dirname, "fixtures", "dist");
+export const FIXTURE = path.join(import.meta.dirname, "fixtures", "site");
 export const HOST = "www.veryklear.com";
 export const UA =
   "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Safari/605.1.15";

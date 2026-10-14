@@ -16,7 +16,7 @@ npm run serve        # build, then the server on :3011 (needs .env, see .env.exa
 npm run dev:server   # server only, against the existing dist/
 npm run check        # tsc on server/ and tests/
 npm run lint
-npm test             # vitest + supertest against tests/fixtures/dist
+npm test             # vitest + supertest against tests/fixtures/site
 ```
 
 ## Deployment
