@@ -2,8 +2,8 @@
 // Booking page with the TidyCal calendar embedded. Every "Plan een
 // strategiesessie" button on the site points here. Copy lives in
 // src/content/copy/strategiesessie.yaml; the TidyCal address in site.yaml.
+// No hero, like contact (Kjell, 2026-10-14): it opens straight on the calendar.
 import Base from '../layouts/Base.astro';
-import Hero from '../components/Hero.astro';
 import { getCopy } from '../lib/copy.js';
 
 const c = await getCopy('strategiesessie');
@@ -13,11 +13,13 @@ const tidycalPath = new URL(booking_url).pathname.replace(/^\//, '');
 ---
 
 <Base title={c.meta.title} description={c.meta.description} path="/strategiesessie">
-  <Hero title={c.hero.title} lead={c.hero.lead} />
-
-  <section class="block block-first">
+  <section class="block" style="padding-top:72px">
     <div class="wrap booking-grid">
       <div class="card card-paper booking-card">
+        <div class="booking-head">
+          <h1 class="h-section" style="font-size:1.6rem">{c.intro.title}</h1>
+          <p class="muted" style="margin-top:8px">{c.intro.lead}</p>
+        </div>
         <div class="tidycal-embed" data-path={tidycalPath}></div>
         <noscript><p><a href={booking_url}>{c.fallback_link}</a></p></noscript>
         <p class="muted booking-fallback">{c.fallback} <a href={booking_url} target="_blank" rel="noopener">{c.fallback_link}</a></p>
