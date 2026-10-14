@@ -49,10 +49,21 @@ site's PHP error log (Site Tools → Statistics → Error Log), starting with `[
 
 ## What it does
 
-- Only accepts posts from veryklear.com (and the local preview).
+- Only accepts posts from veryklear.com (and the local preview). This keeps
+  other websites out, not scripts: anyone can fake the `Origin` header.
 - Drops bots that tick the hidden `botcheck` field.
-- Allows 5 messages per hour per IP address.
+- Allows 5 messages per hour per IP address, and 30 per hour across everyone.
+  When the site-wide cap is hit, real visitors get the error pop-up with your
+  e-mail address, which is the price of keeping a flood out of the inbox. The
+  counters live in `vk-form-state/`, one folder above `public_html`, created on
+  first use. Delete that folder to reset them.
+- Refuses bodies over 40 KB, and strips control characters from every field.
 - Sends from the form mailbox (`website@veryklear.com`) with Reply-To set to
   the visitor, so hitting reply in your mail answers them directly.
+- Adds the time, `REMOTE_ADDR`, any forwarded address and the browser to the
+  foot of each mail, so a test or spam message can be traced. Whichever of the
+  two addresses is the visitor's tells you if the per-IP limit works behind
+  SiteGround's proxy. If `REMOTE_ADDR` is always the same address for different
+  visitors, the limit has to read the forwarded header instead.
 
 To change the inbox, edit `TO_ADDRESS` at the top of `contact.php`.

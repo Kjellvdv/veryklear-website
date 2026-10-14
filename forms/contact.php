@@ -21,8 +21,11 @@ const ALLOWED_ORIGINS = [
     'https://www.veryklear.com',
     'http://localhost:4321',   // local preview
     'http://localhost:4324',
+    'http://localhost:3011',   // the built site served by server/ (npm run serve)
 ];
 const MAX_PER_HOUR = 5;        // per IP address
+const MAX_PER_HOUR_ALL = 30;   // across all visitors, so a flood can't fill the inbox
+const MAX_BODY_BYTES = 40000;  // a real message is a few KB
 
 // SMTP settings: SMTP_HOST, SMTP_PORT, SMTP_SECURE ('ssl' or 'tls'), SMTP_USER, SMTP_PASS.
 $configUsed = '';
@@ -93,8 +96,8 @@ function smtp_send(string $from, string $to, string $data): string {
     if ($e) {
         // A short fingerprint lets you compare the password in this file with
         // another copy, without the password itself ever being shown.
-        $fp = substr(hash('sha256', SMTP_PASS), 0, 8) . ', ' . strlen(SMTP_PASS) . ' chars';
-        return 'login failed for ' . SMTP_USER . " (password fingerprint $fp): " . ($loginError ?: $e);
+        $fingerprint = substr(hash('sha256', SMTP_PASS), 0, 8) . ', ' . strlen(SMTP_PASS) . ' chars';
+        return 'login failed for ' . SMTP_USER . " (password fingerprint $fingerprint): " . ($loginError ?: $e);
     }
     if ($e = $cmd("MAIL FROM:<$from>", 250)) return $e;
     if ($e = $cmd("RCPT TO:<$to>", 250)) return $e;
@@ -117,7 +120,13 @@ if (!in_array($origin, ALLOWED_ORIGINS, true)) {
     reply(403, false, 'Origin not allowed');
 }
 
-$data = json_decode(file_get_contents('php://input') ?: '', true);
+// Read one byte past the cap, so an oversized body is refused instead of being
+// cut off into something that still parses.
+$raw = (string) file_get_contents('php://input', false, null, 0, MAX_BODY_BYTES + 1);
+if (strlen($raw) > MAX_BODY_BYTES) {
+    reply(413, false, 'Request too large');
+}
+$data = json_decode($raw, true);
 if (!is_array($data)) {
     reply(400, false, 'Invalid request');
 }
@@ -127,27 +136,50 @@ if (!empty($data['botcheck'])) {
     reply(200, true);
 }
 
-// Simple per-IP limit, kept in a small file in the server's temp folder.
+// Per-IP and site-wide limits, kept in small files one folder above public_html,
+// next to the config. Shared hosting means a shared /tmp, where another tenant
+// could plant a file that locks the form. A hit is only recorded after the mail
+// went out, so a broken mail server doesn't lock real visitors out.
 $ip = $_SERVER['REMOTE_ADDR'] ?? 'unknown';
-$bucket = sys_get_temp_dir() . '/vk-form-' . md5($ip);
-$hits = array_filter(
-    is_file($bucket) ? (array) json_decode((string) file_get_contents($bucket), true) : [],
-    fn($t) => $t > time() - 3600
-);
-if (count($hits) >= MAX_PER_HOUR) {
+$stateDir = __DIR__ . '/../vk-form-state';
+if (!is_dir($stateDir) && !@mkdir($stateDir, 0700)) {
+    $stateDir = sys_get_temp_dir();  // fallback, should not happen on SiteGround
+}
+$ipBucket = $stateDir . '/vk-form-' . md5($ip);
+$allBucket = $stateDir . '/vk-form-all';
+// Timestamps in the future are ignored too, so a planted file can't block forever.
+$recentHits = function (string $file): array {
+    $hits = is_file($file) ? (array) json_decode((string) file_get_contents($file), true) : [];
+    return array_values(array_filter($hits, fn($t) => is_int($t) && $t > time() - 3600 && $t <= time()));
+};
+$ipHits = $recentHits($ipBucket);
+$allHits = $recentHits($allBucket);
+if (count($ipHits) >= MAX_PER_HOUR || count($allHits) >= MAX_PER_HOUR_ALL) {
     reply(429, false, 'Too many messages');
 }
 
-// Strip line breaks from anything that ends up in a mail header.
-$clean = fn($v, $max) => trim(mb_substr(str_replace(["\r", "\n"], ' ', (string) ($v ?? '')), 0, $max));
+// Control characters (CR, LF, NUL and friends) never belong in a name or an
+// address, and a line break in a mail header would let a visitor add headers.
+// Anything that isn't a string, such as an array, counts as empty.
+$clean = fn($v, $max) => trim(mb_substr(preg_replace('/[\x00-\x1F\x7F]+/', ' ', is_string($v) ? $v : ''), 0, $max));
 
 $name    = $clean($data['name'] ?? '', 120);
 $company = $clean($data['bedrijf'] ?? '', 120);
 $email   = $clean($data['email'] ?? '', 160);
 $topics  = $clean($data['onderwerp'] ?? '', 200);
-$message = trim(mb_substr((string) ($data['bericht'] ?? ''), 0, 5000));
+// The message keeps its line breaks and tabs. Every other control character goes.
+$message = is_string($data['bericht'] ?? null)
+    ? trim(mb_substr(
+        preg_replace('/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]/', '', str_replace(["\r\n", "\r"], "\n", $data['bericht'])),
+        0,
+        5000
+    ))
+    : '';
 
-if ($name === '' || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+// FILTER_VALIDATE_EMAIL still accepts quoted local parts like "a>,<b"@x.com.
+// Nobody mails a contact form from one, and it would confuse the Reply-To header.
+$emailOk = filter_var($email, FILTER_VALIDATE_EMAIL) && !preg_match('/["<>,;\\\\\s]/', $email);
+if ($name === '' || !$emailOk) {
     reply(422, false, 'Name and a valid e-mail are required');
 }
 
@@ -161,11 +193,30 @@ $lines[] = $message !== '' ? $message : '(geen bericht)';
 $lines[] = '';
 $lines[] = '--';
 $lines[] = 'Verstuurd via het contactformulier op veryklear.com. Antwoorden gaat rechtstreeks naar de afzender.';
+// Where it came from, so a test or spam message can be traced. The forwarded
+// address is shown next to REMOTE_ADDR because behind SiteGround's proxy only
+// one of them may be the visitor. Anyone can fake the forwarded one: a hint, not proof.
+$fwd = $clean($_SERVER['HTTP_X_FORWARDED_FOR'] ?? ($_SERVER['HTTP_X_REAL_IP'] ?? ''), 100);
+$lines[] = 'Verzonden op ' . date('c') . ' vanaf ' . $clean($ip, 45) . ($fwd !== '' ? " (doorgegeven: $fwd)" : '');
+$lines[] = 'Browser: ' . $clean($_SERVER['HTTP_USER_AGENT'] ?? '', 200);
 $text = implode("\n", $lines);
 
 $fromAddress = defined('SMTP_USER') ? SMTP_USER : 'website@veryklear.com';
-$encodedSubject = '=?UTF-8?B?' . base64_encode($subject) . '?=';
-$replyTo = '"' . str_replace('"', '', $name) . "\" <$email>";
+// mb_encode_mimeheader folds long values over several lines, which keeps each
+// header line under the 76 characters mail servers expect. Our headers are joined
+// with "\n", hence that as the line break; smtp_send turns it into CRLF.
+$encodedSubject = mb_encode_mimeheader($subject, 'UTF-8', 'B', "\n", strlen('Subject: '));
+// A quote, backslash or angle bracket in the name would end the display name
+// early or fake a second address inside it. Non-ASCII names are encoded, since a
+// raw UTF-8 display name isn't valid in a header.
+$headerName = trim(str_replace(['"', '\\', '<', '>'], '', $name));
+if ($headerName === '') {
+    $replyTo = "<$email>";
+} elseif (preg_match('/^[\x20-\x7E]+$/', $headerName)) {
+    $replyTo = "\"$headerName\" <$email>";
+} else {
+    $replyTo = mb_encode_mimeheader($headerName, 'UTF-8', 'B', "\n", strlen('Reply-To: ')) . " <$email>";
+}
 
 if (defined('SMTP_HOST') && defined('SMTP_USER') && defined('SMTP_PASS')) {
     $headers = [
@@ -207,6 +258,8 @@ if (defined('SMTP_HOST') && defined('SMTP_USER') && defined('SMTP_PASS')) {
     }
 }
 
-$hits[] = time();
-@file_put_contents($bucket, json_encode(array_values($hits)));
+$ipHits[] = time();
+$allHits[] = time();
+@file_put_contents($ipBucket, json_encode($ipHits), LOCK_EX);
+@file_put_contents($allBucket, json_encode($allHits), LOCK_EX);
 reply(200, true);
