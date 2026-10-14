@@ -10,10 +10,11 @@ describe("serving pages", () => {
     expect(home.text).toContain("<h1>home</h1>");
     expect(home.headers["cache-control"]).toBe("no-cache");
     expect(home.headers["content-security-policy"]).toContain("default-src 'self'");
-    expect(home.headers["content-security-policy"]).toContain("frame-src https://tidycal.com");
-    expect(home.headers["content-security-policy"]).toContain(
-      "script-src 'self' https://asset-tidycal.b-cdn.net",
-    );
+    const csp = home.headers["content-security-policy"] as string;
+    // The booking calendar is Google's, in a frame; the site loads no third-party script.
+    expect(csp).toContain("frame-src https://calendar.google.com");
+    expect(csp).toMatch(/script-src 'self';/);
+    expect(csp).not.toContain("tidycal");
     expect(home.headers["x-powered-by"]).toBeUndefined();
     const nested = await nav(app, "/artikels/ai");
     expect(nested.status).toBe(200);

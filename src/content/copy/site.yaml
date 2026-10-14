@@ -1,9 +1,12 @@
 # Copy shared by every page: menu, footer, the closing call to action.
 # Same rules as the page files: change the text after the colon, keep the indentation.
 
-# The TidyCal calendar, embedded on /strategiesessie (Kjell, 2026-10-07).
-# Every "Plan een strategiesessie" button goes to that page.
-booking_url: https://tidycal.com/kjellvandevyvere/discovery
+# The Google Calendar booking page, embedded on /strategiesessie (Kjell, 2026-10-14;
+# TidyCal before that). Every "Plan een strategiesessie" button goes to that page.
+# booking_url is the short link people can open directly (it cannot be framed);
+# booking_embed is the page behind it, the one Google allows in a frame.
+booking_url: https://calendar.app.google/AQVohqbcP6ytDX1S6
+booking_embed: https://calendar.google.com/calendar/appointments/schedules/AcZssZ1b_0d8m8iiddMlE87gBajx_fYniciuj7QhAo5URL3ITeioe6uBc2FIFh1YSOpnTI89DCb08yHc?gv=true
 booking_page: /strategiesessie
 
 nav:

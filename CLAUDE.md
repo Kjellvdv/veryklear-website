@@ -57,9 +57,9 @@ Purpose: see which pages and channels work and improve the site. Data per visit:
 - Crawlers do fetch HTML, unlike with a script tracker. `server/bots.ts`, the Sec-Fetch and language checks and the datacenter ranges carry the filtering. It is a filter, not a proof: a scanner on a home or small-hoster connection with a real browser engine still gets through, and the numbers page's "Left out" table shows what each rule caught.
 - Corporate proxies that strip Sec-Fetch headers, and visitors on a VPN that exits in a datacenter, are not counted. Accepted.
 - Every deploy, content publishes included, means a few seconds of downtime (one deployment at a time may hold the volume).
-- The site's Content-Security-Policy in `app.ts` allows TidyCal (`asset-tidycal.b-cdn.net` script, `tidycal.com` frame) and the form endpoint. A new third-party resource needs a line there, and a sentence on `/privacy`.
+- The site's Content-Security-Policy in `app.ts` allows the Google Calendar booking frame (`calendar.google.com`) and the form endpoint, and no third-party script. A new third-party resource needs a line there, and a sentence on `/privacy`.
 - `forms/contact.php` allows `http://localhost:3011` as origin, so the form can be tested against the served build.
 - `@astrojs/sitemap` is pinned `~3.4.1` (zod 3) next to the server's zod 4. Two zods, no conflict; `src/content/config.ts` must keep importing `z` from `astro:content`.
 - Days in the numbers are UTC.
-- The site sends `Referrer-Policy: same-origin`, on purpose: that is how the server learns which of our pages a booking click came from. Other sites, TidyCal's iframe included, get no referrer. Don't tighten it to `no-referrer` without dropping the routes table.
+- The site sends `Referrer-Policy: same-origin`, on purpose: that is how the server learns which of our pages a booking click came from. Other sites, the booking frame included, get no referrer. Don't tighten it to `no-referrer` without dropping the routes table.
 - `const PREVIEW` in `Base.astro`: `true` hides the whole site from search. `false` since 2026-10-06.

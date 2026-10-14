@@ -1,5 +1,6 @@
-# Booking page (www.veryklear.com/strategiesessie). The calendar itself is TidyCal,
-# embedded below the intro; its address is `booking_url` in site.yaml.
+# Booking page (www.veryklear.com/strategiesessie). The calendar itself is a Google
+# Calendar booking page, embedded below the intro; its addresses are `booking_url`
+# and `booking_embed` in site.yaml.
 # Never show a price or "gratis" here (products.yml strategiesessie.price_status).
 
 meta:
@@ -21,6 +22,14 @@ side:
   question: Liever eerst een vraag stellen?
   question_link: Stuur een bericht →
 
-# Shown if the calendar can't load (blocked script, no connection).
+# Read out by screen readers for the calendar frame.
+frame_title: Agenda om een strategiesessie in te plannen
+# Shown behind the calendar while Google's page loads, which can take a few seconds.
+loading: Agenda laden…
+# On small screens the calendar is not framed: a button opens Google's page itself,
+# which loads faster and works with the stricter cookie settings of phones.
+open_button: Kies een moment
+
+# Shown if the calendar can't load (blocked frame, no connection).
 fallback: Lukt het niet om de agenda te laden? Open ze dan rechtstreeks.
 fallback_link: Open de agenda →

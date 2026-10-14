@@ -1,15 +1,13 @@
 ---
-// Booking page with the TidyCal calendar embedded. Every "Plan een
+// Booking page with the Google Calendar booking page embedded. Every "Plan een
 // strategiesessie" button on the site points here. Copy lives in
-// src/content/copy/strategiesessie.yaml; the TidyCal address in site.yaml.
+// src/content/copy/strategiesessie.yaml; the booking addresses in site.yaml.
 // No hero, like contact (Kjell, 2026-10-14): it opens straight on the calendar.
 import Base from '../layouts/Base.astro';
 import { getCopy } from '../lib/copy.js';
 
 const c = await getCopy('strategiesessie');
-const { booking_url } = await getCopy('site');
-// TidyCal's embed wants the path after tidycal.com/, e.g. kjellvandevyvere/discovery.
-const tidycalPath = new URL(booking_url).pathname.replace(/^\//, '');
+const { booking_url, booking_embed } = await getCopy('site');
 ---
 
 <Base title={c.meta.title} description={c.meta.description} path="/strategiesessie">
@@ -20,7 +18,11 @@ const tidycalPath = new URL(booking_url).pathname.replace(/^\//, '');
           <h1 class="h-section" style="font-size:1.6rem">{c.intro.title}</h1>
           <p class="muted" style="margin-top:8px">{c.intro.lead}</p>
         </div>
-        <div class="tidycal-embed" data-path={tidycalPath}></div>
+        <div class="booking-embed">
+          <p class="booking-loading" aria-hidden="true">{c.loading}</p>
+          <iframe class="booking-frame" src={booking_embed} title={c.frame_title} loading="lazy"></iframe>
+        </div>
+        <p class="booking-open"><a class="btn btn-red" href={booking_url} target="_blank" rel="noopener">{c.open_button}</a></p>
         <noscript><p><a href={booking_url}>{c.fallback_link}</a></p></noscript>
         <p class="muted booking-fallback">{c.fallback} <a href={booking_url} target="_blank" rel="noopener">{c.fallback_link}</a></p>
       </div>
@@ -37,4 +39,3 @@ const tidycalPath = new URL(booking_url).pathname.replace(/^\//, '');
   </section>
 </Base>
 
-<script is:inline src="https://asset-tidycal.b-cdn.net/js/embed.js" async></script>

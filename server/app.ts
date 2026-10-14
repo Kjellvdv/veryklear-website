@@ -63,24 +63,25 @@ export function createApp({
 
   // Security headers go on every response this server makes, redirects and
   // /healthz included: they sit above both, so a scanner never meets a bare one.
-  // Two policies: the site's pages need their own scripts and styles, the TidyCal
-  // embed and the form endpoint; the numbers page needs nothing but its inline CSS.
+  // Two policies: the site's pages need their own scripts and styles, the Google
+  // Calendar booking frame and the form endpoint; the numbers page needs nothing
+  // but its inline CSS.
   const sitePolicy = helmet({
     // Browsers then send the referrer to our own pages only, so a click to the
-    // booking page can be traced to the page it was on. Other sites, TidyCal's
-    // iframe included, still get no referrer at all.
+    // booking page can be traced to the page it was on. Other sites, the booking
+    // frame included, still get no referrer at all.
     referrerPolicy: { policy: "same-origin" },
     contentSecurityPolicy: {
       useDefaults: false,
       directives: {
         "default-src": ["'self'"],
-        "script-src": ["'self'", "https://asset-tidycal.b-cdn.net"],
+        "script-src": ["'self'"],
         "style-src": ["'self'", "'unsafe-inline'"], // 88 inline style="" attributes in the pages
         "img-src": ["'self'", "data:"],
         "font-src": ["'self'"],
         "connect-src": ["'self'", "https://forms.veryklear.com"],
         "form-action": ["'self'", "https://forms.veryklear.com"],
-        "frame-src": ["https://tidycal.com"],
+        "frame-src": ["https://calendar.google.com"],
         "frame-ancestors": ["'none'"],
         "base-uri": ["'self'"],
         "object-src": ["'none'"],
