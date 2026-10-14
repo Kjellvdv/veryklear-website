@@ -48,6 +48,30 @@ export interface Flows {
   steps: { from: string; to: string; sessions: number }[];
   /** The first five pages of multi-page sessions. `more` is true when the session went on. */
   paths: { pages: string[]; more: boolean; sessions: number }[];
+  /** The most recent sessions, one by one, each with what the visitor arrived with. */
+  recent: SessionRow[];
+}
+
+/**
+ * One session. Source, language and device are those of its first page: that is
+ * the visit that arrived from somewhere, the later pages only moved around.
+ */
+export interface SessionRow {
+  /** Epoch ms of the first page, UTC. */
+  start: number;
+  /** Seconds from the first page to the last. How long the last page was read is not known. */
+  seconds: number;
+  /** Pages opened, reloads left out. */
+  pageCount: number;
+  /** The first eight pages with the seconds since the session began. */
+  pages: { path: string; at: number }[];
+  more: boolean;
+  /** The referring site of the first page, "(own site)" or "(direct)". */
+  from: string;
+  /** utm_source / utm_medium / utm_campaign of the first page, empty parts left out. */
+  campaign: string;
+  lang: string;
+  device: string;
 }
 
 /** The pages a visitor lands on when they act. The "where did they come from" table is about these. */
@@ -62,6 +86,22 @@ const counts = (r: Raw) => ({ visitors: num(r.visitors), views: num(r.views) });
 
 export const SESSION_GAP_MS = 30 * 60_000;
 const PATH_STEPS = 5;
+const RECENT_SESSIONS = 50;
+const SESSION_PAGES_SHOWN = 8;
+
+interface ViewRow {
+  day: string;
+  visitor: string;
+  ts: number;
+  path: string;
+  ref_host: string | null;
+  from_path: string | null;
+  utm_source: string | null;
+  utm_medium: string | null;
+  utm_campaign: string | null;
+  device: string;
+  lang: string | null;
+}
 
 const top = <T>(m: Map<string, T>, n: number, by: (v: T) => number) =>
   [...m.entries()].sort((a, b) => by(b[1]) - by(a[1]) || (a[0] < b[0] ? -1 : 1)).slice(0, n);
@@ -69,14 +109,11 @@ const top = <T>(m: Map<string, T>, n: number, by: (v: T) => number) =>
 export function buildFlows(db: Db, from: string): Flows {
   const rows = db
     .prepare(
-      `SELECT day, visitor, ts, path FROM pageviews WHERE day >= @from ORDER BY day, visitor, ts`,
+      `SELECT day, visitor, ts, path, ref_host, from_path, utm_source, utm_medium, utm_campaign,
+              device, lang
+         FROM pageviews WHERE day >= @from ORDER BY day, visitor, ts`,
     )
-    .iterate({ from }) as IterableIterator<{
-    day: string;
-    visitor: string;
-    ts: number;
-    path: string;
-  }>;
+    .iterate({ from }) as IterableIterator<ViewRow>;
 
   let sessions = 0;
   let singlePage = 0;
@@ -86,15 +123,42 @@ export function buildFlows(db: Db, from: string): Flows {
   const steps = new Map<string, { from: string; to: string; sessions: number }>();
   const paths = new Map<string, { pages: string[]; more: boolean; sessions: number }>();
 
+  // The visitor-day being read, and the time of its latest page.
+  let key = "";
+  let last = 0;
+
+  let recent: SessionRow[] = [];
+  const keepNewest = (rows: SessionRow[], n: number) =>
+    rows.sort((a, b) => b.start - a.start).slice(0, n);
+
   let current: string[] = [];
+  let times: number[] = [];
+  let entry: ViewRow | null = null;
   const close = () => {
-    if (current.length === 0) return;
+    if (current.length === 0 || entry === null) return;
+    const begun = times[0] as number;
+    recent.push({
+      start: begun,
+      seconds: Math.round((last - begun) / 1000),
+      pageCount: current.length,
+      pages: current
+        .slice(0, SESSION_PAGES_SHOWN)
+        .map((path, i) => ({ path, at: Math.round(((times[i] as number) - begun) / 1000) })),
+      more: current.length > SESSION_PAGES_SHOWN,
+      from: entry.ref_host ?? (entry.from_path ? "(own site)" : "(direct)"),
+      campaign: [entry.utm_source, entry.utm_medium, entry.utm_campaign]
+        .filter(Boolean)
+        .join(" / "),
+      lang: entry.lang ?? "(unknown)",
+      device: entry.device,
+    });
+    if (recent.length >= 2000) recent = keepNewest(recent, RECENT_SESSIONS);
     sessions++;
     pageTotal += current.length;
-    const first = current[0] as string;
-    const last = current[current.length - 1] as string;
-    entries.set(first, (entries.get(first) ?? 0) + 1);
-    exits.set(last, (exits.get(last) ?? 0) + 1);
+    const firstPage = current[0] as string;
+    const lastPage = current[current.length - 1] as string;
+    entries.set(firstPage, (entries.get(firstPage) ?? 0) + 1);
+    exits.set(lastPage, (exits.get(lastPage) ?? 0) + 1);
     if (current.length === 1) {
       singlePage++;
     } else {
@@ -113,10 +177,10 @@ export function buildFlows(db: Db, from: string): Flows {
       else paths.set(key, { pages, more: current.length > PATH_STEPS, sessions: 1 });
     }
     current = [];
+    times = [];
+    entry = null;
   };
 
-  let key = "";
-  let last = 0;
   for (const r of rows) {
     const k = `${r.day}:${r.visitor}`;
     if (k !== key || r.ts - last > SESSION_GAP_MS) {
@@ -124,8 +188,12 @@ export function buildFlows(db: Db, from: string): Flows {
       key = k;
     }
     last = r.ts;
+    entry ??= r;
     // A reload is not a step.
-    if (current[current.length - 1] !== r.path) current.push(r.path);
+    if (current[current.length - 1] !== r.path) {
+      current.push(r.path);
+      times.push(r.ts);
+    }
   }
   close();
 
@@ -137,6 +205,7 @@ export function buildFlows(db: Db, from: string): Flows {
     exits: top(exits, 10, (n) => n).map(([path, n]) => ({ path, sessions: n })),
     steps: top(steps, 15, (v) => v.sessions).map(([, v]) => v),
     paths: top(paths, 10, (v) => v.sessions).map(([, v]) => v),
+    recent: keepNewest(recent, RECENT_SESSIONS),
   };
 }
 
@@ -230,7 +299,7 @@ const CSS = `
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.5 Inter,system-ui,-apple-system,sans-serif}
 main{max-width:980px;margin:0 auto;padding:32px 16px 64px}
-h1{font-size:1.4rem;margin:0 0 4px}h2{font-size:1.05rem;margin:36px 0 10px}h3{font-size:.9rem;margin:20px 0 6px;color:var(--muted);font-weight:600}
+h1{font-size:1.4rem;margin:0 0 4px}h2{font-size:1.05rem;margin:36px 0 10px}h3{font-size:.9rem;margin:20px 0 6px;color:var(--muted);font-weight:600}.t{color:var(--muted);font-size:.8rem;margin-left:4px}
 p.sub{margin:0;color:var(--muted)}
 nav{display:flex;flex-wrap:wrap;gap:8px 20px;margin:12px 0 0;color:var(--muted)}
 nav a{color:var(--muted);text-decoration:none}nav a.on{color:var(--fg);font-weight:600;border-bottom:2px solid var(--accent)}
@@ -262,6 +331,14 @@ const FILTER_LABELS: Record<string, string> = {
   "no-language": "Sends no browser language",
   datacenter: "From a cloud or hosting network",
 };
+
+/** Seconds as m:ss, or h:mm:ss past an hour. */
+function clock(total: number): string {
+  const h = Math.floor(total / 3600);
+  const m = Math.floor((total % 3600) / 60);
+  const sec = String(total % 60).padStart(2, "0");
+  return h > 0 ? `${h}:${String(m).padStart(2, "0")}:${sec}` : `${m}:${sec}`;
+}
 
 function flowSummary(f: Flows): string {
   if (f.sessions === 0) return "No sessions yet.";
@@ -334,6 +411,23 @@ ${table(
   ["Page", "Sessions"],
   r.flows.exits.map((e) => [esc(e.path), String(e.sessions)]),
   [1],
+)}
+<h2>Sessions, one by one</h2>
+<p class="sub">The ${RECENT_SESSIONS} most recent. Each row is one visitor on one day. Source, language and device are those of the first page; the numbers beside a page are the seconds since the session began.</p>
+${table(
+  ["Started (UTC)", "Route", "Time", "Came from", "Campaign", "Language", "Device"],
+  r.flows.recent.map((x) => [
+    esc(new Date(x.start).toISOString().slice(0, 16).replace("T", " ")),
+    x.pages
+      .map((p, i) => esc(p.path) + (i === 0 ? "" : ` <span class="t">+${clock(p.at)}</span>`))
+      .join(" &rarr; ") +
+      (x.more ? ` &rarr; &hellip; <span class="t">${x.pageCount} pages</span>` : ""),
+    x.pageCount === 1 ? "1 page" : clock(x.seconds),
+    esc(x.from),
+    esc(x.campaign),
+    esc(x.lang),
+    esc(x.device),
+  ]),
 )}
 <h2>Clicks to contact and the booking page, by the page they came from</h2>
 ${table(

@@ -1,7 +1,7 @@
 import request from "supertest";
 import { describe, expect, it } from "vitest";
 import { loadConfig } from "../server/config";
-import { basic, HOST, nav, PASSWORD, rows, setup } from "./helpers";
+import { basic, HOST, nav, PASSWORD, PHONE_UA, rows, setup } from "./helpers";
 
 const get = (app: ReturnType<typeof setup>["app"], url: string, auth = basic("kjell", PASSWORD)) =>
   request(app).get(url).set("Host", HOST).set("Authorization", auth);
@@ -285,5 +285,85 @@ describe("session flows", () => {
       steps: [],
     });
     expect((await get(app, "/numeros")).text).toContain("No sessions yet.");
+  });
+
+  describe("sessions one by one", () => {
+    it("shows who each session belongs to: source, campaign, language, device, timing", async () => {
+      const { app, advance } = setup({ start: Date.UTC(2026, 9, 13, 9, 0) });
+      // A phone user from LinkedIn with a tagged link: home, an article, contact.
+      const lead = {
+        ip: "198.51.100.1",
+        ua: PHONE_UA,
+        headers: { "Accept-Language": "fr-BE,fr;q=0.9", Referer: "https://www.linkedin.com/feed/" },
+      };
+      await nav(app, "/?utm_source=linkedin&utm_medium=social&utm_campaign=launch", lead);
+      advance(45_000);
+      await nav(app, "/artikels/ai", {
+        ...lead,
+        headers: { ...lead.headers, Referer: "https://www.veryklear.com/" },
+      });
+      advance(75_000);
+      await nav(app, "/contact", {
+        ...lead,
+        headers: { ...lead.headers, Referer: "https://www.veryklear.com/artikels/ai" },
+      });
+      // Later, a desktop visitor who typed the address.
+      advance(60 * 60_000);
+      await nav(app, "/diensten", { ip: "198.51.100.2" });
+
+      const { recent } = (await get(app, "/numeros.json?days=7")).body.data.flows;
+      expect(recent).toHaveLength(2);
+      // Newest first.
+      expect(recent[0]).toMatchObject({
+        pageCount: 1,
+        from: "(direct)",
+        campaign: "",
+        lang: "nl-BE",
+        device: "desktop",
+        pages: [{ path: "/diensten", at: 0 }],
+      });
+      expect(recent[1]).toMatchObject({
+        pageCount: 3,
+        seconds: 120,
+        from: "linkedin.com",
+        campaign: "linkedin / social / launch",
+        lang: "fr-BE",
+        device: "mobile",
+        more: false,
+        pages: [
+          { path: "/", at: 0 },
+          { path: "/artikels/ai", at: 45 },
+          { path: "/contact", at: 120 },
+        ],
+      });
+    });
+
+    it("lists them on the page with the timing beside each step", async () => {
+      const { app, advance } = setup();
+      await nav(app, "/", { ip: "198.51.100.1", headers: { "Accept-Language": "zh-CN" } });
+      advance(95_000);
+      await nav(app, "/contact", { ip: "198.51.100.1", headers: { "Accept-Language": "zh-CN" } });
+      const html = (await get(app, "/numeros?days=7")).text;
+      expect(html).toContain("Sessions, one by one");
+      expect(html).toContain("zh-CN");
+      expect(html).toContain("+1:35");
+      expect(html).toContain("(direct)");
+    });
+
+    it("keeps only the newest 50 and cuts a long session at eight pages", async () => {
+      const { app, db } = setup();
+      const insert = db.prepare(
+        "INSERT INTO pageviews (ts, day, path, device, visitor) VALUES (?, '2026-10-13', ?, 'desktop', ?)",
+      );
+      const base = Date.UTC(2026, 9, 13, 0, 0);
+      for (let i = 0; i < 60; i++)
+        insert.run(base + i * 60_000, "/", `v${String(i).padStart(2, "0")}`);
+      for (let i = 0; i < 10; i++) insert.run(base + 3_600_000 + i * 1000, `/p${i}`, "long");
+      const { recent } = (await get(app, "/numeros.json?days=7")).body.data.flows;
+      expect(recent).toHaveLength(50);
+      expect(recent[0]).toMatchObject({ pageCount: 10, more: true });
+      expect(recent[0].pages).toHaveLength(8);
+      expect(recent[0].start).toBeGreaterThan(recent[1].start);
+    });
   });
 });
