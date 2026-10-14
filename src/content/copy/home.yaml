@@ -58,8 +58,8 @@ pillars:
         - Klopt de weg van advertentie tot site?
     - title: AI implementeren
       questions:
-        - Waar bespaart AI echt werk?
-        - Wat volstaat met een gewoon script?
+        - Welk model, en hoe stel je het in?
+        - Welke content en tools bouw je ermee?
         - Wat blijft beter mensenwerk?
 
 statement:
@@ -98,6 +98,8 @@ faq:
   title: Wat mensen ons meestal vragen.
   button: Stel je vraag
   items:
+    - q: Voor wie werken jullie?
+      a: Voor bedrijven in Vlaanderen die willen groeien en het deftig willen doen. Technische bedrijven passen het best. Wie iets maakt of verkoopt dat wat uitleg vraagt, heeft het meest aan onze achtergrond.
     - q: We krijgen al ons werk via via. Hebben wij dat wel nodig?
       a: Mond-tot-mond is een kanaal, en meestal een goed. De vraag is of je weet waarom het werkt, want dat vertelt je hoe je er meer van krijgt.
     - q: AI, is dat niet iets voor grote bedrijven?
