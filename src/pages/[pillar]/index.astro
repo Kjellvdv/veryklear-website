@@ -48,6 +48,28 @@ const { dienst_page: d } = await getCopy('site');
     </div>
   </section>
 
+  {/* Only the AI page has stages: what's worth doing depends on where a team stands. */}
+  {c.stages && (
+    <section class="block" style="padding-top:0">
+      <div class="wrap">
+        <div class="s-head">
+          <h2 class="h-section">{c.stages.title}</h2>
+          <p class="lead">{c.stages.lead}</p>
+        </div>
+        <div class="grid-3">
+          {c.stages.items.map((s) => (
+            <div class="card card-paper stage">
+              <div class="n"></div>
+              <h3 class="h-card">{s.name}</h3>
+              <p class="muted">{s.situation}</p>
+              <ul>{s.what.map((w) => <li>{w}</li>)}</ul>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
   <section class="block" style="padding-top:0">
     <div class="wrap">
       <div class="s-head">
@@ -93,7 +115,7 @@ const { dienst_page: d } = await getCopy('site');
       <div class="s-head">
         <h2 class="h-section">{c.leads_to.title}</h2>
       </div>
-      <div class="grid-4">
+      <div class={c.leads_to.items.length === 3 ? 'grid-3' : 'grid-4'}>
         {c.leads_to.items.map((l) => {
           const Tag = l.href ? 'a' : 'div';
           return (

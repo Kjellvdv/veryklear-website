@@ -2,54 +2,84 @@
 # Change the text after the colon, keep the indentation. Fields ending in _html
 # may contain <br> (line break). No bold in titles. The artikels at the bottom are added automatically.
 # Named for the building, not the diagnosing: keep the copy hands-on.
+# Rewritten 2026-10-14 (Kjell): forward-deployed marketing engineering, sold by
+# stage. In Dutch "marketing engineering bij jou in huis"; the English term
+# doesn't ship locally. The `stages` block only exists on this page.
 
 meta:
   title: AI implementeren · Very Klear
-  description: AI aan het werk zetten waar het echt helpt, in marketing, sales en klantencontact. En duidelijk maken wat beter mensenwerk blijft.
+  description: Marketing engineering bij jou in huis. Van het juiste model en een goed ingestelde Claude of Copilot tot content, interne tools en systemen voor marketing en verkoop.
 
 hero:
-  title_html: AI implementeren.<br />Waar het echt werk scheelt.
-  lead: AI aan het werk zetten waar het echt helpt, in marketing, sales en klantencontact. En duidelijk maken wat beter mensenwerk blijft, zodat je contact met klanten beter wordt in plaats van automatisch.
+  title_html: AI implementeren.<br />Van eerste stappen tot eigen tools.
+  lead: Marketing engineering bij jou in huis. We bouwen mee in je eigen tools, van content met AI tot interne tools en systemen voor verkoop en opvolging. En als je nog moet beginnen, zeggen we gewoon welk model je neemt en hoe je het instelt.
   button: Plan een strategiesessie
 
 when:
   title: Je zit hier als
   items:
+    - Je weet niet welk model je moet nemen, of hoe je Claude of Copilot goed instelt.
     - Iedereen in je team gebruikt AI, maar elk anders.
-    - Je weet niet of de info die eruit komt klopt.
     - Dezelfde taak komt elke week terug en vreet tijd.
-    - De factuur voor tools loopt op, en niemand weet waarvoor.
+    - Je wil content of een interne tool, maar niemand heeft tijd om die te bouwen.
 
 questions:
   title: Wat we samen bouwen
   items:
-    - Eén manier van werken voor het hele team
-    - Data die klopt voor ze erin gaat
-    - Geen ruis, geen onnodige kosten
+    - Het juiste model, goed ingesteld
+    - Eén manier van werken voor het team
+    - Content in je eigen stem, met AI
+    - Interne tools op maat
+    - CRM en opvolging die zichzelf bijhouden
     - Script waar het kan, AI waar het moet
-    - Voorbereiding van verkoopgesprekken
-    - Opvolging die niet vergeten wordt
+
+# Three stages: where a business stands with AI decides what's worth doing.
+stages:
+  title: Waar sta je met AI?
+  lead: Wat zinvol is, hangt af van waar je vandaag staat. Je hoeft niet bij het begin te starten.
+  items:
+    - name: Nog geen AI
+      situation: Niemand in je team gebruikt AI, of enkel eens ChatGPT voor een mailtje.
+      what:
+        - Welk model past bij wat je doet, en wat het kost
+        - Accounts en instellingen die voor iedereen hetzelfde zijn
+        - Afspraken over welke gegevens erin mogen en welke niet
+        - Twee of drie taken waar je meteen tijd mee wint
+    - name: Eerste stappen
+      situation: Je hebt Copilot of Claude, maar het blijft bij losse vragen in een chatvenster.
+      what:
+        - Projecten met vaste instructies, zodat iedereen hetzelfde resultaat krijgt
+        - Je eigen documenten en huisstijl gekoppeld
+        - Vaste werkwijzen voor wat terugkomt, zoals verslagen of offertes voorbereiden
+        - De eerste taken die Claude Cowork zelf afwerkt
+    - name: Gevorderd
+      situation: AI zit al in je werk, en je wil dat het meer doet dan helpen typen.
+      what:
+        - Content in je eigen stem, van artikels tot LinkedIn en nieuwsbrieven
+        - Interne tools, zoals een dashboard, een calculator of een klantoverzicht
+        - CRM, opvolging en leadlijsten die zichzelf bijhouden
+        - Met een GTM engineering partner, als het technischer wordt
 
 approach:
   title: Hoe het verloopt
   steps:
-    - title: Waar loopt het vast?
-      text: Wat nu per persoon of per tool verschilt, en welke taak elke week terugkomt. De offerte die telkens opnieuw getypt wordt, de klant die niemand terugbelde.
+    - title: Waar sta je, waar loopt het vast?
+      text: Welke tools en modellen je team nu gebruikt, wat per persoon verschilt, en welke taak elke week terugkomt.
     - title: AI, script of mensenwerk
       text: Per taak een eerlijke keuze. Veel heeft geen AI nodig, een gewoon script volstaat. En sommige dingen blijven beter bij jou.
-    - title: Eén toepassing die draait
-      text: We bouwen de eerste toepassing echt, in de tools die je al gebruikt, en kijken wat ze opleverde.
+    - title: We bouwen het mee
+      text: In de tools die je al gebruikt, naast je team. Geen rapport om zelf uit te voeren, maar iets dat draait en waarvan je ziet wat het opbrengt.
 
 deliver:
   title: Wat je krijgt
-  text: Een helder overzicht van wat AI nodig heeft, wat een script volstaat en wat manueel blijft, plus één toepassing die effectief draait.
+  text: Een plan op jouw niveau, en wat erin staat ook gebouwd. Van een goed ingestelde Claude of Copilot tot een interne tool of een systeem dat effectief draait.
 
 # The AI-specific block: what AI does, what stays with you.
 split:
   ai_title: AI doet
-  ai: Voorbereiden, samenvatten, opvolgen, het werk dat elke week terugkomt.
+  ai: Voorbereiden, samenvatten, opvolgen, eerste versies schrijven, het werk dat elke week terugkomt.
   you_title: Jij doet
-  you: Het verkoopgesprek zelf, de lastige mail, alles waar je eigen stem in zit.
+  you: Het verkoopgesprek zelf, de lastige mail, de keuzes, alles waar je eigen stem in zit.
   never_title: Wat we nooit automatiseren
   never:
     - Een antwoord aan een ontevreden klant
@@ -60,28 +90,32 @@ split:
 leads_to:
   title: Waar het naartoe kan
   items:
-    - title: Een volgende toepassing
-      text: De tweede taak die elke week terugkomt.
+    - title: Een volgende stap
+      text: Van losse vragen naar vaste werkwijzen, of van vaste werkwijzen naar eigen tools.
     - title: CRM en opvolging
       text: Met een GTM engineering partner, als het technischer wordt.
       href: /partners
     - title: Fractioneel
-      text: Als AI een vast onderdeel wordt van hoe je verkoopt en opvolgt.
+      text: Als AI een vast onderdeel wordt van hoe je marketing en verkoop draaien.
       href: /fractioneel
 
 partners:
   title: Met wie we dit uitwerken
-  keys: [gtm_engineering, platform]
+  keys: [gtm_engineering, platform, cybersecurity]
 
 faq:
   title: Vragen over AI implementeren
   items:
+    - q: Wat bedoelen jullie met marketing engineering?
+      a: Dat we niet enkel advies geven, maar zelf mee bouwen in je tools, naast je team. Een ingenieur ter plaatse, maar dan voor marketing en verkoop.
+    - q: Welk model moeten we nemen?
+      a: Dat hangt af van wat je ermee doet en wat je al gebruikt. Werk je in Microsoft 365, dan ligt Copilot voor de hand. Voor schrijven en analyse werken we zelf vooral met Claude. We zeggen eerlijk wat bij jou past, ook als dat het goedkopere is.
     - q: AI, is dat niet iets voor grote bedrijven?
       a: Meestal niet. Een tool die je al betaalt, goed ingesteld, brengt je verder dan de meeste bedrijven ooit geraken. Een echt platform is pas nodig als je daar tegen de grenzen loopt.
     - q: Moeten we nieuwe tools kopen?
       a: Zelden. We beginnen met wat je al hebt. Is er toch iets nodig, dan zeggen we waarom en wat het kost.
     - q: Is onze data veilig?
-      a: Dat is een van de eerste dingen die we bekijken. Welke data gaat waar naartoe, en wat hoort daar niet thuis.
+      a: Dat is een van de eerste dingen die we bekijken. Welke data gaat waar naartoe, en wat hoort daar niet thuis. Waar het zwaarder wordt, werken we met een cybersecurity partner.
     - q: Wat kost het?
       a: Dat hangt af van wat er nodig is. We bespreken het na de strategiesessie, met een duidelijke scope.
 
@@ -89,5 +123,5 @@ articles:
   title: Artikels over AI implementeren
 
 cta:
-  heading: Welke taak komt bij jou elke week terug?
-  body: Daar beginnen we mee in de strategiesessie. Een uur, en je weet of AI er iets aan verandert.
+  heading: Waar sta jij met AI?
+  body: Dat zoeken we uit in de strategiesessie. Een uur, en je weet wat de volgende stap is en wat die oplevert.
