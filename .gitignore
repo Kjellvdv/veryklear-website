@@ -9,3 +9,11 @@ dist/
 
 # Contact form SMTP password lives on the server only
 forms/contact-config.php
+
+# Server-side analytics (server/): local database and secrets
+data/
+*.db
+*.db-wal
+*.db-shm
+.env
+.env.local

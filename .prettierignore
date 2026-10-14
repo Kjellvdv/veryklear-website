@@ -1,0 +1,8 @@
+node_modules
+dist
+.astro
+public
+src
+forms
+package-lock.json
+*.md
