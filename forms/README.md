@@ -1,7 +1,8 @@
 # Contact form backend
 
-`veryklear.com` runs on GitHub Pages, which can't run code, so the contact form
-posts to a small PHP script on SiteGround instead: `contact.php` in this folder,
+The site's own server (server/) only serves pages and counts visits, and mail
+needs SMTP credentials we'd rather keep off Railway, so the contact form posts to
+a small PHP script on SiteGround instead: `contact.php` in this folder,
 served at `https://forms.veryklear.com/contact.php`. It mails each message to
 kjell@veryklear.be. No outside service, no account, no key.
 
