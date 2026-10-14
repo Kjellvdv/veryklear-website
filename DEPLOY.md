@@ -21,8 +21,8 @@ every push to `main`, so a content-desk publish goes live by itself.
 | Name | Record | Points to |
 |---|---|---|
 | `www.veryklear.com` | CNAME + TXT | Railway (both values come from the service's custom-domain dialog; the domain only verifies with both) |
-| `veryklear.com` | A | SiteGround's own server, which 301s to `https://www.veryklear.com` with the path kept (Domain → Redirects). Needs a Let's Encrypt certificate for the apex (Security → SSL Manager). |
-| `veryklear.be` | its own zone | SiteGround 301 to `https://www.veryklear.com`, path kept |
+| `veryklear.com` | A | SiteGround's own server (`35.204.202.155`), which 301s to `https://www.veryklear.com` (Domain → Redirects). SiteGround's rule drops the path: `veryklear.com/x` lands on the home page. Acceptable while every shared link carries www; if a bare-domain deep link ever goes on a slide or card, replace the rule with a `RewriteRule ^(.*)$ https://www.veryklear.com/$1 [R=301,L,QSA]` in that site's `.htaccess`. Certificate: Let's Encrypt, already present (Security → SSL Manager). |
+| `veryklear.be` | its own zone | SiteGround 301 to `https://www.veryklear.com`, path dropped (the old site's URLs don't exist on the new one, so home beats a 404) |
 | `forms.veryklear.com` | A | SiteGround, the contact-form backend (`forms/README.md`) |
 
 MX records for both domains stay on SiteGround, so `kjell@veryklear.be` keeps working.
