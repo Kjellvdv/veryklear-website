@@ -28,17 +28,33 @@ export function isNavigation(req: Request): boolean {
   return true;
 }
 
-/** Referring site as a hostname. Our own pages and non-web schemes count as direct. */
-export function referrerHost(raw: string | undefined, ownHost: string): string | null {
-  if (!raw) return null;
+export interface Referrer {
+  /** Another site, hostname only. */
+  host: string | null;
+  /** One of our own pages, when the visitor clicked through from it. */
+  fromPath: string | null;
+}
+
+const NO_REFERRER: Referrer = { host: null, fromPath: null };
+
+/**
+ * Where the request came from: another site (host only, nothing more) or one of
+ * our own pages (its path, so clicks to the booking page can be traced to the page
+ * they were on). Non-web schemes count as direct.
+ */
+export function referrerOf(raw: string | undefined, ownHost: string): Referrer {
+  if (!raw) return NO_REFERRER;
   try {
     const url = new URL(raw);
-    if (url.protocol !== "http:" && url.protocol !== "https:") return null;
+    if (url.protocol !== "http:" && url.protocol !== "https:") return NO_REFERRER;
     const host = url.hostname.replace(/^www\./, "");
-    if (host === "" || host === ownHost.replace(/^www\./, "")) return null;
-    return host.slice(0, 100);
+    if (host === "") return NO_REFERRER;
+    if (host === ownHost.replace(/^www\./, "")) {
+      return { host: null, fromPath: clean(url.pathname.replace(/\/+$/, "") || "/", 300) };
+    }
+    return { host: host.slice(0, 100), fromPath: null };
   } catch {
-    return null;
+    return NO_REFERRER;
   }
 }
 
@@ -53,10 +69,10 @@ export type Counter = (req: Request, path: string) => void;
 export function createCounter(db: Db, now: () => number): Counter {
   const insert = db.prepare(`
     INSERT INTO pageviews
-      (ts, day, path, ref_host, utm_source, utm_medium, utm_campaign, utm_content, utm_term,
-       device, lang, visitor)
-    VALUES (@ts, @day, @path, @ref_host, @utm_source, @utm_medium, @utm_campaign, @utm_content,
-            @utm_term, @device, @lang, @visitor)`);
+      (ts, day, path, ref_host, from_path, utm_source, utm_medium, utm_campaign, utm_content,
+       utm_term, device, lang, visitor)
+    VALUES (@ts, @day, @path, @ref_host, @from_path, @utm_source, @utm_medium, @utm_campaign,
+            @utm_content, @utm_term, @device, @lang, @visitor)`);
 
   return (req, path) => {
     if (!isNavigation(req)) return;
@@ -65,11 +81,13 @@ export function createCounter(db: Db, now: () => number): Counter {
       const day = dayOf(ts);
       const ua = req.get("user-agent") ?? "";
       const q = req.query as Record<string, unknown>;
+      const ref = referrerOf(req.get("referer"), req.hostname);
       insert.run({
         ts,
         day,
         path,
-        ref_host: referrerHost(req.get("referer"), req.hostname),
+        ref_host: ref.host,
+        from_path: ref.fromPath,
         utm_source: clean(q.utm_source, 100),
         utm_medium: clean(q.utm_medium, 100),
         utm_campaign: clean(q.utm_campaign, 100),

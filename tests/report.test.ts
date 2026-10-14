@@ -56,6 +56,12 @@ describe("numbers", () => {
     set(Date.UTC(2026, 9, 6, 23, 0));
     await nav(app, "/diensten", a);
     set(Date.UTC(2026, 9, 13, 0, 30));
+    // Two clicks through to the contact page: one from /diensten, one typed in.
+    await nav(app, "/contact", {
+      ...a,
+      headers: { Referer: "https://www.veryklear.com/diensten" },
+    });
+    await nav(app, "/contact", b);
     return ctx;
   }
 
@@ -64,30 +70,34 @@ describe("numbers", () => {
     const r = (await get(app, "/numeros.json?days=7")).body.data;
     expect(r.from).toBe("2026-10-07");
     expect(r.to).toBe("2026-10-13");
-    expect(r.totals).toEqual({ views: 4, visitors: 3 });
+    expect(r.totals).toEqual({ visitors: 3, views: 6 });
     expect(r.daily).toHaveLength(7);
     expect(r.daily.reduce((n: number, d: { views: number }) => n + d.views, 0)).toBe(
       r.totals.views,
     );
     expect(r.daily[0]).toEqual({ day: "2026-10-07", views: 1, visitors: 1 });
-    expect(r.daily.at(-1)).toEqual({ day: "2026-10-13", views: 3, visitors: 2 });
-    expect(r.pages).toHaveLength(2);
-    expect(r.pages).toContainEqual({ path: "/diensten", views: 2, visitors: 2 });
-    expect(r.pages).toContainEqual({ path: "/", views: 2, visitors: 2 });
-    expect(r.referrers).toContainEqual({ source: "linkedin.com", views: 1 });
-    expect(r.referrers).toContainEqual({ source: "(direct)", views: 3 });
-    expect(r.campaigns).toEqual([
-      { source: "linkedin", medium: "social", campaign: "launch", views: 1 },
+    expect(r.daily.at(-1)).toEqual({ day: "2026-10-13", views: 5, visitors: 2 });
+    expect(r.pages).toHaveLength(3);
+    expect(r.pages).toContainEqual({ path: "/diensten", visitors: 2, views: 2 });
+    expect(r.pages).toContainEqual({ path: "/contact", visitors: 2, views: 2 });
+    expect(r.routes).toEqual([
+      { target: "/contact", source: "(direct)", visitors: 1, views: 1 },
+      { target: "/contact", source: "/diensten", visitors: 1, views: 1 },
     ]);
-    expect(r.devices).toEqual([{ device: "desktop", views: 4 }]);
-    expect(r.languages).toEqual([{ lang: "nl-BE", views: 4 }]);
+    expect(r.referrers).toContainEqual({ source: "linkedin.com", visitors: 1, views: 1 });
+    expect(r.referrers).toContainEqual({ source: "(direct)", visitors: 3, views: 5 });
+    expect(r.campaigns).toEqual([
+      { source: "linkedin", medium: "social", campaign: "launch", visitors: 1, views: 1 },
+    ]);
+    expect(r.devices).toEqual([{ device: "desktop", visitors: 3, views: 6 }]);
+    expect(r.languages).toEqual([{ lang: "nl-BE", visitors: 3, views: 6 }]);
   });
 
   it("falls back to 30 days for an unknown range", async () => {
     const { app } = await seeded();
     const r = (await get(app, "/numeros.json?days=3")).body.data;
     expect(r.days).toBe(30);
-    expect(r.totals.views).toBe(5);
+    expect(r.totals.views).toBe(7);
   });
 
   it("escapes everything it prints", async () => {

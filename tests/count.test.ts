@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
-import { isNavigation, primaryLanguage, referrerHost } from "../server/count";
-import { purge } from "../server/db";
+import Database from "better-sqlite3";
+import { isNavigation, primaryLanguage, referrerOf } from "../server/count";
+import { migrate, purge } from "../server/db";
 import { DAY, nav, PHONE_UA, rows, setup, UA } from "./helpers";
 
 describe("what a page visit records", () => {
@@ -35,10 +36,26 @@ describe("what a page visit records", () => {
     expect(dump).not.toContain("iPhone");
   });
 
-  it("counts our own pages as direct, and desktop as desktop", async () => {
+  it("records a click from one of our own pages as the source page, not as a referring site", async () => {
     const { app, db } = setup();
-    await nav(app, "/", { ua: UA, headers: { Referer: "https://www.veryklear.com/diensten" } });
-    expect(rows(db)[0]).toMatchObject({ ref_host: null, device: "desktop" });
+    await nav(app, "/contact", {
+      ua: UA,
+      headers: { Referer: "https://www.veryklear.com/diensten/" },
+    });
+    expect(rows(db)[0]).toMatchObject({
+      path: "/contact",
+      ref_host: null,
+      from_path: "/diensten",
+      device: "desktop",
+    });
+  });
+
+  it("asks browsers to send the referrer to our own pages only", async () => {
+    const { app } = setup();
+    expect((await nav(app, "/")).headers["referrer-policy"]).toBe("same-origin");
+    const { default: request } = await import("supertest");
+    const report = await request(app).get("/numeros").set("Host", "www.veryklear.com");
+    expect(report.headers["referrer-policy"]).toBe("no-referrer");
   });
 
   it("truncates long campaign values and strips control characters", async () => {
@@ -151,13 +168,36 @@ describe("helpers", () => {
     expect(primaryLanguage("<script>")).toBeNull();
   });
 
-  it("reduces a referrer to its host", () => {
-    expect(referrerHost("https://www.linkedin.com/feed/", "www.veryklear.com")).toBe(
-      "linkedin.com",
+  it("splits a referrer into another site's host or one of our own pages", () => {
+    const own = "www.veryklear.com";
+    expect(referrerOf("https://www.linkedin.com/feed/", own)).toEqual({
+      host: "linkedin.com",
+      fromPath: null,
+    });
+    expect(referrerOf("https://veryklear.com/x/?a=1#b", own)).toEqual({
+      host: null,
+      fromPath: "/x",
+    });
+    expect(referrerOf("https://www.veryklear.com/", own)).toEqual({ host: null, fromPath: "/" });
+    expect(referrerOf("android-app://com.linkedin.android", own)).toEqual({
+      host: null,
+      fromPath: null,
+    });
+    expect(referrerOf("not a url", own)).toEqual({ host: null, fromPath: null });
+    expect(referrerOf(undefined, own)).toEqual({ host: null, fromPath: null });
+  });
+
+  it("adds the from_path column to a database from before it existed", () => {
+    const db = new Database(":memory:");
+    db.exec(`CREATE TABLE pageviews (id INTEGER PRIMARY KEY, ts INTEGER NOT NULL, day TEXT NOT NULL,
+      path TEXT NOT NULL, ref_host TEXT, utm_source TEXT, utm_medium TEXT, utm_campaign TEXT,
+      utm_content TEXT, utm_term TEXT, device TEXT NOT NULL, lang TEXT, visitor TEXT NOT NULL)`);
+    migrate(db);
+    migrate(db); // idempotent
+    const cols = (db.prepare("PRAGMA table_info(pageviews)").all() as { name: string }[]).map(
+      (c) => c.name,
     );
-    expect(referrerHost("https://veryklear.com/x", "www.veryklear.com")).toBeNull();
-    expect(referrerHost("android-app://com.linkedin.android", "www.veryklear.com")).toBeNull();
-    expect(referrerHost("not a url", "www.veryklear.com")).toBeNull();
+    expect(cols).toContain("from_path");
   });
 
   it("isNavigation is a pure function of the request", () => {

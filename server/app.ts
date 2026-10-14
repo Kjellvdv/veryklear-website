@@ -55,6 +55,10 @@ export function createApp({ db, cfg, now = Date.now }: Deps) {
   // Two policies: the site's pages need their own scripts and styles, the TidyCal
   // embed and the form endpoint; the numbers page needs nothing but its inline CSS.
   const sitePolicy = helmet({
+    // Browsers then send the referrer to our own pages only, so a click to the
+    // booking page can be traced to the page it was on. Other sites, TidyCal's
+    // iframe included, still get no referrer at all.
+    referrerPolicy: { policy: "same-origin" },
     contentSecurityPolicy: {
       useDefaults: false,
       directives: {

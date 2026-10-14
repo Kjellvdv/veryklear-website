@@ -14,6 +14,7 @@ CREATE TABLE IF NOT EXISTS pageviews (
   day          TEXT NOT NULL,           -- YYYY-MM-DD, UTC
   path         TEXT NOT NULL,           -- a page path from the build, no query or hash
   ref_host     TEXT,                    -- referring site, hostname only
+  from_path    TEXT,                    -- our own page the visitor came from, if any
   utm_source   TEXT,
   utm_medium   TEXT,
   utm_campaign TEXT,
@@ -39,7 +40,17 @@ export function openDb(file: string): Db {
   db.pragma("foreign_keys = ON");
   db.pragma("busy_timeout = 5000");
   db.exec(SCHEMA);
+  migrate(db);
   return db;
+}
+
+// Columns added after the first deploy. CREATE TABLE IF NOT EXISTS leaves an
+// existing table alone, so each later column gets its own guarded ALTER here.
+export function migrate(db: Db): void {
+  const columns = new Set(
+    (db.prepare("PRAGMA table_info(pageviews)").all() as { name: string }[]).map((c) => c.name),
+  );
+  if (!columns.has("from_path")) db.exec("ALTER TABLE pageviews ADD COLUMN from_path TEXT");
 }
 
 const DAY_MS = 86_400_000;

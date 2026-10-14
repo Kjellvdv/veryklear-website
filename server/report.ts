@@ -14,16 +14,30 @@ export interface Report {
   to: string;
   totals: { views: number; visitors: number };
   daily: { day: string; views: number; visitors: number }[];
-  pages: { path: string; views: number; visitors: number }[];
-  referrers: { source: string; views: number }[];
-  campaigns: { source: string; medium: string; campaign: string; views: number }[];
-  devices: { device: string; views: number }[];
-  languages: { lang: string; views: number }[];
+  pages: { path: string; visitors: number; views: number }[];
+  /** Visits to the contact and booking pages, by the page of ours they came from. */
+  routes: { target: string; source: string; visitors: number; views: number }[];
+  referrers: { source: string; visitors: number; views: number }[];
+  campaigns: {
+    source: string;
+    medium: string;
+    campaign: string;
+    visitors: number;
+    views: number;
+  }[];
+  devices: { device: string; visitors: number; views: number }[];
+  languages: { lang: string; visitors: number; views: number }[];
 }
+
+/** The pages a visitor lands on when they act. The "where did they come from" table is about these. */
+export const TARGET_PATHS = ["/strategiesessie", "/contact"] as const;
 
 type Raw = Record<string, unknown>;
 const num = (v: unknown): number => (typeof v === "number" ? v : 0);
 const str = (v: unknown): string => (typeof v === "string" ? v : "");
+// Visitors are unique per day: nothing identifies a person across days.
+const COUNTS = "COUNT(DISTINCT day || ':' || visitor) AS visitors, COUNT(*) AS views";
+const counts = (r: Raw) => ({ visitors: num(r.visitors), views: num(r.views) });
 
 /**
  * One window for everything: the last `days` UTC calendar days including today.
@@ -35,12 +49,8 @@ export function buildReport(db: Db, days: number, now: number): Report {
   const args = { from };
   const all = (sql: string) => db.prepare(sql).all(args) as Raw[];
 
-  const t = (db
-    .prepare(
-      `SELECT COUNT(*) AS views, COUNT(DISTINCT day || ':' || visitor) AS visitors
-         FROM pageviews WHERE day >= @from`,
-    )
-    .get(args) ?? {}) as Raw;
+  const t = (db.prepare(`SELECT ${COUNTS} FROM pageviews WHERE day >= @from`).get(args) ??
+    {}) as Raw;
 
   const byDay = new Map(
     all(
@@ -62,34 +72,39 @@ export function buildReport(db: Db, days: number, now: number): Report {
     totals: { views: num(t.views), visitors: num(t.visitors) },
     daily,
     pages: all(
-      `SELECT path, COUNT(*) AS views, COUNT(DISTINCT day || ':' || visitor) AS visitors
-         FROM pageviews WHERE day >= @from GROUP BY path ORDER BY views DESC, path LIMIT 25`,
-    ).map((r) => ({ path: str(r.path), views: num(r.views), visitors: num(r.visitors) })),
+      `SELECT path, ${COUNTS} FROM pageviews WHERE day >= @from
+        GROUP BY path ORDER BY visitors DESC, views DESC, path LIMIT 25`,
+    ).map((r) => ({ path: str(r.path), ...counts(r) })),
+    routes: all(
+      `SELECT path AS target, COALESCE(from_path, '(direct)') AS source, ${COUNTS}
+         FROM pageviews WHERE day >= @from AND path IN (${TARGET_PATHS.map((t) => `'${t}'`).join(", ")})
+        GROUP BY target, source ORDER BY target, visitors DESC, views DESC, source`,
+    ).map((r) => ({ target: str(r.target), source: str(r.source), ...counts(r) })),
     referrers: all(
-      `SELECT COALESCE(ref_host, '(direct)') AS source, COUNT(*) AS views
-         FROM pageviews WHERE day >= @from GROUP BY source ORDER BY views DESC, source LIMIT 15`,
-    ).map((r) => ({ source: str(r.source), views: num(r.views) })),
+      `SELECT COALESCE(ref_host, '(direct)') AS source, ${COUNTS} FROM pageviews WHERE day >= @from
+        GROUP BY source ORDER BY visitors DESC, views DESC, source LIMIT 15`,
+    ).map((r) => ({ source: str(r.source), ...counts(r) })),
     campaigns: all(
       `SELECT COALESCE(utm_source, '') AS source, COALESCE(utm_medium, '') AS medium,
-              COALESCE(utm_campaign, '') AS campaign, COUNT(*) AS views
+              COALESCE(utm_campaign, '') AS campaign, ${COUNTS}
          FROM pageviews
         WHERE day >= @from
           AND (utm_source IS NOT NULL OR utm_medium IS NOT NULL OR utm_campaign IS NOT NULL)
-        GROUP BY source, medium, campaign ORDER BY views DESC LIMIT 15`,
+        GROUP BY source, medium, campaign ORDER BY visitors DESC, views DESC LIMIT 15`,
     ).map((r) => ({
       source: str(r.source),
       medium: str(r.medium),
       campaign: str(r.campaign),
-      views: num(r.views),
+      ...counts(r),
     })),
     devices: all(
-      `SELECT device, COUNT(*) AS views FROM pageviews
-        WHERE day >= @from GROUP BY device ORDER BY views DESC`,
-    ).map((r) => ({ device: str(r.device), views: num(r.views) })),
+      `SELECT device, ${COUNTS} FROM pageviews WHERE day >= @from
+        GROUP BY device ORDER BY visitors DESC, views DESC`,
+    ).map((r) => ({ device: str(r.device), ...counts(r) })),
     languages: all(
-      `SELECT COALESCE(lang, '(unknown)') AS lang, COUNT(*) AS views FROM pageviews
-        WHERE day >= @from GROUP BY lang ORDER BY views DESC, lang LIMIT 10`,
-    ).map((r) => ({ lang: str(r.lang), views: num(r.views) })),
+      `SELECT COALESCE(lang, '(unknown)') AS lang, ${COUNTS} FROM pageviews WHERE day >= @from
+        GROUP BY lang ORDER BY visitors DESC, views DESC, lang LIMIT 10`,
+    ).map((r) => ({ lang: str(r.lang), ...counts(r) })),
   };
 }
 
@@ -167,35 +182,47 @@ export function renderHtml(r: Report, reportPath: string): string {
 <div class="axis"><span>${esc(r.from)}</span><span>${esc(r.to)}</span></div>
 <h2>Pages</h2>
 ${table(
-  ["Page", "Views", "Visitors"],
-  r.pages.map((p) => [esc(p.path), String(p.views), String(p.visitors)]),
+  ["Page", "Visitors", "Views"],
+  r.pages.map((p) => [esc(p.path), String(p.visitors), String(p.views)]),
   [1, 2],
+)}
+<h2>Clicks to contact and the booking page, by the page they came from</h2>
+${table(
+  ["Reached", "From", "Visitors", "Views"],
+  r.routes.map((x) => [esc(x.target), esc(x.source), String(x.visitors), String(x.views)]),
+  [2, 3],
 )}
 <h2>Where visitors come from</h2>
 ${table(
-  ["Source", "Views"],
-  r.referrers.map((x) => [esc(x.source), String(x.views)]),
-  [1],
+  ["Source", "Visitors", "Views"],
+  r.referrers.map((x) => [esc(x.source), String(x.visitors), String(x.views)]),
+  [1, 2],
 )}
 <h2>Campaigns</h2>
 ${table(
-  ["Source", "Medium", "Campaign", "Views"],
-  r.campaigns.map((c) => [esc(c.source), esc(c.medium), esc(c.campaign), String(c.views)]),
-  [3],
+  ["Source", "Medium", "Campaign", "Visitors", "Views"],
+  r.campaigns.map((c) => [
+    esc(c.source),
+    esc(c.medium),
+    esc(c.campaign),
+    String(c.visitors),
+    String(c.views),
+  ]),
+  [3, 4],
 )}
 <h2>Devices</h2>
 ${table(
-  ["Device", "Views"],
-  r.devices.map((d) => [esc(d.device), String(d.views)]),
-  [1],
+  ["Device", "Visitors", "Views"],
+  r.devices.map((d) => [esc(d.device), String(d.visitors), String(d.views)]),
+  [1, 2],
 )}
 <h2>Languages</h2>
 ${table(
-  ["Language", "Views"],
-  r.languages.map((l) => [esc(l.lang), String(l.views)]),
-  [1],
+  ["Language", "Visitors", "Views"],
+  r.languages.map((l) => [esc(l.lang), String(l.visitors), String(l.views)]),
+  [1, 2],
 )}
-<footer>Counted on the server from the page requests browsers make anyway: no script, no cookies. Visitors are per day: someone who comes on three days counts three times, because nothing identifies a person across days. Known crawlers, Do Not Track and Global Privacy Control are left out. Days are UTC.</footer>
+<footer>Counted on the server from the page requests browsers make anyway: no script, no cookies. Visitors are per day: someone who comes on three days counts three times, because nothing identifies a person across days. "From" is the page of ours the visitor was on when they clicked; a typed address or a link from elsewhere shows as (direct). Known crawlers, Do Not Track and Global Privacy Control are left out. Days are UTC.</footer>
 </main></body></html>`;
 }
 

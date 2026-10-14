@@ -27,10 +27,11 @@ Railway builds and runs it on every push to `main`. Domains, variables, volume a
 - `src/redirects.js`: the one map of retired URLs. Astro builds stubs from it, the server 301s from it.
 - `server/app.ts`: wiring, in order: request log → `/healthz` → canonical-host 301 → compression → helmet (strict policy on the numbers page, site policy elsewhere) → numbers router → URL normaliser → static assets with cache headers → pages → error handler.
 - `server/pages.ts`: `listPages()` reads every `*/index.html` once at boot into a Set; `normalizeUrl()` 301s slashes, `index.html`, encodings and retired URLs; `servePages()` counts and sends, or sends `404.html` with 404.
-- `server/count.ts`: `isNavigation()` decides what counts; `createCounter()` writes path, referrer host, UTM, device, language, daily visitor hash.
+- `server/count.ts`: `isNavigation()` decides what counts; `createCounter()` writes path, referrer (another site's host, or the path of our own page the click came from), UTM, device, language, daily visitor hash.
 - `server/visitor.ts`: one random salt per UTC day, HMAC of ip|ua, salts older than yesterday deleted.
-- `server/report.ts`: `/numeros` and `/numeros.json`, HTTP Basic, one calendar-day window for everything.
+- `server/report.ts`: `/numeros` and `/numeros.json`, HTTP Basic, one calendar-day window for everything. Every table shows visitors (unique per day) first, then views. The "clicks to contact and the booking page" table groups visits to `TARGET_PATHS` by the page they came from.
 - `server/config.ts`: env via Zod; errors name keys, never values.
+- `server/db.ts`: schema plus `migrate()`, one guarded `ALTER TABLE` per column added after the first deploy.
 
 ## Key invariants
 - **The IP address is never stored or logged.** It exists on one line in `count.ts`. The request log is method, path, status, time. A test dumps every table and asserts the IP and user agent aren't in it.
@@ -52,4 +53,5 @@ Purpose: see which pages and channels work and improve the site. Data per visit:
 - `forms/contact.php` allows `http://localhost:3011` as origin, so the form can be tested against the served build.
 - `@astrojs/sitemap` is pinned `~3.4.1` (zod 3) next to the server's zod 4. Two zods, no conflict; `src/content/config.ts` must keep importing `z` from `astro:content`.
 - Days in the numbers are UTC.
+- The site sends `Referrer-Policy: same-origin`, on purpose: that is how the server learns which of our pages a booking click came from. Other sites, TidyCal's iframe included, get no referrer. Don't tighten it to `no-referrer` without dropping the routes table.
 - `const PREVIEW` in `Base.astro`: `true` hides the whole site from search. `false` since 2026-10-06.
