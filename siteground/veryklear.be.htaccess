@@ -1,0 +1,20 @@
+# .htaccess for the veryklear.be site on SiteGround.
+# Sends every request to the home page of www.veryklear.com. The path is dropped
+# on purpose: the old site's URLs don't exist on the new one, so the home page
+# beats a 404. The query string is kept, so campaign tags on a .be link survive.
+# Replaces the Domain -> Redirects rule for veryklear.be; remove that rule when
+# this goes in, or it answers first and this file is never reached. Upload by
+# hand; see DEPLOY.md. Mail is untouched: it runs on MX records, not on this site.
+
+# Security headers on the redirect itself, as in veryklear.com.htaccess. No
+# Referrer-Policy, because a redirect's policy would strip the referrer on the hop.
+<IfModule mod_headers.c>
+  Header always set Strict-Transport-Security "max-age=31536000"
+  Header always set Content-Security-Policy "default-src 'none'; frame-ancestors 'none'"
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "DENY"
+</IfModule>
+
+RewriteEngine On
+RewriteCond %{HTTP_HOST} ^(www\.)?veryklear\.be$ [NC]
+RewriteRule ^ https://www.veryklear.com/ [R=301,L]
