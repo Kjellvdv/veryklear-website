@@ -7,7 +7,7 @@ import { ogPath } from '../og/pages.js';
 
 const { title, description, path = '' } = Astro.props;
 
-// PREVIEW MODE. Off since 2026-10-06: veryklear.com is the live home.
+// PREVIEW MODE. Off since 2026-10-06: the site is live (www.veryklear.com since 2026-10-14).
 // While true every page ships noindex and no canonical. See DEPLOY.md.
 const PREVIEW = false;
 ---
@@ -25,7 +25,7 @@ const PREVIEW = false;
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={new URL(Astro.url.pathname, Astro.site).href} />
-    <meta property="og:image" content={new URL(ogPath(Astro.url.pathname === '/404.html' ? '/404' : Astro.url.pathname), Astro.site).href} />
+    <meta property="og:image" content={new URL(ogPath(Astro.url.pathname), Astro.site).href} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />

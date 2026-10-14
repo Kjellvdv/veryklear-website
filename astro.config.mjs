@@ -1,19 +1,17 @@
 import { defineConfig } from 'astro/config';
+import sitemap from '@astrojs/sitemap';
+import { REDIRECTS } from './src/redirects.js';
 
 export default defineConfig({
-  // veryklear.com is the permanent home (2026-10-06). veryklear.be 301s to it
-  // from SiteGround, so canonicals and redirect pages point at .com.
-  site: 'https://veryklear.com',
-  // GitHub Pages has no server redirects, so retired pages get a static
-  // redirect page instead. These replace the old .htaccess rules (2026-10-01
-  // restructure: three pillars, two paths).
-  redirects: {
-    '/strategie': '/marketing-strategie',
-    '/automatisatie': '/ai',
-    '/websites': '/diensten',
-    // /marketing was the pillar's first slug, live for a few hours on 2026-10-06.
-    '/marketing': '/marketing-strategie',
-    // Artikels moved from /<pillar>/<slug> to /artikels/<pillar>/<slug> (2026-10-06).
-    '/marketing-strategie/een-kanaal-erbij-is-zelden-het-antwoord': '/artikels/marketing-strategie/een-kanaal-erbij-is-zelden-het-antwoord',
-  },
+  // www.veryklear.com is the canonical home since 2026-10-14. The site is served by
+  // server/ on Railway, which only takes a CNAME, and SiteGround's DNS can't alias
+  // the bare domain, so veryklear.com and veryklear.be 301 here from SiteGround.
+  // Canonicals, og:url, the share images and the sitemap all derive from this.
+  site: 'https://www.veryklear.com',
+  // One URL per page, without trailing slash: links are written that way, and
+  // server/pages.ts 301s the slashed form. The sitemap follows this setting.
+  trailingSlash: 'never',
+  // Retired URLs: the server 301s them, Astro builds stubs from the same map.
+  redirects: REDIRECTS,
+  integrations: [sitemap()],
 });

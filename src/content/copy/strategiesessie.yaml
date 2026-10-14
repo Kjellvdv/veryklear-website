@@ -1,4 +1,4 @@
-# Booking page (veryklear.com/strategiesessie). The calendar itself is TidyCal,
+# Booking page (www.veryklear.com/strategiesessie). The calendar itself is TidyCal,
 # embedded below the intro; its address is `booking_url` in site.yaml.
 # Never show a price or "gratis" here (products.yml strategiesessie.price_status).
 
