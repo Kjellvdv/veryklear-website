@@ -1,0 +1,8 @@
+# .htaccess for the veryklear.com site on SiteGround (the bare domain).
+# Sends every request to the same path on www, which Railway serves:
+# veryklear.com/strategiesessie -> https://www.veryklear.com/strategiesessie
+# The query string is kept. Replaces the Domain -> Redirects rule, which
+# dropped the path. Upload by hand; see DEPLOY.md.
+RewriteEngine On
+RewriteCond %{HTTP_HOST} ^veryklear\.com$ [NC]
+RewriteRule ^(.*)$ https://www.veryklear.com/$1 [R=301,L]
