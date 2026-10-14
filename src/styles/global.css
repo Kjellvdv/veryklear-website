@@ -123,7 +123,7 @@ button,input,textarea,select{font:inherit}
    left-aligned text column capped in width (2026-10-14). */
 .hero-std{padding:88px 0;min-height:580px;display:flex;align-items:center}
 .hero-std > .wrap{width:100%}
-.hero-std__text{max-width:880px}
+.hero-std__text{max-width:960px}
 /* Watermark: white at low opacity, touching the bottom and right edge. */
 .hero-mark{position:absolute;right:0;bottom:0;height:44%;width:auto;fill:#fff;opacity:.06;pointer-events:none;z-index:0}
 .hero-std .lead{max-width:62ch}
