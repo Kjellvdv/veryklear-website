@@ -6,7 +6,8 @@ meta:
   title: Plan een strategiesessie · Very Klear
   description: Kies een moment voor een strategiesessie van een uur met Very Klear.
 
-hero:
+# Title and intro at the top of the calendar card (the page has no hero).
+intro:
   title: Plan een strategiesessie.
   lead: Een uur over wat nu werkt en wat niet. Kies hieronder een moment dat je past.
 

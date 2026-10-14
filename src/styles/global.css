@@ -412,6 +412,7 @@ footer.site::before{content:"";position:absolute;top:-1px;left:0;right:0;height:
 .booking-grid{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:20px;align-items:start}
 @media (max-width:900px){.booking-grid{grid-template-columns:1fr}}
 .booking-card{padding:20px;min-height:560px}
+.booking-head{padding:16px 16px 8px}
 .booking-fallback{margin-top:16px;font-size:.88rem;text-align:center}
 .booking-fallback a{color:var(--red-deep);font-weight:600}
 
