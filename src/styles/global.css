@@ -124,11 +124,14 @@ button,input,textarea,select{font:inherit}
 .hero-std{padding:88px 0;min-height:580px;display:flex;align-items:center}
 .hero-std > .wrap{width:100%}
 .hero-std__text{max-width:880px}
+/* Watermark: white at low opacity, touching the bottom and right edge. */
+.hero-mark{position:absolute;right:0;bottom:0;height:44%;width:auto;fill:#fff;opacity:.06;pointer-events:none;z-index:0}
 .hero-std .lead{max-width:62ch}
 .hero-std__label{display:block;color:#fff;opacity:.85;margin-bottom:10px}
 .hero-ctas .hero-chips{margin-top:0}
 @media (max-width:900px){
   .hero-std{min-height:0;padding:64px 0 72px}
+  .hero-mark{height:30%}
 }
 
 /* ---------- sections ---------- */
