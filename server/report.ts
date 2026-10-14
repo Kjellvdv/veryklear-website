@@ -392,13 +392,13 @@ function authorised(header: string | undefined, password: string): boolean {
   return timingSafeEqual(a, b);
 }
 
-export function reportPaths(cfg: Config): [string, string] {
-  return [cfg.REPORT_PATH, `${cfg.REPORT_PATH}.json`];
+export function reportPaths(cfg: Config): [string, string, string] {
+  return [cfg.REPORT_PATH, `${cfg.REPORT_PATH}.json`, `${cfg.REPORT_PATH}/whoami`];
 }
 
 export function reportRouter(db: Db, cfg: Config, now: () => number): Router {
   const router = express.Router();
-  const [htmlPath, jsonPath] = reportPaths(cfg);
+  const [htmlPath, jsonPath, whoamiPath] = reportPaths(cfg);
 
   // Scoped to the two report routes only. `validate.ip` off: its check logs the
   // raw X-Forwarded-For value on malformed input, and that header can carry IPs.
@@ -428,6 +428,24 @@ export function reportRouter(db: Db, cfg: Config, now: () => number): Router {
   router.get(jsonPath, limiter, headers, (req, res) => {
     if (!guard(req, res)) return;
     res.json({ success: true, data: buildReport(db, daysOf(req), now()) });
+  });
+
+  // Which address and headers the server gets for the caller, to settle which one
+  // carries a visitor's own address behind Railway's proxy. Answers the caller
+  // only, behind the password; nothing is stored or logged.
+  router.get(whoamiPath, limiter, headers, (req, res) => {
+    if (!guard(req, res)) return;
+    res.json({
+      success: true,
+      data: {
+        ip: req.ip ?? null,
+        ips: req.ips,
+        socket: req.socket.remoteAddress ?? null,
+        forwardedFor: req.get("x-forwarded-for") ?? null,
+        realIp: req.get("x-real-ip") ?? null,
+        edge: req.get("x-railway-edge") ?? null,
+      },
+    });
   });
 
   router.get(htmlPath, limiter, headers, (req, res) => {

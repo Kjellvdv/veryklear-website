@@ -49,6 +49,7 @@ Purpose: see which pages and channels work and improve the site. Data per visit:
 ## Gotchas
 - `res.sendFile` treats any dotted path segment as a hidden file. Pages are sent relative to `root: dist`, because dist may sit under `.claude/worktrees/`.
 - `DATA_DIR` must sit on the Railway volume. `loadConfig` defaults it to `RAILWAY_VOLUME_MOUNT_PATH` and refuses anything else, because a typo (`/data,`) once sent the database to the container's own disk, where every deploy erased it. Locally there is no volume variable and any folder goes.
+- **Which header holds the visitor's address on Railway is unverified** (2026-10-14: with `DATACENTER_FILTER` on, every request from a Telenet home line came out as a datacenter, so `req.ip` was not the visitor). `/numeros/whoami` shows what the server gets. Until that is settled the datacenter rule stays off, and visitor counts may be per proxy node and browser, not per person.
 - `trust proxy` is 1 (Railway's edge). If visitors collapse into one in `/numeros`, the hop count is wrong.
 - Crawlers do fetch HTML, unlike with a script tracker. `server/bots.ts`, the Sec-Fetch and language checks and the datacenter ranges carry the filtering. It is a filter, not a proof: a scanner on a home or small-hoster connection with a real browser engine still gets through, and the numbers page's "Left out" table shows what each rule caught.
 - Corporate proxies that strip Sec-Fetch headers, and visitors on a VPN that exits in a datacenter, are not counted. Accepted.

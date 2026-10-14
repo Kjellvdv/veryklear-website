@@ -24,6 +24,9 @@ const schema = z.object({
       .default("/numeros"),
   ),
   RETENTION_DAYS: z.coerce.number().int().min(30).max(800).default(400),
+  // Leave visits from cloud and hosting networks out of the count. Off until
+  // /numeros/whoami has shown the address the server really gets from the proxy.
+  DATACENTER_FILTER: z.preprocess(emptyAsUndefined, z.enum(["on", "off"]).default("off")),
   // Set once the custom domain is verified. Every other Host header then 301s there.
   CANONICAL_HOST: z.preprocess(
     emptyAsUndefined,

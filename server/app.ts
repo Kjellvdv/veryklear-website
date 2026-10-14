@@ -14,11 +14,16 @@ interface Deps {
   db: Db;
   cfg: Config;
   now?: () => number;
-  /** Is this address a data centre? Defaults to the bundled ranges. */
+  /** Is this address a data centre? Defaults to the bundled ranges when DATACENTER_FILTER is on. */
   isDatacenter?: DatacenterCheck;
 }
 
-export function createApp({ db, cfg, now = Date.now, isDatacenter = loadMatcher() }: Deps) {
+export function createApp({
+  db,
+  cfg,
+  now = Date.now,
+  isDatacenter = cfg.DATACENTER_FILTER === "on" ? loadMatcher() : () => false,
+}: Deps) {
   const dist = path.resolve(cfg.DIST_DIR);
   const pages = listPages(dist, REDIRECTS);
   const app = express();

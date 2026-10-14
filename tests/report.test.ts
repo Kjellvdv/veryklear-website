@@ -1,7 +1,7 @@
 import request from "supertest";
 import { describe, expect, it } from "vitest";
 import { loadConfig } from "../server/config";
-import { basic, HOST, nav, PASSWORD, setup } from "./helpers";
+import { basic, HOST, nav, PASSWORD, rows, setup } from "./helpers";
 
 const get = (app: ReturnType<typeof setup>["app"], url: string, auth = basic("kjell", PASSWORD)) =>
   request(app).get(url).set("Host", HOST).set("Authorization", auth);
@@ -23,6 +23,18 @@ describe("access", () => {
     expect(html.headers["content-security-policy"]).toContain("default-src 'none'");
     expect(html.headers["x-robots-tag"]).toContain("noindex");
     expect(html.headers["cache-control"]).toBe("no-store");
+  });
+
+  it("tells an authorised caller which address and headers the server sees, and nobody else", async () => {
+    const { app, db } = setup();
+    const none = await request(app).get("/numeros/whoami").set("Host", HOST);
+    expect(none.status).toBe(401);
+    const res = await get(app, "/numeros/whoami").set("X-Forwarded-For", "198.51.100.9");
+    expect(res.status).toBe(200);
+    expect(res.body.data).toMatchObject({ ip: "198.51.100.9", forwardedFor: "198.51.100.9" });
+    expect(res.headers["cache-control"]).toBe("no-store");
+    // Shown to the caller; never kept.
+    expect(JSON.stringify([rows(db), rows(db, "filtered")])).not.toContain("198.51.100.9");
   });
 
   it("lives where REPORT_PATH says, and nowhere else", async () => {

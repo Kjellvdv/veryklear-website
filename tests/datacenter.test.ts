@@ -92,11 +92,25 @@ describe("the bundled ranges", () => {
 describe("the server's default wiring", () => {
   it("leaves out a visit from a cloud network and counts one from a home connection", async () => {
     const db = openDb(":memory:");
-    const cfg = loadConfig({ REPORT_PASSWORD: PASSWORD, DIST_DIR: FIXTURE } as NodeJS.ProcessEnv);
+    const cfg = loadConfig({
+      REPORT_PASSWORD: PASSWORD,
+      DIST_DIR: FIXTURE,
+      DATACENTER_FILTER: "on",
+    } as NodeJS.ProcessEnv);
     const app = createApp({ db, cfg }); // no isDatacenter given: the bundled ranges
     await nav(app, "/", { ip: "3.4.12.4" }); // AWS
     await nav(app, "/", { ip: "81.82.12.34" }); // a Belgian ISP
     expect(rows(db)).toHaveLength(1);
     expect(rows(db, "filtered")).toMatchObject([{ reason: "datacenter", n: 1 }]);
+  });
+
+  it("does nothing unless DATACENTER_FILTER is on", async () => {
+    const db = openDb(":memory:");
+    const cfg = loadConfig({ REPORT_PASSWORD: PASSWORD, DIST_DIR: FIXTURE } as NodeJS.ProcessEnv);
+    expect(cfg.DATACENTER_FILTER).toBe("off");
+    const app = createApp({ db, cfg });
+    await nav(app, "/", { ip: "3.4.12.4" }); // AWS, but the rule is off
+    expect(rows(db)).toHaveLength(1);
+    expect(rows(db, "filtered")).toHaveLength(0);
   });
 });
