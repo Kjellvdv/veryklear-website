@@ -8,7 +8,7 @@
     "preview": "astro preview",
     "serve": "npm run build && tsx server/index.ts",
     "dev:server": "tsx watch server/index.ts",
-    "start": "NODE_ENV=production tsx server/index.ts",
+    "start": "NODE_ENV=production node --import tsx server/index.ts",
     "check": "tsc -p tsconfig.server.json --noEmit",
     "lint": "eslint .",
     "format": "prettier --write server tests",

@@ -21,7 +21,7 @@ every push to `main`, so a content-desk publish goes live by itself.
 | Name | Record | Points to |
 |---|---|---|
 | `www.veryklear.com` | CNAME + TXT | Railway (both values come from the service's custom-domain dialog; the domain only verifies with both) |
-| `veryklear.com` | A | SiteGround's own server (`35.204.202.155`), which 301s to `https://www.veryklear.com` (Domain → Redirects). SiteGround's rule drops the path: `veryklear.com/x` lands on the home page. Acceptable while every shared link carries www; if a bare-domain deep link ever goes on a slide or card, replace the rule with a `RewriteRule ^(.*)$ https://www.veryklear.com/$1 [R=301,L,QSA]` in that site's `.htaccess`. Certificate: Let's Encrypt, already present (Security → SSL Manager). |
+| `veryklear.com` | A | SiteGround's own server (`35.204.202.155`), which 301s to the same path on `https://www.veryklear.com` through `siteground/veryklear.com.htaccess`, uploaded as `.htaccess` in that site's `public_html`. Not through Domain → Redirects: that rule drops the path, so `veryklear.com/x` landed on the home page (replaced 2026-10-14). Certificate: Let's Encrypt, already present (Security → SSL Manager). |
 | `veryklear.be` | its own zone | SiteGround 301 to `https://www.veryklear.com`, path dropped (the old site's URLs don't exist on the new one, so home beats a 404) |
 | `forms.veryklear.com` | A | SiteGround, the contact-form backend (`forms/README.md`) |
 
@@ -30,7 +30,9 @@ MX records for both domains stay on SiteGround, so `kjell@veryklear.be` keeps wo
 ## The Railway service
 
 - Project from GitHub `Kjellvdv/veryklear-website`, branch `main`. Railpack runs
-  `npm ci`, `npm run build` (Astro, share images included) and `npm start`.
+  `npm ci` and `npm run build` (Astro, share images included). The start command
+  comes from `railway.json` and runs node directly, not `npm start`: npm in
+  between logged every redeploy's SIGTERM as `npm error`, which read like a crash.
 - **Region EU West (Amsterdam), set before adding the volume.** Moving a volume
   later means downtime.
 - **Volume** mounted at `/data`. **Health check** path `/healthz`.
