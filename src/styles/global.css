@@ -119,19 +119,19 @@ button,input,textarea,select{font:inherit}
 .chip-dark.on{background:var(--grad);color:#fff;border-color:transparent}
 
 /* hero side card on home: the strategiesessie as the first step */
-/* The standard hero (components/Hero.astro): one height and one 2:1 grid on
-   every page. The right column holds an optional visual. */
+/* The standard hero (components/Hero.astro): one height on every page, one
+   left-aligned text column capped in width (2026-10-14). */
 .hero-std{padding:88px 0;min-height:580px;display:flex;align-items:center}
 .hero-std > .wrap{width:100%}
-.hero-std__grid{display:grid;grid-template-columns:2fr 1fr;gap:56px;align-items:center}
-.hero-std .lead{max-width:52ch}
+.hero-std__text{max-width:960px}
+/* Watermark: white at low opacity, touching the bottom and right edge. */
+.hero-mark{position:absolute;right:0;bottom:0;height:44%;width:auto;fill:#fff;opacity:.06;pointer-events:none;z-index:0}
+.hero-std .lead{max-width:62ch}
 .hero-std__label{display:block;color:#fff;opacity:.85;margin-bottom:10px}
-.hero-std__visual:empty{display:block}
 .hero-ctas .hero-chips{margin-top:0}
 @media (max-width:900px){
   .hero-std{min-height:0;padding:64px 0 72px}
-  .hero-std__grid{grid-template-columns:1fr;gap:32px}
-  .hero-std__visual:empty{display:none}
+  .hero-mark{height:30%}
 }
 
 /* ---------- sections ---------- */

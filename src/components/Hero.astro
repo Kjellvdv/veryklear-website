@@ -1,13 +1,13 @@
 ---
-// The one hero every page uses (Kjell, 2026-10-07): same height, same spacing,
-// a 2:1 grid. Title, intro and buttons sit in the wide left column; the right
-// column is kept for a visual (pass it in the "visual" slot) and stays empty
-// otherwise, so the title never runs the full width.
+// The one hero every page uses (Kjell, 2026-10-07): same height, same spacing.
+// One left-aligned text column, capped in width so the title never runs the
+// full page (2026-10-14: the 2:1 grid with an empty visual column went once the
+// hero illustration was dropped).
 //
 // Props: title (may contain <br />; no bold), lead, label, crumb {text, href},
 // display (optional larger headline; no page uses it since 2026-10-07).
 // Slots: default = buttons or filter chips under the intro; "lead" = an intro
-// with a link in it, instead of the lead prop; "visual" = the right column.
+// with a link in it, instead of the lead prop.
 const { title, lead, label, crumb, display = false } = Astro.props;
 const hasActions = Astro.slots.has('default');
 const hasLeadSlot = Astro.slots.has('lead');
@@ -15,7 +15,15 @@ const hasLeadSlot = Astro.slots.has('lead');
 
 <section class={`hero hero-std${display ? ' hero-std--display' : ''}`}>
   <div class="grain"></div>
-  <div class="wrap hero-std__grid">
+  <!-- VK monogram watermark, flush with the hero's bottom and right edge
+       (Kjell, 2026-10-14). Paths: the monogram half of LogoSymbol.astro. -->
+  <svg class="hero-mark" viewBox="143 111 456.6 163" aria-hidden="true" focusable="false">
+    <path d="M461.69,110.98l-34.36,60.7-48.43,85.53-9.52,16.81h-68.74l34.36-60.7,43.77-77.31c8.76-15.47,25.16-25.03,42.94-25.03h39.97Z"/>
+    <path d="M358.49,110.97c-11.46,20.24-22.93,40.48-34.38,60.72-16.04,28.29-32.05,56.6-48.09,84.91-6.1,10.76-17.53,17.42-29.9,17.42h-28.68c-12.37,0-23.8-6.66-29.9-17.42-13.89-24.55-27.79-49.09-41.68-73.62-3.96-7-3.96-15.57,0-22.57l28-49.43h68.75l-28.01,49.43c-3.97,7-3.97,15.57,0,22.58,5.73,10.11,11.46,20.23,17.18,30.34l.02-.02c7.87-13.87,15.71-27.75,23.56-41.61,11.46-20.24,22.93-40.48,34.38-60.72h68.75Z"/>
+    <path d="M498.05,175.19l-1.99-3.51h-68.74c14.32,25.29,28.64,50.59,42.97,75.88,9.26,16.35,26.6,26.46,45.39,26.46h38.33c-18.65-32.94-37.3-65.89-55.95-98.83Z"/>
+    <path d="M515.59,137.18l-19.53,34.5h68.73l34.37-60.71h-38.62c-18.61,0-35.78,10.01-44.95,26.21Z"/>
+  </svg>
+  <div class="wrap">
     <div class="hero-std__text">
       {crumb && <a class="crumb" href={crumb.href}>{crumb.text}</a>}
       {label && <span class="label hero-std__label">{label}</span>}
@@ -23,6 +31,5 @@ const hasLeadSlot = Astro.slots.has('lead');
       {hasLeadSlot ? <p class="lead"><slot name="lead" /></p> : lead && <p class="lead">{lead}</p>}
       {hasActions && <div class="hero-ctas"><slot /></div>}
     </div>
-    <div class="hero-std__visual"><slot name="visual" /></div>
   </div>
 </section>
