@@ -3,79 +3,28 @@ import express, { type Request, type RequestHandler, type Response, type Router 
 import rateLimit from "express-rate-limit";
 import type { Config } from "./config";
 import type { Db } from "./db";
+import { renderHtml } from "./report-view";
+import {
+  type Flows,
+  RANGES,
+  type Report,
+  type SessionRow,
+  SERVICE_PATHS,
+  TABS,
+  TARGET_PATHS,
+  type TabId,
+} from "./report-types";
+import { type PageView, readSessions, type Session } from "./sessions";
 import { dayOf } from "./visitor";
 
+export { RANGES, TARGET_PATHS } from "./report-types";
+export { renderHtml } from "./report-view";
+export { SESSION_GAP_MS } from "./sessions";
+
 const DAY_MS = 86_400_000;
-export const RANGES = [7, 30, 90, 365] as const;
-
-export interface Report {
-  days: number;
-  from: string;
-  to: string;
-  totals: { views: number; visitors: number };
-  daily: { day: string; views: number; visitors: number }[];
-  pages: { path: string; visitors: number; views: number }[];
-  /** Visits to the contact and booking pages, by the page of ours they came from. */
-  routes: { target: string; source: string; visitors: number; views: number }[];
-  referrers: { source: string; visitors: number; views: number }[];
-  campaigns: {
-    source: string;
-    medium: string;
-    campaign: string;
-    visitors: number;
-    views: number;
-  }[];
-  devices: { device: string; visitors: number; views: number }[];
-  languages: { lang: string; visitors: number; views: number }[];
-  flows: Flows;
-  /** Automated page requests the filter left out, by reason, summed over the window. */
-  filtered: { reason: string; requests: number }[];
-}
-
-/**
- * Sessions are built from what is already stored: one visitor's pages on one day,
- * in order, with a new session after 30 minutes without a page. Nothing is added
- * to the data, and since the visitor hash changes daily, no session spans days.
- */
-export interface Flows {
-  sessions: number;
-  /** Sessions in which the visitor saw one page only (reloads included). */
-  singlePage: number;
-  pagesPerSession: number;
-  entries: { path: string; sessions: number }[];
-  exits: { path: string; sessions: number }[];
-  /** Page to the page opened next, across all multi-page sessions. */
-  steps: { from: string; to: string; sessions: number }[];
-  /** The first five pages of multi-page sessions. `more` is true when the session went on. */
-  paths: { pages: string[]; more: boolean; sessions: number }[];
-  /** The most recent sessions, one by one, each with what the visitor arrived with. */
-  recent: SessionRow[];
-}
-
-/**
- * One session. Source, language and device are those of its first page: that is
- * the visit that arrived from somewhere, the later pages only moved around.
- */
-export interface SessionRow {
-  /** Epoch ms of the first page, UTC. */
-  start: number;
-  /** Seconds from the first page to the last. How long the last page was read is not known. */
-  seconds: number;
-  /** Pages opened, reloads left out. */
-  pageCount: number;
-  /** The first eight pages with the seconds since the session began. */
-  pages: { path: string; at: number }[];
-  more: boolean;
-  /** The referring site of the first page, "(own site)" or "(direct)". */
-  from: string;
-  /** utm_source / utm_medium / utm_campaign of the first page, empty parts left out. */
-  campaign: string;
-  lang: string;
-  device: string;
-}
-
-/** The pages a visitor lands on when they act. The "where did they come from" table is about these. */
-export const TARGET_PATHS = ["/strategiesessie", "/contact"] as const;
+const PATH_STEPS = 5;
+const RECENT_SESSIONS = 50;
+const SESSION_PAGES_SHOWN = 8;
 
 type Raw = Record<string, unknown>;
 const num = (v: unknown): number => (typeof v === "number" ? v : 0);
@@ -84,134 +33,41 @@ const str = (v: unknown): string => (typeof v === "string" ? v : "");
 const COUNTS = "COUNT(DISTINCT day || ':' || visitor) AS visitors, COUNT(*) AS views";
 const counts = (r: Raw) => ({ visitors: num(r.visitors), views: num(r.views) });
 
-export const SESSION_GAP_MS = 30 * 60_000;
-const PATH_STEPS = 5;
-const RECENT_SESSIONS = 50;
-const SESSION_PAGES_SHOWN = 8;
-
-interface ViewRow {
-  day: string;
-  visitor: string;
-  ts: number;
-  path: string;
-  ref_host: string | null;
-  from_path: string | null;
-  utm_source: string | null;
-  utm_medium: string | null;
-  utm_campaign: string | null;
-  device: string;
-  lang: string | null;
-}
-
 const top = <T>(m: Map<string, T>, n: number, by: (v: T) => number) =>
   [...m.entries()].sort((a, b) => by(b[1]) - by(a[1]) || (a[0] < b[0] ? -1 : 1)).slice(0, n);
 
-export function buildFlows(db: Db, from: string): Flows {
-  const rows = db
-    .prepare(
-      `SELECT day, visitor, ts, path, ref_host, from_path, utm_source, utm_medium, utm_campaign,
-              device, lang
-         FROM pageviews WHERE day >= @from ORDER BY day, visitor, ts`,
-    )
-    .iterate({ from }) as IterableIterator<ViewRow>;
+const bump = (m: Map<string, number>, key: string) => m.set(key, (m.get(key) ?? 0) + 1);
 
-  let sessions = 0;
-  let singlePage = 0;
-  let pageTotal = 0;
-  const entries = new Map<string, number>();
-  const exits = new Map<string, number>();
-  const steps = new Map<string, { from: string; to: string; sessions: number }>();
-  const paths = new Map<string, { pages: string[]; more: boolean; sessions: number }>();
+const isTarget = (p: string) => (TARGET_PATHS as readonly string[]).includes(p);
+const isService = (p: string) => (SERVICE_PATHS as readonly string[]).includes(p);
+const isArticle = (p: string) => p.startsWith("/artikels/");
 
-  // The visitor-day being read, and the time of its latest page.
-  let key = "";
-  let last = 0;
+/** Where a session started: a campaign tag wins, then the referring site, then direct. */
+function sourceOf(e: PageView): { source: string; kind: "campaign" | "referrer" | "direct" } {
+  if (e.utm_source) return { source: e.utm_source.toLowerCase(), kind: "campaign" };
+  if (e.ref_host) return { source: e.ref_host, kind: "referrer" };
+  return { source: e.from_path ? "(own site)" : "(direct)", kind: "direct" };
+}
 
-  let recent: SessionRow[] = [];
-  const keepNewest = (rows: SessionRow[], n: number) =>
-    rows.sort((a, b) => b.start - a.start).slice(0, n);
+const WEEKDAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+const brussels = new Intl.DateTimeFormat("en-GB", {
+  timeZone: "Europe/Brussels",
+  hour: "2-digit",
+  hourCycle: "h23",
+  weekday: "short",
+});
 
-  let current: string[] = [];
-  let times: number[] = [];
-  let entry: ViewRow | null = null;
-  const close = () => {
-    if (current.length === 0 || entry === null) return;
-    const begun = times[0] as number;
-    recent.push({
-      start: begun,
-      seconds: Math.round((last - begun) / 1000),
-      pageCount: current.length,
-      pages: current
-        .slice(0, SESSION_PAGES_SHOWN)
-        .map((path, i) => ({ path, at: Math.round(((times[i] as number) - begun) / 1000) })),
-      more: current.length > SESSION_PAGES_SHOWN,
-      from: entry.ref_host ?? (entry.from_path ? "(own site)" : "(direct)"),
-      campaign: [entry.utm_source, entry.utm_medium, entry.utm_campaign]
-        .filter(Boolean)
-        .join(" / "),
-      lang: entry.lang ?? "(unknown)",
-      device: entry.device,
-    });
-    if (recent.length >= 2000) recent = keepNewest(recent, RECENT_SESSIONS);
-    sessions++;
-    pageTotal += current.length;
-    const firstPage = current[0] as string;
-    const lastPage = current[current.length - 1] as string;
-    entries.set(firstPage, (entries.get(firstPage) ?? 0) + 1);
-    exits.set(lastPage, (exits.get(lastPage) ?? 0) + 1);
-    if (current.length === 1) {
-      singlePage++;
-    } else {
-      for (let i = 0; i < current.length - 1; i++) {
-        const a = current[i] as string;
-        const b = current[i + 1] as string;
-        const key = `${a}\u0000${b}`;
-        const hit = steps.get(key);
-        if (hit) hit.sessions++;
-        else steps.set(key, { from: a, to: b, sessions: 1 });
-      }
-      const pages = current.slice(0, PATH_STEPS);
-      const key = pages.join("\u0000") + (current.length > PATH_STEPS ? "\u0000…" : "");
-      const hit = paths.get(key);
-      if (hit) hit.sessions++;
-      else paths.set(key, { pages, more: current.length > PATH_STEPS, sessions: 1 });
-    }
-    current = [];
-    times = [];
-    entry = null;
-  };
-
-  for (const r of rows) {
-    const k = `${r.day}:${r.visitor}`;
-    if (k !== key || r.ts - last > SESSION_GAP_MS) {
-      close();
-      key = k;
-    }
-    last = r.ts;
-    entry ??= r;
-    // A reload is not a step.
-    if (current[current.length - 1] !== r.path) {
-      current.push(r.path);
-      times.push(r.ts);
-    }
-  }
-  close();
-
-  return {
-    sessions,
-    singlePage,
-    pagesPerSession: sessions === 0 ? 0 : Math.round((pageTotal / sessions) * 10) / 10,
-    entries: top(entries, 10, (n) => n).map(([path, n]) => ({ path, sessions: n })),
-    exits: top(exits, 10, (n) => n).map(([path, n]) => ({ path, sessions: n })),
-    steps: top(steps, 15, (v) => v.sessions).map(([, v]) => v),
-    paths: top(paths, 10, (v) => v.sessions).map(([, v]) => v),
-    recent: keepNewest(recent, RECENT_SESSIONS),
-  };
+/** Hour (0 to 23) and weekday (0 = Monday) of a moment in Belgian time, summer time included. */
+export function brusselsClock(ts: number): { hour: number; weekday: number } {
+  const parts = brussels.formatToParts(new Date(ts));
+  const hour = Number(parts.find((p) => p.type === "hour")?.value ?? 0);
+  const weekday = WEEKDAYS.indexOf(parts.find((p) => p.type === "weekday")?.value ?? "Mon");
+  return { hour, weekday: Math.max(0, weekday) };
 }
 
 /**
  * One window for everything: the last `days` UTC calendar days including today.
- * Totals, tables and the chart all read `day >= from`, so they always agree.
+ * Totals, tables and charts all read `day >= from`, so they always agree.
  */
 export function buildReport(db: Db, days: number, now: number): Report {
   const to = dayOf(now);
@@ -235,19 +91,154 @@ export function buildReport(db: Db, days: number, now: number): Report {
     daily.push({ day, views: num(r?.views), visitors: num(r?.visitors) });
   }
 
+  // When people visit, in Belgian time. Grouped by UTC hour in SQL, so the zone
+  // work happens once per hour bucket, not once per row.
+  const hours = Array<number>(24).fill(0);
+  const weekdays = Array<number>(7).fill(0);
+  for (const r of all(
+    `SELECT CAST(ts / 3600000 AS INTEGER) AS bucket, COUNT(*) AS views
+       FROM pageviews WHERE day >= @from GROUP BY bucket`,
+  )) {
+    const { hour, weekday } = brusselsClock(num(r.bucket) * 3_600_000);
+    hours[hour] = (hours[hour] ?? 0) + num(r.views);
+    weekdays[weekday] = (weekdays[weekday] ?? 0) + num(r.views);
+  }
+
+  // One pass over this window's sessions feeds the flows, the page entry and exit
+  // columns, the sources table and the "what sessions did" bars.
+  let sessions = 0;
+  let singlePage = 0;
+  let pageTotal = 0;
+  const behaviour = { sessions: 0, multiPage: 0, service: 0, article: 0, reached: 0 };
+  const entries = new Map<string, number>();
+  const exits = new Map<string, number>();
+  const steps = new Map<string, { from: string; to: string; sessions: number }>();
+  const paths = new Map<string, { pages: string[]; more: boolean; sessions: number }>();
+  const sources = new Map<
+    string,
+    { source: string; kind: "campaign" | "referrer" | "direct"; sessions: number; reached: number }
+  >();
+  let recent: SessionRow[] = [];
+  const keepNewest = (rows: SessionRow[], n: number) =>
+    rows.sort((a, b) => b.start - a.start).slice(0, n);
+
+  const take = (s: Session) => {
+    sessions++;
+    pageTotal += s.pages.length;
+    const firstPage = s.pages[0] as string;
+    const lastPage = s.pages[s.pages.length - 1] as string;
+    bump(entries, firstPage);
+    bump(exits, lastPage);
+
+    const reached = s.pages.some(isTarget);
+    behaviour.sessions++;
+    if (s.pages.length >= 2) behaviour.multiPage++;
+    if (s.pages.some(isService)) behaviour.service++;
+    if (s.pages.some(isArticle)) behaviour.article++;
+    if (reached) behaviour.reached++;
+
+    const src = sourceOf(s.entry);
+    const skey = `${src.kind}:${src.source}`;
+    const row = sources.get(skey) ?? { ...src, sessions: 0, reached: 0 };
+    row.sessions++;
+    if (reached) row.reached++;
+    sources.set(skey, row);
+
+    if (s.pages.length === 1) {
+      singlePage++;
+    } else {
+      for (let i = 0; i < s.pages.length - 1; i++) {
+        const a = s.pages[i] as string;
+        const b = s.pages[i + 1] as string;
+        const key = `${a}\u0000${b}`;
+        const hit = steps.get(key);
+        if (hit) hit.sessions++;
+        else steps.set(key, { from: a, to: b, sessions: 1 });
+      }
+      const shown = s.pages.slice(0, PATH_STEPS);
+      const key = shown.join("\u0000") + (s.pages.length > PATH_STEPS ? "\u0000…" : "");
+      const hit = paths.get(key);
+      if (hit) hit.sessions++;
+      else paths.set(key, { pages: shown, more: s.pages.length > PATH_STEPS, sessions: 1 });
+    }
+
+    const e = s.entry;
+    recent.push({
+      start: s.start,
+      seconds: Math.round((s.end - s.start) / 1000),
+      pageCount: s.pages.length,
+      pages: s.pages
+        .slice(0, SESSION_PAGES_SHOWN)
+        .map((path, i) => ({ path, at: Math.round(((s.times[i] as number) - s.start) / 1000) })),
+      more: s.pages.length > SESSION_PAGES_SHOWN,
+      from: e.ref_host ?? (e.from_path ? "(own site)" : "(direct)"),
+      campaign: [e.utm_source, e.utm_medium, e.utm_campaign].filter(Boolean).join(" / "),
+      lang: e.lang ?? "(unknown)",
+      device: e.device,
+    });
+    if (recent.length >= 2000) recent = keepNewest(recent, RECENT_SESSIONS);
+  };
+  for (const s of readSessions(db, from)) take(s);
+
+  // The equal-length window just before this one, for the change indicators.
+  const prevFrom = dayOf(now - (2 * days - 1) * DAY_MS);
+  const p = (db
+    .prepare(`SELECT ${COUNTS} FROM pageviews WHERE day >= @prevFrom AND day < @from`)
+    .get({ prevFrom, from }) ?? {}) as Raw;
+  let prevSessions = 0;
+  const earlier = readSessions(db, prevFrom, from);
+  while (!earlier.next().done) prevSessions++;
+  const previous = num(p.views) === 0 ? null : { ...counts(p), sessions: prevSessions };
+
+  const pageRows = all(
+    `SELECT path, ${COUNTS} FROM pageviews WHERE day >= @from
+      GROUP BY path ORDER BY visitors DESC, views DESC, path LIMIT 25`,
+  ).map((r) => ({
+    path: str(r.path),
+    ...counts(r),
+    entries: entries.get(str(r.path)) ?? 0,
+    exits: exits.get(str(r.path)) ?? 0,
+  }));
+
+  const filtered = all(
+    `SELECT reason, SUM(n) AS requests FROM filtered WHERE day >= @from
+      GROUP BY reason ORDER BY requests DESC, reason`,
+  ).map((r) => ({ reason: str(r.reason), requests: num(r.requests) }));
+
+  const filteredByDay = new Map<string, Record<string, number>>();
+  for (const r of all(`SELECT day, reason, n FROM filtered WHERE day >= @from ORDER BY day`)) {
+    const reasons = filteredByDay.get(str(r.day)) ?? {};
+    reasons[str(r.reason)] = num(r.n);
+    filteredByDay.set(str(r.day), reasons);
+  }
+  const filteredDaily = daily.map((d) => ({ day: d.day, reasons: filteredByDay.get(d.day) ?? {} }));
+  const automatedRequests = filtered.reduce((sum, f) => sum + f.requests, 0);
+  const requestTotal = automatedRequests + num(t.views);
+
+  const flows: Flows = {
+    sessions,
+    singlePage,
+    pagesPerSession: sessions === 0 ? 0 : Math.round((pageTotal / sessions) * 10) / 10,
+    entries: top(entries, 10, (n) => n).map(([path, n]) => ({ path, sessions: n })),
+    exits: top(exits, 10, (n) => n).map(([path, n]) => ({ path, sessions: n })),
+    steps: top(steps, 15, (v) => v.sessions).map(([, v]) => v),
+    paths: top(paths, 10, (v) => v.sessions).map(([, v]) => v),
+    recent: keepNewest(recent, RECENT_SESSIONS),
+  };
+
   return {
     days,
     from,
     to,
-    totals: { views: num(t.views), visitors: num(t.visitors) },
+    totals: { ...counts(t), sessions },
+    previous,
     daily,
-    pages: all(
-      `SELECT path, ${COUNTS} FROM pageviews WHERE day >= @from
-        GROUP BY path ORDER BY visitors DESC, views DESC, path LIMIT 25`,
-    ).map((r) => ({ path: str(r.path), ...counts(r) })),
+    hours,
+    weekdays,
+    pages: pageRows,
     routes: all(
       `SELECT path AS target, COALESCE(from_path, '(direct)') AS source, ${COUNTS}
-         FROM pageviews WHERE day >= @from AND path IN (${TARGET_PATHS.map((t) => `'${t}'`).join(", ")})
+         FROM pageviews WHERE day >= @from AND path IN (${TARGET_PATHS.map((x) => `'${x}'`).join(", ")})
         GROUP BY target, source ORDER BY target, visitors DESC, views DESC, source`,
     ).map((r) => ({ target: str(r.target), source: str(r.source), ...counts(r) })),
     referrers: all(
@@ -267,6 +258,8 @@ export function buildReport(db: Db, days: number, now: number): Report {
       campaign: str(r.campaign),
       ...counts(r),
     })),
+    sources: top(sources, 15, (v) => v.sessions).map(([, v]) => v),
+    behaviour,
     devices: all(
       `SELECT device, ${COUNTS} FROM pageviews WHERE day >= @from
         GROUP BY device ORDER BY visitors DESC, views DESC`,
@@ -275,204 +268,14 @@ export function buildReport(db: Db, days: number, now: number): Report {
       `SELECT COALESCE(lang, '(unknown)') AS lang, ${COUNTS} FROM pageviews WHERE day >= @from
         GROUP BY lang ORDER BY visitors DESC, views DESC, lang LIMIT 10`,
     ).map((r) => ({ lang: str(r.lang), ...counts(r) })),
-    flows: buildFlows(db, from),
-    filtered: all(
-      `SELECT reason, SUM(n) AS requests FROM filtered WHERE day >= @from
-        GROUP BY reason ORDER BY requests DESC, reason`,
-    ).map((r) => ({ reason: str(r.reason), requests: num(r.requests) })),
+    flows,
+    filtered,
+    filteredDaily,
+    automated: {
+      requests: automatedRequests,
+      share: requestTotal === 0 ? 0 : automatedRequests / requestTotal,
+    },
   };
-}
-
-// ---- HTML ----------------------------------------------------------------
-
-const esc = (s: string) =>
-  s
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#39;");
-
-const CSS = `
-:root{--bg:#fff;--fg:#14110f;--muted:#6d6862;--line:#e7e3dd;--accent:#d6361f;--card:#faf8f5}
-@media (prefers-color-scheme:dark){:root{--bg:#141210;--fg:#f3efe9;--muted:#a39d95;--line:#2c2825;--accent:#ff6b52;--card:#1b1815}}
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.5 Inter,system-ui,-apple-system,sans-serif}
-main{max-width:980px;margin:0 auto;padding:32px 16px 64px}
-h1{font-size:1.4rem;margin:0 0 4px}h2{font-size:1.05rem;margin:36px 0 10px}h3{font-size:.9rem;margin:20px 0 6px;color:var(--muted);font-weight:600}.t{color:var(--muted);font-size:.8rem;margin-left:4px}
-p.sub{margin:0;color:var(--muted)}
-nav{display:flex;flex-wrap:wrap;gap:8px 20px;margin:12px 0 0;color:var(--muted)}
-nav a{color:var(--muted);text-decoration:none}nav a.on{color:var(--fg);font-weight:600;border-bottom:2px solid var(--accent)}
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-top:24px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
-.card b{display:block;font-size:1.6rem;line-height:1.2}.card span{color:var(--muted);font-size:.85rem}
-.bars{display:flex;align-items:flex-end;gap:2px;height:120px;border-bottom:1px solid var(--line)}
-.bars i{flex:1;background:var(--accent);min-height:1px;border-radius:2px 2px 0 0;opacity:.85}
-.axis{display:flex;justify-content:space-between;color:var(--muted);font-size:.8rem;margin-top:4px}
-table{width:100%;border-collapse:collapse}
-th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top;word-break:break-word}
-th{color:var(--muted);font-weight:500;font-size:.85rem}td.n,th.n{text-align:right;white-space:nowrap}
-.empty{color:var(--muted);padding:12px 0}
-footer{margin-top:40px;color:var(--muted);font-size:.85rem}
-`;
-
-function table(head: string[], rows: string[][], numeric: number[] = []): string {
-  if (rows.length === 0) return `<p class="empty">Nothing yet.</p>`;
-  const cell = (tag: string, v: string, i: number) =>
-    `<${tag}${numeric.includes(i) ? ' class="n"' : ""}>${v}</${tag}>`;
-  return `<table><thead><tr>${head.map((h, i) => cell("th", esc(h), i)).join("")}</tr></thead><tbody>${rows
-    .map((r) => `<tr>${r.map((v, i) => cell("td", v, i)).join("")}</tr>`)
-    .join("")}</tbody></table>`;
-}
-
-const FILTER_LABELS: Record<string, string> = {
-  bot: "Announced crawlers and tools, or no user agent at all",
-  "not-a-browser": "Claims to be a recent browser, sends none of its headers",
-  "no-language": "Sends no browser language",
-  datacenter: "From a cloud or hosting network",
-};
-
-/** Seconds as m:ss, or h:mm:ss past an hour. */
-function clock(total: number): string {
-  const h = Math.floor(total / 3600);
-  const m = Math.floor((total % 3600) / 60);
-  const sec = String(total % 60).padStart(2, "0");
-  return h > 0 ? `${h}:${String(m).padStart(2, "0")}:${sec}` : `${m}:${sec}`;
-}
-
-function flowSummary(f: Flows): string {
-  if (f.sessions === 0) return "No sessions yet.";
-  const single = Math.round((f.singlePage / f.sessions) * 100);
-  return `${f.sessions} sessions, ${f.pagesPerSession} pages each on average. ${single}% saw one page only.`;
-}
-
-export function renderHtml(r: Report, reportPath: string): string {
-  const peak = Math.max(1, ...r.daily.map((d) => d.visitors));
-  const bars = r.daily
-    .map(
-      (d) =>
-        `<i title="${esc(d.day)}: ${d.visitors} visitors, ${d.views} views" style="height:${Math.round(
-          (d.visitors / peak) * 100,
-        )}%"></i>`,
-    )
-    .join("");
-  const rangeLinks = RANGES.map(
-    (d) =>
-      `<a href="${esc(reportPath)}?days=${d}"${d === r.days ? ' class="on"' : ""}>${d} days</a>`,
-  ).join("");
-
-  return `<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="robots" content="noindex,nofollow"><title>Numbers</title><style>${CSS}</style></head>
-<body><main>
-<h1>veryklear.com in numbers</h1>
-<p class="sub">${esc(r.from)} to ${esc(r.to)}, UTC</p>
-<nav aria-label="Range">${rangeLinks}</nav>
-<div class="cards">
-<div class="card"><b>${r.totals.visitors}</b><span>Visitors</span></div>
-<div class="card"><b>${r.totals.views}</b><span>Pageviews</span></div>
-<div class="card"><b>${r.flows.sessions}</b><span>Sessions</span></div>
-<div class="card"><b>${r.days}</b><span>Days</span></div>
-</div>
-<h2>Visitors per day</h2>
-<div class="bars" role="img" aria-label="Visitors per day">${bars}</div>
-<div class="axis"><span>${esc(r.from)}</span><span>${esc(r.to)}</span></div>
-<h2>Pages</h2>
-${table(
-  ["Page", "Visitors", "Views"],
-  r.pages.map((p) => [esc(p.path), String(p.visitors), String(p.views)]),
-  [1, 2],
-)}
-<h2>How visitors move through the site</h2>
-<p class="sub">${esc(flowSummary(r.flows))}</p>
-<h3>Where sessions start</h3>
-${table(
-  ["Page", "Sessions"],
-  r.flows.entries.map((e) => [esc(e.path), String(e.sessions)]),
-  [1],
-)}
-<h3>Where they go next</h3>
-${table(
-  ["From", "To", "Sessions"],
-  r.flows.steps.map((x) => [esc(x.from), esc(x.to), String(x.sessions)]),
-  [2],
-)}
-<h3>Most common routes</h3>
-${table(
-  ["Route", "Sessions"],
-  r.flows.paths.map((x) => [
-    x.pages.map(esc).join(" &rarr; ") + (x.more ? " &rarr; &hellip;" : ""),
-    String(x.sessions),
-  ]),
-  [1],
-)}
-<h3>Where sessions end</h3>
-${table(
-  ["Page", "Sessions"],
-  r.flows.exits.map((e) => [esc(e.path), String(e.sessions)]),
-  [1],
-)}
-<h2>Sessions, one by one</h2>
-<p class="sub">The ${RECENT_SESSIONS} most recent. Each row is one visitor on one day. Source, language and device are those of the first page; the numbers beside a page are the seconds since the session began.</p>
-${table(
-  ["Started (UTC)", "Route", "Time", "Came from", "Campaign", "Language", "Device"],
-  r.flows.recent.map((x) => [
-    esc(new Date(x.start).toISOString().slice(0, 16).replace("T", " ")),
-    x.pages
-      .map((p, i) => esc(p.path) + (i === 0 ? "" : ` <span class="t">+${clock(p.at)}</span>`))
-      .join(" &rarr; ") +
-      (x.more ? ` &rarr; &hellip; <span class="t">${x.pageCount} pages</span>` : ""),
-    x.pageCount === 1 ? "1 page" : clock(x.seconds),
-    esc(x.from),
-    esc(x.campaign),
-    esc(x.lang),
-    esc(x.device),
-  ]),
-)}
-<h2>Clicks to contact and the booking page, by the page they came from</h2>
-${table(
-  ["Reached", "From", "Visitors", "Views"],
-  r.routes.map((x) => [esc(x.target), esc(x.source), String(x.visitors), String(x.views)]),
-  [2, 3],
-)}
-<h2>Where visitors come from</h2>
-${table(
-  ["Source", "Visitors", "Views"],
-  r.referrers.map((x) => [esc(x.source), String(x.visitors), String(x.views)]),
-  [1, 2],
-)}
-<h2>Campaigns</h2>
-${table(
-  ["Source", "Medium", "Campaign", "Visitors", "Views"],
-  r.campaigns.map((c) => [
-    esc(c.source),
-    esc(c.medium),
-    esc(c.campaign),
-    String(c.visitors),
-    String(c.views),
-  ]),
-  [3, 4],
-)}
-<h2>Devices</h2>
-${table(
-  ["Device", "Visitors", "Views"],
-  r.devices.map((d) => [esc(d.device), String(d.visitors), String(d.views)]),
-  [1, 2],
-)}
-<h2>Languages</h2>
-${table(
-  ["Language", "Visitors", "Views"],
-  r.languages.map((l) => [esc(l.lang), String(l.visitors), String(l.views)]),
-  [1, 2],
-)}
-<h2>Left out as automated traffic</h2>
-${table(
-  ["Why it was left out", "Requests"],
-  r.filtered.map((f) => [esc(FILTER_LABELS[f.reason] ?? f.reason), String(f.requests)]),
-  [1],
-)}
-<footer>Counted on the server from the page requests browsers make anyway: no script, no cookies. Visitors are per day: someone who comes on three days counts three times, because nothing identifies a person across days. "From" is the page of ours the visitor was on when they clicked; a typed address or a link from elsewhere shows as (direct). A session is one visitor's pages on one day, split after 30 minutes without a page; a reload is not a step. People behind the same address and browser can merge into one visitor. Do Not Track and Global Privacy Control are left out entirely. Automated traffic is not counted as visitors: its totals above are kept without any identifier. Days are UTC.</footer>
-</main></body></html>`;
 }
 
 // ---- Routes --------------------------------------------------------------
@@ -544,7 +347,8 @@ export function reportRouter(db: Db, cfg: Config, now: () => number): Router {
 
   router.get(htmlPath, limiter, headers, (req, res) => {
     if (!guard(req, res)) return;
-    res.type("html").send(renderHtml(buildReport(db, daysOf(req), now()), htmlPath));
+    const tab = TABS.find((x) => x.id === req.query.tab)?.id ?? ("overview" as TabId);
+    res.type("html").send(renderHtml(buildReport(db, daysOf(req), now()), htmlPath, tab));
   });
 
   return router;
