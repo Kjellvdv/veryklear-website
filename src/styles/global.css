@@ -211,7 +211,7 @@ a.fact:hover{background:rgba(255,255,255,.22)}
 .step .meta{margin-top:16px;font-size:.84rem;font-weight:700;color:var(--red-deep)}
 
 /* dark band: the one dark section on the home page (Kjell, 2026-10-12) */
-section.block-dark{background:var(--ink);color:#fff;overflow:hidden;padding:104px 0}
+section.block-dark{background:var(--ink);color:#fff;overflow:hidden;padding:104px 0;z-index:1}
 section.block-dark::after{display:none!important}
 section.block-dark::before{content:"";position:absolute;top:-30%;right:-10%;width:55%;height:90%;pointer-events:none;
   background:radial-gradient(closest-side,rgba(200,16,46,.32),rgba(200,16,46,0))}

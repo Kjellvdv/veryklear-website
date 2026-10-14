@@ -37,24 +37,6 @@ const recent = (await getArticles()).slice(0, 3);
     </div>
   </section>
 
-  <section class="block" style="padding-top:0">
-    <div class="wrap">
-      <div class="s-head">
-        <h2 class="h-section">{c.paths.title}</h2>
-      </div>
-      <div class="grid-2">
-        {[[c.paths.project, '/diensten'], [c.paths.fractional, '/fractioneel']].map(([p, href]) => (
-          <a class="card card-paper" href={href} style="text-decoration:none">
-            <span class="label">{p.label}</span>
-            <h3 class="h-card" style="margin-top:6px">{p.title}</h3>
-            <p class="muted">{p.body}</p>
-            <div class="card-foot"><span class="link-arrow">{p.link}</span></div>
-          </a>
-        ))}
-      </div>
-    </div>
-  </section>
-
   {/* The one dark band on the page: a rhythm break for the three services. */}
   <section class="block block-dark">
     <div class="wrap">
@@ -78,6 +60,24 @@ const recent = (await getArticles()).slice(0, 3);
   </section>
 
   <section class="block">
+    <div class="wrap">
+      <div class="s-head">
+        <h2 class="h-section">{c.paths.title}</h2>
+      </div>
+      <div class="grid-2">
+        {[[c.paths.project, '/diensten'], [c.paths.fractional, '/fractioneel']].map(([p, href]) => (
+          <a class="card card-paper" href={href} style="text-decoration:none">
+            <span class="label">{p.label}</span>
+            <h3 class="h-card" style="margin-top:6px">{p.title}</h3>
+            <p class="muted">{p.body}</p>
+            <div class="card-foot"><span class="link-arrow">{p.link}</span></div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="block" style="padding-top:0">
     <div class="wrap">
       <div class="card card-grad cut statement">
         <div class="grain"></div>
