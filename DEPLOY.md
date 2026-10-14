@@ -38,7 +38,7 @@ MX records for both domains stay on SiteGround, so `kjell@veryklear.be` keeps wo
 
   | Variable | Value |
   |---|---|
-  | `DATA_DIR` | `/data` |
+  | `DATA_DIR` | `/data`, or leave it out: the server uses the volume's mount path by itself and refuses to start if `DATA_DIR` points anywhere else |
   | `REPORT_PASSWORD` | long and random, e.g. `openssl rand -base64 24` |
   | `RETENTION_DAYS` | `400` (the privacy page says 14 months; change both together) |
   | `CANONICAL_HOST` | `www.veryklear.com`, but only once that domain is verified. Every other Host header then 301s there. |

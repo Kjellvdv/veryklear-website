@@ -129,6 +129,30 @@ describe("config", () => {
     }
   });
 
+  it("keeps the database on the Railway volume", () => {
+    const base = { REPORT_PASSWORD: "correct-horse-battery", RAILWAY_VOLUME_MOUNT_PATH: "/data" };
+    expect(loadConfig({ ...base } as NodeJS.ProcessEnv).DATA_DIR).toBe("/data");
+    expect(loadConfig({ ...base, DATA_DIR: "/data/" } as NodeJS.ProcessEnv).DATA_DIR).toBe(
+      "/data/",
+    );
+    expect(loadConfig({ ...base, DATA_DIR: "/data/db" } as NodeJS.ProcessEnv).DATA_DIR).toBe(
+      "/data/db",
+    );
+    expect(() => loadConfig({ ...base, DATA_DIR: "/data," } as NodeJS.ProcessEnv)).toThrow(
+      /vanish/,
+    );
+    expect(() => loadConfig({ ...base, DATA_DIR: "data" } as NodeJS.ProcessEnv)).toThrow(
+      /DATA_DIR/,
+    );
+    expect(() => loadConfig({ ...base, DATA_DIR: "/database" } as NodeJS.ProcessEnv)).toThrow(
+      /vanish/,
+    );
+    // Without a volume (local dev) any folder is fine and "data" is the default.
+    expect(
+      loadConfig({ REPORT_PASSWORD: "correct-horse-battery" } as NodeJS.ProcessEnv).DATA_DIR,
+    ).toBe("data");
+  });
+
   it("defaults the report path and treats an empty canonical host as unset", () => {
     const cfg = loadConfig({
       REPORT_PASSWORD: "correct-horse-battery",

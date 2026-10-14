@@ -46,6 +46,7 @@ Purpose: see which pages and channels work and improve the site. Data per visit:
 
 ## Gotchas
 - `res.sendFile` treats any dotted path segment as a hidden file. Pages are sent relative to `root: dist`, because dist may sit under `.claude/worktrees/`.
+- `DATA_DIR` must sit on the Railway volume. `loadConfig` defaults it to `RAILWAY_VOLUME_MOUNT_PATH` and refuses anything else, because a typo (`/data,`) once sent the database to the container's own disk, where every deploy erased it. Locally there is no volume variable and any folder goes.
 - `trust proxy` is 1 (Railway's edge). If visitors collapse into one in `/numeros`, the hop count is wrong.
 - Crawlers do fetch HTML, unlike with a script tracker. The user-agent list in `server/bots.ts` and the `Sec-Fetch-Dest` check carry the filtering; expect a little noise.
 - Every deploy, content publishes included, means a few seconds of downtime (one deployment at a time may hold the volume).
