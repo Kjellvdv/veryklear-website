@@ -30,7 +30,9 @@ MX records for both domains stay on SiteGround, so `kjell@veryklear.be` keeps wo
 ## The Railway service
 
 - Project from GitHub `Kjellvdv/veryklear-website`, branch `main`. Railpack runs
-  `npm ci`, `npm run build` (Astro, share images included) and `npm start`.
+  `npm ci` and `npm run build` (Astro, share images included). The start command
+  comes from `railway.json` and runs node directly, not `npm start`: npm in
+  between logged every redeploy's SIGTERM as `npm error`, which read like a crash.
 - **Region EU West (Amsterdam), set before adding the volume.** Moving a volume
   later means downtime.
 - **Volume** mounted at `/data`. **Health check** path `/healthz`.
