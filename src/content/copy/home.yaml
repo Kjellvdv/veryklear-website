@@ -73,7 +73,7 @@ statement:
     - value: '{n} partners'
       text: vaste partners voor wat buiten onze diensten valt
       href: /partners
-    - value: 1 persoon
+    - value: 1 aanspreekpunt
       text: van het eerste gesprek tot de uitvoering
 
 steps:
