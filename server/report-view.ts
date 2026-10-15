@@ -76,6 +76,60 @@ function columns(
 </div>`;
 }
 
+const hourLabel = new Intl.DateTimeFormat("en-GB", {
+  timeZone: "Europe/Brussels",
+  weekday: "short",
+  day: "numeric",
+  month: "short",
+  hour: "2-digit",
+  minute: "2-digit",
+  hourCycle: "h23",
+});
+const dayTick = new Intl.DateTimeFormat("en-GB", {
+  timeZone: "Europe/Brussels",
+  weekday: "short",
+  day: "numeric",
+});
+const belgianHour = new Intl.DateTimeFormat("en-GB", {
+  timeZone: "Europe/Brussels",
+  hour: "2-digit",
+  hourCycle: "h23",
+});
+
+/**
+ * The last seven days, one bar per hour, with a rule and a label at every Belgian
+ * midnight. The labels sit at the bar they belong to, so they stay true when a
+ * day has 23 or 25 hours.
+ */
+function hourlyChart(hours: Report["hourly"]): string {
+  const peak = Math.max(1, ...hours.map((h) => Math.max(h.visitors, h.views)));
+  const midnights: { at: number; label: string }[] = [];
+  const bars = hours
+    .map((h, i) => {
+      const outer = Math.max(h.views, h.visitors);
+      const height = Math.round((outer / peak) * 100);
+      const inner = outer === 0 ? 0 : Math.round((h.visitors / outer) * 100);
+      const midnight = Number(belgianHour.format(new Date(h.start))) === 0;
+      if (midnight) {
+        midnights.push({
+          at: hours.length <= 1 ? 0 : (i / hours.length) * 100,
+          label: dayTick.format(new Date(h.start)),
+        });
+      }
+      const tip = `${hourLabel.format(new Date(h.start))}: ${h.visitors} visitors, ${h.views} views`;
+      return `<i${midnight ? ' class="day"' : ""} style="height:${height}%" title="${esc(tip)}"><b style="height:${inner}%"></b></i>`;
+    })
+    .join("");
+  const ticks = midnights
+    .map((m) => `<span style="left:${m.at.toFixed(2)}%">${esc(m.label)}</span>`)
+    .join("");
+  return `<div class="chart" role="img" aria-label="Visitors and page views per hour, last seven days" style="--h:120px">
+<div class="peak">${n(peak)}</div>
+<div class="cols">${bars}</div>
+<div class="ticks at">${ticks}</div>
+</div>`;
+}
+
 /** A column chart where each column is stacked from several named parts. */
 function stacked(
   items: { label: string; parts: { key: string; value: number }[] }[],
@@ -191,6 +245,11 @@ ${section(
       ticks: [shortDay(first), shortDay(last)],
     },
   ),
+)}
+${section(
+  "Visitors per hour, last 7 days",
+  "Belgian time, always the last seven days whatever range is picked. The solid bar is people, the pale bar behind it is page views. A visitor who comes back in another hour counts again, so the hours add up to more than the days.",
+  hourlyChart(r.hourly),
 )}
 <div class="grid2">
 ${section(
@@ -475,6 +534,9 @@ p.sub,.hint{margin:0;color:var(--muted)}
 .chart.stack .cols>i{flex-direction:column-reverse;background:none;align-items:stretch}
 .chart.stack .cols>i>b{width:100%;border-radius:0;opacity:1}
 .ticks{display:flex;justify-content:space-between;color:var(--muted);font-size:.78rem;margin-top:4px}
+.ticks.at{display:block;position:relative;height:1.3em}
+.ticks.at span{position:absolute;top:0;white-space:nowrap}
+.chart .cols>i.day{box-shadow:-1px 0 0 var(--muted)}
 .legend{display:flex;flex-wrap:wrap;gap:4px 16px;margin:10px 0 0;color:var(--muted);font-size:.85rem}
 .legend span{display:inline-flex;align-items:center;gap:6px}
 .legend i{width:10px;height:10px;border-radius:2px;display:inline-block}

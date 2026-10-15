@@ -65,6 +65,42 @@ export function brusselsClock(ts: number): { hour: number; weekday: number } {
   return { hour, weekday: Math.max(0, weekday) };
 }
 
+const HOUR_MS = 3_600_000;
+const wallClock = new Intl.DateTimeFormat("en-GB", {
+  timeZone: "Europe/Brussels",
+  year: "numeric",
+  month: "2-digit",
+  day: "2-digit",
+  hour: "2-digit",
+  minute: "2-digit",
+  second: "2-digit",
+  hourCycle: "h23",
+});
+
+/** Belgian time's distance from UTC at a moment, in ms (3,600,000 or 7,200,000). */
+function brusselsOffset(ts: number): number {
+  const p = Object.fromEntries(wallClock.formatToParts(new Date(ts)).map((x) => [x.type, x.value]));
+  const asUtc = Date.UTC(
+    Number(p.year),
+    Number(p.month) - 1,
+    Number(p.day),
+    Number(p.hour),
+    Number(p.minute),
+    Number(p.second),
+  );
+  return asUtc - Math.floor(ts / 1000) * 1000;
+}
+
+/** The UTC instant of Belgian midnight, `daysBack` days before the Belgian day `ts` falls in. */
+export function brusselsMidnight(ts: number, daysBack = 0): number {
+  const p = Object.fromEntries(wallClock.formatToParts(new Date(ts)).map((x) => [x.type, x.value]));
+  const wall = Date.UTC(Number(p.year), Number(p.month) - 1, Number(p.day) - daysBack);
+  // The offset at that midnight can differ from the one now (summer time ends or starts in between).
+  let guess = wall - brusselsOffset(ts);
+  guess = wall - brusselsOffset(guess);
+  return guess;
+}
+
 /**
  * One window for everything: the last `days` UTC calendar days including today.
  * Totals, tables and charts all read `day >= from`, so they always agree.
@@ -102,6 +138,26 @@ export function buildReport(db: Db, days: number, now: number): Report {
     const { hour, weekday } = brusselsClock(num(r.bucket) * 3_600_000);
     hours[hour] = (hours[hour] ?? 0) + num(r.views);
     weekdays[weekday] = (weekdays[weekday] ?? 0) + num(r.views);
+  }
+
+  // The last seven Belgian days hour by hour, fixed whatever range is picked.
+  const hourFrom = Math.floor(brusselsMidnight(now, 6) / HOUR_MS);
+  const hourTo = Math.floor(now / HOUR_MS);
+  const perHour = new Map(
+    (
+      db
+        .prepare(
+          `SELECT CAST(ts / 3600000 AS INTEGER) AS bucket, COUNT(DISTINCT visitor) AS visitors,
+                  COUNT(*) AS views
+             FROM pageviews WHERE ts >= @since GROUP BY bucket`,
+        )
+        .all({ since: hourFrom * HOUR_MS }) as Raw[]
+    ).map((r) => [num(r.bucket), r]),
+  );
+  const hourly: Report["hourly"] = [];
+  for (let h = hourFrom; h <= hourTo; h++) {
+    const r = perHour.get(h);
+    hourly.push({ start: h * HOUR_MS, visitors: num(r?.visitors), views: num(r?.views) });
   }
 
   // One pass over this window's sessions feeds the flows, the page entry and exit
@@ -233,6 +289,7 @@ export function buildReport(db: Db, days: number, now: number): Report {
     totals: { ...counts(t), sessions },
     previous,
     daily,
+    hourly,
     hours,
     weekdays,
     pages: pageRows,
