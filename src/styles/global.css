@@ -317,11 +317,13 @@ section.block-dark::before{content:"";position:absolute;top:-30%;right:-10%;widt
 .partner span{font-size:.84rem;color:var(--muted);display:block}
 .partner .partner-name{margin-top:8px;font-weight:700;color:var(--red-deep)}
 .partners-lg{grid-template-columns:repeat(3,1fr);gap:20px}
+/* Four partners read better as 2x2 than 3+1 (AI page). */
+.partners-lg:has(> :nth-child(4):last-child){grid-template-columns:repeat(2,1fr)}
 .partners-lg .partner{padding:32px;border-radius:var(--radius-card)}
 .partners-lg .partner b{font-size:1.2rem;font-weight:800;margin-bottom:8px}
 .partners-lg .partner span{font-size:.97rem;line-height:1.6}
 @media (max-width:900px){.partners-lg{grid-template-columns:1fr 1fr}}
-@media (max-width:640px){.partners-lg{grid-template-columns:1fr}}
+@media (max-width:640px){.partners-lg,.partners-lg:has(> :nth-child(4):last-child){grid-template-columns:1fr}}
 
 /* dienst pages */
 .deliver-band{margin-top:20px;display:grid;grid-template-columns:200px 1fr;gap:24px;align-items:baseline}

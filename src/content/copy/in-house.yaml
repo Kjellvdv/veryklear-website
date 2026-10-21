@@ -8,7 +8,7 @@
 
 meta:
   title: Freelance head of marketing | Very Klear Marketing Agency
-  description: Je marketing uitbesteden aan een freelance head of marketing, die een dag (of twee) per week bij jou meewerkt. Van strategie tot systemen en het operationele werk.
+  description: Je marketing uitbesteden aan een freelance head of marketing, een dag (of twee) per week bij jou in huis. Van strategie tot systemen en het operationele werk.
 
 hero:
   title_html: Je marketing uitbesteden<br />aan een freelance head of marketing.
@@ -16,18 +16,37 @@ hero:
   button_primary: Plan een strategiesessie
   button_secondary: Vergelijk met een project
 
+when:
+  title: Herkenbaar?
+  items:
+  - Marketing doet iedereen een beetje, naast het eigen werk.
+  - Je weet wat er zou moeten gebeuren, maar niemand heeft er de tijd voor.
+  - Een voltijdse marketeer aanwerven voelt nog te vroeg.
+  - Een bureau levert wat je vraagt, maar niemand denkt mee over wat je nodig hebt.
+
+consequences:
+  title: En wat gebeurt er dan?
+  lead: Niemand doet iets verkeerd. Je marketing heeft gewoon geen eigenaar.
+  items:
+  - title: Alles hangt af van wie tijd heeft
+    text: Een post als het even rustig is, een mailing als iemand eraan denkt. Wat er gebeurt, hangt af van de week en niet van een plan.
+  - title: Opvolging verschilt per persoon
+    text: De ene collega belt een aanvraag meteen terug, de andere volgende week. Achteraf weet niemand nog wat er precies gezegd is.
+  - title: Tools die niemand bijhoudt
+    text: Een CRM dat half ingevuld is, een nieuwsbrief met een lijst van twee jaar oud. De systemen zijn er, maar ze werken niet voor jou.
+
 # The 0 -> 1 timeline. Four steps; the first shows "0", the last "1".
 timeline:
   title: Van 0 naar 1, wat betekent dat?
   steps:
   - title: Vertrekpunt
-    text: Klanten via via, een site van jaren geleden, opvolging op goed geluk.
+    text: Klanten komen via via, de site is van jaren geleden en opvolging gebeurt op goed geluk.
   - title: De basis
-    text: 'Positionering vastgelegd: wie je klant is en waarom die voor jou kiest.'
+    text: 'Je positionering ligt vast: wie je klant is en waarom die voor jou kiest.'
   - title: De motor
-    text: Kanalen gekozen, site en opvolging die op elkaar aansluiten.
+    text: De kanalen zijn gekozen, en je site en opvolging sluiten op elkaar aan.
   - title: Het draait
-    text: Een systeem dat werkt zonder dat alles van één persoon afhangt.
+    text: Je marketing draait op systemen, zonder dat alles van één persoon afhangt.
 
 included:
   title: Wat zit erin?
@@ -41,13 +60,36 @@ included:
   - title: Systemen die blijven draaien
     text: Tools, automatisering en rapportering, zo opgezet dat ze ook werken op de dagen dat we er niet zijn.
   - title: Mee aan tafel
-    text: Bij je team, je overleg en je partners, zodat marketing geen apart eilandje wordt.
+    text: Bij je team, je overleg en je partners, zodat marketing geen apart eilandje wordt. Vraagt iets extra expertise, dan brengen we onze eigen partners mee.
   - title: Klantenbeheer
     text: Een CRM dat georganiseerd blijft, met gespreksnotities die achteraf nog iets zeggen.
   - title: Van aanvraag naar verkoop
     text: Een duidelijke weg, in plaats van een proces dat per persoon verschilt.
   - title: Leadlijsten
     text: Wie je nog kan bellen, en die lijst blijft ook bijgehouden.
+
+transformation:
+  title: En na een paar maanden?
+  lead: Je marketing heeft een eigenaar, en dat merk je elke week.
+  before_title: Nu
+  before:
+  - Marketing gebeurt als iemand er tijd voor vindt.
+  - Je weet niet goed welke kanalen iets opbrengen.
+  - Aanvragen worden opgevolgd door wie ze toevallig ziet.
+  - Je CRM is half ingevuld en niemand vertrouwt het.
+  - Elke nieuwe tool is weer een apart eilandje.
+  after_title: Met een freelance head of marketing
+  after:
+  - Elke week staat er iemand voor in, met een plan voor die week.
+  - Je weet welke kanalen werken, en daar gaat je tijd naartoe.
+  - Elke aanvraag volgt dezelfde weg, van het eerste contact tot het gesprek met sales.
+  - Je CRM en je leadlijsten zijn bijgehouden, dus je weet wie je nog kan bellen.
+  - Je tools sluiten op elkaar aan en blijven draaien op de dagen dat we er niet zijn.
+
+mid_cta:
+  title: Benieuwd wat een dag per week voor jou kan doen?
+  text: In een strategiesessie bekijken we samen waar je marketing nu staat en of in-house de juiste vorm is. Een uurtje, eerlijk advies.
+  button: Plan een strategiesessie
 
 # Two identical columns, same rows. No "recommended" badge: both paths weigh the same.
 compare:
@@ -108,6 +150,8 @@ faq:
     a: 'Hetzelfde als een head of marketing in loondienst: richting geven, kiezen wat telt en zorgen dat het ook gebeurt. Alleen werk je samen voor een dag (of twee) per week, zonder voltijdse aanwerving. Je marketing uitbesteden betekent hier dus niet dat ze uit handen is: we werken mee in je team.'
   - q: Waarom geen voltijdse marketeer aanwerven?
     a: 'Als er genoeg werk is voor een voltijdse marketingverantwoordelijke, doe dat zeker. In-house is voor de fase ervoor: je hebt iemand nodig die richting geeft en het geheel opbouwt, maar nog geen volle job.'
+  - q: Wat als we al een marketeer hebben?
+    a: Dan werken we samen. We geven richting en bouwen de systemen, en je marketeer krijgt iemand om mee te sparren en extra handen voor wat nu blijft liggen.
   - q: Hoe lang loopt een in-house samenwerking?
     a: Doorlopend, met vaste momenten om bij te sturen. Zolang het nut heeft, en we zeggen het als dat niet meer zo is.
   - q: Hoe vaak zijn jullie er?

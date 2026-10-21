@@ -5,11 +5,11 @@
 
 meta:
   title: Positioneringstraject | Very Klear Marketing Agency
-  description: 'Een positioneringstraject zet je verhaal op punt: waar je past in de markt, wie je ideale klant is en waarom die voor jou kiest.'
+  description: 'Een positioneringstraject zet de positionering van je bedrijf op punt: in welke markt je speelt, wie je ideale klant is en waarom die voor jou kiest.'
 
 hero:
   title_html: Positionering.<br />Alles begint bij een helder verhaal.
-  lead: Waarom kiezen klanten voor jou? Wie wil je nog bereiken? En hoe vertel je dat zo dat het blijft hangen? We zoeken het samen uit, zodat je website, je content en ook AI hetzelfde verhaal vertellen.
+  lead: Waarom kiezen klanten voor jou? Wie wil je nog bereiken? En hoe vertel je dat zo dat het blijft hangen? In een positioneringstraject zoeken we het samen uit, zodat je website, je content en ook AI hetzelfde verhaal vertellen.
   button: Plan een strategiesessie
 
 when:
@@ -29,20 +29,50 @@ questions:
   - Wat wil die klant echt?
   - Wat maakt je anders?
   - Waarom kiest die voor jou?
+consequences:
+  title: En wat doet dat met je bedrijf?
+  lead: Zolang je verhaal niet op punt staat, draait alles een beetje harder dan nodig.
+  items:
+  - title: Via via blijft de enige motor
+    text: Je beste klanten vinden je wel, maar je kan niet uitleggen waarom. Dus kan je het ook niet vertellen aan mensen die je nog niet kennen.
+  - title: Elke tekst begint van nul
+    text: 'Je site, een offerte, een presentatie: telkens zoek je opnieuw naar de juiste woorden. En elke versie klinkt een beetje anders.'
+  - title: AI maakt het nog algemener
+    text: Wie AI een tekst laat schrijven zonder duidelijk verhaal, krijgt wat iedereen krijgt. Het leest vlot, maar het klinkt niet als jij.
 approach:
   title: Hoe gaan we te werk?
   steps:
   - title: We bellen je beste klanten
-    text: Wat wilden ze oplossen, wat probeerden ze eerder, en wanneer wisten ze dat het werkte? Daar zit het antwoord meestal al.
+    text: Een paar korte gesprekken met klanten die graag met je werken. Wat wilden ze oplossen, wat probeerden ze eerder, en wanneer wisten ze dat het werkte? Daar zit het antwoord meestal al.
   - title: Je verhaal op één blad
-    text: Wie je klant is en wat je belooft, kort genoeg om te onthouden. Snel klaar, zodat we het kunnen testen.
+    text: In welke markt je speelt, wie je klant is en wat je belooft, kort genoeg om te onthouden. Die eerste versie is er snel, zodat we ze meteen kunnen testen.
   - title: Testen en bijsturen
-    text: We gebruiken het in teksten en gesprekken, kijken wat het doet en passen aan.
+    text: We gebruiken het verhaal in teksten en gesprekken, kijken wat het doet en passen aan. Met vaste momenten samen, over enkele weken tot een paar maanden.
 
 deliver:
   title: Wat je krijgt
-  text: Een helder verhaal op één blad, en richtlijnen waarmee je team en je AI-tools het ook zo vertellen. Een werkdocument, geen rapport voor de lade.
+  text: Een helder verhaal op één blad, en richtlijnen waarmee je team en je AI-tools het ook zo vertellen. Een werkdocument dat mee evolueert, geen rapport voor de lade.
 
+transformation:
+  title: Hoe ziet het eruit als je verhaal klopt?
+  before_title: Vandaag
+  before:
+  - Klanten komen via via, en je weet niet goed waarom.
+  - Je legt in elk gesprek opnieuw uit wat je doet.
+  - Je site zegt een beetje van alles.
+  - Elke tekst begint bij een leeg blad.
+  - AI schrijft vlot, maar niet zoals jij.
+  after_title: Na het traject
+  after:
+  - Je weet waarom ze kiezen, en je vertelt dat ook aan wie je nog niet kent.
+  - Je zegt in één zin waarom klanten voor jou kiezen.
+  - Je site spreekt de klant aan die je echt wil bereiken.
+  - Je team vertrekt van één blad en vertelt hetzelfde verhaal.
+  - AI schrijft in jouw stijl, omdat het je verhaal kent.
+mid_cta:
+  title: Benieuwd waar jouw verhaal nu staat?
+  text: In een strategiesessie van een uurtje kijken we samen naar je verhaal. En we zeggen eerlijk of een positioneringstraject je eerste stap is.
+  button: Plan een strategiesessie
 leads_to:
   title: En daarna?
   items:
@@ -65,6 +95,8 @@ partners:
 faq:
   title: Vragen over positionering
   items:
+  - q: Wat is een positioneringstraject?
+    a: Een begeleiding van enkele weken tot een paar maanden waarin we de positionering van je bedrijf uitwerken. We zoeken uit in welke markt je speelt, wie je ideale klant is en waarom die voor jou kiest. We vertrekken bij gesprekken met je beste klanten en testen het verhaal daarna in de praktijk.
   - q: Moet ik echt hier beginnen?
     a: Meestal wel. Marketingstrategie en AI bouwen verder op je verhaal. Staat dat al, dan zeggen we het in de strategiesessie en starten we ergens anders.
   - q: Is dit niet gewoon een nieuwe slogan?
