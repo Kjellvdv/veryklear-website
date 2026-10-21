@@ -36,6 +36,13 @@ export interface Report {
   /** The same measures for the equal-length window just before this one. */
   previous: (Counts & { sessions: number }) | null;
   daily: { day: string; views: number; visitors: number }[];
+  /**
+   * Visitors and page views per hour, from Belgian midnight six days ago up to
+   * the current hour, whatever range was picked. `start` is the epoch ms of the hour.
+   * A visitor who comes back in another hour counts again, so these add up to more
+   * than the daily visitors.
+   */
+  hourly: { start: number; visitors: number; views: number }[];
   /** Page views per hour of the day, Belgian time, index 0 to 23. */
   hours: number[];
   /** Page views per weekday, Belgian time, Monday first. */

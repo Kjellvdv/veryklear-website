@@ -516,4 +516,52 @@ describe("tabs and charts", () => {
     expect(html).toContain("Page views by weekday");
     expect(html).toContain("Languages");
   });
+
+  it("shows the last seven Belgian days hour by hour, counting visitors per hour", async () => {
+    // Now is 2026-10-13 12:00 UTC, which is 14:00 in Belgium (summer time).
+    // The window opens at Belgian midnight six days earlier: 2026-10-06 22:00 UTC.
+    const { app, db } = setup();
+    put(db, Date.UTC(2026, 9, 13, 10, 5), "/", "a"); // 12:05 Belgian
+    put(db, Date.UTC(2026, 9, 13, 10, 40), "/diensten", "a");
+    put(db, Date.UTC(2026, 9, 13, 10, 50), "/", "b");
+    put(db, Date.UTC(2026, 9, 13, 9, 10), "/", "c"); // 11:10 Belgian
+    put(db, Date.UTC(2026, 9, 6, 22, 30), "/", "d"); // first hour of the window
+    put(db, Date.UTC(2026, 9, 6, 21, 30), "/", "e"); // an hour too early: left out
+    const { hourly } = (await get(app, "/numeros.json?days=7")).body.data;
+
+    expect(hourly[0].start).toBe(Date.UTC(2026, 9, 6, 22, 0));
+    expect(hourly[hourly.length - 1].start).toBe(Date.UTC(2026, 9, 13, 12, 0));
+    expect(hourly).toHaveLength(159); // six whole days, then 00:00 to 14:00 inclusive
+
+    const at = (h: number) =>
+      hourly.find((x: { start: number }) => x.start === Date.UTC(2026, 9, 13, h));
+    expect(at(10)).toMatchObject({ visitors: 2, views: 3 }); // a and b, three page views
+    expect(at(9)).toMatchObject({ visitors: 1, views: 1 });
+    expect(hourly[0]).toMatchObject({ visitors: 1, views: 1 });
+    expect(hourly.reduce((sum: number, x: { views: number }) => sum + x.views, 0)).toBe(5);
+  });
+
+  it("keeps the window on Belgian midnights across the end of summer time", async () => {
+    // Summer time ends on 2026-10-25. Now is 2026-10-28 12:00 UTC (13:00 Belgian).
+    const { app } = setup({ start: Date.UTC(2026, 9, 28, 12, 0) });
+    const { hourly } = (await get(app, "/numeros.json?days=7")).body.data;
+    // Belgian midnight on the 22nd is still summer time: 2026-10-21 22:00 UTC.
+    expect(hourly[0].start).toBe(Date.UTC(2026, 9, 21, 22, 0));
+    // The 25th has 25 hours, so six days and 13 hours of wall clock make 158 hours, plus the current one.
+    expect(hourly).toHaveLength(159);
+  });
+
+  it("draws the hourly chart under the daily one, with a label at every midnight", async () => {
+    const { app } = setup();
+    const html = (await get(app, "/numeros?tab=overview&days=30")).text;
+    expect(html.indexOf("Visitors per day")).toBeGreaterThan(-1);
+    expect(html.indexOf("Visitors per hour, last 7 days")).toBeGreaterThan(
+      html.indexOf("Visitors per day"),
+    );
+    // Seven Belgian midnights fall in the window: the 7th to the 13th of October.
+    expect(html.match(/class="day"/g)).toHaveLength(7);
+    for (const label of ["Wed 7", "Thu 8", "Fri 9", "Sat 10", "Sun 11", "Mon 12", "Tue 13"]) {
+      expect(html).toContain(`>${label}</span>`);
+    }
+  });
 });
