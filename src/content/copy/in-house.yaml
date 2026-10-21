@@ -1,15 +1,18 @@
-# Fractioneel page copy (www.veryklear.com/fractioneel).
+# In-house page copy (www.veryklear.com/in-house). Was "Fractioneel" on
+# /fractioneel until 2026-10-21 (Kjell: "fractioneel is not the right word").
+# The offer: someone who works along one day a week. Systems get set up, and
+# the operational work happens too.
 # Change the text after the colon, keep the indentation. Fields ending in _html
 # may contain <br> (line break). No bold in titles.
-# No prices on this page: fractioneel pricing is null in products.yml.
+# No prices on this page: in-house pricing is null in products.yml.
 
 meta:
-  title: Fractionele head of marketing · Very Klear
-  description: 'Een fractionele head of marketing: iemand die je marketing leidt en van 0 naar 1 opbouwt, zonder voltijdse aanwerving.'
+  title: Head of marketing in-house · Very Klear
+  description: Een head of marketing die elke week een dag bij jou meewerkt. De systemen worden opgezet, en het operationele werk gebeurt ook, zonder voltijdse aanwerving.
 
 hero:
-  title_html: Je fractionele<br />head of marketing.
-  lead: Iemand die je marketing leidt en mee opbouwt, van de basis tot een motor die draait, zonder dat je een voltijdse marketeer moet aanwerven. Van 0 naar 1, met dezelfde persoon.
+  title_html: Je head of marketing,<br />een dag per week in huis.
+  lead: Iemand die elke week een dag bij jou meewerkt. Ondertussen zetten we de systemen op, en gebeurt ook het operationele werk. Van 0 naar 1, met dezelfde persoon en zonder voltijdse aanwerving.
   button_primary: Plan een strategiesessie
   button_secondary: Vergelijk met op projectbasis
 
@@ -31,19 +34,24 @@ included:
   base_label: De basis
   base_title: Alle drie de diensten, samen.
   extra_label: Extra
+  # Broadened 2026-10-21: systems get set up, and the operational work happens too.
   extras:
+    - title: Het operationele werk
+      text: Campagnes, content en opvolging die ook echt gebeuren, niet enkel op papier staan.
+    - title: Systemen die blijven draaien
+      text: Tools, automatisering en rapportering, zo opgezet dat ze ook werken op de dagen dat we er niet zijn.
+    - title: Mee aan tafel
+      text: Bij je team, je overleg en je partners, zodat marketing geen apart eilandje wordt.
     - title: Klantenbeheer
-      text: Een CRM dat georganiseerd blijft, zodat je nog weet wat een klant drie maanden geleden zei.
+      text: Een CRM dat georganiseerd blijft, met gespreksnotities die achteraf nog iets zeggen.
     - title: Van aanvraag naar verkoop
       text: Een duidelijke weg, in plaats van een proces dat per persoon verschilt.
-    - title: Gespreksnotities
-      text: Notities die achteraf nog iets zeggen, niet drie losse steekwoorden.
     - title: Leadlijsten
       text: Wie je nog kan bellen, en die lijst blijft ook bijgehouden.
 
 # Two identical columns, same rows. No "recommended" badge: both paths weigh the same.
 compare:
-  title: Op projectbasis of fractioneel?
+  title: Op projectbasis of in-house?
   columns:
     - title: Op projectbasis
       rows:
@@ -53,20 +61,16 @@ compare:
           value: Een paar maanden, met een duidelijk einde
         - label: Goed als
           value: Je weet waar het knelt en dat eerst wil oplossen
-        - label: Klantenbeheer, leads, notities
-          value: Niet inbegrepen
         - label: Daarna
           value: Je beslist zelf of er iets bijkomt
-    - title: Fractioneel
+    - title: In-house
       rows:
         - label: Wat je koopt
-          value: 'Een head of marketing, deeltijds: alle drie de diensten, en meer'
+          value: 'Een head of marketing, een dag per week in huis: alle drie de diensten, de systemen en het operationele werk'
         - label: Duur
           value: Doorlopend, met vaste momenten
         - label: Goed als
-          value: Je een vaste partner wil die het geheel mee opbouwt
-        - label: Klantenbeheer, leads, notities
-          value: Inbegrepen
+          value: Je iemand wil die wekelijks meewerkt en het geheel mee opbouwt
         - label: Daarna
           value: Samen bijsturen, zolang het nut heeft
 
@@ -85,7 +89,6 @@ fit:
     - het een bijberoep is zonder groeiplannen
     - je enkel handen wil, niet het denkwerk
 
-note: Fractioneel is nieuw. We zeggen het ook als het nog niet het juiste moment is voor jouw zaak, en dan begin je beter met één dienst.
 
 # VC Rater: Kjell's own product. Shown on this page only (Kjell, 2026-10-05).
 vcrater:
@@ -95,19 +98,19 @@ vcrater:
   button: Vraag toegang tot VC Rater
 
 faq:
-  title: Vragen over fractioneel.
+  title: Vragen over in-house.
   items:
     - q: Waarom geen voltijdse marketeer aanwerven?
-      a: 'Als er genoeg werk is voor een voltijdse marketingverantwoordelijke, doe dat zeker. Fractioneel is voor de fase ervoor: je hebt iemand nodig die richting geeft en het geheel opbouwt, maar nog geen volle job.'
-    - q: Hoe lang loopt een fractionele samenwerking?
+      a: 'Als er genoeg werk is voor een voltijdse marketingverantwoordelijke, doe dat zeker. In-house is voor de fase ervoor: je hebt iemand nodig die richting geeft en het geheel opbouwt, maar nog geen volle job.'
+    - q: Hoe lang loopt een in-house samenwerking?
       a: Doorlopend, met vaste momenten om bij te sturen. Zolang het nut heeft, en we zeggen het als dat niet meer zo is.
     - q: Hoe vaak hebben we contact?
       a: Vaste momenten die we samen afspreken, plus tussendoor als er iets is. Altijd met dezelfde persoon.
     - q: Wat als het niet klikt?
       a: Dan stoppen we. Een samenwerking die niet werkt rekken heeft voor niemand zin.
-    - q: Wat kost fractioneel?
+    - q: Wat kost in-house?
       a: Dat hangt af van wat er nodig is. We bespreken het na de strategiesessie, met een duidelijke scope.
 
 cta:
-  heading: Kijken of een fractionele head of marketing past?
+  heading: Kijken of een head of marketing in huis past?
   body: Het begint met hetzelfde gesprek als elke andere weg. Een uur, eerlijk advies.

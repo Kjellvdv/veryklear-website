@@ -33,9 +33,10 @@ const { dienst_page: d } = await getCopy('site');
   </Hero>
 
   <section class="block block-first">
-    <div class="wrap pillar">
+    <div class="wrap">
+      <div class="s-head"><h2 class="h-section">{c.when.title}</h2></div>
+      <div class="pillar pillar-when">
       <div class="pillar-intro">
-        <h2 class="h-section">{c.when.title}</h2>
         <div class="when">{c.when.items.map((w) => <div class="when-item">{w}</div>)}</div>
       </div>
       <div class="card card-grad cut">
@@ -44,6 +45,7 @@ const { dienst_page: d } = await getCopy('site');
           <h3 class="h-card">{c.questions.title}</h3>
           <ul class="q-list">{c.questions.items.map((q) => <li>{q}</li>)}</ul>
         </div>
+      </div>
       </div>
     </div>
   </section>

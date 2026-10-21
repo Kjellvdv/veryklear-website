@@ -6,6 +6,8 @@ export const REDIRECTS = {
   '/strategie': '/marketing-strategie',
   '/automatisatie': '/ai',
   '/websites': '/diensten',
+  // Fractioneel became In-house (Kjell, 2026-10-21: "fractioneel is not the right word").
+  '/fractioneel': '/in-house',
   // /marketing was the pillar's first slug, live for a few hours on 2026-10-06.
   '/marketing': '/marketing-strategie',
   // Artikels moved from /<pillar>/<slug> to /artikels/<pillar>/<slug> (2026-10-06).

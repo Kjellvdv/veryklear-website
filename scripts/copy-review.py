@@ -15,7 +15,7 @@ ROOT = Path(__file__).resolve().parent.parent / "src/content/copy"
 PAGES = [
     ("home", "/"), ("diensten", "/diensten"), ("dienst-positionering", "/positionering"),
     ("dienst-marketing-strategie", "/marketing-strategie"), ("dienst-ai-implementeren", "/ai"),
-    ("fractioneel", "/fractioneel"), ("partners", "/partners"), ("strategiesessie", "/strategiesessie"),
+    ("in-house", "/in-house"), ("partners", "/partners"), ("strategiesessie", "/strategiesessie"),
     ("contact", "/contact"), ("artikels", "/artikels"), ("privacy", "/privacy"), ("404", "(404)"),
     ("site", "nav, footer, closing block"),
 ]

@@ -14,7 +14,7 @@ export const ogPath = (pathname) => {
 export async function ogPages() {
   const home = await getCopy('home');
   const diensten = await getCopy('diensten');
-  const fractioneel = await getCopy('fractioneel');
+  const inHouse = await getCopy('in-house');
   const partners = await getCopy('partners');
   const contact = await getCopy('contact');
   const artikels = await getCopy('artikels');
@@ -24,7 +24,7 @@ export async function ogPages() {
   const pages = [
     { path: '/', title: plain(home.hero.title_html), label: 'Positionering, marketing strategie en AI' },
     { path: '/diensten', title: plain(diensten.hero.title_html), label: 'Diensten' },
-    { path: '/fractioneel', title: plain(fractioneel.hero.title_html), label: 'Fractioneel' },
+    { path: '/in-house', title: plain(inHouse.hero.title_html), label: 'In-house' },
     { path: '/partners', title: plain(partners.hero.title_html), label: 'Partners' },
     { path: '/contact', title: contact.form.title, label: 'Contact' },
     { path: '/artikels', title: artikels.overview.title, label: 'Eén idee per artikel' },

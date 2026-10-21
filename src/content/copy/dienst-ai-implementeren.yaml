@@ -34,31 +34,34 @@ questions:
     - Script waar het kan, AI waar het moet
 
 # Three stages: where a business stands with AI decides what's worth doing.
+# Three stages, Kjell 2026-10-21. Very Klear is the one you talk to about
+# implementing; the AI-geletterdheid training for groups is a partner's.
 stages:
-  title: Waar sta je met AI?
-  lead: Wat zinvol is, hangt af van waar je vandaag staat. Je hoeft niet bij het begin te starten.
+  title: Wat we doen, waar je ook staat.
+  lead: Wat zinvol is, hangt af van hoe ver je al staat met AI. Je hoeft niet bij het begin te starten.
   items:
     - name: Nog geen AI
-      situation: Niemand in je team gebruikt AI, of enkel eens ChatGPT voor een mailtje.
+      situation: Je gebruikt nog geen AI, of enkel eens ChatGPT voor een mailtje.
       what:
-        - Welk model past bij wat je doet, en wat het kost
-        - Accounts en instellingen die voor iedereen hetzelfde zijn
+        - Eerst praten over wat je vandaag tijd kost, pas daarna over tools
+        - De juiste tools voor wat jij nodig hebt, en wat ze kosten
         - Afspraken over welke gegevens erin mogen en welke niet
-        - Twee of drie taken waar je meteen tijd mee wint
-    - name: Eerste stappen
-      situation: Je hebt Copilot of Claude, maar het blijft bij losse vragen in een chatvenster.
+        - Een opleiding AI-geletterdheid voor je team, via een partner, over hoe AI werkt en hoe je het veilig gebruikt. Wij helpen bij de invoering zelf.
+    - name: Net begonnen
+      situation: Je hebt ChatGPT, Copilot of Claude, maar het blijft bij losse vragen.
       what:
-        - Projecten met vaste instructies, zodat iedereen hetzelfde resultaat krijgt
-        - Je eigen documenten en huisstijl gekoppeld
-        - Vaste werkwijzen voor wat terugkomt, zoals verslagen of offertes voorbereiden
-        - De eerste taken die Claude Cowork zelf afwerkt
-    - name: Gevorderd
-      situation: AI zit al in je werk, en je wil dat het meer doet dan helpen typen.
+        - Skills installeren voor het werk dat steeds terugkomt
+        - Goede gewoontes, van hoe je vraagt tot hoe je controleert
+        - Je tools aan elkaar koppelen, zoals mail, agenda, documenten en CRM
+        - Vaste instructies, zodat iedereen in je team hetzelfde resultaat krijgt
+    - name: Dagelijks met AI
+      situation: AI zit al elke dag in je werk, en je wil er meer uit halen.
       what:
-        - Content in je eigen stem, van artikels tot LinkedIn en nieuwsbrieven
-        - Interne tools, zoals een dashboard, een calculator of een klantoverzicht
-        - CRM, opvolging en leadlijsten die zichzelf bijhouden
-        - Met een GTM engineering partner, als het technischer wordt
+        - Wat je nog kan automatiseren, en waar een mens moet blijven meekijken
+        - Waar de gaten zitten in je werkwijze en je tools
+        - Betere kwaliteit van je leads, je content en je designs
+        - Waar je op tokenkosten kan besparen
+        - Interne tools en systemen die we mee bouwen
 
 approach:
   title: Hoe het verloopt
@@ -95,13 +98,13 @@ leads_to:
     - title: CRM en opvolging
       text: Met een GTM engineering partner, als het technischer wordt.
       href: /partners
-    - title: Fractioneel
+    - title: In-house
       text: Als AI een vast onderdeel wordt van hoe je marketing en verkoop draaien.
-      href: /fractioneel
+      href: /in-house
 
 partners:
   title: Met wie we dit uitwerken
-  keys: [gtm_engineering, platform, cybersecurity]
+  keys: [ai_geletterdheid, gtm_engineering, platform, cybersecurity]
 
 faq:
   title: Vragen over AI implementeren

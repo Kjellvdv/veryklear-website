@@ -20,7 +20,7 @@ how:
     - title: Eén aanspreekpunt
       text: Je praat met ons, van het eerste gesprek tot de oplevering. De partner doet het maakwerk, niet het denkwerk.
     - title: Pas als het nodig is
-      text: Een partner komt erbij als een dienst of een fractionele samenwerking uitwijst dat er iets gemaakt moet worden. Niet omgekeerd.
+      text: Een partner komt erbij als een dienst of een in-house samenwerking uitwijst dat er iets gemaakt moet worden. Niet omgekeerd.
     - title: Goed in één ding
       text: Vaste partners, elk gekozen voor één vak. Zo hoef je zelf niet te zoeken wie wat kan.
 
@@ -50,6 +50,10 @@ items:
   gtm_engineering:
     title: GTM engineering
     text: CRM en de techniek die marketing, verkoop en opvolging met elkaar verbindt.
+    name: ''
+  ai_geletterdheid:
+    title: AI-geletterdheid
+    text: Opleidingen voor groepen, over hoe AI werkt en hoe je het veilig gebruikt. Wij doen daarna de invoering.
     name: ''
   cybersecurity:
     title: Cybersecurity
