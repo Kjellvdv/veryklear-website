@@ -1,8 +1,8 @@
 ---
 // One page per dienst: /positionering, /marketing-strategie, /ai.
 // Copy lives in src/content/copy/dienst-<pillar>.yaml; partner cards come from
-// partners.yaml. The pillar's artikels are listed near the bottom, and the
-// artikels themselves live under this URL (/<pillar>/<slug>).
+// partners.yaml. The pillar's artikels are listed near the bottom; the
+// artikels themselves live at /artikels/<pillar>/<slug>.
 import Base from '../../layouts/Base.astro';
 import Hero from '../../components/Hero.astro';
 import Faq from '../../components/Faq.astro';
@@ -49,6 +49,25 @@ const { dienst_page: d } = await getCopy('site');
       </div>
     </div>
   </section>
+
+  {/* Sales-page arc (Kjell, 2026-10-21): problem, what it leads to, solution,
+      transformation, how it works, call to action. The next three sections only
+      render when their key is in the YAML. */}
+  {c.consequences && (
+    <section class="block" style="padding-top:0">
+      <div class="wrap">
+        <div class="s-head">
+          <h2 class="h-section">{c.consequences.title}</h2>
+          {c.consequences.lead && <p class="lead">{c.consequences.lead}</p>}
+        </div>
+        <div class="grid-3">
+          {c.consequences.items.map((i) => (
+            <div class="card card-paper"><h3 class="h-card">{i.title}</h3><p class="muted">{i.text}</p></div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
 
   {/* Only the AI page has stages: what's worth doing depends on where a team stands. */}
   {c.stages && (
@@ -107,6 +126,38 @@ const { dienst_page: d } = await getCopy('site');
         <div class="card card-paper">
           <span class="label">{c.split.never_title}</span>
           <ul class="never-list">{c.split.never.map((n) => <li>{n}</li>)}</ul>
+        </div>
+      </div>
+    </section>
+  )}
+
+  {c.transformation && (
+    <section class="block" style="padding-top:0">
+      <div class="wrap">
+        <div class="s-head">
+          <h2 class="h-section">{c.transformation.title}</h2>
+          {c.transformation.lead && <p class="lead">{c.transformation.lead}</p>}
+        </div>
+        <div class="before-after">
+          <div class="card card-paper ba-before">
+            <span class="label">{c.transformation.before_title}</span>
+            <ul>{c.transformation.before.map((l) => <li>{l}</li>)}</ul>
+          </div>
+          <div class="card card-tint ba-after">
+            <span class="label">{c.transformation.after_title}</span>
+            <ul>{c.transformation.after.map((l) => <li>{l}</li>)}</ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  )}
+
+  {c.mid_cta && (
+    <section class="block" style="padding-top:0">
+      <div class="wrap">
+        <div class="card card-paper mid-cta">
+          <div><h3 class="h-card">{c.mid_cta.title}</h3><p class="muted">{c.mid_cta.text}</p></div>
+          <a class="btn btn-red" href={booking}>{c.mid_cta.button}</a>
         </div>
       </div>
     </section>

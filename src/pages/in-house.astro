@@ -19,7 +19,35 @@ const last = c.timeline.steps.length - 1;
     <a class="btn btn-ghost-white" href="#vergelijking">{c.hero.button_secondary}</a>
   </Hero>
 
-  <section class="block block-first">
+  {/* Sales-page arc (Kjell, 2026-10-21): problem, what it leads to, the 0-to-1
+      path, fit, what's included, transformation, call to action. `when`,
+      `consequences`, `transformation` and `mid_cta` only render when present. */}
+  {c.when && (
+    <section class="block block-first">
+      <div class="wrap">
+        <div class="s-head"><h2 class="h-section">{c.when.title}</h2></div>
+        <div class="grid-2 when">{c.when.items.map((w) => <div class="when-item">{w}</div>)}</div>
+      </div>
+    </section>
+  )}
+
+  {c.consequences && (
+    <section class="block" style="padding-top:0">
+      <div class="wrap">
+        <div class="s-head">
+          <h2 class="h-section">{c.consequences.title}</h2>
+          {c.consequences.lead && <p class="lead">{c.consequences.lead}</p>}
+        </div>
+        <div class="grid-3">
+          {c.consequences.items.map((i) => (
+            <div class="card card-paper"><h3 class="h-card">{i.title}</h3><p class="muted">{i.text}</p></div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <section class={c.when ? 'block' : 'block block-first'} style={c.when ? 'padding-top:0' : undefined}>
     <div class="wrap">
       <div class="s-head">
         <h2 class="h-section">{c.timeline.title}</h2>
@@ -74,6 +102,38 @@ const last = c.timeline.steps.length - 1;
       </div>
     </div>
   </section>
+
+  {c.transformation && (
+    <section class="block" style="padding-top:0">
+      <div class="wrap">
+        <div class="s-head">
+          <h2 class="h-section">{c.transformation.title}</h2>
+          {c.transformation.lead && <p class="lead">{c.transformation.lead}</p>}
+        </div>
+        <div class="before-after">
+          <div class="card card-paper ba-before">
+            <span class="label">{c.transformation.before_title}</span>
+            <ul>{c.transformation.before.map((l) => <li>{l}</li>)}</ul>
+          </div>
+          <div class="card card-tint ba-after">
+            <span class="label">{c.transformation.after_title}</span>
+            <ul>{c.transformation.after.map((l) => <li>{l}</li>)}</ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  )}
+
+  {c.mid_cta && (
+    <section class="block" style="padding-top:0">
+      <div class="wrap">
+        <div class="card card-paper mid-cta">
+          <div><h3 class="h-card">{c.mid_cta.title}</h3><p class="muted">{c.mid_cta.text}</p></div>
+          <a class="btn btn-red" href={booking}>{c.mid_cta.button}</a>
+        </div>
+      </div>
+    </section>
+  )}
 
   <section class="block" style="padding-top:0;scroll-margin-top:24px" id="vergelijking">
     <div class="wrap">

@@ -295,6 +295,7 @@ section.block-dark::before{content:"";position:absolute;top:-30%;right:-10%;widt
    and end level (Kjell, 2026-10-21: the two weren't aligned). */
 .pillar-when{align-items:stretch}
 .pillar-when .when{margin-top:0}
+.grid-2.when{gap:8px 20px}
 .when-item{background:var(--card);border:1px solid var(--line);border-radius:var(--radius-sm);padding:12px 16px;font-size:.93rem;font-weight:600}
 .pillar-detail{display:grid;gap:16px}
 .q-list{list-style:none;margin:14px 0 0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:8px 18px;font-size:.92rem}
@@ -333,6 +334,17 @@ a.next-card:hover .h-card{color:var(--red-deep)}
 .never-list{list-style:none;margin:12px 0 0;padding:0;display:grid;gap:8px;font-size:.95rem}
 .never-list li{display:flex;gap:10px}
 .never-list li::before{content:"–";font-weight:900;color:var(--muted)}
+/* Sales-page sections on the dienst and in-house pages (2026-10-21) */
+.before-after{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+@media (max-width:760px){.before-after{grid-template-columns:1fr}}
+.before-after ul{list-style:none;margin:16px 0 0;padding:0;display:grid;gap:12px}
+.before-after li{display:flex;gap:10px;line-height:1.5}
+.ba-before li{color:var(--muted)}
+.ba-before li::before{content:"–";font-weight:700;flex:0 0 auto}
+.ba-after li::before{content:"✓";font-weight:900;color:var(--red-deep);flex:0 0 auto}
+.mid-cta{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
+.mid-cta p{margin-top:6px;max-width:60ch}
+
 /* AI page stages: numbered like the steps, with a short list of what we do */
 .grid-3:has(.stage){counter-reset:s}
 .stage{counter-increment:s}
