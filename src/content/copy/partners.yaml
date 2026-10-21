@@ -2,7 +2,7 @@
 # on the dienst pages and the diensten overview.
 #
 # Rules (from ~/brands/very-klear/gtm/products.yml):
-# - Only name a partner when they've confirmed. Leave `name` empty otherwise.
+# - No partner is named on the site (Kjell, 2026-10-14: "name none"). Leave `name` empty.
 # - Never say where a partner is based.
 # - Partners are the delivery behind the pillars and fractioneel, not a fourth pillar.
 
@@ -20,18 +20,17 @@ how:
     - title: Eén aanspreekpunt
       text: Je praat met ons, van het eerste gesprek tot de oplevering. De partner doet het maakwerk, niet het denkwerk.
     - title: Pas als het nodig is
-      text: Een partner komt erbij als een dienst of een fractionele samenwerking uitwijst dat er iets gemaakt moet worden. Niet omgekeerd.
+      text: Een partner komt erbij als een dienst of een in-house samenwerking uitwijst dat er iets gemaakt moet worden. Niet omgekeerd.
     - title: Goed in één ding
       text: Vaste partners, elk gekozen voor één vak. Zo hoef je zelf niet te zoeken wie wat kan.
 
 list_title: Onze partners
-# Order here is the order on the page. `name` stays empty until the partner
-# has agreed to be named.
+# Order here is the order on the page. `name` stays empty: categories only.
 items:
   design:
     title: Design
-    text: Websites, logo en huisstijl. Altin ontwierp ook de identiteit van Very Klear.
-    name: Altin
+    text: Websites, logo en huisstijl.
+    name: ''
   fotografie:
     title: Fotografie
     text: Portretten, en fotoshoots voor je socials. Echte beelden van je zaak en je mensen, geen stockfoto's.
@@ -39,7 +38,7 @@ items:
   linkedin:
     title: LinkedIn
     text: Content en verspreiding op LinkedIn, voor wie daar zijn klanten vindt.
-    name: Willow
+    name: ''
   social_content:
     title: Social content
     text: Posts, reels en video voor Instagram en Facebook, als onderdeel van een groter plan.
@@ -51,6 +50,18 @@ items:
   gtm_engineering:
     title: GTM engineering
     text: CRM en de techniek die marketing, verkoop en opvolging met elkaar verbindt.
+    name: ''
+  ai_geletterdheid:
+    title: AI-geletterdheid
+    text: Opleidingen voor groepen, over hoe AI werkt en hoe je het veilig gebruikt. Wij doen daarna de invoering.
+    name: ''
+  cybersecurity:
+    title: Cybersecurity
+    text: Je systemen en data goed beveiligd, zeker zodra AI en klantgegevens samenkomen.
+    name: ''
+  iso:
+    title: ISO-certificering
+    text: Begeleiding naar een ISO-certificaat, als klanten of aanbestedingen erom vragen.
     name: ''
 
 cta:

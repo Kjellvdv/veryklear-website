@@ -1,5 +1,6 @@
 ---
-// Copy lives in src/content/copy/fractioneel.yaml. This file is layout only.
+// Copy lives in src/content/copy/in-house.yaml. This file is layout only.
+// Was /fractioneel until 2026-10-21 (Kjell: "fractioneel is not the right word").
 import Base from '../layouts/Base.astro';
 import Hero from '../components/Hero.astro';
 import Faq from '../components/Faq.astro';
@@ -7,12 +8,12 @@ import CtaFinal from '../components/CtaFinal.astro';
 import { PILLARS } from '../lib/articles.js';
 import { getCopy } from '../lib/copy.js';
 
-const c = await getCopy('fractioneel');
+const c = await getCopy('in-house');
 const booking = (await getCopy('site')).booking_page;
 const last = c.timeline.steps.length - 1;
 ---
 
-<Base title={c.meta.title} description={c.meta.description} path="/fractioneel">
+<Base title={c.meta.title} description={c.meta.description} path="/in-house">
   <Hero title={c.hero.title_html} lead={c.hero.lead}>
     <a class="btn btn-white" href={booking}>{c.hero.button_primary}</a>
     <a class="btn btn-ghost-white" href="#vergelijking">{c.hero.button_secondary}</a>
@@ -37,6 +38,22 @@ const last = c.timeline.steps.length - 1;
     </div>
   </section>
 
+  {/* Fit comes before what's included (Kjell, 2026-10-21). */}
+  <section class="block" style="padding-top:0">
+    <div class="wrap">
+      <div class="grid-2 fit">
+        <div class="card card-paper yes">
+          <h3 class="h-card">{c.fit.yes_title}</h3>
+          <ul>{c.fit.yes.map((l) => <li>{l}</li>)}</ul>
+        </div>
+        <div class="card card-tint no">
+          <h3 class="h-card">{c.fit.no_title}</h3>
+          <ul>{c.fit.no.map((l) => <li>{l}</li>)}</ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="block" style="padding-top:0">
     <div class="wrap">
       <div class="s-head"><h2 class="h-section">{c.included.title}</h2></div>
@@ -50,7 +67,7 @@ const last = c.timeline.steps.length - 1;
           <div class="leads-to" style="margin-top:0">{PILLARS.map((p) => <span>{p}</span>)}</div>
         </div>
       </div>
-      <div class="grid-4" style="margin-top:20px">
+      <div class="grid-3" style="margin-top:20px">
         {c.included.extras.map((e) => (
           <div class="card card-paper"><span class="label">{c.included.extra_label}</span><h3 class="h-card" style="margin-top:6px">{e.title}</h3><p class="muted">{e.text}</p></div>
         ))}
@@ -72,29 +89,6 @@ const last = c.timeline.steps.length - 1;
             </dl>
           </div>
         ))}
-      </div>
-    </div>
-  </section>
-
-  <section class="block" style="padding-top:0">
-    <div class="wrap">
-      <div class="grid-2 fit">
-        <div class="card card-paper yes">
-          <h3 class="h-card">{c.fit.yes_title}</h3>
-          <ul>{c.fit.yes.map((l) => <li>{l}</li>)}</ul>
-        </div>
-        <div class="card card-tint no">
-          <h3 class="h-card">{c.fit.no_title}</h3>
-          <ul>{c.fit.no.map((l) => <li>{l}</li>)}</ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="block" style="padding-top:0">
-    <div class="wrap">
-      <div class="card card-paper">
-        <p style="font-weight:600">{c.note}</p>
       </div>
     </div>
   </section>

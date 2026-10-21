@@ -9,7 +9,8 @@ export const SERVICE_PATHS = [
   "/positionering",
   "/marketing-strategie",
   "/ai",
-  "/fractioneel",
+  "/in-house",
+  "/fractioneel", // the same page before 2026-10-21
 ] as const;
 
 export const TABS = [

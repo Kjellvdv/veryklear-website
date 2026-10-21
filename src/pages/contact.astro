@@ -60,6 +60,7 @@ const [street, city] = site.address.split(', ');
           <span class="label">{c.practical.label}</span>
           <div class="detail-list" style="margin-top:12px">
             <div><span>{c.practical.email_label}</span><a href={`mailto:${site.email}`}>{site.email}</a></div>
+            {site.phone && <div><span>{c.practical.phone_label}</span><a href={`tel:${site.phone.replace(/[^+\d]/g, '')}`}>{site.phone}</a></div>}
             <div><span>{c.practical.address_label}</span><b style="text-align:right">{street}<br />{city}</b></div>
             <div><span>{c.practical.vat_label}</span><b>{site.vat_number}</b></div>
           </div>

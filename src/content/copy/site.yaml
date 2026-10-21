@@ -26,13 +26,15 @@ cta:
   button: Plan een strategiesessie
 
 footer:
-  about: Positionering, marketing strategie en AI. Op projectbasis, of fractioneel als je een vaste partner wil.
+  about: Positionering, marketing strategie en AI implementeren. Op projectbasis, of in-house als je iemand wil die wekelijks meewerkt.
   col_services: Diensten
   col_company: Very Klear
   col_contact: Contact
   col_made_by_us: Door ons gemaakt
   # Legal details: keep in line with ~/brands/very-klear/memory/project_very-klear-entity.md
   email: kjell@veryklear.be
+  # Shown on /contact and in the footer once filled in, e.g. '+32 470 12 34 56'.
+  phone: ''
   address: Breydelhofstraat 52, 8900 Ieper
   vat_number: BE1014759659
   copyright: Very Klear · Kjell Vandevyvere

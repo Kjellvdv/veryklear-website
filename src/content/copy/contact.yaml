@@ -18,7 +18,7 @@ form:
   topics_label: Waarover gaat het?
   # The pillar names are added automatically in front of these.
   topics_extra:
-    - Fractioneel
+    - In-house
     - Weet ik nog niet
   message_label: Waar ben je mee bezig?
   message_placeholder: Een paar zinnen volstaan. Wat loopt er goed, wat niet?
@@ -47,6 +47,7 @@ session:
 practical:
   label: Praktisch
   email_label: E-mail
+  phone_label: Telefoon
   address_label: Adres
   vat_label: BTW
 
@@ -58,4 +59,4 @@ after:
     - title: Strategiesessie
       text: Een uur samen, als het zinvol lijkt. Anders zeggen we dat meteen.
     - title: Voorstel
-      text: Eén of meer diensten, of fractioneel, met een duidelijke scope.
+      text: Eén of meer diensten, of in-house, met een duidelijke scope.

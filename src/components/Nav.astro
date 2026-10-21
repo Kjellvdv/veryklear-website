@@ -5,9 +5,16 @@ import { getCopy } from '../lib/copy.js';
 const site = await getCopy('site');
 const { path = '' } = Astro.props;
 
+// Diensten opens a dropdown with the three diensten and the partners
+// (Kjell, 2026-10-21). On phones the sub-items show indented under it.
 const links = [
-  { href: '/diensten', label: 'Diensten' },
-  { href: '/fractioneel', label: 'Fractioneel' },
+  { href: '/diensten', label: 'Diensten', sub: [
+    { href: '/positionering', label: 'Positionering' },
+    { href: '/marketing-strategie', label: 'Marketing strategie' },
+    { href: '/ai', label: 'AI implementeren' },
+    { href: '/partners', label: 'Partners' },
+  ] },
+  { href: '/in-house', label: 'In-house' },
   { href: '/artikels', label: 'Artikels' },
   { href: '/contact', label: 'Contact' },
 ];
@@ -18,7 +25,14 @@ const isActive = (href) => (href === '/' ? path === '' || path === '/' : path.st
   <div class="wrap nav-row">
     <a href="/" aria-label="Very Klear, naar de startpagina"><svg class="logo" viewBox="0 0 960 163" aria-hidden="true"><use href="#vk-lockup" /></svg></a>
     <nav class="nav-links" aria-label="Hoofdmenu">
-      {links.map((l) => (
+      {links.map((l) => l.sub ? (
+        <div class="nav-drop">
+          <a href={l.href} class={isActive(l.href) || l.sub.some((s) => isActive(s.href)) ? 'is-active' : undefined} aria-current={isActive(l.href) ? 'page' : undefined} aria-haspopup="true">{l.label}<span class="nav-caret" aria-hidden="true"></span></a>
+          <div class="nav-sub">
+            {l.sub.map((s) => <a href={s.href} aria-current={isActive(s.href) ? 'page' : undefined}>{s.label}</a>)}
+          </div>
+        </div>
+      ) : (
         <a href={l.href} class={isActive(l.href) ? 'is-active' : undefined} aria-current={isActive(l.href) ? 'page' : undefined}>{l.label}</a>
       ))}
     </nav>

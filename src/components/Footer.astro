@@ -19,13 +19,14 @@ const year = new Date().getFullYear();
         <li><a href="/ai">AI implementeren</a></li>
       </ul></div>
       <div class="f-col"><h4>{f.col_company}</h4><ul>
-        <li><a href="/fractioneel">Fractioneel</a></li>
+        <li><a href="/in-house">In-house</a></li>
         <li><a href="/partners">Partners</a></li>
         <li><a href="/artikels">Artikels</a></li>
         <li><a href="/contact">Contact</a></li>
       </ul></div>
       <div class="f-col"><h4>{f.col_contact}</h4><ul>
         <li><a href={`mailto:${f.email}`}>{f.email}</a></li>
+        {f.phone && <li><a href={`tel:${f.phone.replace(/[^+\d]/g, '')}`}>{f.phone}</a></li>}
         <li>{f.address}</li>
       </ul></div>
       <div class="f-col"><h4>{f.col_made_by_us}</h4><ul>
