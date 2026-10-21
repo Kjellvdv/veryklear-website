@@ -92,7 +92,9 @@ td{border-bottom:1px solid var(--line);border-left:1px solid var(--line);padding
 const KEY='vk-copy-review-{{DATE}}';
 let edits={};try{edits=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){}
 const cells=[...document.querySelectorAll('.t')];
-cells.forEach(c=>{c.dataset.orig=c.textContent;if(c.dataset.id in edits){c.textContent=edits[c.dataset.id];c.classList.add('changed')}});
+cells.forEach(c=>{c.dataset.orig=c.textContent;const k=c.dataset.id;if(k in edits){if(edits[k]===c.dataset.orig){delete edits[k]}else{c.textContent=edits[k];c.classList.add('changed')}}});
+// Drop stored edits whose field no longer exists or already matches the file.
+Object.keys(edits).forEach(k=>{if(!document.querySelector('[data-id="'+CSS.escape(k)+'"]'))delete edits[k]});
 function save(){try{localStorage.setItem(KEY,JSON.stringify(edits))}catch(e){};const n=Object.keys(edits).length;document.getElementById('count').textContent=n?n+' changed':''}
 cells.forEach(c=>c.addEventListener('input',()=>{const k=c.dataset.id;if(c.textContent===c.dataset.orig){delete edits[k];c.classList.remove('changed')}else{edits[k]=c.textContent;c.classList.add('changed')};save()}));
 document.getElementById('copy').onclick=async()=>{const out=Object.entries(edits).map(([k,v])=>{const[f,p]=k.split('::');const orig=document.querySelector('[data-id="'+CSS.escape(k)+'"]').dataset.orig;return '### '+f+' → '+p+'\\nWas: '+orig+'\\nNow: '+v}).join('\\n\\n');if(!out){alert('No changes yet.');return}const msg='Write these site copy edits into src/content/copy:\\n\\n'+out;try{await navigator.clipboard.writeText(msg);alert('Copied '+Object.keys(edits).length+' changes.')}catch(e){prompt('Copy this:',msg)}};
