@@ -7,12 +7,12 @@
 # No prices on this page: in-house pricing is null in products.yml.
 
 meta:
-  title: Externe head of marketing | Very Klear Marketing Agency
-  description: Een externe head of marketing die een dag (of twee) per week bij jou meewerkt. Van strategie tot systemen en het operationele werk, voor een vaste prijs per maand.
+  title: Freelance head of marketing | Very Klear Marketing Agency
+  description: Je marketing uitbesteden aan een freelance head of marketing, die een dag (of twee) per week bij jou meewerkt. Van strategie tot systemen en het operationele werk.
 
 hero:
-  title_html: Je externe head of marketing,<br />een dag (of twee) per week in huis.
-  lead: Geen full-time marketing team nodig? Elke week draaien we een dag (of twee) mee in jouw bedrijf. We vertrekken bij strategie, bouwen de systemen erachter en doen ook het operationele werk.
+  title_html: Je marketing uitbesteden<br />aan een freelance head of marketing.
+  lead: Geen full-time marketing team nodig? Als freelance head of marketing draaien we elke week een dag (of twee) mee in jouw bedrijf. We vertrekken bij strategie, bouwen de systemen erachter en doen ook het operationele werk.
   button_primary: Plan een strategiesessie
   button_secondary: Vergelijk met een project
 
@@ -104,6 +104,8 @@ vcrater:
 faq:
   title: Vragen over in-house
   items:
+  - q: Wat doet een freelance head of marketing?
+    a: 'Hetzelfde als een head of marketing in loondienst: richting geven, kiezen wat telt en zorgen dat het ook gebeurt. Alleen werk je samen voor een dag (of twee) per week, zonder voltijdse aanwerving. Je marketing uitbesteden betekent hier dus niet dat ze uit handen is: we werken mee in je team.'
   - q: Waarom geen voltijdse marketeer aanwerven?
     a: 'Als er genoeg werk is voor een voltijdse marketingverantwoordelijke, doe dat zeker. In-house is voor de fase ervoor: je hebt iemand nodig die richting geeft en het geheel opbouwt, maar nog geen volle job.'
   - q: Hoe lang loopt een in-house samenwerking?
