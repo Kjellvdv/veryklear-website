@@ -5,7 +5,7 @@
 
 overview:
   meta:
-    title: Artikels · Very Klear
+    title: Artikels · Very Klear Marketing Agency
     description: Eén idee per artikel, over positionering, marketing strategie en AI.
   title: Artikels.
   lead: Eén idee per artikel, over positionering, marketing strategie en AI. Kort genoeg om tussen twee afspraken te lezen.
@@ -22,7 +22,7 @@ overview:
 # {pillar} becomes the pillar name in lower case, {Pillar} as written.
 pillar_page:
   crumb: ← Alle artikels
-  meta_title: '{Pillar}: artikels · Very Klear'
+  meta_title: '{Pillar}: artikels · Very Klear Marketing Agency'
   meta_description: Artikels over {pillar}. Eén idee per artikel.
   title: '{Pillar}.'
   lead_before_link: Artikels over {pillar}. Wat we daarin voor je doen, lees je bij
