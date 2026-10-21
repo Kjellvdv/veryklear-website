@@ -7,30 +7,47 @@
 # doesn't ship locally. The `stages` block only exists on this page.
 
 meta:
-  title: AI implementeren | Very Klear Marketing Agency
-  description: AI in je marketing, zonder je identiteit te verliezen. Van de juiste tools kiezen tot content, interne tools en systemen die we mee bouwen.
+  title: AI implementeren in marketing | Very Klear Marketing Agency
+  description: 'AI implementeren in marketing met een AI-marketingstrategie op jouw niveau: de juiste tools en modellen, richtlijnen voor je stijl en systemen die we bouwen.'
 
 hero:
-  title_html: AI implementeren.<br />Sneller, en toch helemaal jij.
-  lead: Iedereen gebruikt AI, en het ziet er allemaal hetzelfde uit. Met een helder verhaal en duidelijke richtlijnen respecteert AI jouw designs en schrijfstijl. Wij zetten het op, van de eerste tools tot systemen die zelf draaien.
+  title_html: AI implementeren in marketing.<br />Sneller, en toch helemaal jij.
+  lead: Iedereen gebruikt AI, en het ziet er allemaal hetzelfde uit. Met een helder verhaal en strikte richtlijnen respecteert AI jouw designs en schrijfstijl, en krijg je beter en sneller resultaat. Wij maken een AI-marketingstrategie op jouw niveau en bouwen ze mee uit, van de eerste tools tot systemen die zelf draaien.
   button: Plan een strategiesessie
 
 when:
   title: Herkenbaar?
   items:
-  - Je weet niet met welke tools en processen je moet beginnen.
+  - Je weet niet met welke tools en modellen je moet beginnen.
   - Iedereen in je team gebruikt AI, maar elk op zijn eigen manier.
   - Wat eruit komt, klinkt niet als jou.
+  - Flyers en visuals uit AI zien er druk uit, en alles lijkt even belangrijk.
+  - Er is een tool gekocht of gebouwd, maar niemand gebruikt hem.
+  - De rekening van je AI-abonnementen loopt op, en je weet niet goed waarom.
+  - Je wil een website met AI bouwen, maar je weet niet hoe je dat onder controle houdt.
   - Dezelfde taak komt elke week terug en vreet tijd.
 questions:
   title: Wat we samen bouwen
   items:
-  - De juiste tools, goed ingesteld
-  - Richtlijnen zodat AI jouw stijl volgt
+  - De juiste tools en modellen, goed ingesteld
+  - Claude of Copilot op maat van je team
+  - Skills voor het werk dat steeds terugkomt
+  - Richtlijnen zodat AI jouw designs en schrijfstijl volgt
   - Content in je eigen stem
+  - Een website die je zelf kan nalezen en onderhouden
   - Interne tools op maat
   - CRM en opvolging die zichzelf bijhouden
   - Automatisering waar het kan, mensenwerk waar het moet
+consequences:
+  title: En wat doet dat?
+  lead: Zonder afspraken loopt AI in marketing meestal op drie plaatsen vast.
+  items:
+  - title: Alles klinkt hetzelfde
+    text: Zonder richtlijnen schrijft AI zoals het hele internet schrijft. Je teksten en visuals lijken dan op die van je concurrent, en je klant ziet het verschil niet meer.
+  - title: Tools die blijven liggen
+    text: Er komt een tool bij omdat het kan. Maar als de data niet klopt, als hij geen bestaand werk vervangt of als niemand hem onderhoudt, dan gebruikt na een maand niemand hem nog.
+  - title: Een hoge rekening
+    text: Wie voor elke taak het zwaarste model kiest, betaalt voor denkkracht die eenvoudig tekstwerk niet nodig heeft. Het werk gaat er ook niet sneller door.
 # Three stages, Kjell 2026-10-21. Very Klear is the one you talk to about
 # implementing; the AI-geletterdheid training for groups is a partner's.
 stages:
@@ -64,22 +81,21 @@ approach:
   title: Hoe gaan we te werk?
   steps:
   - title: Waar sta je nu?
-    text: Welke tools je team gebruikt, wat per persoon verschilt, en welke taak elke week terugkomt.
-  - title: AI, automatisering of mensenwerk
-    text: Per taak een eerlijke keuze. Veel heeft geen AI nodig, een eenvoudige automatisering volstaat. En sommige dingen blijven beter bij jou.
+    text: Welke tools je team gebruikt, wat per persoon verschilt, welke taak elke week terugkomt en welke data al klopt. Zo zien we snel waar AI helpt en waar niet.
+  - title: Hebben we dit echt nodig?
+    text: Per taak een eerlijke keuze tussen AI, een eenvoudige automatisering of mensenwerk. Voor we iets bouwen, weten we welk bestaand werk het vervangt en wie het straks onderhoudt. Veel heeft geen AI nodig.
   - title: We bouwen het mee
-    text: In de tools die je al gebruikt, naast je team. Geen rapport om zelf uit te voeren, maar iets dat draait en waarvan je ziet wat het opbrengt.
-
+    text: In de tools die je al gebruikt, naast je team. Met vaste instructies en kleine stappen die we één voor één nakijken. Geen rapport om zelf uit te voeren, wel iets dat draait en waarvan je ziet wat het opbrengt.
 deliver:
   title: Wat je krijgt
-  text: Een plan op jouw niveau, en wat erin staat ook gebouwd. Van goed ingestelde tools tot een interne tool of een systeem dat effectief draait.
+  text: Een AI-marketingstrategie op jouw niveau, en wat erin staat ook gebouwd. Van goed ingestelde tools en richtlijnen voor je stijl tot een interne tool of een systeem dat effectief draait.
 
 # The AI-specific block: what AI does, what stays with you.
 split:
   ai_title: AI doet
-  ai: Voorbereiden, samenvatten, opvolgen, eerste versies schrijven, het werk dat elke week terugkomt.
+  ai: Voorbereiden, samenvatten, opvolgen, eerste versies schrijven en het werk dat elke week terugkomt. Ook een zorgvuldig bericht aan veel mensen tegelijk.
   you_title: Jij doet
-  you: Het verkoopgesprek zelf, de lastige mail, de keuzes, alles waar je eigen stem in zit.
+  you: 'Het verkoopgesprek zelf, de lastige mail en de keuzes. En elk kort persoonlijk bericht: dat schrijf je zelf sneller dan je het met AI bijschaaft.'
   never_title: Wat we nooit automatiseren
   never:
   - Een antwoord aan een ontevreden klant
@@ -87,13 +103,36 @@ split:
   - Het bericht na een moeilijk gesprek
   - Het verkoopgesprek zelf
 
+transformation:
+  title: Hoe ziet dat eruit?
+  lead: Wat er verandert als AI een vaste plaats krijgt in je marketing.
+  before_title: Vandaag
+  before:
+  - Iedereen vraagt AI iets op zijn eigen manier.
+  - Teksten uit AI klinken als die van iedereen.
+  - Visuals zijn druk en alles vraagt evenveel aandacht.
+  - Voor elke taak draait hetzelfde zware model.
+  - Het terugkerende werk vreet elke week tijd.
+  after_title: Straks
+  after:
+  - Je team werkt met dezelfde instructies en krijgt hetzelfde resultaat.
+  - Je content klinkt als jouw bedrijf, omdat AI je verhaal en je schrijfstijl kent.
+  - Visuals tonen eerst wat telt, met witruimte en minder kleuren.
+  - Een licht model doet het eenvoudige werk, een zwaarder de rest, en de rekening blijft overzichtelijk.
+  - Dat werk loopt vanzelf, en jij houdt tijd over voor je klanten.
+mid_cta:
+  title: Benieuwd waar AI in jouw marketing past?
+  text: In een strategiesessie van een uurtje kijken we waar je staat en wat de eerste stap is. Ook als die stap geen AI is.
+  button: Plan een strategiesessie
 leads_to:
   title: En daarna?
   items:
   - title: Een volgende stap
     text: Van losse vragen naar vaste werkwijzen, of van vaste werkwijzen naar eigen tools.
+  - title: Een website met AI
+    text: Met vaste instructies en een uitgeschreven design, zodat je elke pagina zelf kan nalezen en bijsturen.
   - title: CRM en opvolging
-    text: Met een GTM engineering partner, als het technischer wordt.
+    text: Met een partner voor CRM en techniek, als het technischer wordt.
     href: /partners
   - title: In-house
     text: Als AI een vast onderdeel wordt van hoe je marketing en verkoop draaien.
@@ -104,21 +143,28 @@ partners:
   keys: [ai_geletterdheid, gtm_engineering, platform, cybersecurity]
 
 faq:
-  title: Vragen over AI implementeren
+  title: Vragen over AI implementeren in marketing
   items:
   - q: Wat bedoelen jullie met marketing engineering?
     a: Dat we niet enkel advies geven, maar zelf mee bouwen in je tools, naast je team. Een ingenieur ter plaatse, maar dan voor marketing en verkoop.
-  - q: Met welke tools beginnen we?
-    a: Dat hangt af van wat je ermee doet en wat je al gebruikt. Werk je in Microsoft 365, dan ligt Copilot voor de hand. Voor schrijven en analyse werken we zelf vooral met Claude. We zeggen eerlijk wat bij jou past, ook als dat het goedkopere is.
+  - q: Met welke AI-tools begin je in marketing?
+    a: Met wat je al hebt, en met wat je ermee wil doen. Werk je in Microsoft 365, dan ligt Copilot voor de hand. Voor schrijven en analyse werken we zelf vooral met Claude. We zeggen eerlijk wat bij jou past, ook als dat het goedkopere is. Is er toch iets nieuws nodig, dan zeggen we waarom en wat het kost.
+  - q: Welk AI-model gebruik je voor marketing?
+    a: Voor elke taak het model dat past. Een snel en goedkoop model zoals Claude Haiku volstaat voor eenvoudig tekstwerk, zoals samenvatten, sorteren en omzetten. Een middenmodel zoals Claude Sonnet doet het meeste dagelijkse werk. Het zwaarste model met de meeste denktijd heb je zelden nodig, en net daar loopt de rekening op.
+  - q: Hoe zorg je dat AI-content klinkt als je eigen bedrijf?
+    a: Met een helder verhaal en strikte richtlijnen. We schrijven je verhaal, je schrijfstijl en je design uit in vaste instructies die AI elke keer meekrijgt. Zonder die basis schrijft AI zoals iedereen, en daarom begint het vaak bij positionering.
+  - q: Wat automatiseer je beter niet met AI?
+    a: Een kort persoonlijk bericht schrijf je zelf sneller dan je het met AI bijschaaft. En hoe meer AI er rondgaat, hoe meer mensen persoonlijk contact waarderen. AI is er voor het werk dat terugkomt en voor een zorgvuldig bericht aan veel mensen tegelijk. Een antwoord aan een ontevreden klant of een offerte met een prijs blijft mensenwerk.
+  - q: Kan je een website bouwen met AI?
+    a: "Ja, en dat hoeft geen gok te zijn. AI schrijft de code, maar je kan elk bestand nalezen. Wat het doet mislukken, is te weinig voorbereiding. Daarom houden we de werkmap en de site apart, met versiebeheer vanaf dag één. Er is één centraal bestand met instructies en een uitgeschreven design. Wijzigingen zijn klein en we kijken ze één voor één na. Voor het onderhoud stellen vaste routines wijzigingen voor, en jij keurt ze goed. Zo is de site van Willow gebouwd: meer dan 500 pagina's, even goed gevonden in Google en sneller dan voordien."
   - q: AI, is dat niet iets voor grote bedrijven?
     a: Integendeel. Hoe kleiner je bedrijf, hoe makkelijker je ermee aan de slag kan. Zelfs met €100 per maand kom je trouwens al heel ver.
-  - q: Moeten we nieuwe tools kopen?
-    a: Zelden. We beginnen met wat je al hebt. Is er toch iets nodig, dan zeggen we waarom en wat het kost.
   - q: Is onze data veilig?
     a: Dat is een van de eerste dingen die we bekijken. Welke data gaat waar naartoe, en wat hoort daar niet thuis. Waar het zwaarder wordt, werken we met een cybersecurity partner.
+  - q: Geven jullie ook een AI-opleiding aan ons team?
+    a: 'Een opleiding AI-geletterdheid voor groepen doen we met een partner. Wij doen daarna de invoering zelf: tools instellen, richtlijnen schrijven en mee bouwen in je werk.'
   - q: Wat kost een AI-traject?
     a: Dat hangt af van wat je zoekt. We bespreken het na de strategiesessie, met een duidelijke scope.
-
 articles:
   title: Artikels over AI implementeren
 
