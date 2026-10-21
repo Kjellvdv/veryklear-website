@@ -11,83 +11,83 @@ meta:
 
 hero:
   title_html: Marketing met technische diepgang.<br />Van positionering tot AI.
-  lead: Voor bedrijven die willen groeien en het deftig willen doen. Op projectbasis, of in-house als je iemand wil die wekelijks meewerkt.
+  lead: Nieuwe website? Doordachte content? Ondersteuning voor sales? Alles begint bij een helder verhaal. We brengen het samen in kaart en zetten de juiste tools op zodat ook AI jouw designs en schrijfstijl respecteert.
   button_primary: Plan een strategiesessie
-  button_secondary: Bekijk de diensten
+  button_secondary: Bekijk onze diensten
 
 problems:
-  title: Waar het meestal vastloopt.
+  title: Waarom een helder verhaal zo belangrijk is
   items:
-    - quote: '"Onze klanten komen via via, maar niemand weet eigenlijk waarom."'
-      body: Zonder dat antwoord is elke keuze over kanalen, teksten of een nieuwe site een gok.
-      tag: Positionering
-    - quote: '"We doen een beetje van alles, en niets lijkt echt te werken."'
-      body: Een kanaal erbij omdat de concurrent het heeft. Een tool erbij omdat iedereen erover praat.
-      tag: Marketing strategie
-    - quote: '"Iedereen gebruikt AI, maar elk op zijn eigen manier."'
-      body: Verschillende tools, data die niemand controleert, en een factuur die stilaan oploopt.
-      tag: AI implementeren
+  - quote: '"Onze klanten komen via via, maar niemand weet eigenlijk waarom."'
+    body: Via via werkt. Maar het is niet schaalbaar. Ontdek exact waarom klanten voor jou kiezen, zodat je dat verhaal breder kan vertellen.
+    tag: Positionering
+  - quote: '"We doen een beetje van alles, en niets lijkt echt te werken."'
+    body: Zonder verhaal geen strategie. Wanneer je verhaal op punt staat, weet je ook wie je wil bereiken en hoe je dat best kan doen.
+    tag: Marketing strategie
+  - quote: '"AI? Dat ziet er allemaal hetzelfde uit."'
+    body: Klopt. Omdat iedereen hetzelfde vraagt. Maar met een duidelijk verhaal en strikte richtlijnen krijg je beter en sneller resultaat.
+    tag: AI implementeren
 
 paths:
-  title: Twee manieren om samen te werken.
+  title: Even testen of zetten we alle puntjes op de i?
   # Keep these two the same length: the two paths carry equal weight.
   project:
-    label: Op projectbasis
-    title: Eén vraag, goed uitgezocht.
-    body: Je kiest positionering, marketing strategie of AI implementeren, en beoordeelt het resultaat voor er iets bijkomt.
+    label: Samen werken aan één project
+    title: Een duidelijk doel bereiken
+    body: Wil je je verhaal op punt zetten, marketing strategie uitwerken of AI implementeren?
     link: Naar de diensten →
   fractional:
-    label: In-house
-    title: Een head of marketing, een dag per week in huis.
-    body: 'Iemand die elke week een dag meewerkt: alle drie de diensten, de systemen erachter en het operationele werk, zonder voltijdse aanwerving.'
+    label: Wekelijks in-house meewerken
+    title: Een externe head of marketing
+    body: 'Elke week draaien we één of twee dagen mee om je volledige marketing te dragen met behulp van AI (en externe partners).'
     link: Naar in-house →
 
 pillars:
-  title: Drie diensten die in elkaar overlopen.
-  link: Alle details →
+  title: Waar beginnen we?
+  link: Naar de diensten →
   items:
-    - title: Positionering
-      questions:
-        - In welke markt speel je echt?
-        - Wie is je ideale klant?
-        - Waarom kiest die voor jou?
-    - title: Marketing strategie
-      questions:
-        - Welke kanalen, en welke niet?
-        - Hoeveel tijd, mensen en tools?
-        - Klopt de weg van advertentie tot site?
-    - title: AI implementeren
-      questions:
-        - Welk model, en hoe stel je het in?
-        - Welke content en tools bouw je ermee?
-        - Wat blijft beter mensenwerk?
+  - title: Positionering
+    questions:
+    - In welke markt speel je echt?
+    - Wie is je ideale klant?
+    - Waarom kiest die voor jou?
+  - title: Marketing strategie
+    questions:
+    - Welke kanalen wel, en welke niet?
+    - Veel content of veel diepgang?
+    - Meer focus op sales, marketing of product?
+  - title: AI implementeren
+    questions:
+    - Waar beginnen we?
+    - Hoe kan ik marketing automatiseren?
+    - Wat blijft beter mensenwerk?
 
 statement:
-  title: Strategie en uitvoering bij dezelfde persoon. Geen overdracht, geen presentatie die in een lade belandt.
-  body: Wat we uitzoeken, bouwen we ook. En wat niet nodig is, zeggen we gewoon.
+  title: Geen full-time marketing team nodig?
+  body: 'Op 1 of 2 dagen per week regelen we alles: van socials tot sales-ondersteuning en website.'
   # Facts must be true and checkable. No "seven years of AI".
   facts:
-    - value: 7 jaar
-      text: B2B tech marketing, van startups tot scale-ups
+  - value: 7 jaar
+    text: B2B tech marketing, van startups tot scale-ups
     # The number in this fact is counted from partners.yaml; {n} is replaced.
-    - value: '{n} partners'
-      text: vaste partners voor wat buiten onze diensten valt
-      href: /partners
-    - value: 1 aanspreekpunt
-      text: van het eerste gesprek tot de uitvoering
+  - value: '{n} partners'
+    text: vaste partners voor extra expertise
+    href: /partners
+  - value: 1 aanspreekpunt
+    text: van het eerste gesprek tot de uitvoering
 
 steps:
-  title: Zo begin je.
+  title: Een samenwerking verkennen?
   items:
-    - title: Een strategiesessie
-      body: Een uur over wat nu werkt en wat niet. Geen pitch. Het meeste nuttige zit al in je zaak.
-      meta: 60 minuten
-    - title: Eén dienst, of in-house
-      body: Klein genoeg om op zichzelf te beoordelen. Of meteen een vaste partner als dat al duidelijk is.
-      meta: Een paar maanden, met vaste momenten
-    - title: Kijken wat het opbracht
-      body: Pas daarna beslis je of er iets bij moet. Bijsturen hoort erbij, er is geen enige waarheid.
-      meta: Testen, bijsturen, leren
+  - title: Boek een strategiesessie
+    body: Vertel ons wat je zoekt, waar je vastzit, en waar je naartoe wil.
+    meta: 60 minuten
+  - title: Krijg een voorstel
+    body: Als we de juiste partij zijn om je te helpen, stellen we de volgende stap voor.
+    meta: Project of in-house
+  - title: Start de samenwerking
+    body: Zodra alles in orde is, gaan we van start. Wij werken snel dus zorg maar dat je mee kan.
+    meta: We vliegen erin hé
 
 # Only shows once at least one artikel is published.
 recent:
@@ -95,21 +95,21 @@ recent:
   link: Alle artikels →
 
 faq:
-  title: Wat mensen ons meestal vragen.
-  button: Stel je vraag
+  title: Wat we af en toe eens horen
+  button: Stel je eigen vraag
   items:
-    - q: Voor wie werken jullie?
-      a: Voor bedrijven in Vlaanderen die willen groeien en het deftig willen doen. Technische bedrijven passen het best. Wie iets maakt of verkoopt dat wat uitleg vraagt, heeft het meest aan onze achtergrond.
-    - q: We krijgen al ons werk via via. Hebben wij dat wel nodig?
-      a: Mond-tot-mond is een kanaal, en meestal een goed. De vraag is of je weet waarom het werkt, want dat vertelt je hoe je er meer van krijgt.
-    - q: AI, is dat niet iets voor grote bedrijven?
-      a: Meestal niet. Een tool die je al betaalt, goed ingesteld, brengt je verder dan de meeste bedrijven ooit geraken. Een echt platform is pas nodig als je daar tegen de grenzen loopt.
-    - q: Wat kost het?
-      a: 'Dat hangt af van wat er nodig is, en dat bespreken we na de strategiesessie, met een duidelijke scope. We zijn niet de goedkoopste: goedkoper dan een groot bureau, duurder dan het nichtje dat ook wat teksten schrijft.'
-    - q: Wat is het verschil tussen op projectbasis en in-house?
-      a: Op projectbasis kies je één dienst en beoordeel je het resultaat voor er iets bijkomt. In-house werkt er elke week een dag iemand bij jou mee, die de systemen opzet en ook het operationele werk doet, van 0 naar 1. Beide zijn een normale manier om te beginnen.
+  - q: Voor wie werken jullie?
+    a: Voor bedrijven in Vlaanderen die willen groeien en het deftig willen doen. Technische bedrijven passen het best. Wie iets maakt of verkoopt dat wat uitleg vraagt, heeft het meest aan onze achtergrond.
+  - q: We krijgen al ons werk via via. Hebben wij dat wel nodig?
+    a: Mond-tot-mond is een goed kanaal, maar het is niet schaalbaar. De vraag is of je weet waarom het werkt, want dat vertelt je hoe je nog meer klanten kan krijgen.
+  - q: AI, is dat niet iets voor grote bedrijven?
+    a: Integendeel. Hoe kleiner je bedrijf, hoe makkelijker je ermee aan de slag kan. Zelfs met €100 per maand kom je trouwens al heel ver.
+  - q: Wat kost een samenwerking?
+    a: 'Dat hangt af van wat je zoekt en dat bespreken we na de strategiesessie, met een duidelijke scope. We zijn niet de goedkoopste maar zoals ze zeggen: "If you pay peanuts, you get monkeys."'
+  - q: Wat is het verschil tussen een project en in-house?
+    a: Op projectbasis spreken we een duidelijke scope af en krijg je waarvoor je betaalt. In-house werken we elke week een dag (of twee) bij jou mee en volgen we op wat er die week nodig is. We implementeren ook steeds nieuwe systemen waar je verder op kan bouwen. Hiervoor betaal je een vaste prijs per maand.
 
 # Closing red block. Leave out to use the default from site.yaml.
 cta:
-  heading: Eén uur om te weten wat de moeite waard is.
-  body: Denken we dat je ons niet nodig hebt, dan zeggen we dat ook. Dat je huidige aanpak volstaat, is hier een normaal antwoord.
+  heading: Even bellen?
+  body: Graag wat meer info? Wil je uitzoeken of het een goede match zal zijn? Of gewoon eens een uurtje sparren over marketing? No problemo.
