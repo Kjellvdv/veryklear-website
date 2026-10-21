@@ -8,11 +8,11 @@
 
 meta:
   title: Head of marketing in-house · Very Klear
-  description: Een head of marketing die elke week een dag bij jou meewerkt. De systemen worden opgezet, en het operationele werk gebeurt ook, zonder voltijdse aanwerving.
+  description: Een head of marketing die elke week een dag (of twee) bij jou meewerkt. De systemen worden opgezet, en het operationele werk gebeurt ook, zonder voltijdse aanwerving.
 
 hero:
-  title_html: Je head of marketing,<br />een dag per week in huis.
-  lead: Iemand die elke week een dag bij jou meewerkt. Ondertussen zetten we de systemen op, en gebeurt ook het operationele werk. Van 0 naar 1, met dezelfde persoon en zonder voltijdse aanwerving.
+  title_html: Je head of marketing,<br />een dag (of twee) per week in huis.
+  lead: Iemand die elke week een dag (of twee) bij jou meewerkt. Ondertussen zetten we de systemen op, en gebeurt ook het operationele werk. Van 0 naar 1, met dezelfde persoon en zonder voltijdse aanwerving.
   button_primary: Plan een strategiesessie
   button_secondary: Vergelijk met op projectbasis
 
@@ -66,7 +66,7 @@ compare:
     - title: In-house
       rows:
         - label: Wat je koopt
-          value: 'Een head of marketing, een dag per week in huis: alle drie de diensten, de systemen en het operationele werk'
+          value: 'Een head of marketing, een dag (of twee) per week in huis: alle drie de diensten, de systemen en het operationele werk'
         - label: Duur
           value: Doorlopend, met vaste momenten
         - label: Goed als
