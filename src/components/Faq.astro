@@ -1,7 +1,16 @@
 ---
 // items: [{ q, a }] from a page's copy file. First item opens by default.
+// Also emits FAQPage structured data from the same items (a JSON data block,
+// nothing runs), so Google can show the answers in search results.
 const { items = [] } = Astro.props;
+const faqData = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: items.map(({ q, a }) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })),
+};
 ---
+
+{items.length > 0 && <script type="application/ld+json" set:html={JSON.stringify(faqData)} />}
 
 <div class="card card-paper faq">
   {items.map(({ q, a }, i) => (

@@ -4,12 +4,35 @@ import Footer from '../components/Footer.astro';
 import LogoSymbol from '../components/LogoSymbol.astro';
 import '../styles/global.css';
 import { ogPath } from '../og/pages.js';
+import { getCopy } from '../lib/copy.js';
 
 const { title, description, path = '' } = Astro.props;
 
 // PREVIEW MODE. Off since 2026-10-06: the site is live (www.veryklear.com since 2026-10-14).
 // While true every page ships noindex and no canonical. See DEPLOY.md.
 const PREVIEW = false;
+
+// Structured data for search engines (2026-10-21): who Very Klear is and where.
+// A JSON data block, not a script that runs, so the CSP and the no-measuring rule
+// are untouched. Contact details come from site.yaml, like the footer.
+const { footer: f } = await getCopy('site');
+const [street, city] = f.address.split(', ');
+const [postalCode, ...town] = (city || '').split(' ');
+const org = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService',
+  name: 'Very Klear',
+  alternateName: 'Very Klear Marketing Agency',
+  url: Astro.site.href,
+  logo: new URL('/favicon.svg', Astro.site).href,
+  email: f.email,
+  ...(f.phone ? { telephone: f.phone } : {}),
+  vatID: f.vat_number,
+  address: { '@type': 'PostalAddress', streetAddress: street, postalCode, addressLocality: town.join(' '), addressCountry: 'BE' },
+  areaServed: { '@type': 'AdministrativeArea', name: 'Vlaanderen' },
+  founder: { '@type': 'Person', name: 'Kjell Vandevyvere' },
+  knowsAbout: ['Positionering', 'Marketingstrategie', 'AI implementeren in marketing', 'Freelance head of marketing'],
+};
 ---
 
 <!doctype html>
@@ -34,6 +57,7 @@ const PREVIEW = false;
     {PREVIEW
       ? <meta name="robots" content="noindex, nofollow" />
       : <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site).href} />}
+    <script type="application/ld+json" set:html={JSON.stringify(org)} />
   </head>
   <body>
     <LogoSymbol />
