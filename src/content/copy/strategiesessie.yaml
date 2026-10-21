@@ -5,20 +5,20 @@
 
 meta:
   title: Plan een strategiesessie | Very Klear Marketing Agency
-  description: Kies een moment voor een strategiesessie van een uur met Very Klear.
+  description: Boek een strategiesessie van een uur met Very Klear. Vertel ons wat je zoekt, waar je vastzit en waar je naartoe wil.
 
 # Title and intro at the top of the calendar card (the page has no hero).
 intro:
-  title: Plan een strategiesessie.
-  lead: Een uur over wat nu werkt en wat niet. Kies hieronder een moment dat je past.
+  title: Boek een strategiesessie.
+  lead: Vertel ons wat je zoekt, waar je vastzit en waar je naartoe wil. Kies hieronder een moment dat je past.
 
 side:
   title: Wat je eruit haalt
   points:
-    - 60 minuten, online of bij jou
-    - Een richting waar je mee verder kan
-    - Waar je best begint
-    - Een eerlijk 'nee' als je ons niet nodig hebt
+  - 60 minuten, online of bij jou
+  - Een richting waar je mee verder kan
+  - Waar je best begint
+  - Een eerlijk 'nee' als je ons niet nodig hebt
   question: Liever eerst een vraag stellen?
   question_link: Stuur een bericht →
 

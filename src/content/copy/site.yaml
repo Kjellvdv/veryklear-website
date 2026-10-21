@@ -21,8 +21,8 @@ dienst_page:
 
 # Default closing red block. A page can override it with its own cta: section.
 cta:
-  heading: Eén uur om te weten wat de moeite waard is.
-  body: Denken we dat je ons niet nodig hebt, dan zeggen we dat ook. Dat je huidige aanpak volstaat, is hier een normaal antwoord.
+  heading: Even bellen?
+  body: Graag wat meer info? Wil je uitzoeken of het een goede match zal zijn? Of gewoon eens een uurtje sparren over marketing? No problemo.
   button: Plan een strategiesessie
 
 footer:

@@ -4,7 +4,7 @@
 
 meta:
   title: Contact | Very Klear Marketing Agency
-  description: Plan een strategiesessie of stuur een mail naar Very Klear.
+  description: Boek een strategiesessie of stuur een bericht naar Very Klear.
 
 form:
   title: Stuur een bericht
@@ -18,8 +18,8 @@ form:
   topics_label: Waarover gaat het?
   # The pillar names are added automatically in front of these.
   topics_extra:
-    - In-house
-    - Weet ik nog niet
+  - In-house
+  - Weet ik nog niet
   message_label: Waar ben je mee bezig?
   message_placeholder: Een paar zinnen volstaan. Wat loopt er goed, wat niet?
   message_hint: Hoe concreter, hoe nuttiger ons antwoord.
@@ -36,12 +36,12 @@ form:
 session:
   label: De aanbevolen eerste stap
   title: Strategiesessie
-  body: Eén uur, en je weet waar je het best begint.
+  body: Een uurtje, en je weet waar je best begint.
   points:
-    - 60 minuten, online of bij jou
-    - Een richting waar je mee verder kan
-    - Waar je best begint
-    - Een eerlijk 'nee' als je ons niet nodig hebt
+  - 60 minuten, online of bij jou
+  - Een richting waar je mee verder kan
+  - Waar je best begint
+  - Een eerlijk 'nee' als je ons niet nodig hebt
   button: Kies een moment
 
 practical:
@@ -54,9 +54,9 @@ practical:
 after:
   title: Wat er na je bericht gebeurt.
   steps:
-    - title: Antwoord
-      text: Een eerste, persoonlijke reactie op wat je schreef.
-    - title: Strategiesessie
-      text: Een uur samen, als het zinvol lijkt. Anders zeggen we dat meteen.
-    - title: Voorstel
-      text: Eén of meer diensten, of in-house, met een duidelijke scope.
+  - title: Antwoord
+    text: Een eerste, persoonlijke reactie op wat je schreef.
+  - title: Strategiesessie
+    text: Een uurtje samen om te verkennen wat je zoekt, als het zinvol lijkt. Anders zeggen we dat meteen.
+  - title: Voorstel
+    text: Als we de juiste partij zijn, stellen we een project of in-house voor.

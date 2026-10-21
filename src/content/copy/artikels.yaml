@@ -6,9 +6,9 @@
 overview:
   meta:
     title: Artikels | Very Klear Marketing Agency
-    description: Eén idee per artikel, over positionering, marketing strategie en AI.
+    description: Eén idee per artikel, over positionering, marketingstrategie en AI.
   title: Artikels.
-  lead: Eén idee per artikel, over positionering, marketing strategie en AI. Kort genoeg om tussen twee afspraken te lezen.
+  lead: Eén idee per artikel, over positionering, marketingstrategie en AI. Kort genoeg om tussen twee afspraken te lezen.
   filter_all: Alles
   empty_title: Nog niets gepubliceerd.
   empty_body: Het eerste artikel komt binnenkort.
@@ -38,7 +38,7 @@ article:
   author: Kjell Vandevyvere
   reading_time: min lezen
   cta_title: Benieuwd wat dit voor jouw zaak betekent?
-  cta_body: Daar is de strategiesessie voor. Een uur, over jouw situatie.
+  cta_body: Daar is de strategiesessie voor. Een uurtje, over jouw situatie.
   cta_button: Plan een strategiesessie
   cta_more: Meer over {pillar}
   toc_label: In dit artikel
@@ -49,4 +49,4 @@ article:
 # Closing block on the overview and pillar pages (white, not red).
 cta:
   heading: Liever praten dan lezen?
-  body: Eén uur, over jouw zaak in plaats van in het algemeen.
+  body: Een uurtje, over jouw zaak in plaats van in het algemeen.

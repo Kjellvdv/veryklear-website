@@ -4,81 +4,79 @@
 # Source of truth for what this pillar is: ~/brands/very-klear/gtm/products.yml.
 
 meta:
-  title: Positionering | Very Klear Marketing Agency
-  description: Waar je zaak past in de markt, wie je ideale klant is en waarom die voor jou kiest. Het fundament onder je marketing.
+  title: Positioneringstraject | Very Klear Marketing Agency
+  description: 'Een positioneringstraject zet je verhaal op punt: waar je past in de markt, wie je ideale klant is en waarom die voor jou kiest.'
 
 hero:
-  title_html: Positionering.<br />Het fundament onder alles.
-  lead: Waar je zaak past in de markt, wie je ideale klant is, en waarom die voor jou kiest. Messaging, een website of een campagne volgen hieruit, niet omgekeerd.
+  title_html: Positionering.<br />Alles begint bij een helder verhaal.
+  lead: Waarom kiezen klanten voor jou? Wie wil je nog bereiken? En hoe vertel je dat zo dat het blijft hangen? We zoeken het samen uit, zodat je website, je content en ook AI hetzelfde verhaal vertellen.
   button: Plan een strategiesessie
 
 when:
-  title: Je zit hier als
+  title: Herkenbaar?
   items:
-    - Je kan niet in één zin zeggen waarom klanten voor jou kiezen.
-    - Je herschrijft je site, maar het voelt nooit juist.
-    - Je klanten komen via via, maar niemand weet eigenlijk waarom.
-    - Wat je maakt is technisch, en het uitleggen lukt niet in een paar woorden.
-    - Je start iets nieuws en wil het van bij het begin goed zetten.
-
+  - Je kan niet in één zin zeggen waarom klanten voor jou kiezen.
+  - Je herschrijft je site, maar het voelt nooit juist.
+  - Klanten komen via via, maar je weet niet goed waarom.
+  - Wat je maakt is technisch, en uitleggen lukt niet in een paar woorden.
+  - Je start iets nieuws en wil het meteen goed zetten.
 questions:
   title: Wat we samen uitzoeken
   items:
-    - In welke categorie speel je?
-    - Met wie word je vergeleken?
-    - Wie is je ideale klant?
-    - Wat gelooft en wil die klant?
-    - Wat maakt je echt anders?
-    - Waarom kiezen klanten voor jou?
-
+  - In welke markt speel je echt?
+  - Met wie word je vergeleken?
+  - Wie is je ideale klant?
+  - Wat wil die klant echt?
+  - Wat maakt je anders?
+  - Waarom kiest die voor jou?
 approach:
-  title: Hoe het verloopt
+  title: Hoe gaan we te werk?
   steps:
-    - title: Gesprekken met je beste klanten
-      text: Wat wilden ze oplossen, wat gebruikten ze eerder, en wanneer wisten ze dat het werkte. Daar zit het antwoord meestal al.
-    - title: Een eerste versie op één blad
-      text: Wie je klant is en wat je belooft, kort genoeg om te onthouden. Vroeg in het traject, zodat er iets is om te testen.
-    - title: Testen en bijsturen
-      text: We proberen het uit in teksten en gesprekken, kijken wat het deed, en passen aan. Er is geen enige waarheid.
+  - title: We bellen je beste klanten
+    text: Wat wilden ze oplossen, wat probeerden ze eerder, en wanneer wisten ze dat het werkte? Daar zit het antwoord meestal al.
+  - title: Je verhaal op één blad
+    text: Wie je klant is en wat je belooft, kort genoeg om te onthouden. Snel klaar, zodat we het kunnen testen.
+  - title: Testen en bijsturen
+    text: We gebruiken het in teksten en gesprekken, kijken wat het doet en passen aan.
 
 deliver:
   title: Wat je krijgt
-  text: Een richting die scherper wordt naarmate je ze gebruikt. Het blad over je klant en je belofte is een werkdocument, geen rapport voor de lade.
+  text: Een helder verhaal op één blad, en richtlijnen waarmee je team en je AI-tools het ook zo vertellen. Een werkdocument, geen rapport voor de lade.
 
 leads_to:
-  title: Waar het naartoe kan
+  title: En daarna?
   items:
-    - title: Messaging en teksten
-      text: Hoe je het zegt, op je site, in offertes en in gesprekken.
-    - title: Een nieuwe website
-      text: Met een designpartner, als je huidige site het verhaal niet draagt.
-      href: /partners
-    - title: Een communicatiecampagne
-      text: Als er iets te vertellen valt aan een grotere groep.
-    - title: Marketing strategie
-      text: Welke kanalen en hoeveel tijd, nu je weet voor wie.
-      href: /marketing-strategie
+  - title: Messaging en teksten
+    text: Je verhaal in je site, je offertes en je gesprekken.
+  - title: Een nieuwe website
+    text: Met een designpartner, als je huidige site je verhaal niet draagt.
+    href: /partners
+  - title: Een communicatiecampagne
+    text: Als er iets te vertellen valt aan een grotere groep.
+  - title: Marketingstrategie
+    text: Welke kanalen en hoeveel tijd, nu je weet voor wie.
+    href: /marketing-strategie
 
 partners:
-  title: Met wie we dit uitwerken
+  title: Met wie we samenwerken
   # Keys from partners.yaml
   keys: [design, fotografie]
 
 faq:
   title: Vragen over positionering
   items:
-    - q: Moet ik hier echt mee beginnen?
-      a: Meestal wel, want marketing strategie en AI bouwen erop voort. Staat je positionering al, dan zeggen we dat in de strategiesessie en begin je beter met iets anders.
-    - q: Is dit niet gewoon een nieuwe slogan?
-      a: Nee. Een slogan komt pas helemaal op het einde, als hij al nodig is. Dit gaat over wie je klant is en waarom die kiest, en daar volgt de rest uit.
-    - q: Hoe lang duurt het?
-      a: Een paar maanden, met vaste momenten. Het eerste blad is er vroeg, de rest is testen en bijsturen.
-    - q: Wat kost het?
-      a: Dat hangt af van wat er nodig is. We bespreken het na de strategiesessie, met een duidelijke scope.
+  - q: Moet ik echt hier beginnen?
+    a: Meestal wel. Marketingstrategie en AI bouwen verder op je verhaal. Staat dat al, dan zeggen we het in de strategiesessie en starten we ergens anders.
+  - q: Is dit niet gewoon een nieuwe slogan?
+    a: Nee. Een slogan komt pas helemaal op het einde, als hij al nodig is. Dit gaat over wie je klant is en waarom die kiest. De rest volgt daaruit.
+  - q: Hoe lang duurt het?
+    a: Enkele weken tot een paar maanden. Het eerste blad is er snel, de rest hangt vooral af van hoe snel je input en feedback geeft ;)
+  - q: Wat kost een positioneringstraject?
+    a: Dat hangt af van wat je zoekt. We bespreken het na de strategiesessie, met een duidelijke scope.
 
 articles:
   title: Artikels over positionering
 
 cta:
   heading: Weten of positionering je eerste stap is?
-  body: Daar is de strategiesessie voor. Een uur, en je weet waar je het best begint.
+  body: Daar is de strategiesessie voor. Een uurtje, en je weet waar je best begint.

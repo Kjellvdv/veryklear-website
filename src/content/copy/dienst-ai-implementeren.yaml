@@ -8,74 +8,71 @@
 
 meta:
   title: AI implementeren | Very Klear Marketing Agency
-  description: Marketing engineering bij jou in huis. Van het juiste model en een goed ingestelde Claude of Copilot tot content, interne tools en systemen voor marketing en verkoop.
+  description: AI in je marketing, zonder je identiteit te verliezen. Van de juiste tools kiezen tot content, interne tools en systemen die we mee bouwen.
 
 hero:
-  title_html: AI implementeren.<br />Van eerste stappen tot eigen tools.
-  lead: Marketing engineering bij jou in huis. We bouwen mee in je eigen tools, van content met AI tot interne tools en systemen voor verkoop en opvolging. En als je nog moet beginnen, zeggen we gewoon welk model je neemt en hoe je het instelt.
+  title_html: AI implementeren.<br />Sneller, en toch helemaal jij.
+  lead: Iedereen gebruikt AI, en het ziet er allemaal hetzelfde uit. Met een helder verhaal en duidelijke richtlijnen respecteert AI jouw designs en schrijfstijl. Wij zetten het op, van de eerste tools tot systemen die zelf draaien.
   button: Plan een strategiesessie
 
 when:
-  title: Je zit hier als
+  title: Herkenbaar?
   items:
-    - Je weet niet welk model je moet nemen, of hoe je Claude of Copilot goed instelt.
-    - Iedereen in je team gebruikt AI, maar elk anders.
-    - Dezelfde taak komt elke week terug en vreet tijd.
-    - Je wil content of een interne tool, maar niemand heeft tijd om die te bouwen.
-
+  - Je weet niet met welke tools en processen je moet beginnen.
+  - Iedereen in je team gebruikt AI, maar elk op zijn eigen manier.
+  - Wat eruit komt, klinkt niet als jou.
+  - Dezelfde taak komt elke week terug en vreet tijd.
 questions:
   title: Wat we samen bouwen
   items:
-    - Het juiste model, goed ingesteld
-    - Eén manier van werken voor het team
-    - Content in je eigen stem, met AI
-    - Interne tools op maat
-    - CRM en opvolging die zichzelf bijhouden
-    - Script waar het kan, AI waar het moet
-
-# Three stages: where a business stands with AI decides what's worth doing.
+  - De juiste tools, goed ingesteld
+  - Richtlijnen zodat AI jouw stijl volgt
+  - Content in je eigen stem
+  - Interne tools op maat
+  - CRM en opvolging die zichzelf bijhouden
+  - Automatisering waar het kan, mensenwerk waar het moet
 # Three stages, Kjell 2026-10-21. Very Klear is the one you talk to about
 # implementing; the AI-geletterdheid training for groups is a partner's.
 stages:
   title: Wat we doen, waar je ook staat.
-  lead: Wat zinvol is, hangt af van hoe ver je al staat met AI. Je hoeft niet bij het begin te starten.
+  lead: Hoe ver sta je al met AI? Je hoeft niet bij het begin te starten.
   items:
-    - name: Nog geen AI
-      situation: Je gebruikt nog geen AI, of enkel eens ChatGPT voor een mailtje.
-      what:
-        - Eerst praten over wat je vandaag tijd kost, pas daarna over tools
-        - De juiste tools voor wat jij nodig hebt, en wat ze kosten
-        - Afspraken over welke gegevens erin mogen en welke niet
-        - Een opleiding AI-geletterdheid voor je team, via een partner, over hoe AI werkt en hoe je het veilig gebruikt. Wij helpen bij de invoering zelf.
-    - name: Net begonnen
-      situation: Je hebt ChatGPT, Copilot of Claude, maar het blijft bij losse vragen.
-      what:
-        - Skills installeren voor het werk dat steeds terugkomt
-        - Goede gewoontes, van hoe je vraagt tot hoe je controleert
-        - Je tools aan elkaar koppelen, zoals mail, agenda, documenten en CRM
-        - Vaste instructies, zodat iedereen in je team hetzelfde resultaat krijgt
-    - name: Dagelijks met AI
-      situation: AI zit al elke dag in je werk, en je wil er meer uit halen.
-      what:
-        - Wat je nog kan automatiseren, en waar een mens moet blijven meekijken
-        - Waar de gaten zitten in je werkwijze en je tools
-        - Betere kwaliteit van je leads, je content en je designs
-        - Waar je op tokenkosten kan besparen
-        - Interne tools en systemen die we mee bouwen
+  - name: Nog geen AI
+    situation: Je gebruikt nog geen AI, of enkel eens ChatGPT voor een mailtje.
+    what:
+    - Eerst praten over wat je vandaag tijd kost, pas daarna over tools
+    - De juiste tools voor wat jij nodig hebt, en wat ze kosten
+    - Afspraken over welke gegevens erin mogen en welke niet
+    - Een opleiding AI-geletterdheid voor je team, via een partner, over hoe AI werkt en hoe je het veilig gebruikt. Wij helpen bij de invoering zelf.
+  - name: Net begonnen
+    situation: Je hebt ChatGPT, Copilot of Claude, maar het blijft bij losse vragen.
+    what:
+    - Skills installeren voor het werk dat steeds terugkomt
+    - Goede gewoontes, van hoe je vraagt tot hoe je controleert
+    - Je tools aan elkaar koppelen, zoals mail, agenda, documenten en CRM
+    - Vaste instructies, zodat iedereen in je team hetzelfde resultaat krijgt
+  - name: Dagelijks met AI
+    situation: AI zit al elke dag in je werk, en je wil er meer uit halen.
+    what:
+    - Wat je nog kan automatiseren, en waar een mens moet blijven meekijken
+    - Waar de gaten zitten in je werkwijze en je tools
+    - Betere kwaliteit van je leads, je content en je designs
+    - Waar je op tokenkosten kan besparen
+    - Interne tools en systemen die we mee bouwen
 
 approach:
-  title: Hoe het verloopt
+  title: Hoe gaan we te werk?
   steps:
-    - title: Waar sta je, waar loopt het vast?
-      text: Welke tools en modellen je team nu gebruikt, wat per persoon verschilt, en welke taak elke week terugkomt.
-    - title: AI, script of mensenwerk
-      text: Per taak een eerlijke keuze. Veel heeft geen AI nodig, een gewoon script volstaat. En sommige dingen blijven beter bij jou.
-    - title: We bouwen het mee
-      text: In de tools die je al gebruikt, naast je team. Geen rapport om zelf uit te voeren, maar iets dat draait en waarvan je ziet wat het opbrengt.
+  - title: Waar sta je nu?
+    text: Welke tools je team gebruikt, wat per persoon verschilt, en welke taak elke week terugkomt.
+  - title: AI, automatisering of mensenwerk
+    text: Per taak een eerlijke keuze. Veel heeft geen AI nodig, een eenvoudige automatisering volstaat. En sommige dingen blijven beter bij jou.
+  - title: We bouwen het mee
+    text: In de tools die je al gebruikt, naast je team. Geen rapport om zelf uit te voeren, maar iets dat draait en waarvan je ziet wat het opbrengt.
 
 deliver:
   title: Wat je krijgt
-  text: Een plan op jouw niveau, en wat erin staat ook gebouwd. Van een goed ingestelde Claude of Copilot tot een interne tool of een systeem dat effectief draait.
+  text: Een plan op jouw niveau, en wat erin staat ook gebouwd. Van goed ingestelde tools tot een interne tool of een systeem dat effectief draait.
 
 # The AI-specific block: what AI does, what stays with you.
 split:
@@ -85,46 +82,46 @@ split:
   you: Het verkoopgesprek zelf, de lastige mail, de keuzes, alles waar je eigen stem in zit.
   never_title: Wat we nooit automatiseren
   never:
-    - Een antwoord aan een ontevreden klant
-    - Een offerte met een prijs erin
-    - Het bericht na een moeilijk gesprek
-    - Het verkoopgesprek zelf
+  - Een antwoord aan een ontevreden klant
+  - Een offerte met een prijs erin
+  - Het bericht na een moeilijk gesprek
+  - Het verkoopgesprek zelf
 
 leads_to:
-  title: Waar het naartoe kan
+  title: En daarna?
   items:
-    - title: Een volgende stap
-      text: Van losse vragen naar vaste werkwijzen, of van vaste werkwijzen naar eigen tools.
-    - title: CRM en opvolging
-      text: Met een GTM engineering partner, als het technischer wordt.
-      href: /partners
-    - title: In-house
-      text: Als AI een vast onderdeel wordt van hoe je marketing en verkoop draaien.
-      href: /in-house
+  - title: Een volgende stap
+    text: Van losse vragen naar vaste werkwijzen, of van vaste werkwijzen naar eigen tools.
+  - title: CRM en opvolging
+    text: Met een GTM engineering partner, als het technischer wordt.
+    href: /partners
+  - title: In-house
+    text: Als AI een vast onderdeel wordt van hoe je marketing en verkoop draaien.
+    href: /in-house
 
 partners:
-  title: Met wie we dit uitwerken
+  title: Met wie we samenwerken
   keys: [ai_geletterdheid, gtm_engineering, platform, cybersecurity]
 
 faq:
   title: Vragen over AI implementeren
   items:
-    - q: Wat bedoelen jullie met marketing engineering?
-      a: Dat we niet enkel advies geven, maar zelf mee bouwen in je tools, naast je team. Een ingenieur ter plaatse, maar dan voor marketing en verkoop.
-    - q: Welk model moeten we nemen?
-      a: Dat hangt af van wat je ermee doet en wat je al gebruikt. Werk je in Microsoft 365, dan ligt Copilot voor de hand. Voor schrijven en analyse werken we zelf vooral met Claude. We zeggen eerlijk wat bij jou past, ook als dat het goedkopere is.
-    - q: AI, is dat niet iets voor grote bedrijven?
-      a: Meestal niet. Een tool die je al betaalt, goed ingesteld, brengt je verder dan de meeste bedrijven ooit geraken. Een echt platform is pas nodig als je daar tegen de grenzen loopt.
-    - q: Moeten we nieuwe tools kopen?
-      a: Zelden. We beginnen met wat je al hebt. Is er toch iets nodig, dan zeggen we waarom en wat het kost.
-    - q: Is onze data veilig?
-      a: Dat is een van de eerste dingen die we bekijken. Welke data gaat waar naartoe, en wat hoort daar niet thuis. Waar het zwaarder wordt, werken we met een cybersecurity partner.
-    - q: Wat kost het?
-      a: Dat hangt af van wat er nodig is. We bespreken het na de strategiesessie, met een duidelijke scope.
+  - q: Wat bedoelen jullie met marketing engineering?
+    a: Dat we niet enkel advies geven, maar zelf mee bouwen in je tools, naast je team. Een ingenieur ter plaatse, maar dan voor marketing en verkoop.
+  - q: Met welke tools beginnen we?
+    a: Dat hangt af van wat je ermee doet en wat je al gebruikt. Werk je in Microsoft 365, dan ligt Copilot voor de hand. Voor schrijven en analyse werken we zelf vooral met Claude. We zeggen eerlijk wat bij jou past, ook als dat het goedkopere is.
+  - q: AI, is dat niet iets voor grote bedrijven?
+    a: Integendeel. Hoe kleiner je bedrijf, hoe makkelijker je ermee aan de slag kan. Zelfs met €100 per maand kom je trouwens al heel ver.
+  - q: Moeten we nieuwe tools kopen?
+    a: Zelden. We beginnen met wat je al hebt. Is er toch iets nodig, dan zeggen we waarom en wat het kost.
+  - q: Is onze data veilig?
+    a: Dat is een van de eerste dingen die we bekijken. Welke data gaat waar naartoe, en wat hoort daar niet thuis. Waar het zwaarder wordt, werken we met een cybersecurity partner.
+  - q: Wat kost een AI-traject?
+    a: Dat hangt af van wat je zoekt. We bespreken het na de strategiesessie, met een duidelijke scope.
 
 articles:
   title: Artikels over AI implementeren
 
 cta:
   heading: Waar sta jij met AI?
-  body: Dat zoeken we uit in de strategiesessie. Een uur, en je weet wat de volgende stap is en wat die oplevert.
+  body: Dat zoeken we uit in de strategiesessie. Een uurtje, en je weet wat de volgende stap is.

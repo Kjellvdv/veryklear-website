@@ -7,87 +7,91 @@
 # No prices on this page: in-house pricing is null in products.yml.
 
 meta:
-  title: Head of marketing in-house | Very Klear Marketing Agency
-  description: Een head of marketing die elke week een dag (of twee) bij jou meewerkt. De systemen worden opgezet, en het operationele werk gebeurt ook, zonder voltijdse aanwerving.
+  title: Externe head of marketing | Very Klear Marketing Agency
+  description: Een externe head of marketing die een dag (of twee) per week bij jou meewerkt. Van strategie tot systemen en het operationele werk, voor een vaste prijs per maand.
 
 hero:
-  title_html: Je head of marketing,<br />een dag (of twee) per week in huis.
-  lead: Iemand die elke week een dag (of twee) bij jou meewerkt. Ondertussen zetten we de systemen op, en gebeurt ook het operationele werk. Van 0 naar 1, met dezelfde persoon en zonder voltijdse aanwerving.
+  title_html: Je externe head of marketing,<br />een dag (of twee) per week in huis.
+  lead: Geen full-time marketing team nodig? Elke week draaien we een dag (of twee) mee in jouw bedrijf. We vertrekken bij strategie, bouwen de systemen erachter en doen ook het operationele werk.
   button_primary: Plan een strategiesessie
-  button_secondary: Vergelijk met op projectbasis
+  button_secondary: Vergelijk met een project
 
 # The 0 -> 1 timeline. Four steps; the first shows "0", the last "1".
 timeline:
-  title: Wat 'van 0 naar 1' betekent.
+  title: Van 0 naar 1, wat betekent dat?
   steps:
-    - title: Vertrekpunt
-      text: Klanten via via, een site van jaren geleden, opvolging op goed geluk.
-    - title: De basis
-      text: 'Positionering vastgelegd: wie je klant is en waarom die voor jou kiest.'
-    - title: De motor
-      text: Kanalen gekozen, site en opvolging die op elkaar aansluiten.
-    - title: Het draait
-      text: Een systeem dat werkt zonder dat alles van één persoon afhangt.
+  - title: Vertrekpunt
+    text: Klanten via via, een site van jaren geleden, opvolging op goed geluk.
+  - title: De basis
+    text: 'Positionering vastgelegd: wie je klant is en waarom die voor jou kiest.'
+  - title: De motor
+    text: Kanalen gekozen, site en opvolging die op elkaar aansluiten.
+  - title: Het draait
+    text: Een systeem dat werkt zonder dat alles van één persoon afhangt.
 
 included:
-  title: Wat er in zit.
+  title: Wat zit erin?
   base_label: De basis
   base_title: Alle drie de diensten, samen.
   extra_label: Extra
   # Broadened 2026-10-21: systems get set up, and the operational work happens too.
   extras:
-    - title: Het operationele werk
-      text: Campagnes, content en opvolging die ook echt gebeuren, niet enkel op papier staan.
-    - title: Systemen die blijven draaien
-      text: Tools, automatisering en rapportering, zo opgezet dat ze ook werken op de dagen dat we er niet zijn.
-    - title: Mee aan tafel
-      text: Bij je team, je overleg en je partners, zodat marketing geen apart eilandje wordt.
-    - title: Klantenbeheer
-      text: Een CRM dat georganiseerd blijft, met gespreksnotities die achteraf nog iets zeggen.
-    - title: Van aanvraag naar verkoop
-      text: Een duidelijke weg, in plaats van een proces dat per persoon verschilt.
-    - title: Leadlijsten
-      text: Wie je nog kan bellen, en die lijst blijft ook bijgehouden.
+  - title: Het operationele werk
+    text: Campagnes, content en opvolging die ook echt gebeuren, niet enkel op papier staan.
+  - title: Systemen die blijven draaien
+    text: Tools, automatisering en rapportering, zo opgezet dat ze ook werken op de dagen dat we er niet zijn.
+  - title: Mee aan tafel
+    text: Bij je team, je overleg en je partners, zodat marketing geen apart eilandje wordt.
+  - title: Klantenbeheer
+    text: Een CRM dat georganiseerd blijft, met gespreksnotities die achteraf nog iets zeggen.
+  - title: Van aanvraag naar verkoop
+    text: Een duidelijke weg, in plaats van een proces dat per persoon verschilt.
+  - title: Leadlijsten
+    text: Wie je nog kan bellen, en die lijst blijft ook bijgehouden.
 
 # Two identical columns, same rows. No "recommended" badge: both paths weigh the same.
 compare:
-  title: Op projectbasis of in-house?
+  title: Project of in-house?
   columns:
-    - title: Op projectbasis
-      rows:
-        - label: Wat je koopt
-          value: Eén dienst, of een paar na elkaar
-        - label: Duur
-          value: Een paar maanden, met een duidelijk einde
-        - label: Goed als
-          value: Je weet waar het knelt en dat eerst wil oplossen
-        - label: Daarna
-          value: Je beslist zelf of er iets bijkomt
-    - title: In-house
-      rows:
-        - label: Wat je koopt
-          value: 'Een head of marketing, een dag (of twee) per week in huis: alle drie de diensten, de systemen en het operationele werk'
-        - label: Duur
-          value: Doorlopend, met vaste momenten
-        - label: Goed als
-          value: Je iemand wil die wekelijks meewerkt en het geheel mee opbouwt
-        - label: Daarna
-          value: Samen bijsturen, zolang het nut heeft
+  - title: Een project
+    rows:
+    - label: Wat je koopt
+      value: Eén duidelijk doel, met een duidelijke scope
+    - label: Duur
+      value: Enkele weken tot een paar maanden
+    - label: Goed als
+      value: Je weet waar het knelt en dat eerst wil oplossen
+    - label: Prijs
+      value: Per project, na een duidelijke scope
+    - label: Daarna
+      value: Je beslist zelf of er iets bijkomt
+  - title: In-house
+    rows:
+    - label: Wat je koopt
+      value: 'Een head of marketing, een dag (of twee) per week in huis: alle drie de diensten, de systemen en het operationele werk'
+    - label: Duur
+      value: Doorlopend, met vaste momenten om bij te sturen
+    - label: Goed als
+      value: Je iemand wil die wekelijks meewerkt en het geheel mee opbouwt
+    - label: Prijs
+      value: Een vaste prijs per maand
+    - label: Daarna
+      value: Samen bijsturen, zolang het nut heeft
 
 fit:
   yes_title: Past goed als
   yes:
-    - je wil groeien en daar ook budget voor hebt
-    - je zelf de marketingkeuzes maakt
-    - er niemand voltijds met marketing bezig is
-    - je een partner zoekt, geen uitvoerder zonder mening
-    - je iets technisch maakt of verkoopt, daar passen we het best
+  - je wil groeien en daar ook budget voor hebt
+  - je je marketing wil uitbesteden, zonder voltijdse aanwerving
+  - er niemand voltijds met marketing bezig is
+  - je een partner zoekt, geen uitvoerder zonder mening
+  - je iets technisch maakt of verkoopt, daar passen we het best
   no_title: Past niet als
   no:
-    - je enkel een paar posts op Instagram zoekt
-    - de prijs de doorslag geeft
-    - het een bijberoep is zonder groeiplannen
-    - je enkel handen wil, niet het denkwerk
+  - je enkel een paar posts op Instagram zoekt
+  - de prijs de doorslag geeft
+  - het een bijberoep is zonder groeiplannen
+  - je enkel handen wil, niet het denkwerk
 
 
 # VC Rater: Kjell's own product. Shown on this page only (Kjell, 2026-10-05).
@@ -98,19 +102,19 @@ vcrater:
   button: Vraag toegang tot VC Rater
 
 faq:
-  title: Vragen over in-house.
+  title: Vragen over in-house
   items:
-    - q: Waarom geen voltijdse marketeer aanwerven?
-      a: 'Als er genoeg werk is voor een voltijdse marketingverantwoordelijke, doe dat zeker. In-house is voor de fase ervoor: je hebt iemand nodig die richting geeft en het geheel opbouwt, maar nog geen volle job.'
-    - q: Hoe lang loopt een in-house samenwerking?
-      a: Doorlopend, met vaste momenten om bij te sturen. Zolang het nut heeft, en we zeggen het als dat niet meer zo is.
-    - q: Hoe vaak hebben we contact?
-      a: Vaste momenten die we samen afspreken, plus tussendoor als er iets is. Altijd met dezelfde persoon.
-    - q: Wat als het niet klikt?
-      a: Dan stoppen we. Een samenwerking die niet werkt rekken heeft voor niemand zin.
-    - q: Wat kost in-house?
-      a: Dat hangt af van wat er nodig is. We bespreken het na de strategiesessie, met een duidelijke scope.
+  - q: Waarom geen voltijdse marketeer aanwerven?
+    a: 'Als er genoeg werk is voor een voltijdse marketingverantwoordelijke, doe dat zeker. In-house is voor de fase ervoor: je hebt iemand nodig die richting geeft en het geheel opbouwt, maar nog geen volle job.'
+  - q: Hoe lang loopt een in-house samenwerking?
+    a: Doorlopend, met vaste momenten om bij te sturen. Zolang het nut heeft, en we zeggen het als dat niet meer zo is.
+  - q: Hoe vaak zijn jullie er?
+    a: Een dag (of twee) per week, bij jou of online, plus tussendoor als er iets is. Altijd met dezelfde persoon.
+  - q: Wat als het niet klikt?
+    a: Dan stoppen we. Een samenwerking die niet werkt rekken heeft voor niemand zin.
+  - q: Wat kost in-house?
+    a: Een vaste prijs per maand, afhankelijk van een dag of twee per week. Dat bespreken we na de strategiesessie.
 
 cta:
-  heading: Kijken of een head of marketing in huis past?
-  body: Het begint met hetzelfde gesprek als elke andere weg. Een uur, eerlijk advies.
+  heading: Even bellen over in-house?
+  body: Het begint met een strategiesessie. Een uurtje, eerlijk advies.
