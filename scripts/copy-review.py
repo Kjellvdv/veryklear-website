@@ -53,7 +53,8 @@ def main(out):
             f'<table><tbody>{"".join(rows)}</tbody></table></section>')
     today = datetime.date.today().isoformat()
     page = TEMPLATE.replace("{{NAV}}", "".join(nav)).replace("{{SECTIONS}}", "".join(sections)) \
-        .replace("{{DATE}}", today).replace("{{TOTAL}}", str(total))
+        .replace("{{DATE}}", today).replace("{{TOTAL}}", str(total)) \
+        .replace("{{STAMP}}", datetime.datetime.now().strftime("%Y%m%d%H%M%S"))
     Path(out).expanduser().write_text(page)
     print(out, total, "texts")
 
@@ -89,7 +90,7 @@ td{border-bottom:1px solid var(--line);border-left:1px solid var(--line);padding
 {{SECTIONS}}
 </main>
 <script>
-const KEY='vk-copy-review-{{DATE}}';
+const KEY='vk-copy-review-{{STAMP}}';
 let edits={};try{edits=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){}
 const cells=[...document.querySelectorAll('.t')];
 cells.forEach(c=>{c.dataset.orig=c.textContent;const k=c.dataset.id;if(k in edits){if(edits[k]===c.dataset.orig){delete edits[k]}else{c.textContent=edits[k];c.classList.add('changed')}}});

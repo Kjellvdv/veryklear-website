@@ -6,59 +6,59 @@
 # may contain <br> (line break). No bold in titles.
 
 meta:
-  title: Diensten | Very Klear Marketing Agency
-  description: 'Op projectbasis: positionering, marketing strategie of AI implementeren. Drie diensten die in elkaar overlopen.'
+  title: Marketingdiensten | Very Klear Marketing Agency
+  description: 'Marketingdiensten op projectbasis: bepaal je verhaal met positionering, verscherp je marketingstrategie of begin met AI implementeren voor marketing.'
 
 hero:
-  title_html: Drie diensten.<br />Begin waar het knelt.
-  lead: Positionering, marketing strategie en AI implementeren. Je kan bij elk van de drie instappen, en vaak volgt het ene uit het andere.
+  title_html: Vanalles geprobeerd, maar niets dat werkt?<br />Laat ons beginnen bij de start. Of dat nu je verhaal, je strategie of AI is.
+  lead: Met een positioneringstraject zetten we je verhaal op punt. Marketingstrategie laat je door de bomen het bos zien. AI versnelt alles, en het kan ook zonder je identiteit te verliezen.
 
 # One card per dienst, in this order. No numbers or 'pijler': they're entry points
 # that overlap or follow each other (Kjell, 2026-10-07).
 pillars:
-  - title: Positionering
-    text: Waar je zaak past in de markt, wie je ideale klant is, en waarom die voor jou kiest.
-    points:
-      - In welke categorie speel je?
-      - Wie is je ideale klant?
-      - Waarom kiezen klanten voor jou?
-    link: Meer over positionering →
-  - title: Marketing strategie
-    text: Welke kanalen, tools en mensen, en of alles op elkaar aansluit, van advertentie tot landingspagina.
-    points:
-      - Welke kanalen, en welke niet?
-      - Hoeveel tijd, mensen en tools?
-      - Klopt je customer journey?
-    link: Meer over marketing strategie →
-  - title: AI implementeren
-    text: Marketing engineering bij jou in huis. Van het juiste model en een goed ingestelde Claude tot content, interne tools en systemen die we mee bouwen.
-    points:
-      - Advies op jouw niveau, van nul tot gevorderd
-      - Content en interne tools, met AI gebouwd
-      - CRM en opvolging die zichzelf bijhouden
-    link: Meer over AI implementeren →
+- title: Positioneringstraject
+  text: Goede marketing begint bij een helder verhaal en een duidelijke marktpositie.
+  points:
+  - In welke markt speel je echt?
+  - Wie is je ideale klant?
+  - Waarom kiest die voor jou?
+  link: Meer over positionering →
+- title: Marketingstrategie
+  text: Van alles een beetje werkt niet. Met een duidelijke strategie krijg je weer focus.
+  points:
+  - Welke kanalen wel, en welke niet?
+  - Veel content of veel diepgang?
+  - Meer focus op sales, marketing of product?
+  link: Meer over marketing strategie →
+- title: AI implementeren
+  text: Marketing engineering bij jou in huis. Van het juiste model en een goed ingestelde Claude tot content, interne tools en systemen die we mee bouwen.
+  points:
+  - Advies op jouw niveau, van nul tot gevorderd
+  - Content en interne tools, met AI gebouwd
+  - CRM en opvolging die zichzelf bijhouden
+  link: Meer over AI implementeren →
 
 partners:
-  title: Meer dan wat één persoon aankan.
-  lead: Voor wat buiten onze diensten valt, werken we met vaste partners, van design en fotografie tot CRM en cybersecurity. Het denkwerk en het contact blijven bij ons.
-  link: Bekijk de partners →
+  title: Bijkomende noden? Dan werken we met gespecialiseerde partners
+  lead: Van design en fotografie tot GTM engineering, web platformen en cybersecurity. Het denkwerk en het contact blijven bij ons, de expertise besteden we uit.
+  link: Ontdek de partners →
 
 fractional:
-  title: Liever alles samen?
-  text: Een head of marketing, een dag (of twee) per week bij jou in huis. Alle drie de diensten, de systemen erachter, en het operationele werk.
-  link: Naar in-house →
+  title: Liever alle marketing uitbesteden?
+  text: Als head of marketing draaien we een dag (of twee) per week mee in jouw bedrijf. We vertrekken bij strategie maar bouwen ook de systemen erachter, en voeren het operationele werk uit.
+  link: Meer over in-house marketing →
 
 faq:
   title: Waar begin je best?
   items:
-    - q: Moet ik met positionering beginnen?
-      a: Meestal wel, want de andere twee bouwen erop voort. Staat je positionering al, dan kan je meteen naar marketing strategie of AI implementeren.
-    - q: Kunnen jullie niet gewoon de website doen?
-      a: Dat kan, op vraag. Meestal komt een website er als onderdeel van positionering of marketing strategie, zodat ze op iets echts gebouwd is.
-    - q: Hoe lang duurt het?
-      a: 'Een paar maanden, met vaste momenten. Het is geen sessie en geen rapport: testen en bijsturen hoort erbij.'
-    - q: Kan ik later iets bijnemen?
-      a: Ja, dat is normaal. Vaak volgt de ene dienst uit de andere. Alles in één keer kopen is zelden de beste start.
+  - q: Moet ik met positionering beginnen?
+    a: Meestal wel, want de andere twee bouwen erop voort. Staat je positionering al, dan kan je meteen naar marketingstrategie of AI implementeren.
+  - q: Kunnen jullie niet gewoon de website doen?
+    a: We maken graag websites. Van WordPress en Webflow tot volledig met AI. Maar meestal werkt een website pas als de positionering klopt. Dus starten we graag daar.
+  - q: Hoe lang duurt het?
+    a: 'Een project kan enkele weken of enkele maanden duren. Meestal hangt het af van je eigen snelheid om input en feedback te geven ;)'
+  - q: Kan ik later iets bijnemen?
+    a: Ja, uiteraard. Voor een project houden we ons altijd aan de afspraken, maar we kunnen zeker uitbreidingen of nieuwe projecten bespreken.
 
 cta:
   heading: Twijfel je waar je begint?
