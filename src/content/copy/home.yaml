@@ -6,8 +6,8 @@
 # Save, and the preview at localhost:4321 updates.
 
 meta:
-  title: Very Klear Marketing Agency | positionering, marketing strategie en AI
-  description: Marketing met technische diepgang. Positionering, marketing strategie en AI implementeren in je bedrijf.
+  title: Very Klear Marketing Agency | positionering, marketingstrategie en AI
+  description: Marketing met technische diepgang. Positionering, marketingstrategie en AI implementeren in je bedrijf.
 
 hero:
   title_html: Marketing met technische diepgang.<br />Van positionering tot AI.
@@ -23,7 +23,7 @@ problems:
     tag: Positionering
   - quote: '"We doen een beetje van alles, en niets lijkt echt te werken."'
     body: Zonder verhaal geen strategie. Wanneer je verhaal op punt staat, weet je ook wie je wil bereiken en hoe je dat best kan doen.
-    tag: Marketing strategie
+    tag: Marketingstrategie
   - quote: '"AI? Dat ziet er allemaal hetzelfde uit."'
     body: Klopt. Omdat iedereen hetzelfde vraagt. Maar met een duidelijk verhaal en strikte richtlijnen krijg je beter en sneller resultaat.
     tag: AI implementeren
@@ -34,7 +34,7 @@ paths:
   project:
     label: Samen werken aan één project
     title: Een duidelijk doel bereiken
-    body: Wil je je verhaal op punt zetten, marketing strategie uitwerken of AI implementeren?
+    body: Wil je je verhaal op punt zetten, marketingstrategie uitwerken of AI implementeren?
     link: Naar de diensten →
   fractional:
     label: Wekelijks in-house meewerken
@@ -51,7 +51,7 @@ pillars:
     - In welke markt speel je echt?
     - Wie is je ideale klant?
     - Waarom kiest die voor jou?
-  - title: Marketing strategie
+  - title: Marketingstrategie
     questions:
     - Welke kanalen wel, en welke niet?
     - Veel content of veel diepgang?

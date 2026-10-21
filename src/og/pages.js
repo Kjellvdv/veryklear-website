@@ -22,7 +22,7 @@ export async function ogPages() {
   const notFound = await getCopy('404');
 
   const pages = [
-    { path: '/', title: plain(home.hero.title_html), label: 'Positionering, marketing strategie en AI' },
+    { path: '/', title: plain(home.hero.title_html), label: 'Positionering, marketingstrategie en AI' },
     { path: '/diensten', title: plain(diensten.hero.title_html), label: 'Diensten' },
     { path: '/in-house', title: plain(inHouse.hero.title_html), label: 'In-house' },
     { path: '/partners', title: plain(partners.hero.title_html), label: 'Partners' },

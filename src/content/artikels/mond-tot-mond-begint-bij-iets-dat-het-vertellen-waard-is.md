@@ -3,7 +3,7 @@ title: Mond-tot-mond begint bij iets dat het vertellen waard is
 description: Mensen raden een bedrijf niet alleen aan omdat het goed werk
   levert. Over welk moment ze vertellen, en hoe je dat bewust laat
   terugkomen.
-category: Marketing strategie
+category: Marketingstrategie
 published_at: 2026-10-10
 draft: false
 image: /artikels/mond-tot-mond-begint-bij-iets-dat-het-vertellen-waard-is.jpg
@@ -36,4 +36,4 @@ Een bedrijf dat goed werk levert, krijgt tevreden klanten. Een bedrijf dat weet 
 
 ## Waar kan je beginnen?
 
-Je hoeft niks nieuws te verzinnen. De kans is groot dat je zo'n moment al hebt, ergens in hoe je werkt, en dat het nu toevallig gebeurt in plaats van altijd. Vraag je laatste klanten eens waarom ze bij je kwamen en let op welk moment ze zelf aanhalen. Dat is ook waar [marketing strategie](/marketing-strategie) bij ons begint: bij de klanten die je al hebt.
+Je hoeft niks nieuws te verzinnen. De kans is groot dat je zo'n moment al hebt, ergens in hoe je werkt, en dat het nu toevallig gebeurt in plaats van altijd. Vraag je laatste klanten eens waarom ze bij je kwamen en let op welk moment ze zelf aanhalen. Dat is ook waar [marketingstrategie](/marketing-strategie) bij ons begint: bij de klanten die je al hebt.

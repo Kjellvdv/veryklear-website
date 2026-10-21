@@ -1,11 +1,11 @@
 import { getCollection } from 'astro:content';
 
-export const PILLARS = ['Positionering', 'Marketing strategie', 'AI implementeren'];
+export const PILLARS = ['Positionering', 'Marketingstrategie', 'AI implementeren'];
 
 // Anchor on /diensten for each pillar, used by article CTAs.
 export const PILLAR_ANCHOR = {
   Positionering: 'positionering',
-  'Marketing strategie': 'marketing-strategie',
+  'Marketingstrategie': 'marketing-strategie',
   'AI implementeren': 'ai-implementeren',
 };
 
@@ -14,14 +14,14 @@ export const PILLAR_ANCHOR = {
 // /marketing-strategie/<slug>.
 export const PILLAR_SLUG = {
   Positionering: 'positionering',
-  'Marketing strategie': 'marketing-strategie',
+  'Marketingstrategie': 'marketing-strategie',
   'AI implementeren': 'ai',
 };
 
 // Copy file for each pillar's dienst page: src/content/copy/<file>.yaml.
 export const PILLAR_COPY = {
   Positionering: 'dienst-positionering',
-  'Marketing strategie': 'dienst-marketing-strategie',
+  'Marketingstrategie': 'dienst-marketing-strategie',
   'AI implementeren': 'dienst-ai-implementeren',
 };
 
