@@ -2,7 +2,7 @@
 title: "Hoe begin je met AI in je marketing?"
 description: "Een AI-marketingstrategie begint niet bij een tool. Begin bij het werk dat je vandaag tijd kost, kies dan tools en modellen, maak afspraken en bouw pas daarna."
 category: AI implementeren
-published_at: 2026-10-21
+published_at: 2026-08-21
 draft: false
 image: /artikels/hoe-begin-je-met-ai-in-je-marketing.jpg
 image_alt: "Een bureau van bovenaf met een rode weekplanner en een rode kookwekker tussen een laptop, een smartphone, een stapel afgedrukte mails en een koffiekop."
