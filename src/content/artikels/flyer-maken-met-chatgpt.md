@@ -2,7 +2,7 @@
 title: "Een flyer maken met ChatGPT: zo blijft hij leesbaar"
 description: "Met ChatGPT maak je snel en goedkoop een flyer. Leesbaar wordt hij pas als jij beslist wat erop moet, de rest weglaat en het aantal kleuren beperkt."
 category: AI implementeren
-published_at: 2026-10-21
+published_at: 2026-08-27
 draft: false
 image: /artikels/flyer-maken-met-chatgpt.jpg
 image_alt: "Een stapel flyers op een toonbank, met een rode flyer bovenaan, een smartphone, een rol plakband, een beker met stiften en de hoek van een laptop."
