@@ -3,8 +3,8 @@ title: Mond-tot-mond begint bij iets dat het vertellen waard is
 description: Mensen raden een bedrijf niet alleen aan omdat het goed werk
   levert. Over welk moment ze vertellen, en hoe je dat bewust laat
   terugkomen.
-category: Marketingstrategie
-published_at: 2026-10-10
+category: Positionering
+published_at: 2026-09-24
 draft: false
 image: /artikels/mond-tot-mond-begint-bij-iets-dat-het-vertellen-waard-is.jpg
 image_alt: Een toonbank van bovenaf met een papieren zak, een kassaticket, een
