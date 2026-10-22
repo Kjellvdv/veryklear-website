@@ -2,7 +2,7 @@
 title: "AI-geletterdheid in je team: wat moet iedereen weten voor je begint?"
 description: Voor je team AI gebruikt met de gegevens van je zaak, moet iedereen drie dingen weten. Hoe AI werkt, welke gegevens erin mogen en wat je nakijkt.
 category: AI implementeren
-published_at: 2026-10-21
+published_at: 2026-09-28
 draft: false
 image: /artikels/ai-geletterdheid-in-je-team.jpg
 image_alt: Een rode map met klantendossiers ligt naast een open laptop met een chatvenster, een klembord met een lijst, een smartphone, twee koffiebekers en een flip-over op een vergadertafel.
