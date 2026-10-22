@@ -2,7 +2,7 @@
 title: "Welk AI-model kies je voor welke taak?"
 description: "Het duurste AI-model is zelden het beste voor je werk. Waarom een kleiner model de meeste taken sneller doet, en wanneer je het zware model toch nodig hebt."
 category: AI implementeren
-published_at: 2026-10-21
+published_at: 2026-09-03
 draft: false
 image: /artikels/welk-ai-model-kies-je-voor-welke-taak.jpg
 image_alt: "Een opengeklapte laptop met een rode factuur over het toetsenbord, naast een rekenmachine, een koffiekop en drie schroevendraaiers van klein naar groot, waarvan de kleinste rood is."
