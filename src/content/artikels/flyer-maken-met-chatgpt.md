@@ -8,7 +8,7 @@ image: /artikels/flyer-maken-met-chatgpt.jpg
 image_alt: "Een stapel flyers op een toonbank, met een rode flyer bovenaan, een smartphone, een rol plakband, een beker met stiften en de hoek van een laptop."
 ---
 
-Je vraagt ChatGPT om een flyer voor je opendeurdag, en twintig seconden later staat er iets op je scherm dat er verzorgd uitziet: kleuren, icoontjes, vijf blokjes tekst, een datum en een QR-code. Wil je een flyer die mensen ook echt lezen, dan beslis je vooraf zelf wat erop moet, laat je de rest weg en vraag je om minder kleuren. Dat kost je vijf minuten extra.
+Je vraagt ChatGPT om een flyer voor je opendeurdag, en twintig seconden later staat er iets op je scherm dat er verzorgd uitziet: kleuren, icoontjes, vijf blokjes tekst, een datum en een locatie. Wil je een flyer die mensen ook echt lezen, dan beslis je vooraf zelf wat erop moet, laat je de rest weg en vraag je om minder kleuren. Dat kost je vijf minuten extra.
 
 ## Waarom ziet een AI-flyer er zo druk uit?
 
@@ -16,13 +16,13 @@ Over de stijl hoef je je weinig zorgen te maken. Dat veel AI-flyers op elkaar li
 
 Een goede ontwerper laat bewust plaats open, omdat die witruimte je oog naar het belangrijkste trekt. ChatGPT ziet lege ruimte eerder als verspilling en vult ze op. Zo krijg je een flyer die vol en professioneel oogt, maar wie er drie seconden naar kijkt, onthoudt er niets van.
 
-Ik laat zelf infographics maken met AI voor mijn LinkedIn-posts. Wat ik daar het vaakst moet bijsturen, is zelden de kleur of het lettertype. Het is bijna altijd de hoeveelheid informatie die erop staat.
+Ik laat zelf ook infographics en afbeeldingen maken met AI voor mijn LinkedIn-posts. Wat ik daar het vaakst moet bijsturen, is zelden de kleur of het lettertype. Het is bijna altijd de hoeveelheid informatie die erop staat.
 
 ## Wat moet er dan op je flyer?
 
 Begin bij één vraag: wat moet iemand weten als hij je flyer maar drie seconden ziet? Voor een opendeurdag is dat meestal wat er te doen is, wanneer en waar. Dat is je hoofdboodschap, en die mag groot.
 
-Daaronder komt hoogstens één laag: een korte zin over waarom iemand zou komen, en hoe ze je kunnen bereiken. Je volledige aanbod, een tweede slogan of drie redenen om voor jou te kiezen laat je weg. Dat voelt ambetant, want het is allemaal waar en je bent er terecht trots op. Maar elke regel die je toevoegt, maakt de belangrijkste regel kleiner.
+Daaronder komt hoogstens één laag extra tekst: een korte zin over waarom iemand zou komen, en hoe ze je kunnen bereiken. Je volledige aanbod, een tweede slogan of drie redenen om voor jou te kiezen laat je weg. Dat voelt ambetant, want het is allemaal waar en je bent er terecht trots op. Maar elke regel die je toevoegt, leidt de aandacht af van de belangrijkste boodschap.
 
 ## Hoe vraag je dat aan ChatGPT?
 
