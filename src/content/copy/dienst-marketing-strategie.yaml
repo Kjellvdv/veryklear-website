@@ -4,11 +4,11 @@
 
 meta:
   title: Marketingstrategie laten opstellen | Very Klear Marketing Agency
-  description: 'Een marketingstrategie laten opstellen die bij je bedrijf past: de juiste kanalen, tools en mensen, in een plan waar je meteen mee aan de slag kan.'
+  description: 'Een marketingstrategie laten opstellen die bij je bedrijf past: de juiste kanalen, tools en experts, in een plan waar je meteen mee aan de slag kan.'
 
 hero:
   title_html: Van alles een beetje werkt niet.<br />Met een duidelijke strategie krijg je weer focus.
-  lead: 'Posts, ads, een nieuwsbrief, een beurs? We helpen je een marketingstrategie opstellen die bij je bedrijf past: de juiste kanalen, tools en mensen, en hoeveel tijd waar naartoe gaat. Zo weet je weer waar je mee bezig bent, en zie je wat het oplevert.'
+  lead: 'Posts, ads, een nieuwsbrief, een beurs? We helpen je een marketingstrategie opstellen die bij je bedrijf past: de juiste kanalen, tools en experts. Zo weet je weer waar je mee bezig bent, en zie je wat het oplevert.'
   button: Plan een strategiesessie
 
 when:
@@ -16,8 +16,8 @@ when:
   items:
   - Je doet een beetje van alles, maar niets lijkt echt te werken.
   - Er kwam een kanaal bij omdat de concurrent het heeft.
-  - Je twijfelt tussen veel content of meer diepgang.
-  - Je advertenties sturen mensen naar een pagina die niets zegt.
+  - Je twijfelt over alles, dus doe je eigenlijk niets.
+  - Je advertenties leveren helemaal niets op.
   - Je weet niet goed waar je tijd en budget nu naartoe gaan.
 questions:
   title: Wat we samen uitzoeken
@@ -27,50 +27,50 @@ questions:
   - Veel content of veel diepgang?
   - Meer focus op sales, marketing of product?
   - Welke tools heb je echt nodig?
-  - Hoeveel mensen en welke experts?
+  - Welke externe hulp heb je nodig?
   - Klopt de weg van eerste klik tot klant?
   - Waar helpt AI, en waar niet?
 consequences:
   title: En wat gebeurt er dan?
   lead: Niemand kiest bewust voor van alles een beetje. Het groeit gewoon zo, kanaal per kanaal.
   items:
-  - title: Elk kanaal krijgt een beetje
+  - title: Elk kanaal krijgt een beetje (te weinig aandacht)
     text: Je tijd en budget raken verdeeld over zoveel kanalen dat er nergens genoeg overblijft om het deftig te doen.
   - title: Je ziet niet wat werkt
     text: Als alles tegelijk loopt, weet je achteraf niet welk kanaal die nieuwe klant bracht. Dus blijft alles gewoon verder draaien.
   - title: De klik leidt nergens heen
-    text: Een advertentie trekt mensen aan, maar de pagina erachter vertelt een ander verhaal. Wie klikt, vindt niet wat er beloofd werd.
+    text: Iemand klikt door op een link, maar de pagina erachter vertelt een ander verhaal. Of bestaat misschien niet meer? Niemand heeft alles recent in kaart gebracht.
 approach:
   title: Hoe gaan we te werk?
   steps:
-  - title: Waar gaan tijd en budget nu naartoe?
-    text: Een eerlijke blik op wat je vandaag doet, en of die kanalen ooit bewust gekozen zijn of gewoon zijn blijven hangen.
+  - title: We kijken waar je tijd en budget nu naartoe gaan
+    text: Een eerlijke blik op wat je vandaag doet, en of die kanalen ooit bewust gekozen zijn en of ze iets opleveren.
   - title: Kiezen wat blijft
-    text: Een plan met minder kanalen, die je wel goed doet. Wie wat doet, hoeveel tijd het vraagt en welke tools je nodig hebt.
-  - title: De weg nalopen
-    text: Van advertentie tot contact. Sluit je pagina aan op wat de advertentie belooft? En is een eigen landingspagina zinvol?
+    text: Een plan met duidelijke kanalen, die je wel goed kan aanpakken en waar je klanten vindt.
+  - title: De weg bepalen
+    text: We brengen in kaart wie wat doet, hoeveel tijd het vraagt en welke tools je nodig hebt. Maar ook of elke volgende stap nuttig is voor je klant.
 
 deliver:
   title: Wat je krijgt
-  text: Een marketingplan voor je bedrijf, met focus, waar je meteen mee aan de slag kan. Blijkt een nieuwe site of landingspagina de volgende stap, dan zit dat werk hier, niet als apart project.
+  text: Een marketingplan voor je bedrijf, met duidelijke focus, waar je meteen mee aan de slag kan. Nog een handje hulp nodig bij de uitvoering? Kan ook.
 
 transformation:
   title: Wat verandert er?
   lead: Hetzelfde bedrijf, dezelfde mensen. Alleen nu met een plan.
   before_title: Vandaag
   before:
-  - Je bent op vijf kanalen aanwezig, maar op geen enkel echt goed.
-  - Een nieuw kanaal komt erbij omdat de concurrent het heeft.
+  - Je bent op vijf kanalen aanwezig, maar op geen enkel kanaal gaat het goed.
+  - Een nieuw kanaal komt erbij omdat de concurrent het ook doet.
   - 'Elke week opnieuw kiezen: een post, een advertentie of toch die nieuwsbrief?'
-  - Je weet niet welk kanaal je laatste klant bracht.
-  - Je advertentie belooft iets wat de pagina erachter niet waarmaakt.
+  - Je weet niet via welk kanaal je laatste klanten kwamen.
+  - Je advertenties kosten geld, maar leveren weinig op.
   after_title: Met een marketingstrategie
   after:
-  - Je zit op minder kanalen, en die doe je deftig.
-  - Een nieuw kanaal komt er alleen bij als het bij je klanten past.
+  - Je zit op minder kanalen, maar hebt een duidelijke focus.
+  - Een nieuw kanaal komt er alleen bij als het goed bij je klanten past.
   - Je weet wie wat doet, en hoeveel tijd het elke week vraagt.
-  - Je ziet welk kanaal klanten oplevert, en waar je kan schrappen.
-  - Van advertentie tot contact vertelt alles hetzelfde verhaal.
+  - Je ziet welk kanaal klanten oplevert, en waar je kan bijsturen.
+  - Alles van advertentie tot contactpagina zit op dezelfde lijn.
 mid_cta:
   title: Eerst even sparren?
   text: Een uurtje over wat je vandaag doet en waar je focus best naartoe gaat. Daarna weet je of een marketingstrategie de juiste stap is.
@@ -78,16 +78,16 @@ mid_cta:
 leads_to:
   title: En daarna?
   items:
-  - title: Website of landingspagina
-    text: Met een design- of platformpartner, afhankelijk van wat er nodig is.
+  - title: Website of landingspagina's
+    text: Is de website niet meer van deze tijd of moet er iets bijgestuurd worden? Graag.
     href: /partners
   - title: Een campagne
-    text: Gericht, met een begin en een einde, op de kanalen die overbleven.
+    text: Een duwtje of extra handen nodig om de eerste campagne te lanceren? No problemo.
   - title: AI implementeren
-    text: Content, tools en opvolging die we met AI mee bouwen.
+    text: Meer automatiseren op vlak van content of sales? Laat maar weten.
     href: /ai
-  - title: In-house
-    text: Als je iemand zoekt die het plan wekelijks mee uitvoert.
+  - title: Een vaste partner
+    text: Geen tijd om het zelf uit te voeren? Als vaste partner draaien we mee voor het uitvoerend werk.
     href: /in-house
 
 partners:
@@ -98,13 +98,13 @@ faq:
   title: Vragen over marketingstrategie
   items:
   - q: Wat zit er in een marketingstrategie?
-    a: 'Bij ons vier dingen: welke kanalen je gebruikt en welke niet, welke tools en mensen je nodig hebt, hoeveel tijd waar naartoe gaat, en of de weg van eerste klik tot klant klopt. Je krijgt het als een marketingplan voor je bedrijf, waar je meteen mee aan de slag kan.'
+    a: 'Strategie gaat heel breed: welke kanalen je gebruikt en welke niet, welke tools en mensen je nodig hebt, hoeveel tijd waar naartoe gaat, en of de weg van eerste klik tot klant klopt. Je krijgt het als een marketingplan voor je bedrijf, waar je meteen mee aan de slag kan.'
   - q: Moet ik op elk kanaal aanwezig zijn?
-    a: Bijna nooit. Eén kanaal goed doen brengt meer op dan vijf half. Welk kanaal dat is, hangt af van waar je klanten echt zitten.
+    a: Nooit. Eén kanaal goed doen brengt meer op dan vijf kanalen half aan te pakken. Welk kanaal dat is, hangt af van waar je klanten echt zitten.
   - q: Doen jullie ook de uitvoering?
-    a: Ja. Deels zelf, deels met vaste partners voor bijvoorbeeld LinkedIn, social content of fotografie. Het contact blijft bij ons. Wil je alles uitbesteden, kijk dan eens naar in-house.
-  - q: Hebben jullie mijn positionering nodig?
-    a: 'Het helpt. Zonder verhaal geen strategie: weet je nog niet voor wie je het doet, dan is elke kanaalkeuze een gok. Dat bekijken we in de strategiesessie.'
+    a: Ja. Deels zelf, deels met vaste partners voor bijvoorbeeld video's of fotografie. Het contact blijft bij ons. Wil je alles uitbesteden, dan kunnen we op regelmatige basis meedraaien in je bedrijf.
+  - q: Hoe bepaal je de basis van een marketingstrategie?
+    a: 'Zonder verhaal geen strategie: weet je nog niet voor wie je het precies doet, dan is elke kanaalkeuze een gok. We beginnen dan beter met een positioneringstraject.'
   - q: Wat kost een marketingstrategie?
     a: Dat hangt af van wat je zoekt. We bespreken het na de strategiesessie, met een duidelijke scope.
 
@@ -112,5 +112,5 @@ articles:
   title: Artikels over marketingstrategie
 
 cta:
-  heading: Benieuwd welke kanalen je kan schrappen?
+  heading: Benieuwd welke kanalen echt passen bij je bedrijf?
   body: Daar is de strategiesessie voor. Een uurtje, over wat nu werkt en wat niet.
