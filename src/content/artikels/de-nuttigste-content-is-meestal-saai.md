@@ -4,7 +4,7 @@ description: Content is meer dan een filmpje op sociale media. Over de
   antwoorden die je klanten telkens opnieuw vragen, en waarom
   opschrijven loont.
 category: Marketing strategie
-published_at: 2026-10-16
+published_at: 2026-10-08
 draft: false
 image: /artikels/de-nuttigste-content-is-meestal-saai.jpg
 image_alt: Een rode bureautelefoon en een rood klembord met een lijstje, naast
