@@ -40,4 +40,4 @@ Achteraf klopt dat met de twee vragen. Artikels die je naam dragen, schrijf je n
 
 ## Twee stapels in je week
 
-Neem je agenda van vorige week erbij en schrijf op wat je allemaal gedaan hebt, van offertes en facturen tot een post op Facebook en een telefoontje met een leverancier. Zet naast elke taak hoe vaak ze terugkomt, en wat er gebeurt als ze één keer slecht uitvalt. Zo krijg je twee stapels. Wat vaak terugkomt en weinig kwaad kan, mag naar AI. Wat zelden gebeurt of waar veel van afhangt, hou je zelf in handen. Hoe we die keuze in een bedrijf maken, lees je bij [AI implementeren](/ai).
+Neem je agenda van vorige week erbij en schrijf op wat je allemaal gedaan hebt, van offertes en facturen tot een post op Facebook en een telefoontje met een leverancier. Zet naast elke taak hoe vaak ze terugkomt, en wat er kan gebeuren als het slecht afloopt. Zo krijg je twee stapels. Wat vaak terugkomt en weinig kwaad kan, mag naar AI. Wat zelden gebeurt of waar veel van afhangt, hou je zelf in handen. Hoe we die keuze in een bedrijf helpen maken, lees je bij [AI implementeren](/ai).
