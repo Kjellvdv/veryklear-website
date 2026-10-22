@@ -8,7 +8,7 @@ meta:
 
 form:
   title: Stuur een bericht
-  intro: Je krijgt een persoonlijk antwoord, geen automatische mail.
+  intro: Je krijgt zo snel mogelijk een persoonlijk antwoord.
   name_label: Naam
   name_placeholder: Voornaam en naam
   company_label: Bedrijf
@@ -18,7 +18,7 @@ form:
   topics_label: Waarover gaat het?
   # The pillar names are added automatically in front of these.
   topics_extra:
-  - In-house
+  - Head of marketing
   - Weet ik nog niet
   message_label: Waar ben je mee bezig?
   message_placeholder: Een paar zinnen volstaan. Wat loopt er goed, wat niet?
@@ -57,6 +57,6 @@ after:
   - title: Antwoord
     text: Een eerste, persoonlijke reactie op wat je schreef.
   - title: Strategiesessie
-    text: Een uurtje samen om te verkennen wat je zoekt, als het zinvol lijkt. Anders zeggen we dat meteen.
+    text: Een uurtje samen om te verkennen wat je zoekt en of een samenwerking zinvol lijkt.
   - title: Voorstel
-    text: Als we de juiste partij zijn, stellen we een project of in-house voor.
+    text: Als we de juiste partij zijn, stellen we een project of vaste samenwerking voor.
