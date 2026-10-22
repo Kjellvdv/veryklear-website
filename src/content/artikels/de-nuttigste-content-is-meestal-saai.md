@@ -3,7 +3,7 @@ title: De nuttigste content is meestal saai
 description: Content is meer dan een filmpje op sociale media. Over de
   antwoorden die je klanten telkens opnieuw vragen, en waarom
   opschrijven loont.
-category: Marketing strategie
+category: Marketingstrategie
 published_at: 2026-10-08
 draft: false
 image: /artikels/de-nuttigste-content-is-meestal-saai.jpg
