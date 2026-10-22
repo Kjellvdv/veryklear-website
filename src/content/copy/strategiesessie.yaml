@@ -15,11 +15,11 @@ intro:
 side:
   title: Wat je eruit haalt
   points:
-  - 60 minuten, online of bij jou
-  - Een richting waar je mee verder kan
-  - Waar je best begint
-  - Een eerlijk 'nee' als je ons niet nodig hebt
-  question: Liever eerst een vraag stellen?
+  - 60 minuten online overleggen
+  - Een eerste richting waar je mee verder kan
+  - Een concreet voorstel voor een samenwerking
+  - Of een eerlijk 'nee' als er geen match is
+  question: Liever gewoon een vraag stellen?
   question_link: Stuur een bericht →
 
 # Read out by screen readers for the calendar frame.
