@@ -3,8 +3,8 @@ title: Het belang van samenwerking tussen sales en marketing
 description: In kleine bedrijven heerst er vaak een strijd tussen verkoop en
   marketing. Nochtans zorgt een goede samenwerking ervoor dat ze
   beide sneller hun doelen kunnen bereiken.
-category: Marketingstrategie
-published_at: 2026-09-30
+category: Positionering
+published_at: 2026-09-17
 draft: false
 image: /artikels/het-belang-van-samenwerking-tussen-sales-en-marketing.jpg
 image_alt: Een bureau van bovenaf met een opgenomen telefoonhoorn, een kop
