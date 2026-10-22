@@ -2,7 +2,7 @@
 title: Een kanaal erbij is zelden het antwoord
 description: Waarom een extra kanaal meestal niet oplost wat er misloopt, en
   waarom je beter eerst uitzoekt waarom mond-tot-mond werkt.
-category: Positionering
+category: Marketingstrategie
 published_at: 2026-09-10
 draft: false
 image: /artikels/een-kanaal-erbij-is-zelden-het-antwoord.jpg
