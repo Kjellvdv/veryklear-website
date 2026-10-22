@@ -2,7 +2,7 @@
 title: "Een website bouwen met AI: zo maakten we deze site met Claude"
 description: "Kan je een website laten bouwen met AI? Ja, als je het goed voorbereidt. Hoe we deze site met Claude bouwden, in zes stappen, en wanneer WordPress of Webflow de betere keuze is."
 category: AI implementeren
-published_at: 2026-10-21
+published_at: 2026-10-01
 draft: false
 image: /artikels/website-bouwen-met-ai.jpg
 image_alt: "Een bureau van bovenaf met een open laptop, een rood notitieboek, een stapel papieren met een klem, een paar briefjes, een pen en een koffietas."
