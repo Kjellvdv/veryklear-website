@@ -18,9 +18,9 @@ how:
   title: Hoe werkt dat?
   items:
   - title: Eén aanspreekpunt
-    text: Je praat met ons, van het eerste gesprek tot de oplevering. De partner doet het maakwerk, niet het denkwerk.
+    text: Je praat met ons, van het eerste gesprek tot de oplevering. De partner doet waar die goed in is.
   - title: Pas als het nodig is
-    text: Een partner komt erbij als een dienst of een in-house samenwerking uitwijst dat er iets gemaakt moet worden. Niet omgekeerd.
+    text: Een partner komt erbij als een dienst of een in-house samenwerking uitwijst dat er extra expertise nodig is.
   - title: Goed in één ding
     text: Vaste partners, elk gekozen voor één vak. Zo hoef je zelf niet te zoeken wie wat kan.
 
@@ -29,19 +29,19 @@ list_title: Onze partners
 items:
   design:
     title: Design
-    text: Websites, logo en huisstijl.
+    text: Logo, huisstijl, visitekaartjes, stickers... Alles wat je liever niet met Canva of AI maakt.
     name: ''
   fotografie:
     title: Fotografie
-    text: Portretten, en fotoshoots voor je socials. Echte beelden van je zaak en je mensen, geen stockfoto's.
+    text: Portretten en fotoshoots (op kantoor). Echte beelden van je zaak en je mensen, ideaal voor socials en websites.
     name: ''
   linkedin:
-    title: LinkedIn
-    text: Content en verspreiding op LinkedIn, voor wie daar zijn klanten vindt.
+    title: Sociale media
+    text: Contentautomatisatie en planning voor LinkedIn, Facebook en Instagram.
     name: ''
   social_content:
-    title: Social content
-    text: Posts, reels en video voor Instagram en Facebook, als onderdeel van een groter plan.
+    title: Video content
+    text: Posts, reels en stories voor Instagram en Facebook, als onderdeel van een groter plan.
     name: ''
   platform:
     title: Platform
@@ -49,7 +49,7 @@ items:
     name: ''
   gtm_engineering:
     title: GTM engineering
-    text: CRM en de techniek die marketing, verkoop en opvolging met elkaar verbindt.
+    text: CRM en complexe systemen om nieuwe leads te vinden.
     name: ''
   ai_geletterdheid:
     title: AI-geletterdheid
