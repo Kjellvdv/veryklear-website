@@ -2,7 +2,7 @@
 title: Hoe laat je AI schrijven in de stijl van je eigen bedrijf?
 description: AI-teksten lijken op elkaar omdat iedereen hetzelfde vraagt. Wat er in goede schrijfrichtlijnen staat, en waar je ze bewaart zodat elke tool ze gebruikt.
 category: AI implementeren
-published_at: 2026-10-21
+published_at: 2026-08-13
 draft: false
 image: /artikels/ai-schrijven-in-je-eigen-stijl.jpg
 image_alt: Een bureau van bovenaf met een laptop, een open rood ringschrift, een blad met doorstreepte regels, een vulpen, een stapeltje briefjes en een kop koffie.
