@@ -9,82 +9,82 @@ meta:
 
 hero:
   title_html: Positionering.<br />Alles begint bij een helder verhaal.
-  lead: Waarom kiezen klanten voor jou? Wie wil je nog bereiken? En hoe vertel je dat zo dat het blijft hangen? In een positioneringstraject zoeken we het samen uit, zodat je website, je content en ook AI hetzelfde verhaal vertellen.
+  lead: Waarom kiezen klanten voor jou? Wie wil je nog bereiken? En hoe vertel je dat zo dat het blijft hangen? In een positioneringstraject zoeken we het samen uit, zodat je website, je content en ook alles dat je met AI doet hetzelfde verhaal vertellen.
   button: Plan een strategiesessie
 
 when:
   title: Herkenbaar?
   items:
-  - Je kan niet in één zin zeggen waarom klanten voor jou kiezen.
+  - Je hebt altijd een andere uitleg voor wat je precies doet.
   - Je herschrijft je site, maar het voelt nooit juist.
   - Klanten komen via via, maar je weet niet goed waarom.
   - Wat je maakt is technisch, en uitleggen lukt niet in een paar woorden.
-  - Je start iets nieuws en wil het meteen goed zetten.
+  - Iedereen in je sector vertelt ongeveer hetzelfde verhaal, ook jij.
 questions:
   title: Wat we samen uitzoeken
   items:
-  - In welke markt speel je echt?
   - Met wie word je vergeleken?
   - Wie is je ideale klant?
-  - Wat wil die klant echt?
+  - Waarom komt die klant precies bij jou?
+  - Wat verwacht zo'n klant van je bedrijf?
   - Wat maakt je anders?
-  - Waarom kiest die voor jou?
+  - Hoe zet je dat om in woorden?
 consequences:
   title: En wat doet dat met je bedrijf?
-  lead: Zolang je verhaal niet op punt staat, draait alles een beetje harder dan nodig.
+  lead: Groei gaat trager dan verwacht. Je blijft experimenteren maar vindt geen antwoord. Je verliest tijd aan zaken die er niet toe doen.
   items:
-  - title: Via via blijft de enige motor
-    text: Je beste klanten vinden je wel, maar je kan niet uitleggen waarom. Dus kan je het ook niet vertellen aan mensen die je nog niet kennen.
+  - title: Je verspilt geld aan marketingcampagnes die misschien wel of niet gaan werken.
+    text: Iedereen maakt TikTok-video's dus jij ook? Samen een dansje plaatsen zorgt misschien voor likes. Maar zijn dat wel de mensen die je wil bereiken?
   - title: Elke tekst begint van nul
-    text: 'Je site, een offerte, een presentatie: telkens zoek je opnieuw naar de juiste woorden. En elke versie klinkt een beetje anders.'
-  - title: AI maakt het nog algemener
-    text: Wie AI een tekst laat schrijven zonder duidelijk verhaal, krijgt wat iedereen krijgt. Het leest vlot, maar het klinkt niet als jij.
+    text: 'Voor elke webpagina, offerte of presentatie moet je opnieuw zoeken naar de juiste woorden. En elke versie klinkt een beetje anders.'
+  - title: Niemand weet precies wat je doet
+    text: Er komen te weinig aanvragen of zelfs aanvragen die helemaal niet relevant zijn, want het is niet duidelijk wat jullie wel en niet doen.
 approach:
   title: Hoe gaan we te werk?
   steps:
-  - title: We bellen je beste klanten
-    text: Een paar korte gesprekken met klanten die graag met je werken. Wat wilden ze oplossen, wat probeerden ze eerder, en wanneer wisten ze dat het werkte? Daar zit het antwoord meestal al.
-  - title: Je verhaal op één blad
-    text: In welke markt je speelt, wie je klant is en wat je belooft, kort genoeg om te onthouden. Die eerste versie is er snel, zodat we ze meteen kunnen testen.
-  - title: Testen en bijsturen
-    text: We gebruiken het verhaal in teksten en gesprekken, kijken wat het doet en passen aan. Met vaste momenten samen, over enkele weken tot een paar maanden.
+  - title: We nemen contact op met je beste klanten
+    text: Een paar korte gesprekken met klanten die graag met je werken, leert ons veel over wat ze wilden oplossen, welke alternatieven ze overwogen, en waarom ze precies voor jou kiezen.
+  - title: Een diepgaand gesprek
+    text: Wat vind je zelf belangrijk en hoe wil je in beeld gebracht worden? Moet het serieus of mag er een hoekje af zijn?
+  - title: Alles samenbrengen
+    text: We brengen alle inzichten samen en gaan verder op zoek naar wat er leeft in je sector. Wat zoeken mensen? Wat maakt jou uniek?
 
 deliver:
   title: Wat je krijgt
-  text: Een helder verhaal op één blad, en richtlijnen waarmee je team en je AI-tools het ook zo vertellen. Een werkdocument dat mee evolueert, geen rapport voor de lade.
+  text: Een helder verhaal op één blad met richtlijnen zodat je team (en je AI-tools) altijd hetzelfde verhaal vertellen.
 
 transformation:
   title: Hoe ziet het eruit als je verhaal klopt?
   before_title: Vandaag
   before:
   - Klanten komen via via, en je weet niet goed waarom.
-  - Je legt in elk gesprek opnieuw uit wat je doet.
+  - Je legt in elk gesprek anders uit wat je doet.
   - Je site zegt een beetje van alles.
   - Elke tekst begint bij een leeg blad.
-  - AI schrijft vlot, maar niet zoals jij.
+  - AI schrijft vlot, maar het klinkt niet zoals je wil.
   after_title: Na het traject
   after:
-  - Je weet waarom ze kiezen, en je vertelt dat ook aan wie je nog niet kent.
+  - Je weet waarom ze kiezen en kan erop verder bouwen.
   - Je zegt in één zin waarom klanten voor jou kiezen.
   - Je site spreekt de klant aan die je echt wil bereiken.
   - Je team vertrekt van één blad en vertelt hetzelfde verhaal.
   - AI schrijft in jouw stijl, omdat het je verhaal kent.
 mid_cta:
   title: Benieuwd waar jouw verhaal nu staat?
-  text: In een strategiesessie van een uurtje kijken we samen naar je verhaal. En we zeggen eerlijk of een positioneringstraject je eerste stap is.
+  text: In een strategiesessie van een uurtje kijken we samen naar je verhaal. En we zeggen eerlijk wat een positioneringstraject voor je kan betekenen.
   button: Plan een strategiesessie
 leads_to:
   title: En daarna?
   items:
-  - title: Messaging en teksten
-    text: Je verhaal in je site, je offertes en je gesprekken.
+  - title: Van verhaal naar concrete teksten
+    text: Met templates en AI skills zorgen we ervoor dat je verhaal overal consistent blijft, van persbericht tot social media post.
   - title: Een nieuwe website
-    text: Met een designpartner, als je huidige site je verhaal niet draagt.
+    text: We passen je teksten aan of maken een volledig nieuwe site, al dan niet met een designpartner.
     href: /partners
-  - title: Een communicatiecampagne
-    text: Als er iets te vertellen valt aan een grotere groep.
+  - title: Betere salesdocumenten
+    text: We zetten je folders, klantverhalen en andere promomaterialen op punt.
   - title: Marketingstrategie
-    text: Welke kanalen en hoeveel tijd, nu je weet voor wie.
+    text: Zet je scherpere verhaal om in een strategie die beter past bij je bedrijf en je ideale klant.
     href: /marketing-strategie
 
 partners:
@@ -96,19 +96,19 @@ faq:
   title: Vragen over positionering
   items:
   - q: Wat is een positioneringstraject?
-    a: Een begeleiding van enkele weken tot een paar maanden waarin we de positionering van je bedrijf uitwerken. We zoeken uit in welke markt je speelt, wie je ideale klant is en waarom die voor jou kiest. We vertrekken bij gesprekken met je beste klanten en testen het verhaal daarna in de praktijk.
+    a: Een begeleiding van enkele weken waarin we het verhaal van je bedrijf uitwerken of scherpstellen. We zoeken uit in welke markt je speelt, wie je ideale klant is en waarom die voor jou kiest. We vertrekken bij gesprekken met je beste klanten en gebruiken het verhaal daarna in de praktijk.
   - q: Moet ik echt hier beginnen?
-    a: Meestal wel. Marketingstrategie en AI bouwen verder op je verhaal. Staat dat al, dan zeggen we het in de strategiesessie en starten we ergens anders.
+    a: Meestal wel. Marketingstrategie en AI bouwen verder op je verhaal. Zonder duidelijkheid hier, verlies je tijd en geld aan andere campagnes.
   - q: Is dit niet gewoon een nieuwe slogan?
-    a: Nee. Een slogan komt pas helemaal op het einde, als hij al nodig is. Dit gaat over wie je klant is en waarom die kiest. De rest volgt daaruit.
+    a: Nee. Een slogan komt pas helemaal op het einde, als dat al nodig is. Dit gaat over wie je klant is en waarom die voor jou kiest. De rest volgt daaruit.
   - q: Hoe lang duurt het?
-    a: Enkele weken tot een paar maanden. Het eerste blad is er snel, de rest hangt vooral af van hoe snel je input en feedback geeft ;)
+    a: Enkele weken. Een basis kan er snel zijn, de rest hangt vooral af van hoe snel je input en feedback geeft ;)
   - q: Wat kost een positioneringstraject?
-    a: Dat hangt af van wat je zoekt. We bespreken het na de strategiesessie, met een duidelijke scope.
+    a: Dat hangt af van wat je zoekt en waar je nu al staat. We bespreken het best in een strategiesessie.
 
 articles:
   title: Artikels over positionering
 
 cta:
-  heading: Weten of positionering je eerste stap is?
+  heading: Weten wat een positioneringstraject voor jou betekent?
   body: Daar is de strategiesessie voor. Een uurtje, en je weet waar je best begint.
