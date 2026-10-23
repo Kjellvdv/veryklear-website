@@ -80,13 +80,10 @@ leads_to:
     text: Met templates en AI skills zorgen we ervoor dat je verhaal overal consistent blijft, van persbericht tot social media post.
   - title: Een nieuwe website
     text: We passen je teksten aan of maken een volledig nieuwe site, al dan niet met een designpartner.
-    href: /partners
   - title: Betere salesdocumenten
     text: We zetten je folders, klantverhalen en andere promomaterialen op punt.
   - title: Marketingstrategie
     text: Zet je scherpere verhaal om in een strategie die beter past bij je bedrijf en je ideale klant.
-    href: /marketing-strategie
-
 partners:
   title: Met wie we samenwerken
   # Keys from partners.yaml

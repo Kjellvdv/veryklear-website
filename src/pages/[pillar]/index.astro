@@ -169,16 +169,13 @@ const { dienst_page: d } = await getCopy('site');
         <h2 class="h-section">{c.leads_to.title}</h2>
       </div>
       <div class={c.leads_to.items.length === 3 ? 'grid-3' : 'grid-4'}>
-        {c.leads_to.items.map((l) => {
-          const Tag = l.href ? 'a' : 'div';
-          return (
-            <Tag class="card card-paper next-card" href={l.href}>
-              <h3 class="h-card">{l.title}</h3>
-              <p class="muted">{l.text}</p>
-              {l.href && <span class="link-arrow">→</span>}
-            </Tag>
-          );
-        })}
+        {/* No links on these cards (Kjell, 2026-10-23). */}
+        {c.leads_to.items.map((l) => (
+          <div class="card card-paper next-card">
+            <h3 class="h-card">{l.title}</h3>
+            <p class="muted">{l.text}</p>
+          </div>
+        ))}
       </div>
     </div>
   </section>

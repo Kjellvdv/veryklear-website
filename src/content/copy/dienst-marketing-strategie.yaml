@@ -80,16 +80,12 @@ leads_to:
   items:
   - title: Website of landingspagina's
     text: Is de website niet meer van deze tijd of moet er iets bijgestuurd worden? Graag.
-    href: /partners
   - title: Een campagne
     text: Een duwtje of extra handen nodig om de eerste campagne te lanceren? No problemo.
   - title: AI implementeren
     text: Meer automatiseren op vlak van content of sales? Laat maar weten.
-    href: /ai
   - title: Een vaste partner
     text: Geen tijd om het zelf uit te voeren? Als vaste partner draaien we mee voor het uitvoerend werk.
-    href: /in-house
-
 partners:
   title: Met wie we samenwerken
   keys: [linkedin, social_content, fotografie, platform]

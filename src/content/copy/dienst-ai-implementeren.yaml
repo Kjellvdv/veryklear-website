@@ -132,11 +132,8 @@ leads_to:
     text: Krijg volledige controle over je website en maak oneindig veel updates, maar hou rekening met de extra verantwoordelijkheid.
   - title: CRM en opvolging
     text: Connecteer je CRM met AI en zet alles op punt. Meer leads nodig? Daar hebben we partners voor.
-    href: /partners
   - title: In-house AI implementeren
     text: Als AI een vast onderdeel wordt van hoe je marketing en verkoop draaien, komen we wekelijks mee bouwen op kantoor.
-    href: /in-house
-
 partners:
   title: Met wie we samenwerken
   keys: [ai_geletterdheid, gtm_engineering, platform, cybersecurity]
