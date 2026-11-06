@@ -3,7 +3,7 @@
 Very Klear's site, `www.veryklear.com`: an Astro static build in Dutch, served by a small Express server in `server/` that also counts visits on the server. No measuring script, no cookies, no banner.
 
 ## Tech stack
-- **Site:** Astro 4.16, content collections for page copy (`src/content/copy/*.yaml`, read with `getCopy()` from `src/lib/copy.js`) and artikels (`src/content/artikels/*.md`, helpers in `src/lib/articles.js`). Plain CSS, Inter self-hosted. Share images rendered at build time with satori and resvg (`src/og/`).
+- **Site:** Astro 7, content collections (glob loaders in `src/content.config.ts`) for page copy (`src/content/copy/*.yaml`, read with `getCopy()` from `src/lib/copy.js`) and artikels (`src/content/artikels/*.md`, helpers in `src/lib/articles.js`). Plain CSS, Inter self-hosted. Share images rendered at build time with satori and resvg (`src/og/`).
 - **Server:** Express 5 + TypeScript run by `tsx`, `better-sqlite3`, Zod 4, helmet, compression. Serves `dist/`, counts page requests, shows the numbers page. No client code.
 - **Ports:** Astro dev **4324** (gitignored `.claude/launch.json`), server **3011**.
 - **Node:** 24 (`.nvmrc`, `engines`). This Mac also has 22; both run everything.
@@ -59,7 +59,9 @@ Purpose: see which pages and channels work and improve the site. Data per visit:
 - Every deploy, content publishes included, means a few seconds of downtime (one deployment at a time may hold the volume).
 - The site's Content-Security-Policy in `app.ts` allows the Google Calendar booking frame (`calendar.google.com`) and the form endpoint, and no third-party script. A new third-party resource needs a line there, and a sentence on `/privacy`.
 - `forms/contact.php` allows `http://localhost:3011` as origin, so the form can be tested against the served build.
-- `@astrojs/sitemap` is pinned `~3.4.1` (zod 3) next to the server's zod 4. Two zods, no conflict; `src/content/config.ts` must keep importing `z` from `astro:content`.
+- `cookie` is a direct dependency only for Astro: Astro 7 needs cookie 2, Express 5 needs 0.7, and Astro's build-time prerender bundle imports `cookie` from the project root. Without the direct dependency npm hoists Express's 0.7 there and `astro build` fails on `parseCookie`. Remove it once Express moves to cookie 2.
+- `vite.build.assetsInlineLimit: 0` in `astro.config.mjs` keeps every script an external file. Astro inlines small scripts otherwise, and the server's CSP (`script-src 'self'`) blocks inline scripts without an error in the build.
+- Astro 7 needs Node 22.23.4 or later; this Mac's default nvm Node 22.16 can't build it. Use Node 24 (`nvm use 24`).
 - Days in the numbers are UTC.
 - The site sends `Referrer-Policy: same-origin`, on purpose: that is how the server learns which of our pages a booking click came from. Other sites, the booking frame included, get no referrer. Don't tighten it to `no-referrer` without dropping the routes table.
 - `const PREVIEW` in `Base.astro`: `true` hides the whole site from search. `false` since 2026-10-06.

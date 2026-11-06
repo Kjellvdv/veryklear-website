@@ -37,7 +37,7 @@ export async function ogPages() {
     pages.push({ path: `/artikels/${PILLAR_SLUG[name]}`, title: `Artikels over ${name.split(' ').map((w) => (w === w.toUpperCase() ? w : w.toLowerCase())).join(' ')}`, label: 'Artikels' });
   }
   for (const post of await getArticles()) {
-    pages.push({ path: `/artikels/${PILLAR_SLUG[post.data.category]}/${post.slug}`, title: post.data.title, label: `Artikel · ${post.data.category}` });
+    pages.push({ path: `/artikels/${PILLAR_SLUG[post.data.category]}/${post.id}`, title: post.data.title, label: `Artikel · ${post.data.category}` });
   }
   return pages;
 }

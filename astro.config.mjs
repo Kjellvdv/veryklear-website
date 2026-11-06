@@ -14,4 +14,8 @@ export default defineConfig({
   // Retired URLs: the server 301s them, Astro builds stubs from the same map.
   redirects: REDIRECTS,
   integrations: [sitemap()],
+  // Astro 5+ inlines small scripts into the HTML. The server's CSP allows
+  // script-src 'self' only, so inline scripts would be blocked: keep every
+  // script an external file in _astro/.
+  vite: { build: { assetsInlineLimit: 0 } },
 });

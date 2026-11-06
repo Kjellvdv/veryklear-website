@@ -34,7 +34,7 @@ export const pillarLower = (name) => name.split(' ').map((w) => (w === w.toUpper
 
 // Artikels live under /artikels/<pillar>/<slug>; the pillar's artikel list is
 // /artikels/<pillar>. The bare /<pillar> URL is the dienst page.
-export const articleUrl = (post) => `/artikels/${PILLAR_SLUG[post.data.category]}/${post.slug}`;
+export const articleUrl = (post) => `/artikels/${PILLAR_SLUG[post.data.category]}/${post.id}`;
 export const pillarArticlesUrl = (name) => `/artikels/${PILLAR_SLUG[name]}`;
 
 export async function getArticles() {

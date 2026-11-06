@@ -1,9 +1,11 @@
-import { defineCollection, z } from 'astro:content';
+import { defineCollection } from 'astro:content';
+import { glob } from 'astro/loaders';
+import { z } from 'astro/zod';
 
 /* Categories are the three pillars (decided 2026-10-01, see
    ~/brands/very-klear/memory/decisions_content-categories.md). */
 const artikels = defineCollection({
-  type: 'content',
+  loader: glob({ pattern: '**/*.md', base: './src/content/artikels' }),
   schema: z.object({
     title: z.string(),
     description: z.string(),
@@ -21,8 +23,8 @@ const artikels = defineCollection({
    the templates read the fields they need, and a missing field shows up as an
    empty spot in the preview rather than a build error. */
 const copy = defineCollection({
-  type: 'data',
-  schema: z.record(z.any()),
+  loader: glob({ pattern: '**/*.yaml', base: './src/content/copy' }),
+  schema: z.record(z.string(), z.any()),
 });
 
 export const collections = { artikels, copy };

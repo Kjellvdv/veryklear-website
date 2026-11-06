@@ -16,11 +16,12 @@
     "test": "vitest run"
   },
   "dependencies": {
-    "@astrojs/sitemap": "~3.4.1",
+    "@astrojs/sitemap": "^3.7.4",
     "@resvg/resvg-js": "^2.6.2",
-    "astro": "^4.16.0",
+    "astro": "^7.4.7",
     "better-sqlite3": "^13.0.3",
     "compression": "^1.8.2",
+    "cookie": "^2.0.2",
     "dotenv": "^18.0.6",
     "express": "^5.2.1",
     "express-rate-limit": "^8.7.1",
