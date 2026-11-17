@@ -2,14 +2,15 @@
 // The closing CTA on every page. The strategiesessie is free for now, but that
 // is never highlighted (products.yml strategiesessie.price_status).
 // Copy: pass a page's `cta` section as `copy`; missing fields fall back to site.yaml.
+// `href` overrides where the button goes (the booking page by default).
 import { getCopy } from '../lib/copy.js';
 
 const site = await getCopy('site');
-const { copy = {}, variant = 'grad' } = Astro.props;
+const { copy = {}, variant = 'grad', href } = Astro.props;
 const heading = copy.heading ?? site.cta.heading;
 const body = copy.body ?? site.cta.body;
 const button = copy.button ?? site.cta.button;
-const booking = site.booking_page;
+const booking = href ?? site.booking_page;
 ---
 
 <section class="block" style="padding-top:0">

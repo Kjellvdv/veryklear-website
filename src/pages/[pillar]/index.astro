@@ -157,7 +157,7 @@ const { dienst_page: d } = await getCopy('site');
       <div class="wrap">
         <div class="card card-paper mid-cta">
           <div><h3 class="h-card">{c.mid_cta.title}</h3><p class="muted">{c.mid_cta.text}</p></div>
-          <a class="btn btn-red" href={booking}>{c.mid_cta.button}</a>
+          <a class="btn btn-red" href={c.mid_cta.href ?? booking}>{c.mid_cta.button}</a>
         </div>
       </div>
     </section>

@@ -120,9 +120,10 @@ transformation:
   - Een licht model doet het eenvoudige werk, een zwaarder de rest, en de rekening blijft betaalbaar.
   - Dat werk loopt vanzelf, maar jij behoudt controle.
 mid_cta:
-  title: Benieuwd waar AI in jouw marketing past?
-  text: In een strategiesessie van een uurtje kijken we waar je staat en wat de eerste stap is. Ook als die stap geen AI is.
-  button: Plan een strategiesessie
+  title: Snel starten met AI in je marketing?
+  text: In de AI-marketingworkshop zetten we op één dag bij jou op kantoor je eigen marketingsysteem met AI op, voor €749 excl. btw.
+  button: Bekijk de AI-marketingworkshop
+  href: /ai-marketing-workshop
 leads_to:
   title: En daarna?
   items:
@@ -160,7 +161,7 @@ faq:
   - q: Geven jullie ook een AI-opleiding aan ons team?
     a: 'Een opleiding AI-geletterdheid voor groepen doen we met een gespecialiseerde partner met jarenlange ervaring in machine learning en AI.'
   - q: Wat kost een AI-traject?
-    a: Dat hangt af van wat je zoekt. We bespreken het na de strategiesessie, met een duidelijke scope.
+    a: 'Snel starten kan met de AI-marketingworkshop: één dag bij jou op kantoor, voor €749 excl. btw. Voor een groter traject hangt de prijs af van wat je zoekt, en die bespreken we na de strategiesessie met een duidelijke scope.'
 articles:
   title: Artikels over AI implementeren
 

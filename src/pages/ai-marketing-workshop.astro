@@ -1,0 +1,120 @@
+---
+// Copy lives in src/content/copy/ai-marketing-workshop.yaml. This file is layout only.
+// A fixed offer next to /ai (Kjell, 2026-11-16): one day at the client's office.
+// Booking is by mail; the strategiesessie is the optional first conversation.
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import Faq from '../components/Faq.astro';
+import CtaFinal from '../components/CtaFinal.astro';
+import ArticleCard from '../components/ArticleCard.astro';
+import { getCopy } from '../lib/copy.js';
+import { getArticles } from '../lib/articles.js';
+
+const c = await getCopy('ai-marketing-workshop');
+// The artikels named in the YAML, in that order; a missing slug is skipped.
+const all = await getArticles();
+const posts = (c.articles?.slugs ?? []).map((s) => all.find((p) => p.id === s)).filter(Boolean);
+const site = await getCopy('site');
+const booking = site.booking_page;
+const mail = `mailto:${site.footer.email}?subject=${encodeURIComponent(c.hero.mail_subject)}`;
+---
+
+<Base title={c.meta.title} description={c.meta.description} path="/ai-marketing-workshop">
+  <Hero title={c.hero.title_html} lead={c.hero.lead}>
+    <a class="btn btn-white" href={mail}>{c.hero.button_primary}</a>
+    <a class="btn btn-ghost-white" href={booking}>{c.hero.button_secondary}</a>
+  </Hero>
+
+  <section class="block block-first">
+    <div class="wrap">
+      <div class="s-head"><h2 class="h-section">{c.when.title}</h2></div>
+      <div class="grid-2 when">{c.when.items.map((w) => <div class="when-item">{w}</div>)}</div>
+    </div>
+  </section>
+
+  <section class="block" style="padding-top:0">
+    <div class="wrap">
+      <div class="s-head">
+        <h2 class="h-section">{c.difference.title}</h2>
+        <p class="lead">{c.difference.lead}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" style="padding-top:0">
+    <div class="wrap">
+      <div class="s-head"><h2 class="h-section">{c.included.title}</h2></div>
+      <div class="grid-3">
+        {c.included.items.map((i) => (
+          <div class="card card-paper"><h3 class="h-card">{i.title}</h3><p class="muted">{i.text}</p></div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="block" style="padding-top:0">
+    <div class="wrap">
+      <div class="s-head"><h2 class="h-section">{c.steps.title}</h2></div>
+      <div class="steps">
+        {c.steps.items.map((s) => (
+          <div class="card card-paper step">
+            <div class="n"></div>
+            <h3 class="h-card">{s.title}</h3>
+            <p class="muted">{s.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="block" style="padding-top:0" id="prijs">
+    <div class="wrap">
+      <div class="card card-grad cut cta-final">
+        <div class="grain"></div>
+        <div style="position:relative">
+          <span class="label">{c.price.label}</span>
+          <h2 style="margin-top:6px">{c.price.amount}</h2>
+          <p class="muted">{c.price.text}</p>
+        </div>
+        <div style="position:relative"><a class="btn btn-white" href={mail}>{c.price.button}</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" style="padding-top:0">
+    <div class="wrap">
+      <div class="grid-2 fit">
+        <div class="card card-paper yes">
+          <h3 class="h-card">{c.fit.yes_title}</h3>
+          <ul>{c.fit.yes.map((l) => <li>{l}</li>)}</ul>
+        </div>
+        <div class="card card-tint no">
+          <h3 class="h-card">{c.fit.no_title}</h3>
+          <ul>{c.fit.no.map((l) => <li>{l}</li>)}</ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {posts.length > 0 && (
+    <section class="block" style="padding-top:0">
+      <div class="wrap">
+        <div class="s-head"><h2 class="h-section">{c.articles.title}</h2></div>
+        <div class="grid-3">
+          {posts.map((post, i) => <ArticleCard post={post} index={i} />)}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <section class="block" style="padding-top:0">
+    <div class="wrap faq-layout">
+      <div class="s-head" style="margin-bottom:0">
+        <h2 class="h-section">{c.faq.title}</h2>
+      </div>
+      <Faq items={c.faq.items} />
+    </div>
+  </section>
+
+  <CtaFinal copy={c.cta} variant="paper" href={mail} />
+</Base>

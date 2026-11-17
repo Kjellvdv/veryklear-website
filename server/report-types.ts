@@ -10,6 +10,7 @@ export const SERVICE_PATHS = [
   "/marketing-strategie",
   "/ai",
   "/in-house",
+  "/ai-marketing-workshop",
   "/fractioneel", // the same page before 2026-10-21
 ] as const;
 

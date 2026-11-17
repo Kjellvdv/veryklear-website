@@ -6,19 +6,21 @@ const site = await getCopy('site');
 const { path = '' } = Astro.props;
 
 // Diensten opens a dropdown with the three diensten and the partners
-// (Kjell, 2026-10-21). On phones the sub-items show indented under it.
+// (Kjell, 2026-10-21), plus the AI-marketingworkshop (Kjell, 2026-11-17).
+// On phones the sub-items show indented under it.
 const links = [
   { href: '/diensten', label: 'Diensten', sub: [
     { href: '/positionering', label: 'Positionering' },
     { href: '/marketing-strategie', label: 'Marketingstrategie' },
     { href: '/ai', label: 'AI implementeren' },
+    { href: '/ai-marketing-workshop', label: 'AI-marketingworkshop' },
     { href: '/partners', label: 'Partners' },
   ] },
   { href: '/in-house', label: 'In-house' },
   { href: '/artikels', label: 'Artikels' },
   { href: '/contact', label: 'Contact' },
 ];
-const isActive = (href) => (href === '/' ? path === '' || path === '/' : path.startsWith(href));
+const isActive = (href) => (href === '/' ? path === '' || path === '/' : path === href || path.startsWith(`${href}/`));
 ---
 
 <header class="nav" id="nav">

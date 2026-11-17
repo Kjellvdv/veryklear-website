@@ -1,0 +1,103 @@
+# AI-marketingworkshop page (www.veryklear.com/ai-marketing-workshop).
+# Added 2026-11-16 (Kjell): a fixed offer next to the open-ended /ai service.
+# One company (one person or a whole team), one full day at their office,
+# €749 excl. btw, transport extra beyond 100 km, a month of questions after.
+# The point that sets it apart: done with you, not a classic workshop where you
+# do the work and an instructor watches over your shoulder.
+# Change the text after the colon, keep the indentation. Fields ending in _html
+# may contain <br> (line break). No bold in titles.
+
+meta:
+  title: AI-marketingworkshop op maat | Very Klear Marketing Agency
+  description: 'Eén dag bij jou op kantoor zetten we samen je AI-marketingsysteem op, voor visuals, nieuwsbrieven, ads, sociale media en meer. €749 excl. btw.'
+
+hero:
+  title_html: AI-marketingworkshop op maat.<br />Eén dag samen, en ChatGPT of Claude kent je merk.
+  lead: Op één dag leggen we bij jou op kantoor vast wie je bent, hoe je schrijft en hoe je eruitziet, rechtstreeks in de AI-tool die je al gebruikt. Daardoor maak je daarna visuals, nieuwsbrieven, ads, posts en blogartikels die klinken en eruitzien als jouw bedrijf. We bouwen het samen met jou, op je eigen werk, voor €749 excl. btw.
+  button_primary: Vraag een datum aan
+  button_secondary: Eerst kennismaken
+  mail_subject: AI-marketingworkshop
+
+when:
+  title: Herkenbaar?
+  items:
+  - Je gebruikt ChatGPT, Gemini of Claude, maar elke keer leg je opnieuw uit wie je bent.
+  - Wat eruit komt, klinkt als iedereen en ziet er ook zo uit.
+  - Een tekst of flyer uit AI vraagt je daarna toch nog een uur bijsturen.
+  - Je volgde al eens een opleiding, maar thuis lukt het niet meer zoals in de les.
+
+# Done with you vs a classic workshop (Kjell, 2026-11-16).
+difference:
+  title: Waarom dit meer is dan een workshop
+  lead: In een klassieke workshop doe je het meeste zelf, terwijl een lesgever over je schouder meekijkt. Bij ons is het omgekeerd. Wij leggen de basis en zetten alles op, en jij kijkt over onze schouder mee om de details juist te krijgen.
+
+included:
+  title: Wat heb je na één dag?
+  items:
+  - title: Je merk staat vast in je tool
+    text: Je verhaal, je schrijfstijl en je huisstijl staan uitgeschreven en liggen vast in je AI-tool. Zo hoef je nooit meer uit te leggen wie je bent.
+  - title: Een vaste instructie per taak
+    text: Voor elke taak die vaak terugkomt, zoals een nieuwsbrief, een advertentie of een post, krijg je een vaste instructie. Zo volgt het resultaat meteen je stijl, zonder dat je alles opnieuw moet uitleggen.
+  - title: In de tool die je al gebruikt
+    text: Alles werkt in Claude, Gemini of ChatGPT. Je hebt wel een betalend abonnement nodig.
+  - title: Getest op je eigen werk
+    text: We maken samen de eerste stukken en sturen bij tot ze klinken en eruitzien zoals jij het wil.
+  - title: Eén persoon of je hele team
+    text: Wie erbij zit, kies je zelf. En daarna werkt iedereen met dezelfde instructies.
+  - title: Een maand antwoorden
+    text: Loop je daarna ergens op vast, dan mail je ons gewoon je vraag. De hele maand na de workshop beantwoorden we ze allemaal.
+
+steps:
+  title: Hoe verloopt de dag?
+  items:
+  - title: We bereiden voor
+    text: Vooraf sturen we je een korte vragenlijst over je bedrijf, je klanten en wat je met AI wil maken, en vragen we wat voorbeelden, zoals je logo, je huisstijl en teksten waar je trots op bent. Liever samen invullen? Dan doen we dat op de dag zelf.
+  - title: We zetten alles samen op
+    text: Een volledige dag bij jou op kantoor. Eerst zetten we de richtlijnen en skills op in je eigen tool, dan maken we samen de eerste visuals en teksten en sturen we bij tot alles klopt.
+  - title: Je gaat zelf aan de slag
+    text: Daarna werk je er zelf mee. Loop je vast of wil je iets bijsturen, dan mail je ons en zoeken we het samen uit.
+
+price:
+  label: Prijs
+  amount: €749 excl. btw
+  text: Een volledige dag bij jou op kantoor, overal in Vlaanderen. De voorbereiding en een maand vragen achteraf zijn inbegrepen. Ligt je kantoor meer dan 100 km van ons kantoor in Ieper, dan rekenen we de verplaatsing apart.
+  button: Vraag een datum aan
+
+fit:
+  yes_title: Past goed als
+  yes:
+  - je AI al gebruikt of wil gebruiken voor je marketing
+  - je wil dat alles klinkt en eruitziet als jouw bedrijf
+  - je liever één dag goed investeert dan maanden zelf zoekt
+  - je een betalend abonnement hebt op Claude, Gemini of ChatGPT, of er een wil nemen
+  no_title: Past niet als
+  no:
+  - je een opleiding AI-geletterdheid zoekt voor een grote groep, want daarvoor werken we met een partner
+  - je wil dat AI alles alleen doet, zonder dat iemand nog meekijkt
+  - je na de dag geen tijd vrijmaakt om het ook te gebruiken
+
+# Artikels that show the approach (Kjell, 2026-11-17). slugs = file names in src/content/artikels.
+articles:
+  title: Zo pakken we het zelf aan
+  slugs:
+  - ai-schrijven-in-je-eigen-stijl
+  - flyer-maken-met-chatgpt
+  - website-bouwen-met-ai
+faq:
+  title: Vragen over de AI-marketingworkshop
+  items:
+  - q: Welke AI-tool heb ik nodig?
+    a: Claude, Gemini of ChatGPT, met een betalend abonnement. Heb je er nog geen, dan helpen we je kiezen voor de dag.
+  - q: Wat kan ik er daarna mee maken?
+    a: 'Dat kies je zelf: visuals, nieuwsbrieven, ads, posts voor sociale media, blogartikels, landingspagina''s of webdesign. We laten werken wat jij nodig hebt.'
+  - q: Werkt het ook als ik nog geen huisstijl of nieuwsbrief heb?
+    a: Ja. We vertrekken van wat er al is, zoals je website, je logo en hoe je over je werk praat, en schrijven daar samen de richtlijnen uit. Een volledige huisstijl ontwerpen zit er niet in, maar je hebt er ook geen nodig om te beginnen.
+  - q: Wat kost de AI-marketingworkshop?
+    a: €749 excl. btw voor een volledige dag bij jou op kantoor, met de voorbereiding en een maand vragen achteraf. Ligt je kantoor meer dan 100 km van ons kantoor in Ieper, dan rekenen we de verplaatsing apart.
+  - q: Hoe boek ik de workshop?
+    a: Stuur ons een mail met een paar data die je passen. Wil je eerst kennismaken, dan plan je een strategiesessie van een uurtje en bekijken we samen of de dag bij je past.
+
+cta:
+  heading: Klaar om je AI te leren hoe jij werkt?
+  body: Mail ons een paar data die je passen, en dan leggen we de dag vast.
+  button: Vraag een datum aan
