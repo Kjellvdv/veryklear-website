@@ -74,8 +74,13 @@ const related = [
           </div>
         )}
         <div class="card card-paper" style={`padding:26px${toc.length > 0 ? ';margin-top:16px' : ''}`}>
-          <span class="label">{c.author_label}</span>
-          <p style="margin-top:8px;font-weight:700">{c.author}</p>
+          <div class="byline">
+            <img src="/kjell-avatar.jpg" alt="" width="56" height="56" />
+            <div>
+              <span class="label">{c.author_label}</span>
+              <p style="margin-top:4px;font-weight:700">{c.author}</p>
+            </div>
+          </div>
           <p class="muted" style="font-size:.9rem;margin-top:4px">{c.author_bio}</p>
         </div>
       </aside>
