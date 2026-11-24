@@ -5,7 +5,7 @@ category: AI implementeren
 published_at: 2026-09-28
 draft: false
 image: /artikels/ai-geletterdheid-in-je-team.jpg
-image_alt: Een rode map met klantendossiers ligt naast een open laptop met een chatvenster, een klembord met een lijst, een smartphone, twee koffiebekers en een flip-over op een vergadertafel.
+image_alt: "De balie van een klein boekhoudkantoor met een rode klantenlijst, een tablet om je aan te melden, een bezoekersbadge, een belletje en klantenmappen op de plank erachter."
 ---
 
 Een collega plakt een klantenlijst in ChatGPT, omdat hij er snel een nette mail van wil maken. Het resultaat ziet er goed uit, en niemand vraagt zich af waar die lijst nu staat. Voor je team AI gebruikt met de gegevens van je zaak, moet iedereen drie dingen weten: ongeveer hoe AI werkt, welke gegevens erin mogen en wat je nakijkt voor je iets verstuurt. Dat is AI-geletterdheid, en het is minder technisch dan het woord doet vermoeden.

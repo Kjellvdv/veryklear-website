@@ -7,8 +7,7 @@ category: Marketingstrategie
 published_at: 2026-09-17
 draft: false
 image: /artikels/het-belang-van-samenwerking-tussen-sales-en-marketing.jpg
-image_alt: Een bureau van bovenaf met een opgenomen telefoonhoorn, een kop
-  koffie, een opengeslagen orderboek en een laptop.
+image_alt: "Zicht vanaf de bestuurdersstoel van een auto met een rode smartphone in een houder op het dashboard, een map met offertes, een laptoptas en autosleutels."
 ---
 
 Een klant belt voor een offerte. Je verkoper stelt een paar vragen, legt uit hoe je werkt en waarom je dat materiaal gebruikt en niet het goedkopere, en na tien minuten zegt hij: "Ah, zo had ik het nog niet bekeken." Dat gesprek is het beste stuk marketing dat je die week gedaan hebt, en er staat geen woord van op je website.

@@ -8,9 +8,7 @@ category: Marketingstrategie
 published_at: 2026-11-04
 draft: false
 image: /artikels/hoe-schrijf-je-een-klantverhaal-dat-je-verkoop-helpt.jpg
-image_alt: Een open laptop, een waaier van afgedrukte pagina's met een paperclip
-  en een pen, een smartphone, een koffietas en de hoek van een
-  bureaukalender.
+image_alt: "Een beursstand met een rek vol folders waarvan er één rood is, een tablet op een statief, een kom snoepjes, een badge en de rand van een banner."
 ---
 
 Een klant twijfelt. Hij vindt je prijs redelijk en je uitleg helder, maar hij vraagt zich af of het bij een zaak als de zijne ook werkt. Je kan het nog eens uitleggen. En nog eens. En misschien wat korting geven. Maar dat neemt de twijfels niet helemaal weg. Een verhaal van iemand die met hetzelfde probleem zat, daarentegen, is veel overtuigender.

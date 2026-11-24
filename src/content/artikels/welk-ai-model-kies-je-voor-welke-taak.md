@@ -5,7 +5,7 @@ category: AI implementeren
 published_at: 2026-09-03
 draft: false
 image: /artikels/welk-ai-model-kies-je-voor-welke-taak.jpg
-image_alt: "Een opengeklapte laptop met een rode factuur over het toetsenbord, naast een rekenmachine, een koffiekop en drie schroevendraaiers van klein naar groot, waarvan de kleinste rood is."
+image_alt: "De printerhoek van een klein kantoor met een grote kopieermachine, een kleine rode printer en een labelprinter naast elkaar."
 ---
 
 Welk AI-model je kiest, hangt af van de taak, en voor de meeste taken is dat niet het zwaarste. Een mail samenvatten, een tekst herschrijven of gegevens uit een offerte halen doet een klein, snel model even goed. Het grote model hou je voor werk waar echt veel denkwerk in zit, en dat komt minder vaak voor dan je zou denken.

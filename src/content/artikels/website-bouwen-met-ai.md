@@ -5,7 +5,7 @@ category: AI implementeren
 published_at: 2026-10-01
 draft: false
 image: /artikels/website-bouwen-met-ai.jpg
-image_alt: "Een bureau van bovenaf met een open laptop, een rood notitieboek, een stapel papieren met een klem, een paar briefjes, een pen en een koffietas."
+image_alt: "Een tafeltje in de trein met een rode opengeklapte laptop, een smartphone, een doosje oortjes en een treinticket."
 ---
 
 Kan je een website bouwen met AI? Ja, je leest er nu een. Deze site is met Claude gemaakt. Claude schreef de code, gewone HTML en CSS, en elk bestand daarvan kunnen we openen, lezen en aanpassen. Veel flexibeler dan met een website tool, en toch uniek genoeg?

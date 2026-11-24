@@ -5,7 +5,7 @@ category: AI implementeren
 published_at: 2026-08-21
 draft: false
 image: /artikels/hoe-begin-je-met-ai-in-je-marketing.jpg
-image_alt: "Een bureau van bovenaf met een rode weekplanner en een rode kookwekker tussen een laptop, een smartphone, een stapel afgedrukte mails en een koffiekop."
+image_alt: "Een whiteboard in een vergaderzaal vol lege post-its in vier kolommen, waarvan de eerste kolom rood is, met stiften, een flip-over en een klok."
 ---
 
 De meeste mensen beginnen met AI in hun marketing door een tool te kiezen, en dan te zoeken wat ze ermee kunnen doen. Het werkt beter in de omgekeerde volgorde. Je begint bij het werk dat je vandaag tijd kost en elke week terugkomt. Daarna kies je de tools en modellen die daarbij passen, je maakt afspraken over hoe je ze gebruikt, en pas dan bouw je iets. Dat is een AI-marketingstrategie, en ze past op één blad.

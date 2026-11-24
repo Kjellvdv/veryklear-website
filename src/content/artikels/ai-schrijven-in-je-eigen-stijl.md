@@ -5,7 +5,7 @@ category: AI implementeren
 published_at: 2026-08-13
 draft: false
 image: /artikels/ai-schrijven-in-je-eigen-stijl.jpg
-image_alt: Een bureau van bovenaf met een laptop, een open rood ringschrift, een blad met doorstreepte regels, een vulpen, een stapeltje briefjes en een kop koffie.
+image_alt: "Een kastplank op kantoor van bovenaf met een rode stempel naast een stempelkussen, ringmappen, briefpapier, visitekaartjes en enveloppen."
 ---
 
 Je vraagt ChatGPT om een tekst voor je nieuwe dienst, en wat terugkomt is vlot en correct, maar het zou net zo goed over de zaak van je buurman kunnen gaan. Wil je dat AI schrijft zoals jouw bedrijf, dan moet je het eerst vertellen wie je bent en hoe je klinkt, in vaste richtlijnen die bij elke vraag meegaan. Zonder die richtlijnen krijg je het gemiddelde van het internet.

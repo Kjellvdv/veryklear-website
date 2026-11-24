@@ -5,7 +5,7 @@ category: AI implementeren
 published_at: 2026-10-21
 draft: false
 image: /artikels/bouw-nuttige-ai-tools.jpg
-image_alt: Een rood orderboek met turfstreepjes ligt open naast een laptop met veel open vensters, een smartphone, een koffiekop en een stapel facturen.
+image_alt: "Een lege vergaderzaal met een dashboard op het scherm aan de muur, een vergadertelefoon op tafel, een rode presentatieklikker, een karaf water en twee glazen."
 ---
 
 Iemand toont je een nieuw dashboard of een chatbot die "alles voor je regelt", en het ziet er goed uit. Of zo'n AI-tool je zaak echt helpt, weet je pas als je drie vragen kunt beantwoorden: klopt de informatie waarmee hij werkt, welk werk neemt hij over, en wie houdt hem bij als hij eenmaal draait? Kun je dat niet zeggen, dan heb je vooral een tabblad erbij.

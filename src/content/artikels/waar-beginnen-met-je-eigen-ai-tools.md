@@ -7,9 +7,7 @@ category: AI implementeren
 published_at: 2026-11-10
 draft: false
 image: /artikels/waar-beginnen-met-je-eigen-ai-tools.jpg
-image_alt: Een bureau van bovenaf met een open laptop, een smartphone, een
-  koffiekop en een stapel offertes met paperclip en een balpen, de
-  stapel en de pen in rood.
+image_alt: "Een keukentafel van bovenaf, laat op de avond, met een rode stapel facturen, een laptop, kassabonnetjes, een rekenmachine, een brandende lamp en een klok die bijna elf uur aangeeft."
 ---
 
 Het is weer bijna het einde van de maand en in plaats van 's avonds een goeie (pint) te gaan drinken, zit je weer voor de computer om facturen te maken. Plezant is anders.

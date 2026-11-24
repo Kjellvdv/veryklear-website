@@ -7,9 +7,7 @@ category: AI implementeren
 published_at: 2026-11-19
 draft: false
 image: /artikels/waarom-een-goede-ai-opstelling-uit-lagen-bestaat.jpg
-image_alt: Een stapel van drie ringmappen, waarvan de bovenste rood is, naast
-  een open laptop, een rode bureaukalender met afgevinkte dagen, een
-  smartphone en een koffiekop.
+image_alt: "Een kast op kantoor met een brievenbakje van drie lagen waarvan de middelste rood is, archiefdozen, een labelprinter en een plakbandhouder."
 ---
 
 Wanneer je ChatGPT of Claude Chat gebruikt, is de context rond je bedrijf beperkt. Wil je iets maken dat helemaal in lijn licht met je stijl, dan sta je voor een lange opdracht: vertellen hoe je bedrijf klinkt, wat je klanten willen, hoe je iets zegt, hoe het eruit moet zien. 

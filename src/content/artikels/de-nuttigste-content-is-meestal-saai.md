@@ -7,8 +7,7 @@ category: Marketingstrategie
 published_at: 2026-10-08
 draft: false
 image: /artikels/de-nuttigste-content-is-meestal-saai.jpg
-image_alt: Een rode bureautelefoon en een rood klembord met een lijstje, naast
-  een stapel foto's, een koffiekop en een ringmap met een lijst vragen.
+image_alt: "Een onthaalbalie met een rode headset op zijn houder, een vaste telefoon, een rek met brochures en een notitieblok met turflijnen."
 ---
 
 De telefoon gaat voor de derde keer deze week, en de vraag is dezelfde als de vorige twee keren: welk materiaal gebruik je eigenlijk, en waarom is dat duurder? Je legt het uit, vriendelijk en uitgebreid, en hangt op. De vierde keer volgt volgende week.
