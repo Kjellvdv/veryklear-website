@@ -1,6 +1,7 @@
 import type { Request } from "express";
 import { deviceOf, isBot } from "./bots";
 import type { Db } from "./db";
+import { languageGroup, MAX_SIGNATURES_PER_DAY, signatureOf } from "./signals";
 import { dayOf, saltFor, visitorHash } from "./visitor";
 
 // eslint-disable-next-line no-control-regex
@@ -104,6 +105,8 @@ export function createCounter(
   db: Db,
   now: () => number,
   isDatacenter: (ip: string) => boolean = () => false,
+  /** Keep anonymous daily totals of header signatures (SIGNAL_TALLY). */
+  signals = false,
 ): Counter {
   const insert = db.prepare(`
     INSERT INTO pageviews
@@ -115,6 +118,28 @@ export function createCounter(
     INSERT INTO filtered (day, reason, n) VALUES (?, ?, 1)
     ON CONFLICT (day, reason) DO UPDATE SET n = n + 1`);
 
+  // The measuring aid. A signature is added to its day and group; past a daily cap new
+  // signatures go to one overflow bucket, so the table can't grow without bound.
+  const known = db.prepare("SELECT 1 FROM signals WHERE day = ? AND grp = ? AND sig = ?");
+  const distinct = db.prepare("SELECT COUNT(*) AS n FROM signals WHERE day = ?");
+  const addSignal = db.prepare(`
+    INSERT INTO signals (day, grp, sig, n) VALUES (?, ?, ?, 1)
+    ON CONFLICT (day, grp, sig) DO UPDATE SET n = n + 1`);
+  const tallySignal = (req: Parameters<Counter>[0], day: string, grp: string) => {
+    const ref = referrerOf(req.get("referer"), req.hostname);
+    let sig = signatureOf(req, {
+      ref: ref.host ? "x" : ref.fromPath ? "o" : "d",
+      device: deviceOf(req.get("user-agent") ?? ""),
+    });
+    if (
+      !known.get(day, grp, sig) &&
+      (distinct.get(day) as { n: number }).n >= MAX_SIGNATURES_PER_DAY
+    ) {
+      sig = "(overflow)";
+    }
+    addSignal.run(day, grp, sig);
+  };
+
   return (req, path) => {
     let verdict = classify(req);
     if (verdict === "ignore") return;
@@ -125,7 +150,11 @@ export function createCounter(
       if (verdict === "count" && isDatacenter(req.ip ?? "")) verdict = "datacenter";
       if (verdict !== "count") {
         tally.run(day, verdict);
+        if (signals && verdict === "datacenter") tallySignal(req, day, "datacenter");
         return;
+      }
+      if (signals) {
+        tallySignal(req, day, languageGroup(primaryLanguage(req.get("accept-language"))));
       }
       const ua = req.get("user-agent") ?? "";
       const q = req.query as Record<string, unknown>;

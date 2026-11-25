@@ -9,6 +9,7 @@ import {
   RANGES,
   type Report,
   type SessionRow,
+  type Signals,
   SERVICE_PATHS,
   TABS,
   TARGET_PATHS,
@@ -99,6 +100,48 @@ export function brusselsMidnight(ts: number, daysBack = 0): number {
   let guess = wall - brusselsOffset(ts);
   guess = wall - brusselsOffset(guess);
   return guess;
+}
+
+/** Parses the signature totals of the window into one small table per header feature. */
+function buildSignals(db: Db, from: string): Signals | null {
+  const rows = db
+    .prepare(`SELECT grp, sig, SUM(n) AS n FROM signals WHERE day >= @from GROUP BY grp, sig`)
+    .all({ from }) as { grp: string; sig: string; n: number }[];
+  if (rows.length === 0) return null;
+
+  const groups = new Map<string, number>();
+  const overflow: Record<string, number> = {};
+  const parts = new Map<string, Map<string, Record<string, number>>>();
+  for (const r of rows) {
+    groups.set(r.grp, (groups.get(r.grp) ?? 0) + r.n);
+    if (r.sig === "(overflow)") {
+      overflow[r.grp] = (overflow[r.grp] ?? 0) + r.n;
+      continue;
+    }
+    for (const part of r.sig.split("|")) {
+      const [key, value = "-"] = part.split("=");
+      if (!key) continue;
+      const byValue = parts.get(key) ?? new Map<string, Record<string, number>>();
+      const counts = byValue.get(value) ?? {};
+      counts[r.grp] = (counts[r.grp] ?? 0) + r.n;
+      byValue.set(value, counts);
+      parts.set(key, byValue);
+    }
+  }
+  const total = (c: Record<string, number>) => Object.values(c).reduce((a, b) => a + b, 0);
+  return {
+    groups: [...groups]
+      .map(([grp, requests]) => ({ grp, requests }))
+      .sort((a, b) => b.requests - a.requests),
+    overflow,
+    components: [...parts].map(([key, byValue]) => ({
+      key,
+      values: [...byValue]
+        .map(([value, counts]) => ({ value, counts }))
+        .sort((a, b) => total(b.counts) - total(a.counts))
+        .slice(0, 12),
+    })),
+  };
 }
 
 /**
@@ -332,6 +375,7 @@ export function buildReport(db: Db, days: number, now: number): Report {
       requests: automatedRequests,
       share: requestTotal === 0 ? 0 : automatedRequests / requestTotal,
     },
+    signals: buildSignals(db, from),
   };
 }
 

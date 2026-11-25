@@ -36,6 +36,17 @@ CREATE TABLE IF NOT EXISTS filtered (
   PRIMARY KEY (day, reason)
 );
 
+-- Measuring aid, off unless SIGNAL_TALLY=on: how counted requests look at the header
+-- level, as daily totals per group. A signature is a handful of short values such as
+-- "fam=chrome|ver=131|sfu=1", never an address, hash, path or user agent.
+CREATE TABLE IF NOT EXISTS signals (
+  day TEXT NOT NULL,           -- YYYY-MM-DD, UTC
+  grp TEXT NOT NULL,           -- en-US | local | other | datacenter
+  sig TEXT NOT NULL,
+  n   INTEGER NOT NULL,
+  PRIMARY KEY (day, grp, sig)
+);
+
 CREATE TABLE IF NOT EXISTS salts (
   day  TEXT PRIMARY KEY,
   salt TEXT NOT NULL
@@ -72,5 +83,6 @@ export function purge(db: Db, now: number, retentionDays: number): number {
   const a = db.prepare("DELETE FROM pageviews WHERE ts < ?").run(cutoff).changes;
   const b = db.prepare("DELETE FROM salts WHERE day < ?").run(yesterday).changes;
   const c = db.prepare("DELETE FROM filtered WHERE day < ?").run(cutoffDay).changes;
-  return a + b + c;
+  const d = db.prepare("DELETE FROM signals WHERE day < ?").run(cutoffDay).changes;
+  return a + b + c + d;
 }

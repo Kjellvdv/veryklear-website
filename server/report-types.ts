@@ -83,6 +83,11 @@ export interface Report {
   filteredDaily: { day: string; reasons: Record<string, number> }[];
   /** Left-out requests as a share of every page request that reached a real page. */
   automated: { requests: number; share: number };
+  /**
+   * Measuring aid (SIGNAL_TALLY): how counted requests look at the header level, per
+   * group, as daily totals. Null when nothing was tallied in the window.
+   */
+  signals: Signals | null;
 }
 
 export interface Flows {
@@ -120,4 +125,11 @@ export interface SessionRow {
   campaign: string;
   lang: string;
   device: string;
+}
+
+export interface Signals {
+  groups: { grp: string; requests: number }[];
+  /** Requests past the daily cap of distinct signatures, per group. */
+  overflow: Record<string, number>;
+  components: { key: string; values: { value: string; counts: Record<string, number> }[] }[];
 }

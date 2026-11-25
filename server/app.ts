@@ -127,7 +127,13 @@ export function createApp({
   app.use(reportRouter(db, cfg, now));
   app.use(normalizeUrl(REDIRECTS));
   app.use(express.static(dist, { index: false, redirect: false, setHeaders: assetHeaders(dist) }));
-  app.use(servePages({ dist, pages, count: createCounter(db, now, isDatacenter) }));
+  app.use(
+    servePages({
+      dist,
+      pages,
+      count: createCounter(db, now, isDatacenter, cfg.SIGNAL_TALLY === "on"),
+    }),
+  );
 
   const errors: ErrorRequestHandler = (err, req, res, _next) => {
     const status = typeof err?.status === "number" ? err.status : 500;

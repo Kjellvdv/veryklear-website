@@ -44,6 +44,7 @@ MX records for both domains stay on SiteGround, so `kjell@veryklear.be` keeps wo
   | `REPORT_PASSWORD` | long and random, e.g. `openssl rand -base64 24` |
   | `RETENTION_DAYS` | `400` (the privacy page says 14 months; change both together) |
   | `DATACENTER_FILTER` | `off` (default) or `on`: leave visits from cloud and hosting networks out of the count. On in production since 2026-10-14, after `X-Real-IP` was wired in. |
+  | `SIGNAL_TALLY` | `off` (default) or `on`: keep anonymous daily totals of header signatures per language group, to tell automated traffic from people. A measuring aid: on from 2026-11-25, switch it off when the analysis is done. |
   | `CANONICAL_HOST` | `www.veryklear.com`, but only once that domain is verified. Every other Host header then 301s there. |
 
   Never set `NODE_ENV=production` as a variable: it makes the build skip dev

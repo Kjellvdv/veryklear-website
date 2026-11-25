@@ -1,4 +1,4 @@
-import { RANGES, TABS, type Report, type TabId } from "./report-types";
+import { RANGES, TABS, type Report, type Signals, type TabId } from "./report-types";
 
 // ---- small pieces -----------------------------------------------------------
 
@@ -453,6 +453,58 @@ ${section(
 )}`;
 }
 
+const SIGNAL_LABELS: Record<string, string> = {
+  fam: "Browser family",
+  ver: "Browser version",
+  uaos: "Platform in the user agent",
+  chos: "Platform in the browser's client hints",
+  chua: "Client hints brand list",
+  sfs: "Sec-Fetch-Site",
+  sfu: "Sec-Fetch-User (a click or a typed address)",
+  enc: "Accept-Encoding",
+  prio: "Priority header",
+  uir: "Upgrade-Insecure-Requests",
+  acc: "Accept header style",
+  ref: "Referrer kind (d direct, o own site, x other site)",
+  dev: "Device",
+};
+
+/** One small table per header feature: each group's share, so a difference stands out. */
+function signalsSection(s: Signals | null): string {
+  if (!s) return "";
+  const order = ["en-US", "local", "other", "datacenter"].filter((g) =>
+    s.groups.some((x) => x.grp === g),
+  );
+  const totals = Object.fromEntries(s.groups.map((g) => [g.grp, g.requests]));
+  const tables = s.components
+    .slice()
+    .sort(
+      (a, b) =>
+        Object.keys(SIGNAL_LABELS).indexOf(a.key) - Object.keys(SIGNAL_LABELS).indexOf(b.key),
+    )
+    .map((c) => {
+      const rows = c.values.map((v) => [
+        esc(v.value),
+        ...order.map((g) => {
+          const n = v.counts[g] ?? 0;
+          return `${pct(n, totals[g] ?? 0)} <span class="t">${n}</span>`;
+        }),
+      ]);
+      return `<h3>${esc(SIGNAL_LABELS[c.key] ?? c.key)}</h3>${table(
+        ["Value", ...order.map((g) => `${g} (${n(totals[g] ?? 0)})`)],
+        rows,
+        { numeric: order.map((_, i) => i + 1) },
+      )}`;
+    })
+    .join("");
+  const spill = Object.values(s.overflow).reduce((a, b) => a + b, 0);
+  return section(
+    "Request signals (measuring phase)",
+    `Counted requests, grouped by browser language, plus the ones left out as datacenter traffic for comparison. Each cell is the share of that group, with the count beside it. Look for a value that nearly all of one group has and the others lack. Only anonymous daily totals are kept.${spill > 0 ? ` ${n(spill)} requests came after the daily cap of distinct signatures.` : ""}`,
+    tables,
+  );
+}
+
 function quality(r: Report): string {
   const keys = Object.keys(REASONS);
   const first = r.daily[0]?.day ?? r.from;
@@ -487,6 +539,7 @@ ${section(
     [shortDay(first), shortDay(last)],
   ) + legend(keys),
 )}
+${signalsSection(r.signals)}
 <details class="notes"><summary>How these numbers are made</summary>
 <ul>
 <li><b>Visitor.</b> One browser on one day. Nothing identifies a person across days, so someone who comes on three days counts three times. People behind the same address and browser can merge into one.</li>
